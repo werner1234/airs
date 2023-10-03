@@ -1,0 +1,73 @@
+<!--
+/* 	
+  AE-ICT source module
+    Author                 : $Author: cvs $
+    Laatste aanpassing     : $Date: 2011/10/22 06:45:09 $
+    File Versie            : $Revision: 1.1 $
+ 		
+    $Log: CRM_uur_registratieEditTemplate.html,v $
+    Revision 1.1  2011/10/22 06:45:09  cvs
+    Urenregistratie voor TRA
+
+ 		
+ 	
+*/
+-->
+<form name="editForm" action="{updateScript}">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  {id_inputfield}
+  {wn_code_inputfield}
+  
+<div class="formblock">
+  <div class="formlinks"><label for="wn_code">{wn_code_description}</label> </div>
+  <div class="formrechts">
+    <b>{wn_code_value}</b> {wn_code_error}
+</div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks"><label for="datum">{datum_description}</label> </div>
+  <div class="formrechts">
+    {datum_inputfield} {datum_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks"><label for="deb_id">{deb_id_description}</label> </div>
+  <div class="formrechts">
+    {deb_id_inputfield} {deb_id_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks"><label for="act_id">{act_id_description}</label> </div>
+  <div class="formrechts">
+    {act_id_inputfield} {act_id_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks"><label for="tijd">{tijd_description}</label> </div>
+  <div class="formrechts">
+    {tijd_inputfield}  uur (1u 30m = 1.5 uur)  {tijd_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks"><label for="memo">{memo_description}</label> </div>
+  <div class="formrechts">
+    {memo_inputfield} {memo_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">&nbsp;</div>
+  <div class="formrechts">
+    {change_user_value} {change_date_value}
+  </div>
+</div>
+
+</form></div>

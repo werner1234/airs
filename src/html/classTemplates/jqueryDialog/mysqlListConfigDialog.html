@@ -1,0 +1,116 @@
+<div id="mysqlListConfigContent" style="display: none;">
+
+  Selecteer een gebruiker: {users}
+
+  <br /><br />
+  <div class="profilesForUser"></div>
+</div>
+
+
+<script>
+
+  $(function (){
+    $('.mysqlListprofileInfo').hide();
+
+
+    $(document).on('click', '.mysqlCopyProfile', function (){
+      var $rowId = $(this).data('row');
+      var $row = $("[data-row='" + $rowId + "']")
+      var $toProfile = $row.find('.profiel').find(":selected").val();
+      var $toProfileNamew = $row.find('.newProfileName').val();
+      var $fromField = $row.data('fieldname');
+      var $profileName = $row.data('profilename');
+      var $table = $row.data('table');
+
+      $.ajax({
+        url : "lookups/ajaxLookup.php",
+        type: "GET",
+        dataType : "html",
+        data : {
+          fromClass     : "AE_cls_mysqlListConfig",
+          type          : "copyFromProfileToProfile",
+          from          : $fromField,
+          to            : $toProfile,
+          toName        : $toProfileNamew,
+          profileName   : $profileName,
+          table         : $table
+        },
+        success:function(data, textStatus, jqXHR) {
+
+          if ( data.saved == true ) {
+
+          } else {
+          }
+          location.reload(true);
+        }
+      });
+
+    });
+
+
+    $(document).on('click', '.openMysqlListprofileInfo', function () {
+
+      $('.closeMysqlListprofileInfo').toggleClass("closeMysqlListprofileInfo openMysqlListprofileInfo");
+      $(this).toggleClass("openMysqlListprofileInfo closeMysqlListprofileInfo");
+
+      $('.mysqlListprofileInfo').hide();
+      $(this).closest('tr').next('tr').toggle();
+
+    });
+
+    $(document).on('click', '.closeMysqlListprofileInfo', function () {
+
+      $(this).toggleClass("closeMysqlListprofileInfo openMysqlListprofileInfo");
+
+      $(this).removeClass('mysqlListprofileInfo');
+      $(this).closest('tr').next('tr').hide();
+    });
+
+
+
+    $(document).on('change', '#listConfigUsers', function () {
+      $.ajax({
+        url : "lookups/ajaxLookup.php",
+        type: "GET",
+        dataType : "html",
+        data : {
+          fromClass : "AE_cls_mysqlListConfig",
+          type : "getHtmlForUserInTable",
+          table : '{table}',
+          user : $(this).val()
+        },
+        success:function(data, textStatus, jqXHR) {
+          $('#mysqlListConfigContent .profilesForUser').html(data);
+          if ( data.saved == true ) {
+            element.slideToggle();
+          } else {
+          }
+        }
+      });
+
+    });
+  });
+
+  dialog = $( "#mysqlListConfigContent" ).dialog({
+    title: "[vt]Kopieer profielen[/vt]",
+    position: { my: "center", at: "top" },
+    autoOpen: false,
+    height: 600,
+    width: 800,
+    modal: true,
+    buttons: {
+      "[vt]Sluiten[/vt]": function() {
+        dialog.dialog( "close" );
+      }
+    },
+    close: function() {
+      dialog.dialog( "close" );
+    }
+  });
+
+  function showMysqlListConfig ()
+  {
+    dialog.dialog( "open" );
+  }
+
+</script>

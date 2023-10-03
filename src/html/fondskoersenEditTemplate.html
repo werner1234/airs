@@ -1,0 +1,48 @@
+<form id="fondskoersenEditForm" name="{formName}" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}
+
+<div class="formblock">
+<div class="formlinks"><label for="Fonds">{Fonds_description}</label> </div>
+<div class="formrechts">
+{Fonds_inputfield} {Fonds_error}
+</div>
+</div>
+
+{benchmark}
+
+<div class="formblock">
+<div class="formlinks"><label for="Datum">{Datum_description}</label> </div>
+<div class="formrechts">
+{Datum_inputfield} {Datum_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Koers">{Koers_description}</label> </div>
+<div class="formrechts">
+{Koers_inputfield} {Koers_error}
+</div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="Koers">{oorspKrsDt_description}</label> </div>
+    <div class="formrechts">
+      {oorspKrsDt_inputfield} {oorspKrsDt_error}
+    </div>
+  </div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+<div class="formblock">
+{submit}
+</div>
+
+</form></div>

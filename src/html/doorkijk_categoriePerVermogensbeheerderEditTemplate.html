@@ -1,0 +1,109 @@
+<script>
+  function checkDoorkijkCategoriesoort()
+  {
+ 
+    var soort=($("#doorkijkCategoriesoort").val());
+    if(soort=='Looptijd' || soort=='Coupon')
+    {
+      $("#minMaxSpan").show();
+    }
+    else
+    {
+      $("#minMaxSpan").hide();
+    }
+  }
+  
+</script>
+<form name="editForm" action="{updateScript}" method="post">
+    <!--form name="editForm" action="ben_test.php" method="post"-->
+
+    <div class="form">
+
+        <input type="hidden" name="action"       value="{action}">
+        <input type="hidden" name="updateScript" value="{updateScript}">
+        <input type="hidden" name="returnUrl"    value="{returnUrl}">
+        {id_inputfield}
+
+        <div class="formblock">
+            <div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label></div>
+            <div class="formrechts">
+                {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+            </div>
+        </div>
+
+        <div class="formblock">
+            <div class="formlinks"><label for="doorkijkCategoriesoort">{doorkijkCategoriesoort_description}</label>
+            </div>
+            <div class="formrechts">
+                {doorkijkCategoriesoort_inputfield} {doorkijkCategoriesoort_error}
+            </div>
+        </div>
+
+        <div class="formblock">
+            <div class="formlinks"><label for="doorkijkCategorie">{doorkijkCategorie_description}</label></div>
+            <div class="formrechts">
+                {doorkijkCategorie_inputfield} {doorkijkCategorie_error}
+            </div>
+        </div>
+
+        <div class="formblock">
+            <div class="formlinks"><label for="afdrukVolgorde">{afdrukVolgorde_description}</label></div>
+            <div class="formrechts">
+                {afdrukVolgorde_inputfield} {afdrukVolgorde_error}
+            </div>
+        </div>
+        <br><br>
+
+        <div class="formblock">
+            <div class="formlinks"><label >{grafiekKleur_description}</label></div>
+                <div class="formrechts">
+  
+  
+  
+  
+  
+<input size="3" class="colorp" maxlength="3" type="text" value="{Rood}" id="kleur_R" data-group="kleur" name="grafiekKleur[]" >
+<input size="3" class="colorp" maxlength="3" type="text" value="{Groen}" id="kleur_G" data-group="kleur" name="grafiekKleur[]" >
+<input size="3" class="colorp" maxlength="3" type="text" value="{Blauw}" id="kleur_B" data-group="kleur" name="grafiekKleur[]" >
+
+<div id="kleur-colorPicker" class="colorpicker-component colorDisplayField" style="" title="Using format option">
+  <input type="hidden" class="form-control input-lg" value=""/><span class="input-group-addon" ><i></i></span></div>
+  
+                  {grafiekKleur_error}
+                </div>
+            </div>
+        </div>
+    
+    
+    <span id="minMaxSpan">
+    <div class="formblock">
+        <div class="formlinks"><label for="omschrijving">{min_description}</label></div>
+        <div class="formrechts">
+            {min_inputfield} {min_error}
+        </div>
+    </div>
+    
+    <div class="formblock">
+        <div class="formlinks"><label for="omschrijving">{max_description}</label></div>
+        <div class="formrechts">
+            {max_inputfield} {max_error}
+        </div>
+    </div>
+   </span>
+    
+
+    </div>
+    <!-- input type='submit' value='submit' -->
+
+    <div class="formblock">
+        <div class="formlinks">&nbsp;</div>
+        <div class="formrechts">
+            {change_user_value} {change_date_value}
+        </div>
+    </div>
+</form>
+
+<script>
+  AEColor.initColors();
+  AEColor.initColorChange();
+</script>

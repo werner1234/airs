@@ -1,0 +1,50 @@
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline;
+}
+</style>
+
+<fieldset name="test" value="" title="Mutatieformulier">
+  <legend accesskey="m"><strong>[vt]Mutatie soort[/vt]</strong></legend>
+  <ul id="select-list">
+    <li><input type="radio"  name="select" value="radio3" data-link="aan_verkoop"/> [vt]Aan/Verkoop[/vt]</li>
+    <li><input type="radio"  name="select" value="radio1" data-link="dividend_coupons"/> [vt]Dividend coupons[/vt]</li>
+    <li><input type="radio"  name="select" value="radio2" data-link="geld_transacties"/> [vt]Geld transacties[/vt]</li>
+    <li><input type="radio"  name="select" value="radio4" data-link="beginboeking"/> [vt]Beginboeking[/vt]</li>
+    <!--<li><input type="radio"  name="select" value="radio5" data-link="conversie"/> <span style="color:red;">Conversie</span></li>-->
+    <li><input type="radio"  name="select" value="radio6" data-link="kostenboeking"/> [vt]Kostenboeking[/vt]</li>
+    <li style="display:none;"><input id="radioMemoriaal" type="radio"  name="select" value="radio7" data-link="memoriaal"/> [vt]Memoriaal[/vt]</li>
+    <li><input type="radio"  name="select" value="radio8" data-link="overige"/>[vt]Overige[/vt]</li>
+  </ul>
+</fieldset>
+
+<script>
+$(function() {
+  document.getElementsByName('select')[0].focus();
+    /** load memoriaal if selected, hide the radio select **/
+    function loadMemoriaal() {
+      if ({Memoriaal} == 1) {
+        $('#radio-select').hide();
+        $( "#radio-result" ).load( "rekeningmutaties_v2_memoriaal.php?afschrift_id={aId}&type={type}");
+      }
+    }
+    loadMemoriaal();
+    
+  document.getElementsByName('select')[0].focus();
+  $('input[type=radio]').on('click', function() {
+    if($(this).is(':checked')) {
+      $( "#radio-result" ).html('');
+      $('#radio-messages').html('');
+      $("#radio-result").load( "rekeningmutaties_v2_" + $(this).data('link') + ".php?afschrift_id=" + $('#isAfschriftId').val() + "&type={type}");
+    }
+  });
+    
+    
+  });
+</script>

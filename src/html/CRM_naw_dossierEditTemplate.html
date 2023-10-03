@@ -1,0 +1,183 @@
+<form name="editForm" enctype="multipart/form-data"  action="{updateScript}" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="256000000" />
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="action2" value="{action2}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input class="" type="hidden"  value="{rel_id_value}" id="rel_id" >
+
+  {rel_id_inputfield}
+  {id_inputfield}
+
+  <div class="formblock">
+    <div class="formlinks">Template ophalen</div>
+    <div class="formrechts">
+         {templates}
+    </div>
+  </div>
+
+<div class="formblock">
+<div class="formlinks">{datum_description} </div>
+<div class="formrechts">
+{datum_inputfield} {datum_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{kop_description} </div>
+<div class="formrechts">
+{kop_inputfield} {kop_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{type_description} </div>
+<div class="formrechts">
+{type_inputfield} {type_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{aanwezig_description} </div>
+<div class="formrechts">
+{aanwezig_inputfield} {aanwezig_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{duur_description} </div>
+<div class="formrechts">
+{duur_inputfield} {duur_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{clientGesproken_description} </div>
+<div class="formrechts">
+{clientGesproken_inputfield} {clientGesproken_error} Type gespreksverslag is contact: <input type="checkbox" name="isContact" id="isContact">
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{txt_description} </div>
+<div class="formrechts">
+{txt_inputfield} {txt_error}
+</div>
+</div>
+
+{toevoegenFile}
+
+<div class="formblock">
+<div class="formlinks">{memo_description} </div>
+<div class="formrechts">
+{memo_inputfield} {memo_error}
+</div>
+</div>
+
+
+{save_onder}
+
+</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>
+<script language="JavaScript" type="text/javascript">
+function doEditorOnload()
+ {
+  loadEditor('txt',400,800);
+  CKEDITOR.config.scayt_autoStartup = true;
+ }
+document.getElementById("kop").focus();
+ //placeFocus();
+{contactJS}
+
+
+
+ $(function() {
+
+
+   $('#templateId').on('change', function ()
+   {
+     var confirmed=false;
+     if(CKEDITOR.instances['txt'].getData()=='')
+     {
+       confirmed=true;
+     }
+     else
+     {
+       confirmed=confirm('Weet u zeker dat u een nieuwe template wilt laden?')
+     }
+
+     if (confirmed)
+     {
+       $.ajax({
+         url: 'lookups/CRM_naw_dossierEdit.php',
+         type: 'POST',
+         data: {
+           templateId: $('#templateId').val(),
+           rel_id: $('#rel_id').val()
+         },
+         success: function (data)
+         {
+           CKEDITOR.instances['txt'].setData(data);
+         },
+         error: function (data)
+         {
+         },
+         cache: false
+       });
+     }
+   });
+
+
+   if ('{ajax_edit}' == 'true') {
+    $('#type').on('change', function() {
+      if (confirm('Weet u zeker dat u het type wilt aanpassen?')) {
+        $.ajax({
+            url: 'lookups/CRM_naw_dossierEdit.php',
+            type: 'POST',
+            data: {
+                dossierId: '{id_value}',
+                veld: 'type',
+                newValue: $('#type option:selected').val()
+            },
+            success: function (data) {
+                window.location = '{returnUrl}';
+            },
+            error: function (data) {
+            },
+            cache: false
+        });
+      }
+    });
+ 
+  
+    $('#memo').on('change', function() 
+    {
+      if (confirm('Weet u zeker dat u het memo veld wilt aanpassen?')) {
+        $.ajax({
+            url: 'lookups/CRM_naw_dossierEdit.php',
+            type: 'POST',
+            data: {
+                dossierId: '{id_value}',
+                veld: 'memo',
+                newValue: $('#memo').val()
+            },
+            success: function (data) {
+                window.location = '{returnUrl}';
+            },
+            error: function (data) {
+            },
+            cache: false
+        });
+      }
+    });
+  }
+   
+ });
+ 
+ 
+</script>

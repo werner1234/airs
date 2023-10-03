@@ -1,0 +1,135 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 1400px;
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+  
+  input[name=datum]{
+    width: 86px;
+  }
+  input[name=transCode]{
+    width: 80px;
+  }
+  input[name=aantal]{
+    width: 80px;
+  }
+  input[name=koers]{
+    width: 80px;
+  }
+  input[name=waarde]{
+    width: 80px;
+  }
+  
+   input[name=registratienummer]{
+    width: 140px;
+  }
+  
+  
+  #content{
+
+  width: 98%;
+  height: 99%;
+  overflow: auto;
+  padding-right: 5px;
+
+
+
+  font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size : 10pt;
+}
+
+.legenda{
+  padding:2px;
+  border-radius: 5px;
+  text-align: center;
+  border:1px solid #333;
+  height: 30px;
+  
+}
+.prio{
+  display: inline-block;
+  float: left;
+  width: 20px;
+  background: #333;
+  color:whitesmoke;
+  height: 15px;
+  border-radius: 5px;
+  text-align: center;
+  padding:7px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.legendaTable{
+  width: 100%;
+}
+.legendaTable td{
+  width:50%;
+}
+</style>
+
+
+<div class="edit_actionTxt">
+  <b>[vt]Bulk import[/vt]</b>
+</div>
+{aeMessage}
+
+<br />
+<form  method="post" enctype="multipart/form-data">
+    [vt]Selecteer het bestand dat u wil importeren, uw csv moet de zelfde format als de voorbeeld regel hebben:[/vt]<br />
+    <input style="height: 25px;" type="file" name="fileToUpload" id="fileToUpload">
+    <button type="submit" class="btn btn-gray"><img src="icon/16/add.png" class="simbisIcon"> [vt]Importeren[/vt]</button>
+</form>
+
+<table><tr><td>{clearData}</td> <td>{importDataButton}</td></tr></table> 
+
+
+{overviewTable}
+
+{example}
+
+<fieldset style='width: 94%;'>
+  <legend>[vt]Legenda[/vt]</legend>
+  <table  class="legendaTable">
+    <tr style="vertical-align: text-top;">
+      <td>
+        <p class="list_dataregel_rose legenda"><span class="prio">1</span> [vt]Combinatie Registratienummer en Fonds zijn onbekend[/vt]</p>
+        <p class="list_dataregel_geel legenda"><span class="prio">2</span> [vt]TransCode is onbekend[/vt]</p>
+        <p class="list_dataregel_oranje legenda"><span class="prio">3</span> [vt]Waarde is niet correct[/vt]</p>
+        
+        
+      </td>
+      <td>
+        <p class="list_dataregel_groen legenda"><span class="prio">4</span> [vt]Datum is niet correct[/vt]</p>
+        <p class="list_dataregel_cyaan legenda"><span class="prio">5</span> [vt]Aantal of TransCode is onjuist[/vt]</p>
+        
+        
+        
+        
+        
+        
+        
+        <!--<p class="list_dataregel_maroon legenda" style="color: white;"><span class="prio">7</span>Fonds.einddatum <= vandaag</p>-->
+        <!--<p class="list_dataregel_blauw legenda" style="color: white;"><span class="prio">8</span>boekdatum vs aanmaakdatum maandoverloop</p>-->
+      </td>
+    </tr>
+  </table>
+  
+</fieldset>

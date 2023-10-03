@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: SERVICE_NAME
+  labels:
+    run: SERVICE_NAME
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      run: SERVICE_NAME
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: SERVICE_NAME
+        date: CURRENT_DATE
+    spec:
+      containers:
+      - name: SERVICE_NAME
+        image: DOCKER_IMAGE
+        resources:
+          requests:
+            cpu: 1
+            memory: 3Gi
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: mysql-root-password
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: mysql-password
+        - name: MYSQL_DATABASE
+          value: airs_dev_db 
+        - name: MYSQL_USER
+          value: airs-dev
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306 
+        volumeMounts:
+        - name: SERVICE_NAME-storage
+          mountPath: /var/lib/mysql
+      initContainers:
+      - name: create-directories
+        image: busybox:1.28
+        command: ['sh', '-c', "mkdir -p /var/lib/mysql/log /var/lib/mysql/data"]
+        volumeMounts:
+        - name: SERVICE_NAME-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: SERVICE_NAME-storage
+        persistentVolumeClaim:
+          claimName: SERVICE_NAME-storage-pv
+      imagePullSecrets:
+      - name: gitlab-docker-registry

@@ -1,0 +1,119 @@
+<br>{AEMessages}{invulScr}
+<fieldset name="test" value="" title="Mutatieformulier">
+  <legend accesskey="m"><strong>[vt]Memoriaal[/vt]</strong></legend>
+
+  <form name="editForm" id="memoriaal-form" action="{updateScript}" onsubmit="checkValues();" >
+
+    <div class="form">
+      <input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="returnUrl" value="{returnUrl}">
+      <input type="hidden" name="id" value="{id_value}">
+      <input type="hidden" name="afschrift_id" value="{aId}">
+      <input type="hidden" name="Afschriftnummer" value="{Afschriftnummer_value}">
+      <input type="hidden" name="Verwerkt" value="{Verwerkt_value}">
+      <input type="hidden" name="Rekening" value="{Rekening_value}">
+      <input type="hidden" name="Fondskoerseenheid" value="{koerseenheid}">
+      <input type="hidden" name="RekeningValuta" value="{aValuta}">
+      <input type="hidden" name="RekeningValutakoers" value="1">
+      <input type="hidden" name="aMemoriaal" value="{aMemoriaal}">
+      <input type="hidden" name="rekeningafschriftenEdit" value="{rekeningafschriftenEdit}">
+      <input type="hidden" name="Grootboek" value="{Grootboek}">
+      <input type="hidden" id="Grootboekrekening" value="FONDS">
+
+
+      <input type="hidden" name="mutation_type" value="{mutation_type}">
+      <input type="hidden" name="Volgnummer" value="{Volgnummer}">
+
+      <input type="hidden" name="fondssoort" id="fondssoort" value="{fondssoort}">
+
+      <input type="hidden" name="type" value="{type}">
+      <input type="hidden" id="boekDatumCheckDate" name="boekDatumCheckDate" value="{boekDatumCheckDate}">
+      
+      <input type="hidden" name="fondsOwnedAmount" id="fondsOwnedAmount" value="0">
+      <div id="boekdatumMsg" style="display: none; color:red;">[vt]Datum mag niet voor Portefeuille startdatum liggen[/vt]</div>
+      <table border="0" cellspacing="0" cellspadding="2" class=" tableInlineForm">
+        <tr>
+          <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+          <td class="list_kopregel_data" style="width: 315px;">{Fonds_description} <span id="fonds-info" class=""></span> <span id="fondsOwnedInfo" class=""></span></td>
+          <td class="list_kopregel_data">[vt]T.type[/vt]</td>
+          <td class="list_kopregel_data">{Bewaarder_description}</td>
+          <td class="list_kopregel_data">{Aantal_description}</td>
+          <td class="list_kopregel_data">{Valuta_description}</td>
+          <td class="list_kopregel_data">[vt]F.koers[/vt] <span id="fonds-koers-info" class=""></span></td>
+        </tr>
+        <tr>
+          <td>{Boekdatum_inputfield}<span id="recalculate" title="Fonds/valutakoers bijwerken" style="cursor:hand;"><i class="fa fa-refresh"></i></span></td>
+          <td>{Fonds} <input type="hidden" name="fonds_omschrijving" id="fonds_omschrijving"> <input type="hidden" name="fonds_fonds" value="" id="fonds_fonds"> <input type="hidden" name="fondseenheid" value="" id="fondseenheid"></td>
+          <td>{Transactietype_inputfield}</td>
+          <td>{Bewaarder_inputfield}</td>
+          <td>{Aantal_inputfield}</td>
+          <td>{Valuta_inputfield}</td>
+          <td>{Fondskoers_inputfield} </td>
+        </tr>
+      </table>
+
+      <table border="0" cellspacing="0" cellspadding="2" class=" tableInlineForm">
+        <tr>
+          <td class="list_kopregel_data">[vt]Waarde[/vt]</td>
+          <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="valuta-koers-info" class=""></span></td>
+          <td class="list_kopregel_data">[vt]Mutatiebedrag[/vt]</td>
+          <td class="list_kopregel_data">{Omschrijving_description}</td>
+          <td class="list_kopregel_data">{settlementDatum_description}</td>
+        </tr>
+        <tr>
+          <td><input class="requiredField maskValuta2digits" size="8" type="text" name="value" id="value-input" READONLY></td>
+          <td>
+            <div class="input-group ">
+              {Valutakoers_inputfield}
+              <div class="input-group-append">
+                <span class="btn-xs  btn btn-gray inverseField"><img src='images/16/refresh.png' /> [vt]Inverse (F9)[/vt]</span>
+              </div>
+            </div>
+          </td>
+          <td><input class="requiredField maskValuta2digits" size="8" type="text" id="total" READONLY></td>
+          <td>{Omschrijving_inputfield}</td>
+          <td>{settlementDatum_inputfield}</td>
+        </tr>
+      </table>
+      <br />
+
+
+
+
+      <table border="0" cellspacing="0" cellspadding="2" id="opgelopenRente" class=" tableInlineForm">
+        <tr>
+          <td class="list_kopregel_data">[vt]Opgelopen rente[/vt]</td>
+          <td class="list_kopregel_data">{Valuta_description}</td>
+          <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="rente-valuta-koers-info" class=""></span></td>
+          <td style="width: 150px;" class="list_kopregel_data">[vt]Opg. Rente in aftr. Val[/vt]</td>
+          <td id="rentePerLabel"></td>
+        </tr>
+        <tr>
+          <td>{rente_Input_inputfield}</td>
+          <td>{rente_Valuta_inputfield}</td>
+          <td class ='input-group'>{rente_Valutakoers_inputfield}<div class="input-group-addon">(F9)</div></td>
+          <td>{rente_Bedrag_inputfield}</td>
+          <td id="rentePerField"></td>
+        </tr>
+      </table>
+
+
+    </div>
+    <br /><br />{save_with_counter_rule} {save_without_counter_rule}
+    <span id="totalMutation"></span>
+  </form>
+</fieldset>
+
+
+<script>
+  $(function () {
+    $(document).on('focus, keyup', 'input, select', function () {
+      $(this).invulInstructie({
+        party: '{VB}',
+        script: 'rekeningmutaties_v2_memoriaal.php',
+        consoleLog: '{consoleLog}'
+      });
+    });
+  });
+</script>

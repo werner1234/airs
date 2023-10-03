@@ -1,0 +1,124 @@
+<script type="text/javascript">
+
+function buildQueryArray(theFormName) {
+  var theForm = document.forms[theFormName];
+  var qs = new Object();
+  for (e=0;e<theForm.elements.length;e++) {
+    if (theForm.elements[e].name!='') {
+    	qs[theForm.elements[e].name] = theForm.elements[e].value;
+      }
+    }
+  return qs;
+}
+
+function clientChanged()
+{ 
+	jsrsExecute("selectRS.php", populateRekening, "getRekeningen",
+	buildQueryArray('editForm'), false);
+} 
+
+function rekeningChanged()
+{ 
+	jsrsExecute("selectRS.php", populateSaldo, "getSaldo",
+	buildQueryArray('editForm'), false);
+} 
+
+function populateSaldo(valueTextStr)
+{
+	//alert(valueTextStr);
+  var aOptionPairs = valueTextStr.split('|');
+	document.editForm.Afschriftnummer.value = aOptionPairs[0];
+	//document.editForm.Saldo.value = aOptionPairs[1];
+	//populateDropDown(document.editForm.Rekening,valueTextStr);
+}
+
+function populateRekening (valueTextStr)
+{
+	populateDropDown(document.editForm.Rekening,valueTextStr);
+}
+
+function clearDropDown (selField)
+{
+  while (selField.options.length > 0)
+    selField.options[0] = null;
+}
+
+function populateDropDown (field, valueTextStr)
+{
+  var selField = field;
+  clearDropDown(selField);
+
+	// options in form "value~displaytext|value~displaytext|..."
+  var aOptionPairs = valueTextStr.split('|');
+  
+  for( var i = 0; i < aOptionPairs.length; i++ ){
+    if (aOptionPairs[i].indexOf('~') != -1) {
+      var aOptions = aOptionPairs[i].split('~');
+      oItem = new Option;
+      oItem.value = aOptions[1];
+      oItem.text = aOptions[0];
+      selField.options[selField.options.length] = oItem;
+    }  
+  }
+  
+  selField.options.selectedIndex = 0;
+}
+
+
+<!-- onLoad="javascript:categoryChanged() -->
+</script>
+
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+<input type="hidden" value="1" name="Memoriaal" >
+<input type="hidden" value="{Verwerkt_value}" name="Verwerkt" >
+
+<table border="0" cellspacing="0" cellspadding="2" width="100%">
+<tr>
+	<td width="150" class="list_kopregel_data">[vt]Client[/vt]</td>
+	<td width="150" class="list_kopregel_data">{Rekening_description}</td>
+	<td width="120" class="list_kopregel_data">{Datum_description}</td>
+	<td width="120" class="list_kopregel_data">{Afschriftnummer_description}</td>
+	<td width="120" class="list_kopregel_data"></td>
+	<td width="120" class="list_kopregel_data"></td>
+	<td  class="list_kopregel_data"></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>
+		<select name="Client" onChange="javascript:clientChanged();">
+		{Client_options}
+		</select>
+	</td>
+	<td>
+		<select name="Rekening" onBlur="javascript:rekeningChanged();" class="{Rekening_form_class}" style="width:{Rekening_size}px">
+			{Rekening_options}
+		</select>
+	</td>
+	<td>{Datum_inputfield}</td>
+	<td>{Afschriftnummer_inputfield}</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td><input type="submit" value="opslaan"></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>{Rekening_error}</td>
+	<td>{Datum_error}</td>
+	<td>{Afschriftnummer_error}</td>
+	<td>{Saldo_error}</td>
+	<td>{NieuwSaldo_error}</td>
+	<td>{Verwerkt_error}</td>
+	<td>&nbsp;</td>
+</tr>
+</table>
+
+<b>{Algemeen_error}</b>
+
+
+</form></div>

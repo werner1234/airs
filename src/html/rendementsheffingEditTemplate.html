@@ -1,0 +1,62 @@
+
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+    <div class="formlinks"><label for="jaar">{jaar_description}</label> </div>
+    <div class="formrechts">
+      {jaar_inputfield} {jaar_error}
+    </div>
+  </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="vrijstellingEenP">{vrijstellingEenP_description}</label> </div>
+      <div class="formrechts">
+        {vrijstellingEenP_inputfield} {vrijstellingEenP_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="vrijstellingTweeP">{vrijstellingTweeP_description}</label> </div>
+      <div class="formrechts">
+        {vrijstellingTweeP_inputfield} {vrijstellingTweeP_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"> Instelling</div>
+      <div class="formrechts">	
+	<table border="0">
+<tr>
+	<td>Waarde t/m </td>
+	<td>Percentage</td>
+</tr>
+<tr>
+	<td>{vermogen1_inputfield} {vermogen1_error}</td>
+	<td>{percentage1_inputfield}{percentage1_error} </td>
+</tr>
+<tr>
+    <td>{vermogen2_inputfield} {vermogen2_error}</td>
+	<td>{percentage2_inputfield}{percentage2_error} </td>
+</tr>
+<tr>
+    <td>{vermogen3_inputfield} {vermogen3_error}</td>
+	<td>{percentage3_inputfield}{percentage3_error}</td>
+</tr>
+<tr>
+    <td>{vermogen4_inputfield} {vermogen4_error}</td>
+	<td>{percentage4_inputfield}{percentage4_error} </td>
+</tr>
+</table>
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

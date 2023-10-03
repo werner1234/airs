@@ -1,0 +1,271 @@
+.widget-header{
+  position: absolute;
+  top: 0;
+  height: 25px;
+  background: rgba(20,60,90,1);
+  color:#FFF;
+  width: 100%;
+  margin-bottom: 10px;
+  z-index: 1000;
+}
+
+.widget-footer{
+  position: absolute;
+  bottom: 0;
+  background: #DDD;
+  width: 100%;
+  z-index: 1000;
+}
+
+.widget-body{
+  margin-top:25px;
+  font-size: 10px;
+  
+}
+
+.widget-container{
+  overflow: auto;
+  height: 100%;
+  
+}
+.mainSetup{
+  border: 0;
+  padding:5px;
+  border-radius: 3px;
+  background: #EEE;
+}
+
+.headSetup{
+  margin-right: 3px ;
+  margin-top: 3px ;
+  border: 0;
+  padding:2px;
+  border-radius: 3px;
+  background: whitesmoke;
+}
+  
+.setupWidget{
+  font-size: .8em;
+  padding: 20px;
+}
+.setupWidget p{
+  padding: 10px;
+}
+.setupWidget p a{
+  width:50%;
+  display: inline-block;
+}
+.rTable {
+  display: block;
+  width: 100%;
+}
+
+.negatief {color: red; font-style: italic;}
+.autoHeight {height: auto!important;}
+.bold {font-weight: bold}
+.ac{text-align: center!important;}
+.ar{text-align: right!important;}
+.al{text-align: left}
+
+.fl {float: left}
+.spoed { color:Maroon; font-weight: bold}
+.kp05 { width: 5% !important;}
+.kp10 { width: 10% !important;}
+.kp15 { width: 15% !important;}
+.kp20 { width: 20% !important;}
+.kp30 { width: 30% !important;}
+.kp40 { width: 40% !important;}
+.kp50 { width: 50% !important;}
+.kp60 { width: 60% !important;}
+.kp70 { width: 70% !important;}
+.kp80 { width: 80% !important;}
+.kp90 { width: 90% !important;}
+.kp100 { width: 100% !important;}
+.k03 { width: 33% !important;}
+.k05 { width: 20% !important;}
+.bgEEE{   background: #EEE; }
+.bgFFF{   background: #FFF; }
+.bgWsmoke{background: whitesmoke; }
+.borderU { border-bottom: 1px solid #999; }
+.bgRood { background: #c71c28; color: white}
+.bgGroen { background: #99ff99; color: #000}
+.selectBox{
+  padding: 10px;
+}
+
+.setupColHead{
+  background: rgba(223,235,250,1);
+  font-weight: bold;
+}
+
+.rSetupRow{
+  float: left;
+  height: 32px;
+  overflow: hidden;
+  padding: 3px;
+  padding-left: 5px;
+  
+  text-align: left;
+}
+
+.rTableHeading,
+.rTableBody,
+.rTableFoot,
+.rTableRow{
+  clear: both;
+  
+}
+.rTableHead,
+.rTableFoot{
+  background-color: rgba(223,235,250,1);
+  font-weight: bold;
+}
+.rTableCell,
+.rTableHead {
+  
+  float: left;
+  height: 22px;
+  overflow: hidden;
+  padding: 3px;
+  padding-left: 5px;
+  
+  text-align: left;
+  
+}
+.rTable:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+/* setup popup */
+div#setupDialog, div#extraInfoPopup {
+  padding: 0px;
+  font-size: 12px;
+  
+}
+
+.ui-dialog-title {
+  font-size: 0.9em;
+}
+
+th {
+  
+  font-size: small;
+  /*background: black;*/
+  background-color: #5555C8;
+  color: white;
+  
+  font-weight: normal;
+  
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+  /*background: #eeeeee; !* Old browsers *!*/
+  /*background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); !* FF3.6-15 *!*/
+  /*background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); !* Chrome10-25,Safari5.1-6 *!*/
+  /*background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); !* IE6-9 *!*/
+  
+  
+  /*padding: 5px; *!*/
+  
+  text-align: left;
+  /*color: black;*/
+  border: 1px solid #fff;
+  border-right: none;
+}
+
+/*.headerTD{*/
+/*!*background-color: #E8E8E8;*!*/
+/*padding:4px;*/
+/*}*/
+
+td, th {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+/** tabel opmaak **/
+.table-hover>tbody>tr.dataRow:hover {
+  background-color: #f5f5f5;
+}
+
+tbody>tr.dataRow:nth-child(even){
+  background:#ECF0F1;
+}
+
+th.headerTD {
+  border: solid 1px white;
+}
+
+#tabs, #infoTabs {
+  width: calc(100% - 7px);
+  height: calc(100% - 7px);
+  overflow-y: scroll;
+}
+
+
+.fixed{
+  top:0;
+  position:fixed;
+  display:none;
+  border:none;
+}
+.widHel_row{
+  display: inline-block;
+}
+.widHel_veldnaam{
+  width: 200px;
+  float: left;
+  text-align: left;
+}
+.widHel_checkbox{
+  width: 25px;
+  float: left;
+  text-align: left;
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    min-width: 1170px;
+    width: 100%!important;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+    width: 100%!important;
+  }
+}
+ 
+@media (min-width: 768px){
+  .container {
+    width: 750px;
+    width: 100%!important;
+  }
+}
+
+fieldset{
+  line-height: .65em;
+  border:1px solid #999;
+  padding-left: 20px;
+  
+}
+legend{
+  font-size: 14px;
+  background: #eee;
+  padding: 4px;
+  width:200px;
+}
+
+.tooltip > .tooltip-inner {
+  background-color: rgba(20,60,90,1);
+  color: #FFF;;
+  box-shadow: 3px 3px 3px #999;
+
+}

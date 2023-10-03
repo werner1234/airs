@@ -1,0 +1,48 @@
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+      <div class="formlinks"><label for="kasbankCode">{kasbankCode_description}</label> </div>
+      <div class="formrechts">
+        {kasbankCode_inputfield} {kasbankCode_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="omschrijving">{omschrijving_description}</label> </div>
+      <div class="formrechts">
+        {omschrijving_inputfield} {omschrijving_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="doActie">{doActie_description}</label> </div>
+      <div class="formrechts">
+        {doActie_inputfield} {doActie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="actieAlternatief">{actieAlternatief_description}</label> </div>
+      <div class="formrechts">
+        {actieAlternatief_inputfield} {actieAlternatief_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="portefeuillesAltActies">{portefeuillesAltActies_description}</label> </div>
+      <div class="formrechts">
+        {portefeuillesAltActies_inputfield} {portefeuillesAltActies_error}
+        <p style="color: maroon">portefeuilles ; gescheiden invoeren</p>
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

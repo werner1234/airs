@@ -1,0 +1,96 @@
+<div id="dialog" title="Basic dialog" style="display:none">
+
+  <form method="post" id="addAdviseForm" class="form" style="display: inline-block;" action="ordersEditV2.php?action=edit&id={id}" >
+    <input id="saveAdviceMail" type="hidden" name="saveAdviceMail" value="0"/>
+    <input id="sendAdviceMail" type="hidden" name="sendAdviceMail" value="0"/>
+    <input id="viewAdviceMail" type="hidden" name="viewAdviceMail" value="0"/>
+
+
+    <input type="hidden" value="{id}" name="id" id="id">
+    <input type="hidden" value="{orderregelId}" name="orderregelId" id="orderregelId">
+    {KIDEmptyMessage}
+
+    <div class="formblock">
+      <div class="formlinks"><label for="senderName">Afzender</label></div>
+      <div class="formrechts">{senderName}</div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="senderEmail">Afzender email</label></div>
+      <div class="formrechts">{senderEmail}</div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="receiverName">Ontvanger</label></div>
+      <div class="formrechts">{receiverName}</div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="receiverEmail">Ontvanger email</label></div>
+      <div class="formrechts">{receiverEmail}</div>
+    </div>
+  
+    <div class="formblock">
+      <div class="formlinks"><label for="receiverEmail">Ontvanger email BCC</label></div>
+      <div class="formrechts">{adviseSenderBccEmail}</div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="subject">Onderwerp</label></div>
+      <div class="formrechts"><input style="width: 500px;" type="text" name="subject" value="{subject}"></div>
+    </div>
+<div class="formblock">
+      <div class="formlinks"><label for="subject">Reden</label></div>
+      <div class="formrechts orderAdviesOrderReden">
+        {orderAdviesOrderReden}
+
+      </div>
+
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="">&nbsp;</label></div>
+      <div class="formrechts">
+    <div class="orderAdviesRedenError alert alert-error" style="display: none;margin-top: 5px; margin-bottom: 5px;">Order reden mag niet leeg zijn.</div></div>
+    </div>
+
+
+    <!--<div class="formblock">-->
+      <!--<div class="formlinks"><label for="subject">Bijlagen:</label></div>-->
+      <!--<div class="formrechts">-->
+        <!--{attachment}-->
+
+        <!--Toevoegen: <input type="file" name="bijlage" size="50">-->
+
+      <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="formblock">
+      <div class="formlinks"><label for="bodyHtml">Opmaak</label></div>
+      <div class="formrechts">
+        <textarea name="emailBody" id="emailBody">
+          {emailBody}
+        </textarea>
+      </div>
+    </div>
+
+
+
+  </form>
+</div>
+
+
+
+
+<script>
+  $(function ()
+  {
+
+
+
+
+// Now call the functions one after the other using the done method
+
+  });
+</script>

@@ -1,0 +1,255 @@
+<style>
+  INPUT{
+    width: 400px;
+  }
+ .AIRSdatepicker{
+   width: 100px;
+ }
+
+ .bedrag{
+   width: 100px;
+   text-align: right;
+ }
+
+</style>
+
+<form name="editForm"  method="POST" id="newForm">
+  <input type="hidden" name="action" value="go">
+
+  <fieldset >
+    <legend> Rekeninginfo</legend>
+    
+    <div class="formblock">
+      <div class="formlinks">Relatie</div>
+      <div class="formrechts">
+        <input type="text" name="crmName" id="crmName" value="{crmName_value}"/>
+        <input type="text" name="crmExternId" id="crmExternId" value="{crmExternId_value}">
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">Produkt</div>
+      <div class="formrechts">
+        {produktInput}
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Risicoprofiel</div>
+      <div class="formrechts">
+        {risicoInput}
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">allow own deposit</div>
+      <div class="formrechts">
+        <select name="allowOwnDeposit">
+          <option value="0" >Nee</option>
+          <option value="1" >Ja</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">Start datum</div>
+      <div class="formrechts">
+        <input class="AIRSdatepicker" name="startDate" value="{startDate_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Eind datum</div>
+      <div class="formrechts">
+        <input type="text" class="AIRSdatepicker" name="endDate" value="{endDate_value}">
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">Tussenpersoon</div>
+      <div class="formrechts">
+        {tussenPersoonInput}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">Adviseur</div>
+      <div class="formrechts">
+        {adviseurInput}
+      </div>
+    </div>
+  </fieldset>
+  <br/><br/>
+  <fieldset >
+    <legend> Inleg</legend>
+
+    <div class="formblock">
+      <div class="formlinks">Start datum</div>
+      <div class="formrechts">
+        <input type="text" class="AIRSdatepicker" name="stort_startDate" value="{stort_startDate_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Eind datum</div>
+      <div class="formrechts">
+        <input type="text" class="AIRSdatepicker" name="stort_endDate" value="{stort_endDate_value}">
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">Interval</div>
+      <div class="formrechts">
+        {stort_intervalInput}
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Bedrag</div>
+      <div class="formrechts">
+        <input type="text" name="stort_bedrag" value="{stort_bedrag_value}" class="bedrag"> EUR
+      </div>
+    </div>
+  </fieldset>
+  
+  <br/><br/>
+  <fieldset>
+    <legend>  Uitbetaling</legend>
+    <div class="formblock">
+      <div class="formlinks">Start datum</div>
+      <div class="formrechts">
+        <input type="text" class="AIRSdatepicker" name="onttr_startDate" value="{onttr_startDate_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Eind datum</div>
+      <div class="formrechts">
+        <input type="text" class="AIRSdatepicker" name="onttr_endDate" value="{onttr_endDate_value}">
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">Interval</div>
+      <div class="formrechts">
+        {onttr_intervalInput}
+      </div>
+    </div>
+  
+  
+  </fieldset>
+  <br/><br/>
+  <fieldset>
+    <legend>  Tegenrekening</legend>
+    <div class="formblock">
+      <div class="formlinks">IBAN</div>
+      <div class="formrechts">
+        <input type="text" name="IBAN" value="{IBAN_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">BIC</div>
+      <div class="formrechts">
+        <input type="text" name="BIC" value="{BIC_value}">
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">Naam</div>
+      <div class="formrechts">
+        <input type="text" name="tegen_naam" value="{tegen_naam_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Plaats</div>
+      <div class="formrechts">
+        <input type="text" name="tegen_plaats" value="{tegen_plaats_value}">
+      </div>
+    </div>
+  </fieldset>
+  <br/><br/>
+  <fieldset>
+    <legend>  Verwacht resultaat</legend>
+    <div class="formblock">
+      <div class="formlinks">Verzekeraar</div>
+      <div class="formrechts">
+        <input type="text" name="result_verzekeraar" value="{result_verzekeraar_value}">
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Bedrag</div>
+      <div class="formrechts">
+        <input type="text" name="result_bedrag" value="{result_bedrag_value}"  class="bedrag"> EUR
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">Polisnummer</div>
+      <div class="formrechts">
+        <input type="text" name="result_polisnr" value="{result_polisnr_value}">
+      </div>
+    </div>
+  </fieldset>
+  <br/><br/>
+  <button id="btnSubmit">naar ModuleZ zenden</button>
+
+</form>
+
+<script>
+  
+  $(document).ready(function () {
+
+
+    $("#BSN").keyup(function(){
+      if (checkBSN($(this).val()))
+      {
+        $(this).css("color","green");
+        $("#bsnTxt").html("BSN voldoet");
+      }
+      else
+      {
+        $(this).css("color","red");
+        $("#bsnTxt").html("<b>GEEN BSN nummer</b>");
+      }
+
+      });
+    $("#btnSubmit").click(function (e) {
+      var errors = "";
+      e.preventDefault();
+      $(".datecheck").each(function (i) {
+        var value = $(this).val();
+        if (!isValidDate(value) && value != "")
+        {
+          errors += "\n" + value + " is een ongeldige datum ";
+        }
+      });
+      if (errors.length > 1)
+      {
+        alert(errors);
+        return false;
+      }
+      $("#newForm").submit();
+    });
+    
+  });
+  
+  function checkBSN(bsn){
+
+    numbers = bsn.split("");
+
+    check = (parseInt(numbers[0],10)*9) +
+      (parseInt(numbers[1],10)*8) +
+      (parseInt(numbers[2],10)*7) +
+      (parseInt(numbers[3],10)*6) +
+      (parseInt(numbers[4],10)*5) +
+      (parseInt(numbers[5],10)*4) +
+      (parseInt(numbers[6],10)*3) +
+      (parseInt(numbers[7],10)*2) +
+      (parseInt(numbers[8],10)*-1);
+
+    return (check % 11 === 0);
+  }
+  
+  function isValidDate(s) {
+    var bits = s.split('-');
+    var d = new Date(bits[2] + '/' + bits[1] + '/' + bits[0]);
+    return !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0]));
+  }
+
+  
+  
+</script>

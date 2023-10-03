@@ -1,0 +1,118 @@
+<!--
+/*
+  AE-ICT source module
+    Author                 : $Author: rm $
+    Laatste aanpassing     : $Date: 2016/05/13 14:15:32 $
+    File Versie            : $Revision: 1.3 $
+
+    $Log: quickEditTemplate.html,v $
+    Revision 1.3  2016/05/13 14:15:32  rm
+    Uren
+
+    Revision 1.2  2016/05/04 07:16:23  rm
+    crmuur
+
+    Revision 1.1  2016/04/22 12:16:55  rm
+    uren invoer
+
+    Revision 1.1  2011/10/22 06:45:09  cvs
+    Urenregistratie voor TRA
+
+
+
+*/
+-->
+<fieldset>
+
+
+  <style>
+    .quicktable td{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  </style>
+<legend>Uur registratie muteren</legend>
+
+  <form name="" id="quickForm" action="CRM_uur_registratieEdit.php">
+    <div id="messageBox" style="display: none;"></div>
+
+
+    <div class="form">
+      <input type="hidden" name="action" value="update">
+      <input type="hidden" name="updateScript" value="CRM_uur_registratieEdit.php">
+      <input type="hidden" name="returnUrl" value="CRM_uur_registratieList.php?q={returnProp}">
+      {id_inputfield}
+      {wn_code_inputfield}
+
+
+      {datum_error}
+      {deb_id_error}
+      {act_id_error}
+      {tijd_error}
+      {memo_error}
+
+      <table class="quicktable">
+        <tr>
+          <td><label for="datum">{datum_description}</label></td>
+          <td><label for="deb_id">{deb_id_description}</label></td>
+          <td><label for="act_id">{act_id_description}</label></td>
+          <td><label for="tijd">{tijd_description}</label></td>
+        </tr>
+        <tr>
+          <td>{datum_inputfield}</td>
+          <td>{deb_id_field} {deb_id_inputfield}</td>
+          <td>{act_id_field} {act_id_inputfield}</td>
+          <td>{tijd_inputfield}  uur (1u 30m = 1.5 uur)</td>
+        </tr>
+      </table>
+      <table class="quicktable">
+        <tr>
+          <td><label for="memo">{memo_description}</label></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>{memo_inputfield}</td>
+          <td><button type="button" id="quickFormBtn" value="quickForm">Opslaan</button></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</fieldset>
+<script>
+  $(document).ready(function () {
+
+    setTimeout('$("#datum").select().focus();', 1000);
+
+    $(document).on('click', '#quickFormBtn', function (event) {
+      $('#messageBox').hide();
+      $('#messageBox').html('');
+
+      event.preventDefault();
+      form = '#quickForm';
+      $(form + ' .help-block.with-errors').remove();
+      $(form).find(':input').css('border-color', ''); //reset inputfield style
+      var postData = $(form).serializeArray();
+      var formURL = $(form).attr("action");
+
+      $.ajax({
+        url: formURL,
+        type: "POST",
+        dataType: 'json',
+        data: postData,
+        success: function (data, textStatus, jqXHR) {
+          if (data.saved == true) {
+            parent.frames['content'].location.href = parent.frames['content'].location.href;
+//            parent.frames['content'].location.reload()
+          } else {
+            $.each(data.error, function (field, fieldData) {
+              $('#messageBox').append('<div class="alert alert-error">' + field + ': ' + fieldData.message + '</div>');
+            });
+            $('#messageBox').show();
+
+            $("#datum").select().focus();
+          }
+        }
+      })
+    });
+  });
+</script>

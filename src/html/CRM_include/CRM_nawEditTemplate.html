@@ -1,0 +1,124 @@
+<form name="editForm" action="{updateScript}" method="POST">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="prospectStatusOld" value="{prospectStatus_value}">
+  {id_inputfield}
+  <div class="tabbuttonRow">
+  <table>
+  {naarAirsVerzenden}
+  <tr><td>
+    {hoofdTabs}
+  </td></tr>
+  <tr><td>{PortefeuilleTabs}</td></tr>
+  </table>
+  {errorHtml}
+  </div>
+
+ {Basis}
+
+<div id='tab0' class="tabblad">
+<div class="form">
+{Algemeen}
+
+</div>
+<!-- einde tab0 -->
+</div>
+
+
+<div id='tab1' class="tabblad" title="memosectie">
+<div class="form">
+{Persoon}
+
+</div>
+<!-- einde tab0 -->
+</div>
+
+
+<!-- tab1 -->
+<div id='tab2' class="tabblad" title="memosectie">
+<div class="form">
+
+{Adviseurs}
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+
+<div id='tab3' class="tabblad" title="triggersectie">
+<div class="form">
+{Memo}
+
+
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+
+
+<div id='tab10' class="tabblad">
+<div class="form">
+{Portefeuille}
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab11' class="tabblad">
+{Beheerfee}
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab12' class="tabblad">
+
+<div class="form">
+{Staffels}
+</div>
+</div>
+
+<div id='tab13' class="tabblad">
+{vulling_tab13}
+</div>
+
+<div id='tab14' class="tabblad">
+{vulling_tab14}
+</div>
+
+<div id='tab4' class="tabblad">
+{Contract}
+</div>
+
+<div id='tab5' class="tabblad">
+{Beleggen}
+</div>
+
+
+
+<div id='tab6' class="tabblad">
+{Rapportage}
+</div>
+
+
+<div id='tab7' class="tabblad">
+{Profiel}
+</div>
+
+
+<div id='tab8' class="tabblad">
+{Relatie}
+</div>
+
+<div id='tab9' class="tabblad">
+{Frame}
+</div>
+
+</div>
+
+</form>

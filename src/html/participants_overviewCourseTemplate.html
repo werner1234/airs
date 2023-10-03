@@ -1,0 +1,217 @@
+<style>
+  #ajaxSpinnerContainer {height:11px;}
+  #ajaxSpinnerContainer {display:none;}
+</style>
+
+<br />
+<form target="_blank" id="overviewCourse" name="overviewCourse" action="participantsRegisterOverview.php" method="post">
+  <input type="hidden" name="type" value="overviewCourse">
+  <fieldset  title="overviewCourse" style="float:left; width: 80%; min-height: 130px;">
+    <legend accesskey="R"><strong>[vt]Overzicht verloop[/vt]</strong></legend>
+    <table style="float:left" border="0" cellspacing="0" cellspadding="0">
+      <tr>
+        <td width="150" class="list_kopregel_data">[vt]Client[/vt]</td>
+        <td width="150" class="list_kopregel_data">[vt]Registratienummer[/vt]</td>
+        <td width="250" class="list_kopregel_data">[vt]Fonds[/vt]</td>
+        <td width="150" class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td width="100" class="list_kopregel_data"></td>
+        <td width="150" class="list_kopregel_data">[vt]Datum[/vt]</td>
+      <tr>
+        <td>{client}<input type="hidden" id="clientId" name="client_id" value=""></td>
+        <td><select type="select" name="registration_number" id="registrationNumber">
+            <option value=""> --- </option>
+          </select></td>
+        <td>{Fonds_inputfield}</td>
+        <td>{DateStart_inputfield}</td>
+        <td>[vt]Tot en met[/vt]</td>
+        <td>{DateEnd_inputfield}</td>
+      </tr>
+      <tr>
+        <td style="height:30px" colspan="3" >
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" >
+          {generateOverview}
+          {generateCsv}
+          {generateXls}
+          {generatePdf}
+          {generateBulkPdf}
+        </td>
+      </tr>
+    </table>
+    
+          
+  </fieldset>
+  
+  {overviewFilter}
+</form>
+
+<div id="ajaxSpinnerContainer">
+  <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">[vt]Laden[/vt]
+</div>
+<div id="overviewResult"></div>
+
+<script>
+  var currentUrl = 'lookups/autocomplete.php?object=virtual&field=client';
+
+  $('#registrationNumber').hide();
+  function listRegistrationNumbers(client, fonds) {
+    $.ajax({
+      url: 'lookups/participanten.php?type=listRegistrationNumbers&fonds=' + fonds + '&clientId=' + client,
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        $('#registrationNumber').hide();
+
+        if (!jQuery.isEmptyObject(data)) {
+          $('#registrationNumber').empty();
+          $('#registrationNumber').append('<option value="">----</option>');
+          $.each(data, function (k, v) {
+            $('#registrationNumber').append('<option value="' + k + '">' + v + '</option>');
+          });
+          $('#registrationNumber').show();
+        }
+      },
+      error: function (data) {
+      },
+      cache: false
+    });
+  }
+
+  function limitFonds(client, registrationNumber) {
+    var $currentFonds = '';
+    if ($('#Fonds').val()) {
+      var $currentFonds = $('#Fonds').val();
+    }
+
+    $.ajax({
+      url: 'lookups/participanten.php?type=getFondsForClient&registrationNumber=' + registrationNumber + '&clientId=' + client,
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        $('#Fonds').empty();
+        $('#Fonds').append('<option value="">----</option>');
+        
+        $.each(data, function (k, v) {
+          $('#Fonds').append('<option value="' + k + '">' + v + '</option>');
+        });
+        $('#Fonds').val($currentFonds);
+
+      },
+      error: function (data) {
+      },
+      cache: false
+    });
+  }
+
+  function ConvertFormToJSON(form) {
+    var array = jQuery(form).serializeArray();
+    var json = {};
+
+    jQuery.each(array, function () {
+      json[this.name] = this.value || '';
+    });
+
+    return json;
+  }
+
+  $(function () {
+    
+    $('input[name=DateStart]').on('change', function () {
+      $('#overviewResult').html(""); //clear messages
+    });
+    $('input[name=DateEnd]').on('change', function () {
+      $('#overviewResult').html(""); //clear messages
+    });
+    
+    $('#registrationNumber').on('change', function () {
+      $('#overviewResult').html(""); //clear messages
+      if ($('#registrationNumber').val()) {
+        $('#Fonds').val('');
+        $('#Fonds').hide();
+      } else {
+        $('#Fonds').show();
+      }
+    });
+    
+    $('#client').on('change', function () {
+      $('#overviewResult').html(""); //clear messages
+      if (!$('#client').val() || $('#client').val().length == 1) {
+        $('#client').val('')
+        $('#clientId').val('');
+        $('#registrationNumber').val('');
+        $('#registrationNumber').hide();
+        
+        limitFonds(null, null);
+      }
+    });
+
+    $('#Fonds').on('change', function () {
+      $('#overviewResult').html(""); //clear messages
+      if (!$('#Fonds').val()) {
+        $("#client").autocomplete('option', 'source', currentUrl);
+        
+        var $client = null;
+        if ($('#clientId').val()) {
+          var $client = $('#clientId').val();
+          listRegistrationNumbers($client, null);
+        }
+        $('#registrationNumber').val('');
+      } else {
+        $("#client").autocomplete('option', 'source', currentUrl + '&fonds_fonds=' + $('#Fonds').val());
+        
+        var $client = null;
+        if ($('#clientId').val()) {
+          $('#registrationNumber').val('');
+          var $client = $('#clientId').val();
+          listRegistrationNumbers($client, $('#Fonds').val());
+        }
+        
+      }
+    });
+
+    $('#generateOverview').on('click', function () {
+      event.preventDefault();
+      $('#overviewResult').html('');//clear html
+      var form = $('#overviewCourse');
+
+      var json = ConvertFormToJSON(form);
+
+      $.ajax({
+        url: 'participantsRegisterOverview.php',
+        type: 'GET',
+        data: json,
+        dataType: "html",
+        success: function (data) {
+          $('#overviewResult').html(data); //clear messages
+
+
+        },
+        error: function (data) {
+        },
+        cache: false
+      });
+    });
+    
+/** empty field if no or wrong client is selected **/
+$('#client').blur(function() {
+  if ($('#clientId').val().length == 0) {
+    $('#client').val('');
+
+    if ($('#client').val() === '') {
+      return false;
+    }
+  }
+});
+
+
+$(document)
+  .ajaxStart(function () {
+    $("#ajaxSpinnerContainer").fadeIn('fast');
+  })
+  .ajaxStop(function () {
+    $("#ajaxSpinnerContainer").stop().fadeOut('fast');
+  });
+});
+</script>

@@ -1,0 +1,97 @@
+<form enctype="multipart/form-data" name="editForm" action="{updateScript}" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="16777216" />
+
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}{crmId_inputfield}<div class="formblock">
+<div class="formlinks"><label for="status">{status_description}</label> </div>
+<div class="formrechts">
+{status_inputfield} {status_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="senderName">{senderName_description}</label> </div>
+<div class="formrechts">
+{senderName_inputfield} {senderName_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="senderEmail">{senderEmail_description}</label> </div>
+<div class="formrechts">
+{senderEmail_inputfield} {senderEmail_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="receiverName">{receiverName_description}</label> </div>
+<div class="formrechts">
+{receiverName_inputfield} {receiverName_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="receiverEmail">{receiverEmail_description}</label> </div>
+<div class="formrechts">
+{receiverEmail_inputfield} {receiverEmail_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="receiverEmail">{ccEmail_description}</label> </div>
+<div class="formrechts">
+{ccEmail_inputfield} {ccEmail_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="receiverEmail">{bccEmail_description}</label> </div>
+<div class="formrechts">
+{bccEmail_inputfield} {bccEmail_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="subject">{subject_description}</label> </div>
+<div class="formrechts">
+{subject_inputfield} {subject_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="subject">[vt]Bijlagen[/vt]:</label> </div>
+<div class="formrechts">
+{attachment}
+
+[vt]Toevoegen[/vt]:<br>
+ <input type="file" name="bijlage1" size="50"><br>
+ <input type="file" name="bijlage2" size="50"><br>
+ <input type="file" name="bijlage3" size="50">
+
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks"><label for="bodyHtml">{bodyHtml_description}</label> </div>
+<div class="formrechts">
+{bodyHtml_inputfield} {bodyHtml_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>
+<script language="JavaScript" type="text/javascript">
+function doEditorOnload()
+ {
+ loadEditor('bodyHtml',500,600);
+ }
+</script>

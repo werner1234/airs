@@ -1,0 +1,138 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 80%;
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+  
+  .list_button {
+    width:-1px!important;
+    background-color: white;
+    border-top: 1px solid white!important;
+  }
+  
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+</style>
+
+
+<h2>[vt]Mutaties[/vt]: <small>{Fonds_name} - {registration_number}</small></h2>
+
+{messages}
+
+<form name="editForm" action="{updateScript}" method="get">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" value="{participanten_id}" name="id" >
+  <input type="hidden" value="{participanten_id}" name="participanten_id" >
+
+  <fieldset style="width:600px;">
+    <legend><strong>[vt]Participatie wijzigen[/vt]</strong></legend>
+    <table>
+      <thead>
+        <tr>
+          <td class="list_kopregel_data">[vt]Fonds[/vt]</td>
+          <td class="list_kopregel_data">[vt]Registratienummer[/vt]</td>
+          <td class="list_kopregel_data"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td width="150px">{Fonds_name}</td>
+          <td><input name="registration_number" type="text" value="{registration_number}"></td>
+          <td >{participation_submit}</td>
+        </tr>
+      </tbody>
+      
+      <thead>
+        <tr>
+          <td class="list_kopregel_data">{memo_description}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2">{memo_inputfield}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </fieldset>
+</form>
+
+<div id="message"></div>
+<form>
+  <input type="hidden" value="{participanten_id}" name="participanten_id" >
+  <input type="hidden" value="{crm_id}" name="crm_id" >
+  <input type="hidden" value="{registration_number}" name="registration_number" >
+  <input type="hidden" value="" name="currentlyOwned" >
+  <fieldset >
+    <legend><strong>Mutatie</strong></legend>
+    <table id="addMutation"  style="margin-bottom:15px;">  
+      <tr>
+        <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td class="list_kopregel_data">[vt]Transactiesoort[/vt]</td>
+        <td class="list_kopregel_data">[vt]Aantal[/vt]</td>
+        <td class="list_kopregel_data">[vt]Koers[/vt]</td>
+        <td class="list_kopregel_data">[vt]Omschrijving[/vt]</td>
+      </tr>
+      <tr>
+        <td>{datum_inputfield}</td>
+        <td>{transactietype_inputfield}</td>
+        <td>{aantal_inputfield}</td>
+        <td>{koers_inputfield}</td>
+        <td>{omschrijving_inputfield}</td>
+        <td>{btn_submit}</td>
+      </tr>
+    </table>
+  </fieldset>
+</form>
+
+<fieldset>
+  <legend><strong>[vt]Mutatie overzicht[/vt]</strong></legend>
+  <div id="overviewResult">
+    <table style="margin-bottom:15px;" class="list_tabel table">  
+      <thead>
+        <tr class="list_kopregel">
+          <td class="list_button"></td>
+          <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Aantal[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Koers[/vt]</td>
+          <td class="list_kopregel_data">[vt]Transactiesoort[/vt]</td>
+          <td class="list_kopregel_data">[vt]Omschrijving[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Waarde[/vt]</td>
+        </tr>
+      </thead>
+      <tbody>
+        {dataRow}
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+<script>
+  $(function () {
+    {script}
+    
+    function shortPositioncallback(value) {
+      if ( ! value) {
+        $('#aantal').val('');
+      }
+    }
+  });
+</script>

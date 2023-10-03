@@ -1,0 +1,162 @@
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" name="plantime" id='plantime' value="">
+<input type="hidden" name="duur" id='duur' value="">
+{id_inputfield}
+{gebruiker_inputfield}
+{rel_id_inputfield}
+
+{sliderHandler}
+
+<fieldset id="AgendaSectie1">
+  <legend> [vt]Planning[/vt] </legend>
+  <div class="formblock">
+<div class="formlinks"> {done_inputfield} {done_error} {done_description}</div>
+<div class="formrechts">
+
+<table border="0" width="500">
+<tr>
+  <td><b>[vt]plan datum[/vt]</b></td><td>{plandate_inputfield} {plandate_error}</td>
+</tr>
+<tr>
+  
+</tr>
+<tr><td colspan="3" >{sliderplantime} {plantime_error}</td></tr>
+
+<tr><td colspan="10"></td></tr>
+<tr>
+  <td><b>[vt]soort afspraak[/vt]</b></td> <td>{soort_inputfield} {soort_error} {naarCRM}</td>
+
+</tr>
+
+
+</table>
+
+</div>
+</div>
+
+</fieldset>
+<fieldset id="AgendaSectie2">
+  <legend> [vt]Medewerkers[/vt]</legend>
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+<!--
+<select name="gebruikers[]" size="5" multiple>
+{gebruikerOptions}
+</select>
+-->
+<table cellspacing="0" >
+
+<tr><td>[vt]Beschikbaar[/vt]</td><td>&nbsp;</td><td>[vt]Bestemd voor[/vt]:</td></tr>
+<tr>
+  <td>
+  	  <select name="inFields[]" multiple size="4" style="width : 180px;" ondblclick="javascript:moveItem(document.editForm['inFields[]'],document.editForm['selectedFields[]']);">
+	  {notSelected}
+	  </select>
+
+
+  </td>
+  <td>&nbsp;
+  <a href="javascript:moveItem(document.editForm['inFields[]'],document.editForm['selectedFields[]']);">
+	  
+		  <img src="images/16/pijl_rechts.png" width="16" height="16" border="0" alt="toevoegen" align="absmiddle">
+	  </a>&nbsp;
+	  <br>&nbsp;
+	  
+<a href="javascript:moveItem(document.editForm['selectedFields[]'],document.editForm['inFields[]']);">
+		  <img src="images/16/pijl_links.png" width="16" height="16" border="0" alt="verwijderen" align="absmiddle">
+	  </a>&nbsp;
+  </td>
+  <td>
+  <select name="selectedFields[]" multiple size="4" style="width : 180px" ondblclick="moveItem(document.editForm['selectedFields[]'],document.editForm['inFields[]']);">
+   {selected}
+  </select>
+
+  </td>
+
+</tr>
+</table>
+
+
+</div>
+</div>
+</fieldset>
+
+
+<!--rvv
+<fieldset id="dragtest">
+ <legend> Dragtest </legend>
+
+
+
+{dragJava}
+
+
+{dragList}
+
+
+
+
+{dragStyle}
+
+
+
+
+
+
+
+</fieldset>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<fieldset id="AgendaSectie3">
+  <legend> [vt]Details[/vt] </legend>
+<div class="formblock">
+<div class="formlinks">{klant_description} </div>
+<div class="formrechts">
+<a href="javascript:select_naw(document.editForm.klant.value,600,400);">
+<img src="images/16/lookup.gif" border="0" height="18" align="middle"></a>
+{klant_inputfield}
+{klant_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{kop_description} </div>
+<div class="formrechts">
+{kop_inputfield} {kop_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{txt_description} </div>
+<div class="formrechts">
+{txt_inputfield} {txt_error}
+</div>
+</div>
+
+</fieldset>
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</div>
+</form>
+

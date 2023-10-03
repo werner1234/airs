@@ -1,0 +1,41 @@
+
+<form name="editForm" action="{updateScript}">
+	<div class="form">
+		<input type="hidden" name="action" value="{action}">
+		<input type="hidden" name="updateScript" value="{updateScript}">
+		<input type="hidden" name="returnUrl" value="{returnUrl}">
+		{id_inputfield}
+
+
+
+		<div class="formblock">
+			<div class="formlinks"><label for="ip">{ip_description}</label> </div>
+			<div class="formrechts">
+				{ip_value}
+
+			</div>
+		</div>
+		<div class="formblock">
+			<div class="formlinks"><label for="stamp">[vt]datum[/vt]</label> </div>
+			<div class="formrechts">
+				{stamp}
+			</div>
+		</div>
+
+
+		<div class="formblock">
+			<div class="formlinks"><label for="memo">{memo_description}</label> </div>
+			<div class="formrechts">
+				{memo}
+			</div>
+		</div>
+
+
+
+		<div class="formblock">
+			<div class="formlinks">&nbsp;</div>
+			<div class="formrechts">
+				{change_user_value} {change_date_value}</div>
+		</div>
+
+</form></div>

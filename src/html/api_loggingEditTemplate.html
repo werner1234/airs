@@ -1,0 +1,70 @@
+<!--
+ AE-ICT CODEX source module versie 1.6, 18-08-2017
+    Author              : $Author: cvs $
+    Laatste aanpassing  : $Date: 2017/08/18 14:42:58 $
+    File Versie         : $Revision: 1.1 $
+
+    $Log: api_loggingEditTemplate.html,v $
+    Revision 1.1  2017/08/18 14:42:58  cvs
+    call 5815
+
+-->
+<style>
+  .grey{
+    background-color: #EEE;
+  }
+
+</style>
+
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+      <div class="formlinks"><label for="ip">{ip_description}</label> </div>
+      <div class="formrechts">
+        {ip_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="referer">{referer_description}</label> </div>
+      <div class="formrechts">
+        {referer_value}
+      </div>
+    </div>
+
+    <div class="formblock grey">
+      <div class="formlinks "><label for="request">{request_description}</label> </div>
+      <div class="formrechts ">
+
+        {request}
+      </div>
+    </div>
+
+
+
+    <div class="formblock">
+      <div class="formlinks"><label for="results">{results_description}</label> </div>
+      <div class="formrechts">
+
+        {results}
+      </div>
+    </div>
+
+    <div class="formblock grey">
+      <div class="formlinks "><label for="errors">{errors_description}</label> </div>
+      <div class="formrechts">
+
+        {errors}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

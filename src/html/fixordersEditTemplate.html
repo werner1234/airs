@@ -1,0 +1,203 @@
+
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="portefeuille">{portefeuille_description}</label> </div>
+<div class="formrechts">
+{portefeuille_inputfield} {portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="client">{client_description}</label> </div>
+<div class="formrechts">
+{client_inputfield} {client_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="AIRSorderReference">{AIRSorderReference_description}</label> </div>
+<div class="formrechts">
+{AIRSorderReference_inputfield} {AIRSorderReference_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="rekeningnr">{rekeningnr_description}</label> </div>
+<div class="formrechts">
+{rekeningnr_inputfield} {rekeningnr_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="vermogensBeheerder">{vermogensBeheerder_description}</label> </div>
+<div class="formrechts">
+{vermogensBeheerder_inputfield} {vermogensBeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="orderid">{orderid_description}</label> </div>
+<div class="formrechts">
+{orderid_inputfield} {orderid_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="aantal">{aantal_description}</label> </div>
+<div class="formrechts">
+{aantal_inputfield} {aantal_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="fondsCode">{fondsCode_description}</label> </div>
+<div class="formrechts">
+{fondsCode_inputfield} {fondsCode_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="bankfondsCode">{bankfondsCode_description}</label> </div>
+<div class="formrechts">
+{bankfondsCode_inputfield} {bankfondsCode_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="fonds">{fonds_description}</label> </div>
+<div class="formrechts">
+{fonds_inputfield} {fonds_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="fondsOmschrijving">{fondsOmschrijving_description}</label> </div>
+<div class="formrechts">
+{fondsOmschrijving_inputfield} {fondsOmschrijving_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="transactieType">{transactieType_description}</label> </div>
+<div class="formrechts">
+{transactieType_inputfield} {transactieType_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="transactieSoort">{transactieSoort_description}</label> </div>
+<div class="formrechts">
+{transactieSoort_inputfield} {transactieSoort_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="tijdsLimiet">{tijdsLimiet_description}</label> </div>
+<div class="formrechts">
+{tijdsLimiet_inputfield} {tijdsLimiet_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="tijdsSoort">{tijdsSoort_description}</label> </div>
+<div class="formrechts">
+{tijdsSoort_inputfield} {tijdsSoort_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="koersLimiet">{koersLimiet_description}</label> </div>
+<div class="formrechts">
+{koersLimiet_inputfield} {koersLimiet_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="status">{status_description}</label> </div>
+<div class="formrechts">
+<!--{status_inputfield} {status_error}-->
+{orderLogs}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="laatsteStatus">{laatsteStatus_description}</label> </div>
+<div class="formrechts">
+{laatsteStatus_inputfield} {laatsteStatus_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Depotbank">{Depotbank_description}</label> </div>
+<div class="formrechts">
+{Depotbank_inputfield} {Depotbank_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="DepotbankOrderId">{DepotbankOrderId_description}</label> </div>
+<div class="formrechts">
+{DepotbankOrderId_inputfield} {DepotbankOrderId_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="uitvoeringsPrijs">{uitvoeringsPrijs_description}</label> </div>
+<div class="formrechts">
+{uitvoeringsPrijs_inputfield} {uitvoeringsPrijs_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="uitvoeringsDatum">{uitvoeringsDatum_description}</label> </div>
+<div class="formrechts">
+{uitvoeringsDatum_inputfield} {uitvoeringsDatum_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="aantalUitgevoerd">{aantalUitgevoerd_description}</label> </div>
+<div class="formrechts">
+{aantalUitgevoerd_inputfield} {aantalUitgevoerd_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="meldingen">{meldingen_description}</label> </div>
+<div class="formrechts">
+{meldingen_inputfield} {meldingen_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="verwerkt">{verwerkt_description}</label> </div>
+<div class="formrechts">
+{verwerkt_inputfield} {verwerkt_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="verwerktStamp">{verwerktStamp_description}</label> </div>
+<div class="formrechts">
+{verwerktStamp_inputfield} {verwerktStamp_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="verwerktResult">{verwerktResult_description}</label> </div>
+<div class="formrechts">
+{verwerktResult_inputfield} {verwerktResult_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

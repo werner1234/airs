@@ -1,0 +1,94 @@
+<?php
+/*
+    AE-ICT source module
+    Author                                              : $Author: cvs $
+                Laatste aanpassing      : $Date: 2012/03/09 09:08:56 $
+                File Versie                                     : $Revision: 1.1 $
+
+                $Log: auth.php.kaya,v $
+                Revision 1.1  2012/03/09 09:08:56  cvs
+                *** empty log message ***
+
+                Revision 1.1  2009/04/28 14:48:31  cvs
+                *** empty log message ***
+
+*/
+
+function checkLogin()
+{
+        global $USR;
+  session_start();
+  if (isset($_SESSION["usersession"]))
+  {
+    $tmpses = $_SESSION["usersession"];
+
+    if (    $tmpses['id'] == session_id() &&
+            $tmpses['ip'] == $_SERVER["REMOTE_ADDR"] &&
+            $tmpses['browser'] == $_SERVER["HTTP_USER_AGENT"])
+        return true;
+  }
+        $USR = strtoupper($_SERVER[PHP_AUTH_USER]);
+        session_write_close();
+        return false;
+}
+
+function setLoginError($message)
+{
+  session_start();
+  $_SESSION["ERROR"] = $message;
+  session_write_close();
+}
+
+function login($username,$password,$bedrijfscode)
+{
+  error_reporting(1);
+  global $__appvar;
+  global $_DB_resources;
+  session_start();
+  if ($bedrijfscode <> "")
+  {
+    $_SESSION["dbName"] = "airs_$bedrijfscode";
+    $_DB_resources[1]['db'] = $_SESSION["dbName"];
+  }
+//  logIt("trying to login, username = $username, password = $password, bedrijfscode = $bedrijfscode, ip =".$_SERVER["REMOTE_ADDR"]);
+  if (!empty($username) && !empty($password) )
+  {
+    $DB = new DB();
+echo    $query = "SELECT id,Gebruiker, naam FROM Gebruikers WHERE Gebruiker = '".$username."' AND Wachtwoord = '".$password."'";
+    $DB->SQL($query);
+    $DB->Query();
+    if ($DB->Records() == 1)
+    {
+      $data = $DB->NextRecord();
+
+      $_SESSION["usersession"]["id"]        = session_id();
+      $_SESSION["usersession"]["user"]      = $data["Gebruiker"];
+      $_SESSION["usersession"]["ip"]        = $_SERVER["REMOTE_ADDR"];
+      $_SESSION["usersession"]["browser"]   = $_SERVER["HTTP_USER_AGENT"];
+      $_SESSION["usersession"]["superuser"] = $data['Beheerder'];
+      $_SESSION["usersession"]["gebruiker"] = $data;
+      
+     $_SESSION["USR"] = $data["Gebruiker"];
+
+
+      $_SESSION["DATABASE"] = $_SESSION["dbName"];
+
+
+      session_write_close();
+      return true;
+    }
+
+    setLoginError('Geen geldige login combinatie?');
+    return false;
+  }
+}
+
+if(!$disable_auth)
+{
+        if(!checkLogin())
+        {
+                header("Location: login.php ");
+                exit;
+        }
+}
+?>

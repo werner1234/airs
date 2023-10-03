@@ -1,0 +1,66 @@
+<script>
+function ready()
+{
+  window.location = "{returnUrl}";
+}
+
+
+</script>
+<form name="editForm" action="{updateScript}">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="prevPort" value="{portefeuille_value}">
+  <input type="hidden" name="adding" value="0">
+  {id_inputfield}
+  {status_inputfield}
+  {orderid_inputfield}
+  {client_inputfield}
+  {positie_inputfield}
+   <input class="" type="hidden"  value="EUR" name="valuta" id="valuta" >
+  {DepotbankOld}
+  {Depotbank}
+  <input class="" type="hidden" value="" name="Risicoklasse" id="Risicoklasse">
+
+
+
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+  <td><label for="portefeuille">Portefeuille</label></td>
+  <td> Client</td>
+
+  <td><label for="aantal">Aantal</label></td>
+    <td><label for="rekeningnr">Rekeningnr</label></td>
+  <td><label for="Depotbank">Depotbank</label></td>
+  <td><label for="Profiel">Profiel</label></td>
+</tr>
+<tr>
+  <td><a href="javascript:lookupPort();">
+      <img src="images/16/lookup.gif" border="0" height="18" align="middle"></a>
+      <input class="" type="text" size="10" onchange="lookupPort();" value="{portefeuille_value}" name="portefeuille" id="portefeuille" >{portefeuille_error}</td>
+  <td><a id="clientNaam">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+
+  <td>{aantal_inputfield} {aantal_error}</td>
+  <td>  <select class="" type="select"  name="rekeningnr" id="rekeningnr" id="rekeningnr"><option>test</option> </select> </td>
+  <td><span id="DepotbankHTML"> </span></td>
+  <td><span id="ProfielHTML"> </span></td>
+
+
+</tr>
+</table>
+
+
+{controlle_chk-}
+
+{knoppen}
+
+<br>
+<br>
+ <iframe id="uitvoeringen" src="{uitvoeringenList}" width="900" height="500" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+
+
+
+
+</form></div>
+

@@ -1,0 +1,12 @@
+CREATE TABLE `APIextern_logging` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `add_user` varchar(10) DEFAULT NULL,
+  `add_date` datetime DEFAULT NULL,
+  `ip` varchar(20) NOT NULL,
+  `referer` varchar(200) NOT NULL,
+  `request` text NOT NULL,
+  `errors` text NOT NULL,
+  `results` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+

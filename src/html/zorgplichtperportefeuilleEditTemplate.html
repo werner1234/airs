@@ -1,0 +1,89 @@
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+    <div class="formlinks"><label for="Portefeuille">{Portefeuille_description}</label> </div>
+    <div class="formrechts">
+      {Portefeuille_inputfield} {Portefeuille_error}
+    </div>
+  </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+      <div class="formrechts">
+        {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Zorgplicht">{Zorgplicht_description}</label> </div>
+      <div class="formrechts">
+        {Zorgplicht_inputfield} {Zorgplicht_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Minimum">{Minimum_description}</label> </div>
+      <div class="formrechts">
+        {Minimum_inputfield} {Minimum_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Maximum">{Maximum_description}</label> </div>
+      <div class="formrechts">
+        {Maximum_inputfield} {Maximum_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="norm">{norm_description}</label> </div>
+      <div class="formrechts">
+        {norm_inputfield} {norm_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Vanaf">{Vanaf_description}</label> </div>
+      <div class="formrechts">
+        {Vanaf_inputfield} {Vanaf_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="extra">{extra_description}</label> </div>
+      <div class="formrechts">
+        {extra_inputfield} {extra_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="extra">{maxBedrag_description}</label> </div>
+      <div class="formrechts">
+        {maxBedrag_inputfield} {maxBedrag_error}
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks"><label for="extra">{minBedrag_description}</label> </div>
+      <div class="formrechts">
+        {minBedrag_inputfield} {minBedrag_error}
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks"><label for="extra">{procentueleOpslag_description}</label> </div>
+      <div class="formrechts">
+        {procentueleOpslag_inputfield} {procentueleOpslag_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+    <div class="formblock"><div class="formlinks">&nbsp;</div><div class="formrechts">{verzendKnop}</div></div>
+
+</form>

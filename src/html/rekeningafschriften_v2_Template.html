@@ -1,0 +1,72 @@
+
+
+<form name="editForm" action="{updateScript}" method="post">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+<input type="hidden" value="{type}" name="type" >
+<input type="hidden" value="0,1" name="Memoriaal" >
+<input type="hidden" value="{Saldo_value}" name="Saldo" >
+<input type="hidden" value="{Verwerkt_value}" name="Verwerkt" >
+<input type="hidden" value="{afschrift_id}" name="afschrift_id" >
+
+<input type="hidden" value="{Portefeuille}" name="Portefeuille" id="Portefeuille" >
+
+<table border="0" cellspacing="0" cellspadding="2" width="100%" class="table tableInlineForm">
+<tr>
+	<td width="150" class="list_kopregel_data">Client</td>
+	<td width="150" class="list_kopregel_data">{Rekening_description}</td>
+	<td width="120" class="list_kopregel_data">{Datum_description}</td>
+	<td width="120" class="list_kopregel_data">{Afschriftnummer_description}</td>
+	<td width="120" class="list_kopregel_data">{Saldo_description}</td>
+	<td width="120" class="list_kopregel_data">{NieuwSaldo_description}</td>
+	<td  class="list_kopregel_data"><!--{Verwerkt_description}--></td>
+	<td >&nbsp;</td>
+</tr>
+<tr>
+	<td>{Client_options}</td>
+	<td>
+		<select name="Rekening" onBlur="javascript:rekeningChanged({voorlopigeRekeningmutaties})" class="{Rekening_form_class}" style="width:{Rekening_size}px">
+			{Rekening_options}
+		</select>
+	</td>
+	<td>
+	{Datum_inputfield}
+	</td>
+	<td>{Afschriftnummer_inputfield}</td>
+	<td><input name="Saldo_tmp" size="10" disabled value="{Saldo_value}"></td>
+	<td>{NieuwSaldo_inputfield}</td>
+	<td></td><!--{Verwerkt_inputfield}-->
+	<td>{saveButton}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>{Rekening_error}</td>
+	<td>{Datum_error}</td>
+	<td>{Afschriftnummer_error}</td>
+	<td>{Saldo_error}</td>
+	<td>{NieuwSaldo_error}</td>
+	<td>{Verwerkt_error}</td>
+	<td>&nbsp;</td>
+</tr>
+</table>
+
+<b>{Algemeen_error}</b>
+
+
+</form></div>
+  
+<script>
+window.onload = function() {
+  var input = document.getElementById("Client").focus();
+}
+
+	$(function(){
+		$(document).on('change', '#Client, #Datum', function () {
+			rekeningChanged({voorlopigeRekeningmutaties});
+		});
+	});
+</script>
+    

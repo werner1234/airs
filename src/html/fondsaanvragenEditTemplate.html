@@ -1,0 +1,189 @@
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    {createOption}
+    <fieldset id="boven">
+      <div class="form" >
+        <!--Optie symbolen-->
+        <fieldset id="optionForm" {optieFormStyle}>
+          <input type="hidden" name="optieIdentifierVWD" id="optieIdentifierVWD" value="">
+          <input type="hidden" name="optieVWDSuffix" id="optieVWDSuffix" value="">
+          <input type="hidden" name="optieVWDFactor" id="optieVWDFactor" value="">
+          <input type="hidden" name="OptieUitoefenPrijs" id="OptieUitoefenPrijs" value="">
+
+
+          <div class="formblock">
+            <div class="formlinks">Symbool</div>
+            <div class="formrechts">
+              {fondsOptieSymbolen}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{optieOptieType_description}</div>
+            <div class="formrechts">
+              {optieOptieType_inputfield} {OptieType_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{OptieExpDatum_description}</div>
+            <div class="formrechts">
+              <select class="" type="select"  name="optieexpiratieMaand" id="optieexpiratieMaand">
+                <option value=""> --- </option>
+                {OptieExpMaand}
+              </select>
+              <select class="" type="select"  name="optieexpiratieJaar"  id="optieexpiratieJaar">
+                <option value=""> --- </option>
+                {OptieExpJaar}
+              </select>
+              {OptieExpDatum_error}
+              {optieexpiratieMaand_error}
+              {optieexpiratieJaar_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{optieOptieUitoefenPrijs_description}</div>
+            <div class="formrechts">
+              {optieOptieUitoefenPrijs_inputfield} {OptieUitoefenPrijs_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{Fonds_description}</div>
+            <div class="formrechts">
+              {Fonds_inputfield} {Fonds_error} <span style="display:none">eenheid:{Fondseenheid_inputfield} beurs:{Beurs_inputfield} sector:{standaardSector_inputfield}{OptieBovenliggendFonds_inputfield} {identifierVWD_inputfield}</span>
+              {Fondseenheid_error} {Beurs_error} {standaardSector_error} {OptieBovenliggendFonds_error}
+
+            </div>
+          </div>
+
+        </fieldset>
+      </div><!--end form -->
+
+
+  <div class="formblock">
+    <div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+    <div class="formrechts">
+      {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+    </div>
+  </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="ISINCode">{ISINCode_description}</label> </div>
+      <div class="formrechts">
+        {ISINCode_inputfield} {ISINCode_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Valuta">{Valuta_description}</label> </div>
+      <div class="formrechts">
+        {Valuta_inputfield} {Valuta_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Beleggingscategorie">{Beleggingscategorie_description}</label> </div>
+      <div class="formrechts">
+        {Beleggingscategorie_inputfield} {Beleggingscategorie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Beleggingssector">{Beleggingssector_description}</label> </div>
+      <div class="formrechts">
+        {Beleggingssector_inputfield} {Beleggingssector_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Regio">{Regio_description}</label> </div>
+      <div class="formrechts">
+        {Regio_inputfield} {Regio_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="AttributieCategorie">{AttributieCategorie_description}</label> </div>
+      <div class="formrechts">
+        {AttributieCategorie_inputfield} {AttributieCategorie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="afmCategorie">{afmCategorie_description}</label> </div>
+      <div class="formrechts">
+        {afmCategorie_inputfield} {afmCategorie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Zorgplicht">{Zorgplicht_description}</label> </div>
+      <div class="formrechts">
+        {Zorgplicht_inputfield} {Zorgplicht_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Duurzaamheid">{Duurzaamheid_description}</label> </div>
+      <div class="formrechts">
+        {Duurzaamheid_inputfield} {Duurzaamheid_error}
+      </div>
+    </div>
+
+
+      <div class="formblock">
+        <div class="formlinks"><label for="fondsnaam">{fondsnaam_description}</label> </div>
+        <div class="formrechts">
+          {fondsnaam_inputfield} {fondsnaam_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="Koers">{Koers_description}</label> </div>
+        <div class="formrechts">
+          {Koers_inputfield} {Koers_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="koersdatum">{koersdatum_description}</label> </div>
+        <div class="formrechts">
+          {koersdatum_inputfield} {koersdatum_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="overigeInfo">{overigeInfo_description}</label> </div>
+        <div class="formrechts">
+          {overigeInfo_inputfield} {overigeInfo_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="verwerkt">{verwerkt_description}</label> </div>
+        <div class="formrechts">
+          {verwerkt_inputfield} {verwerkt_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="emailAdres">{emailAdres_description}</label> </div>
+        <div class="formrechts">
+          {emailAdres_inputfield} {emailAdres_error}
+        </div>
+      </div>
+
+
+      <div class="formblock">
+        <div class="formlinks">&nbsp;</div>
+        <div class="formrechts">
+          {change_user_value} {change_date_value}</div>
+      </div>
+    </fieldset>
+</form></div>

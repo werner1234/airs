@@ -1,0 +1,346 @@
+<div style=";" id="uiModalDiv">
+  <div id="modelContent"></div>
+</div>
+
+{addNota}
+{addFonds}
+
+<div class="main_content">
+  <div id="messageHolder">{AEMessage}</div>
+
+
+  <form action="{updateScript}" method="POST" id="NominaalMeervoudigForm" class="orderForm">
+    <div class="form">
+      <input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="return" value="{return}">
+      <input type="hidden" name="redirect" value="0">
+      <input type="hidden" name="zoekveld" value="">
+      <input type="hidden" name="valutaKoersHidden" id="valutaKoersHidden" value="0">
+      <input type="hidden" name="fondseenheidHidden" id="fondseenheidHidden" value="1">
+      <input type="hidden" name="batchId" value="{batchId}" id="batchId">
+      <input type="hidden" name="valuta" value="">
+      <input type="hidden" name="fondsValuta" id="fondsValuta" value="{fondsValuta_value}">
+      <input type="hidden" name="fonds_id" value="">
+      <input type="hidden" name="orderbedrag" id="orderbedrag" value="0">
+      <input type="hidden" name="verzenden" id="verzenden" value="">
+      <input type="hidden" value="{depotbank_value}" name="depotbank" id="Depotbank">
+      <input class="" type="hidden" value="{DepotbankOld_value}" name="DepotbankOld" id="DepotbankOld">
+      <input class="" type="hidden" value="{Risicoklasse_value}" name="Risicoklasse" id="Risicoklasse">
+      <input type="hidden" name="orderdepotbank" id="orderdepotbank" value="{orderdepotbank}">
+      <input type="hidden" name="canFixOrder" id="canFixOrder" value="{fixTonen}">
+      <input type="hidden" name="isFixOrder" id="isFixOrder" value="{isFixOrder}">
+      <input type="hidden" name="portefeuille_id" value="">
+      <input type="hidden" value="{fonds_value}" name="fonds" id="fonds">
+      <input type="hidden" value="{id_value}" name="id" id="id">
+      <input type="hidden" value="{orderregelId}" name="orderregelId" id="orderregelId">
+      <input type="hidden" value="{rekeningNrTonen}" name="rekeningNrTonen" id="rekeningNrTonen">
+      <input type="hidden" value="{fixTonen}" name="fixTonen" id="fixTonen">
+      <input type="hidden" value="{fondssoort_value}" name="fondssoort" id="fondssoort">
+      <input type="hidden" value="0" name="cancel" id="cancel">
+      <input type="hidden" value="0" name="cancelOrderregel" id="cancelOrderregel">
+      <input type="hidden" value="{orderStatus_value}" name="originalOrderStatus" id="originalOrderStatus">
+      <input type="hidden" value="{handmatig_uitvoeringenMuteren}" name="handmatig_uitvoeringenMuteren" id="handmatig_uitvoeringenMuteren">
+      <input type="hidden" value="{fondseenheid_value}" name="fondseenheid" id="fondseenheid">
+      {fondsBeurscode_inputfield}
+      <input type="hidden" value="{optieSymbool_value}" name="optieSymbool" id="optieSymbool">
+      <input type="hidden" value="{optieType_value}" name="optieType" id="optieType">
+      <input type="hidden" value="{optieUitoefenprijs_value}" name="optieUitoefenprijs" id="optieUitoefenprijs">
+      <input type="hidden" value="{optieExpDatum_value}" name="optieExpDatum" id="optieExpDatum">
+      <input type="hidden" value="{fondsBankcode_value}" name="fondsBankcode" id="fondsBankcode">
+      <input type="hidden" name="orderid" value="{orderid_value}" id="orderid">
+      <input type="hidden" name="orderid" value="{orderid_value}" id="orderId">
+      <input type="hidden" name="orderidtest" value="{orderid_value}" id="orderIdtest">
+  
+      <input type="hidden" name="resetControle" id="resetControle" value="0">
+      
+      
+      <button type="button" style="margin-bottom: 5px;" tabindex="0" class="btn-new btn-blue" id='toOrderlistTop'>[vt]Terug naar overzicht[/vt]</button>
+      <div id="orderSoortForm">{newOrder}</div>
+
+      <div class="row">
+        <div class="formHolder box box12">
+          <div class="formTitle textB">[vt]Order[/vt] {order_identificatie}</div>
+          <div class="formContent">
+            <div class="padded-10">
+              <table border="0" cellpadding="6" cellspacing="0"  class="inline">
+                <tr>
+                  <td>[vt]ISIN[/vt] <span id="fonds-koers-info" class=""></span></td>
+                  <td><label for="fondsCode">[vt]Fondsomschrijving[/vt]</label> <span id="fonds-info" class=""></span></td>
+                  <td>[vt]Beurs[/vt]</td>
+                  <td class="GlobalFixorder" style="display:none"><label for="fixOrder">[vt]Fix order[/vt]</label>
+                  <td class="GlobalCareorder careOrderInput" style="display:none"><label for="careOrder">[vt]Care order[/vt]</label>
+                </tr>
+                <tr>
+                  <td>{Fonds}
+                    <div id="addNewFonds" class="input-group-addon  btn-new btn-default btn-xs">[vt]Nieuw[/vt]</div>
+                  </td>
+                  <td>{fondsOmschrijving_inputfield}
+                    {fondsOmschrijving_error}<input type="hidden" id="fondsOmschrijvingHidden" value=""></td>
+                  <td>{beurs_inputfield}</td>
+                  <td class="GlobalFixorder" style="display:none">{fixOrder_inputfield}</td>
+                  <td class="GlobalCareorder careOrderInput" style="display:none">{careOrder_inputfield}</td>
+                </tr>
+              </table>
+
+              <table border="0" cellpadding="6" cellspacing="0"  class="inline">
+                <tr>
+                  <td><label class="" id="transAct" for="transactieSoort">{transactieSoort_description}</label></td>
+                  <td><label for="transactieType">{transactieType_description}</label></td>
+                  <td>
+                    <div class="fixNietNodig statusField">[vt]Status[/vt]</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{transactieSoort_inputfield} {transactieSoort_error}</td>
+                  <td>{transactieType_inputfield} {transactieType_error}</td>
+                  <td>
+                    <div class="fixNietNodig statusField">{orderStatus_inputfield} {orderStatus_error} {UitvoeringOngelijk}</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-actions clearB" id="saveForm">
+              <span class="" id="koersInfo"></span><span style="margin-left: 50px;" id="BankDepotCodes"></span><br>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <input type="hidden" value="{notaModule}" id="notaModule">
+
+    <div class="row" id="orderOptionsBlock">
+      <div class="formHolder box box12 box12-sm orderTabHolder" id="">
+        <div class="orderTabHeader">
+          <ul>
+            <li class="tab-extraOpties"><a href="#tab-extraOpties">[vt]Extra opties[/vt]</a></li>
+            <li class="tab-statusList {statusClass}"><a href="#tab-statusList">[vt]Status[/vt]</a></li>
+            <li class="tab-uitvoeringen"><a href="#uitvoeringen">[vt]Uitvoeringen[/vt]</a></li>
+            <li class="tab-notas"><a href="#tab-notas">[vt]Nota's[/vt]</a></li>
+          </ul>
+        </div>
+        <div class="padded-10 tabContent">
+
+          <!--Tab extra opties-->
+          <div id="tab-extraOpties">
+            <table border="0" cellpadding="5" cellspacing="0">
+              <tr>
+                <td><label for="koersLimiet">{koersLimiet_description}</label></td>
+                <td><label for="tijdsSoort">{tijdsSoort_description}</label></td>
+                <td><label for="tijdsLimiet">{tijdsLimiet_description}</label></td>
+              </tr>
+              <tr>
+                <td>{koersLimiet_inputfield} {koersLimiet_error}
+                  <input type="hidden" name="koersLimietHidden" id="koersLimietHidden"></td>
+                <td>{tijdsSoort_inputfield} {tijdsSoort_error}</td>
+                <td class="input-group">{tijdsLimiet_inputfield} {tijdsLimiet_error}</td>
+              </tr>
+            </table>
+
+            <fieldset class="uitgevoerdFields" style="width: 600px;;">
+              <legend>Nota</legend>
+              <table border="0" cellpadding="5" cellspacing="0" >
+              <tr>
+                <td><label for="notaValutaKoers">{notaValutakoers_description}</label></td>
+                <td><label for="settlementdatum">{settlementdatum_description}</label></td>
+
+              </tr>
+              <tr>
+                <td>{notaValutakoers_inputfield} {notaValutakoers_error}</td>
+                <td>{settlementdatum_inputfield} {settlementdatum_error}</td>
+                <td>{notaHerrekenKnop}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><b>[vt]Herreken voorkeurs waarden[/vt]</b></td>
+              </tr>
+              <tr>
+                <td>[vt]voorkeurs PSAF[/vt]</td>
+                <td>[vt]voorkeurs PSET[/vt]</td>
+                <td>[vt]voorkeurs reden[/vt]</td>
+              </tr>
+              <tr>
+                <td>{voorkeursPSAF}</td>
+                <td>{voorkeursPSET}</td>
+                <td>{voorkeursOrderReden}</td>
+              </tr>
+            </table>
+            </fieldset>
+
+            <table border="0" cellpadding="5" cellspacing="0">
+              <tr>
+                <td>{memo_description}</td>
+              </tr>
+              <tr>
+                <td>{memo_inputfield} {memo_error}</td>
+              </tr>
+            </table>
+          </div>
+          <!--einde tab extra opties-->
+
+          <!--Tab status -->
+          <div id="tab-statusList" class="" style="overflow-y: scroll; height: 200px;">
+            {orderLogs}
+          </div>
+          <!--Einde tab status-->
+
+          <div id="uitvoeringen">
+            <div id="" class="" style="max-height:250px;"></div>
+          </div>
+
+
+          <div id="tab-notas">
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="formHolder box box12" id="orderRegel">
+        <div class="formTitle textB">[vt]Order regel[/vt]</div>
+        <div class="formContent">
+          <div class="padded-10">
+            <input type="hidden" name="valutaKoersHidden" id="valutaKoersHidden" value="0">
+            <input type="hidden" name="OrderuitvoerBewaarder" id="OrderuitvoerBewaarder" value="{OrderuitvoerBewaarder}">
+            <input type="hidden" name="fondseenheidHidden" id="fondseenheidHidden" value="1">
+            <input type="hidden" name="batchId" value="{batchId}" id="batchId">
+            <input type="hidden" name="orderaantal" value="{orderaantal_value}" id="orderaantalField">
+  
+            
+            {id_inputfield}
+            {fonds_inputfield}
+            <div id="depotbankMessage" class="alert alert-warning" style="display:none;">[vt]Depotbank mag niet afwijken van[/vt]: <span id="depotbankMessageCurrent"></span></div>
+            <div id="fixMessage" class="alert alert-warning" style="display:none;"><span id="fixMessageCurrent"></span>
+            </div>
+            <table border="0" cellpadding="6" cellspacing="0">
+              <tr>
+                <td><label id="PortefeuilleSelectieLabel" for="PortefeuilleSelectie">[vt]Client[/vt]</label></td>
+                <td>[vt]Portefeuille[/vt]</td>
+                <td class="fixOrderInput initialFix"><label for="fixOrder">[vt]Fix order[/vt]</label>
+                <td class=" initialCare"><label for="careOrder">[vt]Care order[/vt]</label>
+                <td class="fixNietNodig rekeningField">[vt]Rekening[/vt]</td>
+                <td>[vt]Bedrag[/vt] <span id="geschatAantal" class=""></span></td>
+                <td><label>[vt]Depotbank[/vt]</label></td>
+                <td><label>[vt]Profiel[/vt]</label></td>
+                <td><label>[vt]Order reden[/vt]</label></td>
+              </tr>
+              <tr>
+                <td>{PortefeuilleSelectie}<input type="hidden" name="client" id="client" value="{client_value}"></td>
+                <td>
+                  <input type="text" name="portefeuille" id="portefeuille" value="{portefeuille_value}" READONLY style="background-color:#DDD">
+                  {portefeuille_error}
+                </td>
+                <td class="fixOrderInput initialFix">
+                  <input class="" type="checkbox" name="initialFix" id="initialFix" value=""></td>
+  
+                <td class=" initialCare">
+                  <input class="" type="checkbox" name="initialCare" id="initialCare" value=""></td>
+  
+                <td class="fixNietNodig rekeningField">{rekening_inputfield}</td>
+                <td class="input-group" style="width:300px">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="fondsValutaDisplay"></span>
+                  </div>
+
+
+                  {bedrag_inputfield}
+
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="orderAantal">[vt]Geschat aantal[/vt]: &nbsp;</span>
+                  </div>
+
+
+                  {aantal_error}
+                </td>
+
+                <td id="depobankValue">{depobankValue}</td>
+                <td id="profileValue">{profileValue}</td>
+                <td>{orderReden}</td>
+              </tr>
+            </table>
+          </div>
+
+
+          <div class="form-actions clearB" id="saveForm">
+            <span id="fondsOwnedInfo"></span><br>
+            <span id="orderWaarde"></span><br>
+            <div id="orderRowSaveBtn" class="row padded-10">
+              <div class="box box12">{opslaanKnop}<div id="orderRowDeleteBtn" style="display: inline-block; padding-left: 15px;">{annuleerRegelKnop}</div></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" id="orderRegelOptionsBlock">
+      <div class="formHolder box box12 box12-sm orderTabHolder" id="">
+        <div class="orderTabHeader">
+          <ul>
+            <li class="tab-controlles"><a href="#tab-controlles">[vt]Controles[/vt]</a></li>
+          </ul>
+        </div>
+        <div class="padded-10 tabContent">
+
+
+
+          <div id="tab-controlles">
+            <div id="checksMessageBox"></div>
+            <table class="table table-boxed" id="controllesForm">{controlle_chk}</table>
+            {controleStatus_error}
+
+            <div class="form-actions clearB hideElement" id="controlActions">
+              <div class="row padded-10">
+                <span class="btn-new btn-save" id="insertOrder">[vt]Goedkeuren[/vt]</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div id="tab-notas">
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="formHolder box box12" id="orderregelsHolder">
+        <div class="formTitle textB">[vt]Order regels[/vt]</div>
+        <div class="formContent" id="orderregels">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions clearB" id="saveForm">
+      <div class="row padded-10">
+        <div class="box box12">{opslaanKnop}</div>
+      </div>
+
+      <div class="row padded-10">
+        <div class="box box4 fixButton">{verzendenKnop}</div>
+      </div>
+
+      <div class="row padded-10">
+
+        <div class="box box2"><span class="btn-new btn-blue" id='toOrderlist'>[vt]Terug[/vt]</span></div>
+        <div class="box box2">{copyOrder}</div>
+        <div class="box box2">{annuleerKnop}</div>
+        <span class="floatR">{formMessage}{change_user_value} {change_date_value}</span>
+      </div>
+    </div>
+
+
+</div>
+</form>
+</div>

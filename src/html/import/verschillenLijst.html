@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="../widget/css/font-awesome.min.css">
+
+<style>
+  .verschilTable{
+    width: 95%;
+    border: 2px grey solid;
+  }
+
+  .verschilTable .c1{
+    width: 90%;
+  }
+  .verschilTable .c2{
+    text-align: right;
+    padding-right: 10px;
+  }
+  .verschilTable .c3{
+    margin-left: 10px;
+    padding: 10px;
+  }
+  .collapseBlock{
+    display: none;
+    margin-left: 20px;
+    padding: 5px;
+    background: whitesmoke;
+
+  }
+  .btnCol{
+    cursor: pointer;
+
+  }
+</style>
+<br/>
+<br/>
+<br/>
+<b>Klaar met inlezen <br></b>
+<table class="verschilTable">
+  <thead><td colspan="5" style="background: rgba(20,60,90,1); color: white; padding: 10px">Verschillenlijst</td></thead>
+  <tr>
+    <td class="c2"><?=count($meldArray["gelijk"])?></td>
+    <td class="c1"> <button class="btnCol" data-id="block1" title="klik voor details"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>&nbsp;&nbsp; Geen verschil</td>
+  </tr>
+  <tr  id="block1" class="collapseBlock">
+    <td></td>
+    <td class="c3">
+      <div>
+        <li><?=implode("<li>",$meldArray["gelijk"])?>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="c2"><?=count($meldArray["verschil005"])?></td>
+    <td class="c1"> <button class="btnCol" data-id="block2" title="klik voor details"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>&nbsp;&nbsp; Minder dan 5 cent</td>
+  </tr>
+  <tr  id="block2" class="collapseBlock">
+    <td></td><td class="c3">
+      <div>
+        <li><?=implode("<li>",$meldArray["verschil005"])?>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td class="c2"><?=count($meldArray["verschil"])?></td>
+    <td class="c1"> <button class="btnCol" data-id="block3" title="klik voor details"><i class="fa fa-angle-double-down" aria-hidden="true"></i></button>&nbsp;&nbsp; 5 cent of meer</td>
+  </tr>
+  <tr id="block3" class="">
+    <td></td><td class="c3">
+      <div >
+        <li><?=implode("<li>",$meldArray["verschil"])?>
+      </div>
+    </td>
+  </tr>
+
+<?
+  unset($meldArray["gelijk"]);
+  unset($meldArray["verschil005"]);
+  unset($meldArray["verschil"]);
+  if (count($meldArray) > 0)
+  {
+?>
+    <tr id="block3" class="">
+      <td></td><td class="c3">
+        extra meldingen
+        <ul >
+
+
+<?
+    foreach ($meldArray as $item)
+    {
+      echo "<li>$item</li>";
+    }
+?>
+        </ul>
+      </td>
+    </tr>
+<?
+  }
+
+?>
+</table>
+<script>
+  $(document).ready(function () {
+    $(".btnCol").click(function (e) {
+      e.preventDefault();
+      var bId = $(this).data("id");
+      $("#"+bId).toggle();
+    });
+  });
+</script>
+<?
+//debug($meldArray);
+?>
+<br/>
+<br/>

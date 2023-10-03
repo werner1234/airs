@@ -1,0 +1,44 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}{bestandsvergoedingId_inputfield}<div class="formblock">
+<div class="formlinks"><label for="portefeuille">{portefeuille_description}</label> </div>
+<div class="formrechts">
+{portefeuille_inputfield} {portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Fonds">{Fonds_description}</label> </div>
+<div class="formrechts">
+{Fonds_inputfield} {Fonds_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="bedragBerekend">{bedragBerekend_description}</label> </div>
+<div class="formrechts">
+{bedragBerekend_inputfield} {bedragBerekend_error}
+</div>
+</div>
+
+
+
+<div class="formblock">
+<div class="formlinks"></div>
+<div class="formrechts">
+{knoppen}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+
+
+</form></div>

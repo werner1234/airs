@@ -1,0 +1,101 @@
+<div  id="thisPageContent">
+
+    {html}
+
+    <div class="modalActions" style="float:right;">{actions}</div>
+
+    <script type="text/javascript">
+      {javascript}
+      $(document).ready(function () {
+        var openNotas = 0;
+        var toDoorgegeven = 0;
+        $('#uiModalDiv').dialog({
+            width: 700,
+            autoOpen: false,
+            dialogClass: "test",
+            modal: true,
+            responsive: true,
+            title: "[vt]Order uitvoering[/vt]"
+          });
+
+        $('#uiModalDiv').dialog("open");
+        $( "#uiModalDiv" ).dialog( "option", "modal", true );
+
+
+        $("#closeModal").on("click", function() {
+          $( "#uiModalDiv" ).dialog( "close" );
+          $( "#thisPageContent" ).remove();
+        });
+
+        $("#orderUitvoeringSaveData").on("click", function() {
+          $('#orderUitvoeringEditForm input[name=action]').val('update');
+          submitOrderUitvoeringForm();
+        });
+
+        $("#orderUitvoeringSaveDataToDoorgegeven").on("click", function() {
+          $('#orderUitvoeringEditForm input[name=action]').val('update');
+          toDoorgegeven = 1;
+          submitOrderUitvoeringForm();
+        });
+
+        $("#orderUitvoeringSaveDataToNota").on("click", function() {
+          $('#orderUitvoeringEditForm input[name=action]').val('update');
+          openNotas = 1;
+          submitOrderUitvoeringForm();
+        });
+
+        $("#orderUitvoeringRemoveData").on("click", function() {
+          $('#orderUitvoeringEditForm input[name=action]').val('delete');
+          submitOrderUitvoeringForm();
+        });
+
+        function submitOrderUitvoeringForm() {
+          $('.help-block.with-errors').remove();
+          $('#orderUitvoeringEditForm').find(':input').css('border-color', ''); //reset inputfield style
+          var postData = $('#orderUitvoeringEditForm').serializeArray();
+          var formURL = $('#orderUitvoeringEditForm').attr("action");
+
+          $.ajax({
+            url : formURL,
+            type: "GET",
+            dataType: 'json',
+            data : postData,
+            success:function(data, textStatus, jqXHR) {
+              if ( data.saved == true ) {
+
+                //update parrent
+                //window.VermogensbeheerderChanged(data.Vermogensbeheerder);
+                //close modal
+                $('#uiModalDiv').dialog({});
+                $('#uiModalDiv').dialog('close');
+
+                console.log(data);
+                if(data.uitvoeringsValutaKoers != 0 )
+                {
+                  $(document).find('#uitvoeringsValutaKoers').val(data.uitvoeringsValutaKoers);
+                  $('#notaValutaKoersSpan').html(data.uitvoeringsValutaKoers);
+                  console.log('update' + data.uitvoeringsValutaKoers + " | " + $(document).find('#uitvoeringsValutaKoers').val());
+                }
+
+                //console.log(openNotas);
+                if ( openNotas === 1 ) {
+                  $(document).find('a[href="#tab-notas"]').get(0).click();
+                }
+                if ( toDoorgegeven === 1 ) {
+                  parent.frames['content'].location = 'ordersListV2.php?status=doorgegeven&removeLocks=1';// $('input[name=return]').val();
+                }
+                //reload list
+                $('#uitvoeringen').load(encodeURI('{refreshUrl}'));
+                //data: return data from server
+              } else {
+                $.each(data.errors, function(field, fieldData) {
+                  $('#orderUitvoeringEditForm [name=' + field + ']').css('border-color', 'red');
+                  $('#orderUitvoeringEditForm [name=' + field + ']').parent().append('<span class="help-block with-errors">' + fieldData.message + '</span>');
+                });
+              }
+            }
+          });
+        }
+      });
+    </script>
+  </div>

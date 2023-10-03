@@ -1,0 +1,129 @@
+<br>{AEMessages}{invulScr}
+<fieldset name="test" value="" title="Mutatieformulier">
+  <legend accesskey="m"><strong>[vt]Conversie[/vt]</strong></legend>
+
+  <form name="editForm" id="conversie-form" action="{updateScript}" onsubmit="checkValues();" >
+    <div class="form">
+      <input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="returnUrl" value="{returnUrl}">
+      <input type="hidden" name="id" value="{id_value}">
+      <input type="hidden" name="afschrift_id" value="{aId}">
+      <input type="hidden" name="Afschriftnummer" value="{Afschriftnummer_value}">
+      <input type="hidden" name="Verwerkt" value="{Verwerkt_value}">
+      <input type="hidden" name="Rekening" value="{Rekening_value}">
+      <input type="hidden" name="Fondskoerseenheid" value="{koerseenheid}">
+      <input type="hidden" name="RekeningValuta" value="{aValuta}">
+      <input type="hidden" name="RekeningValutakoers" value="1">
+      <input type="hidden" name="aMemoriaal" value="{aMemoriaal}">
+      <input type="hidden" name="rekeningafschriftenEdit" value="{rekeningafschriftenEdit}">
+
+      <input type="hidden" name="mutation_type" value="{mutation_type}">
+      <input type="hidden" name="Volgnummer" value="{Volgnummer}">
+      <input type="hidden" id="boekDatumCheckDate" name="boekDatumCheckDate" value="{boekDatumCheckDate}">
+      
+      
+      <input type="hidden" name="type" value="{type}">
+  
+      <div id="boekdatumMsg" style="display: none; color:red;">[vt]Datum mag niet voor Portefeuille startdatum liggen[/vt]</div>
+      <table border="0" cellspacing="0" cellspadding="2">
+        <tr>
+          <td class="list_kopregel_data" width="150px">[vt]Datum[/vt]</td>
+          <td class="list_kopregel_data" width="150px">{settlementDatum_description}</td>
+          <td class="list_kopregel_data" width="80px">[vt]Grootboek[/vt]</td>
+          <td class="list_kopregel_data">{Fonds_description} <span id="fonds-koers-info" class=""></span></td>
+          
+          
+          
+          
+          <td class="list_kopregel_data">{Valuta_description}</td>
+          <td class="list_kopregel_data">[vt]Waarde (Debet/Credit)[/vt]</td>
+          <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="valuta-koers-info" class=""></span></td>
+          <td class="list_kopregel_data">[vt]Mutatiebedrag[/vt]</td>
+          <td class="list_kopregel_data">{Omschrijving_description}</td>
+        </tr>
+        <tr>
+          <td>{Boekdatum_inputfield}</td>
+          <td>{settlementDatum_inputfield}</td>
+          <td>{Grootboekrekening_inputfield}</td>
+          <td>{conversie_fonds}<input type="hidden" id="fondseenheid" value=""></td>
+          
+          
+          
+          
+          
+          <td>{Valuta_inputfield}</td>
+          <td>
+            {value_inputfield}
+            <!--<input type="text" name="value" id="value-input">-->
+          </td>
+          <!--{Debet_inputfield}{Credit_inputfield}-->
+          <td>{Valutakoers_inputfield}</td>
+          <td><input name="Bedrag" type="text" id="total" READONLY></td>
+          <td>{Omschrijving_inputfield}</td>
+        </tr>
+      </table><br />
+
+      <div id="deposits">
+        
+        <table border="0" cellspacing="0" cellspadding="2" id="conversieTable" style="margin-bottom:15px;">  
+          <tr>
+            <td class="list_kopregel_data">[vt]Dividendbelasting Bedrag[/vt]</td>
+            <td class="list_kopregel_data">{Valuta_description}</td>
+            <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="divident-valuta-koers-info" class=""></span></td>
+            <td class="list_kopregel_data">[vt]Div Bel in afr. Val[/vt]</td>
+          </tr>
+          <tr>
+            <td><input name="deponering[1][Bedrag1234]" type="text" id="total" ></td>
+            <td><input name="deponering[1][Bedragfdas]" type="text" id="total" ></td>
+            <td><input name="deponering[1][Bedraghert]" type="text" id="total" ></td>
+            <td><input name="deponering[1][Bedragasdf]" type="text" id="total" ></td>
+            <td><a href="#" class="btn btn-danger btn-xs removeRow">[vt]Regel verwijderen[/vt]</a></td>
+          </tr>
+        </table>
+      </div>
+      
+      
+      <a href="#" class="btn btn-default" id="addtestbutton">[vt]Deponerings regels toevoegen[/vt]</a>
+
+      
+      
+      <table border="0" cellspacing="0" cellspadding="2" id="kosten-table">  
+        <tr>
+          <td class="list_kopregel_data">[vt]Kosten Bedrag[/vt]</td>
+          <td width="80px" class="list_kopregel_data">Grootboek</td>
+          <td class="list_kopregel_data">{Valuta_description}</td>
+          <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="kosten-valuta-koers-info" class=""></span></td>
+          <td class="list_kopregel_data">[vt]Kosten in afr. Val[/vt] </td>
+        </tr>
+        <tr>
+          <td>
+             {kosten_value_inputfield}
+            <!--<input name="kosten_value" type="text" id="kosten_value">-->
+          </td>
+          <td>{kosten_Grootboekrekening_inputfield}</td>
+          <td>{kosten_valuta_inputfield}</td>
+          <td>{kosten_Valutakoers_inputfield}</td>
+          <td><input name="kosten_Bedrag" type="text" id="kosten_total" READONLY></td>
+
+        </tr>
+
+      </table>
+
+      {btn_submit}
+
+    </div>
+  </form>
+</fieldset>
+
+<script>
+  $(function () {
+    $(document).on('focus, keyup', 'input, select', function () {
+      $(this).invulInstructie({
+        party: '{VB}',
+        script: 'rekeningmutaties_v2_conversie.php',
+        consoleLog: '{consoleLog}'
+      });
+    });
+  });
+</script>

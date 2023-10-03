@@ -1,0 +1,64 @@
+
+<form name="editForm" action="{updateScript}" method="{method}" >
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="module">{module_description}</label> </div>
+      <div class="formrechts">
+        {module_inputfield} {module_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="airsDescription">{airsDescription_description}</label> </div>
+      <div class="formrechts">
+        {airsDescription_inputfield} {airsDescription_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="airsId">{airsId_description}</label> </div>
+      <div class="formrechts">
+        {airsId_inputfield} {airsId_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="airsTable">{airsTable_description}</label> </div>
+      <div class="formrechts">
+        {airsTable_inputfield} {airsTable_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="externDescription">{externDescription_description}</label> </div>
+      <div class="formrechts">
+        {externDescription_inputfield} {externDescription_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="externId">{externId_description}</label> </div>
+      <div class="formrechts">
+        {externId_inputfield} {externId_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="externExtra">{externExtra_description}</label> </div>
+      <div class="formrechts">
+        {externExtra}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+  </div>
+</form>

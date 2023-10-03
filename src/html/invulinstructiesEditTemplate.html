@@ -1,0 +1,96 @@
+<!--
+ AE-ICT CODEX source module versie 1.6, 17-06-2016
+    Author              : $Author: cvs $
+    Laatste aanpassing  : $Date: 2016/06/20 08:20:20 $
+    File Versie         : $Revision: 1.1 $
+
+    $Log: invulinstructiesEditTemplate.html,v $
+    Revision 1.1  2016/06/20 08:20:20  cvs
+    call 5027 invulinstructies
+
+-->
+
+<style>
+  textarea{
+    padding: 3px;
+    min-height: 50px;
+    box-shadow: #999 3px 3px 3px;
+  }
+</style>
+
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+      <div class="formlinks"><label for="vermogensBeheerder">{vermogensBeheerder_description}</label> </div>
+      <div class="formrechts">
+        {vermogensBeheerder_inputfield} {vermogensBeheerder_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="script">{script_description}</label> </div>
+      <div class="formrechts">
+        {script_inputfield} {script_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="field">{field_description}</label> </div>
+      <div class="formrechts">
+        {field_inputfield} {field_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="value">{value_description}</label> </div>
+      <div class="formrechts">
+        {value_inputfield} {value_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="active">{active_description}</label> </div>
+      <div class="formrechts">
+        {active_inputfield} {active_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="text">{text_description}</label> </div>
+      <div class="formrechts">
+        {text_inputfield} {text_error}
+      </div>
+    </div>
+
+
+    <div class="formblock">
+      <div class="formlinks"><label for="header">{header_description}</label> </div>
+      <div class="formrechts">
+        {header_inputfield} {header_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="class">{class_description}</label> </div>
+      <div class="formrechts">
+        {class_inputfield} {class_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="memo">{memo_description}</label> </div>
+      <div class="formrechts">
+        {memo_inputfield} {memo_error}
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+  </div>
+</form>

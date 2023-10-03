@@ -1,0 +1,123 @@
+<div  id="thisPageContent">
+    {html}
+    
+    <div class="modalActions" style="float:right;">{actions}</div>
+
+    <script type="text/javascript">
+      {javascript}
+      
+      
+      function vermogensbeheerderChanged () {};
+
+  function beleggingsSectorVermogensbeheerderChanged()
+  {
+    var vermogensbeheerder = $('#beleggingsSectorPerFondsForm [name=Vermogensbeheerder]').val();
+    getWaarden(vermogensbeheerder,'Beleggingssectoren','Beleggingssector');
+    getWaarden(vermogensbeheerder,'Regios','Regio');
+    getWaarden(vermogensbeheerder,'AttributieCategorien','AttributieCategorie');
+  }
+
+  function getWaarden (sel,tabel,veld)
+  {
+    var oldValue = $('#beleggingsSectorPerFondsForm #' + veld).val();
+
+    var vermogensbeheerder = sel;
+    if ( vermogensbeheerder.length > 0 ) {
+      $.ajax({
+        url : 'lookups/ajaxLookup.php?module=Koppelvelden&output=json&query='+vermogensbeheerder+'|'+tabel,
+        type: "GET",
+        dataType: "json",
+        success:function(data, textStatus, jqXHR) {
+          setWaarden(data,veld,oldValue);
+        }
+      });
+    }
+  }
+
+  function setWaarden(data,veld,oldValue)
+  {
+    if(data.length > 1)
+    {
+      $('#beleggingsSectorPerFondsForm #' + veld).html('');
+      $('#beleggingsSectorPerFondsForm #' + veld)
+        .append($('<option></option>')
+        .attr('value','')
+        .text('---')); 
+
+      $.each( data, function( index, value ){
+        if ( value != '' ) {
+          $('#beleggingsSectorPerFondsForm #' + veld)
+          .append($('<option></option>')
+          .attr('value',value.waarde)
+          .text(value.waarde + ' - ' + value.omschrijving));
+        }
+      });
+    }
+    $('#' + veld).val(oldValue);
+  }
+      
+      
+      $(document).ready(function () {
+        beleggingsSectorVermogensbeheerderChanged(); /** get correct dropdown values **/
+
+        $('#uiModalDiv').dialog({ 
+            width: 700,
+            autoOpen: false,
+            dialogClass: "test",
+            modal: true,
+            responsive: true,
+            title: "[vt]Beleggingssector per fonds muteren[/vt]"
+          });
+
+          $('#uiModalDiv').dialog("open");
+
+        $("#closeModal").on("click", function() {
+          $( "#uiModalDiv" ).dialog( "close" );
+          $( "#thisPageContent" ).remove();
+        });
+        
+        $("#beleggingsSectorSaveData").on("click", function() {
+          $('#beleggingsSectorPerFondsForm input[name=action]').val('update');
+          submitBeleggingsCategoriePerFondsForm();
+        });
+        
+        $("#beleggingsSectorRemoveData").on("click", function() {
+          $('#beleggingsSectorPerFondsForm input[name=action]').val('delete');
+          submitBeleggingsCategoriePerFondsForm();
+        });
+
+        function submitBeleggingsCategoriePerFondsForm() {
+          $('.help-block.with-errors').remove();
+          $('#beleggingsSectorPerFondsForm').find(':input').css('border-color', ''); //reset inputfield style
+          var postData = $('#beleggingsSectorPerFondsForm').serializeArray();
+          var formURL = $('#beleggingsSectorPerFondsForm').attr("action");
+
+          $.ajax({
+            url : formURL,
+            type: "GET",
+            dataType: 'json',
+            data : postData,
+            success:function(data, textStatus, jqXHR) {
+
+              if ( data.saved == true ) {
+                //update parrent
+                window.VermogensbeheerderChanged(data.Vermogensbeheerder);
+                //close modal
+                $('#uiModalDiv').dialog({});
+                $('#uiModalDiv').dialog('close');
+                //data: return data from server
+              } else {
+                setRecordErrorsDialog ('beleggingsSectorPerFondsForm', data.errors);
+              }
+            }
+          });
+        }
+        
+        $('#beleggingsSectorPerFondsForm [name=Vermogensbeheerder]').on('change', function(event) {
+          event.preventDefault()
+          beleggingsSectorVermogensbeheerderChanged();
+        });
+      });
+      
+    </script>
+  </div>

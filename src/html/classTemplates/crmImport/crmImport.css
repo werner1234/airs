@@ -1,0 +1,53 @@
+
+legend{
+  background: rgba(20,60,90,1);
+  color: white;
+  width:25%;
+  padding:5px;
+}
+#msg{
+  padding: 15px;
+  color:red;
+  font-weight: bold;
+}
+.container{
+  width: 800px;
+}
+#msg{
+  display: none;
+  
+  background: rgba(223,235,250,1);;
+  border-radius: 5px;
+  color: #333;
+  font-weight: bold;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+button{
+  padding:10px 15px 10px 15px ;
+  background: rgba(20,60,90,1);
+  color: white;
+  border: 0px;
+}
+
+h2{ font-size: 1.2em; font-weight: bold}
+tr:nth-child(even) {background: #EEE}
+tr:nth-child(odd) {background: #FFF}
+.k1{ min-width: 250px}
+.k2{ width: 30px}
+.k3{ min-width: 250px}
+td{ padding: 5px;}
+th{ padding: 5px;}
+th.head{ background: rgba(20,60,90,1); color: white; }
+.container{
+  width: 800px;
+}
+
+.filledRow td{
+  background: #FFF;
+  border-top:3px rgba(20,60,90,1) solid;
+  
+}
+
+

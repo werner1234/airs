@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  php:
+    hostname: php
+    depends_on:
+      - mysql
+    build:
+      context: .
+      dockerfile: Docker/Airs/Dockerfile
+    ports:
+        - "127.0.0.1:80:80"
+    networks:
+      - local
+    volumes:
+      - type: bind 
+        source: ./src
+        target: /var/www
+
+  mysql:
+    hostname: mysql
+    #command: --default-authentication-plugin=mysql_old_password
+    build:
+      context: .
+      dockerfile: Docker/Mysql/Dockerfile
+    expose:
+      - "3306"
+    ports:
+      - "127.0.0.1:3306:3306"
+    networks:
+      - local
+    environment:
+      - MYSQL_ROOT_PASSWORD=airs-dev-root-pwd
+      - MYSQL_DATABASE=airs_dev_db
+      - MYSQL_USER=airs-dev
+      - MYSQL_PASSWORD=airs-dev-php-pwd
+    volumes:
+      - type: bind
+        source: ./Docker/Mysql/volume
+        target: /var/lib/mysql
+
+networks:
+  local:
+    driver: bridge
+

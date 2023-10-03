@@ -1,0 +1,57 @@
+<form name="editForm" action="{updateScript}" method="{method}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="portefeuille">{portefeuille_description}</label></div>
+      <div class="formrechts">
+        {portefeuille_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="periode">{periode_description}</label></div>
+      <div class="formrechts">
+        {periode_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="signaleringsPercentage">{signaleringsPercentage_description}</label></div>
+      <div class="formrechts">
+        {signaleringsPercentage_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="datum">{datum_description}</label></div>
+      <div class="formrechts">
+        {datum}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="status">{status_description}</label></div>
+      <div class="formrechts">
+        {status_inputfield} {status_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="toelichting">{toelichting_description}</label></div>
+      <div class="formrechts">
+        {toelichting_inputfield} {toelichting_error}
+      </div>
+    </div>
+
+    {rendementDetails_inputfield}
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}
+      </div>
+    </div>
+  </div>
+</form>

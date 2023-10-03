@@ -1,0 +1,70 @@
+
+<style>
+  .dataFieldsTable{
+
+  }
+  .tHead{
+    padding: 5px 15px;
+    background: #0A246A;
+    color: white;
+  }
+  .keyColumn{
+    min-width: 150px;
+    padding: 5px 15px;
+    border-bottom: 1px solid #AAA;
+  }
+  .valueColumn{
+    min-width: 300px;
+    padding: 5px 15px;
+    border-bottom: 1px solid #AAA;
+  }
+</style>
+
+<form name="editForm" action="{updateScript}" method="{method}" >
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="action">aangemaakt:</label> </div>
+      <div class="formrechts">
+        {addStamp}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="action">{action_description}</label> </div>
+      <div class="formrechts">
+        {action_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="submitterIp">{submitterIp_description}</label> </div>
+      <div class="formrechts">
+        {submitterIp_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="eventCode">{eventCode_description}</label> </div>
+      <div class="formrechts">
+        {eventCode_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="dataFields">{dataFields_description}</label> </div>
+      <div class="formrechts">
+        {dataFields}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

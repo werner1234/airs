@@ -1,0 +1,649 @@
+<script type="text/javascript">
+function buildQueryArray(theFormName)
+{
+  var theForm = document.forms[theFormName];
+  var qs = new Object();
+  for (e=0;e<theForm.elements.length;e++) {
+    if (theForm.elements[e].name!='') {
+    	qs[theForm.elements[e].name] = theForm.elements[e].value;
+      }
+    }
+  return qs;
+}
+
+function vermogensbeheerderChanged()
+{
+	jsrsExecute("selectRS.php", populateAccountmanager, "getAccountmanager",
+	buildQueryArray('editForm'), false);
+
+	jsrsExecute("selectRS.php", populateRisicoklasse, "getRisicoklasse",
+	buildQueryArray('editForm'), false);
+
+	jsrsExecute("selectRS.php", populateRemisier, "getRemisier",
+	buildQueryArray('editForm'), false);
+
+ 	jsrsExecute("selectRS.php", populateSoortOvereenkomst, "getSoortOvereenkomst",
+	buildQueryArray('editForm'), false);
+
+}
+
+function populateSoortOvereenkomst (valueTextStr)
+{
+  valueTextStr= '---~ |' + valueTextStr;
+	populateDropDown(document.editForm.SoortOvereenkomst,valueTextStr);
+}
+
+function populateRemisier (valueTextStr)
+{
+  valueTextStr= '---~ |' + valueTextStr;
+	populateDropDown(document.editForm.Remisier,valueTextStr);
+}
+
+function populateRisicoklasse (valueTextStr)
+{
+  valueTextStr= '---~ |' + valueTextStr;
+	populateDropDown(document.editForm.Risicoklasse,valueTextStr);
+}
+
+function populateAccountmanager (valueTextStr)
+{
+	populateDropDown(document.editForm.Accountmanager,valueTextStr);
+	populateDropDown(document.editForm.tweedeAanspreekpunt,valueTextStr,1);
+}
+
+function clearDropDown (selField)
+{
+  while (selField.options.length > 0)
+    selField.options[0] = null;
+}
+
+function populateDropDown (field, valueTextStr,addEmpty)
+{
+  var selField = field;
+  clearDropDown(selField);
+
+  if(addEmpty==1)
+  {
+    oItem = new Option;
+    oItem.value = '';
+    oItem.text = '---';
+    selField.options[selField.options.length] = oItem;
+  }
+
+	// options in form "value~displaytext|value~displaytext|..."
+  var aOptionPairs = valueTextStr.split('|');
+
+  for( var i = 0; i < aOptionPairs.length; i++ ){
+    if (aOptionPairs[i].indexOf('~') != -1) {
+      var aOptions = aOptionPairs[i].split('~');
+      oItem = new Option;
+      oItem.value = aOptions[1];
+      oItem.text = aOptions[0];
+      selField.options[selField.options.length] = oItem;
+    }
+  }
+
+  selField.options.selectedIndex = 0;
+}
+
+
+function checkBeheerfeeMethode()
+{
+/*
+  if(document.editForm.BeheerfeeMethode.value==0)
+  {
+    $('#BeheerfeeMethodeGeenOpties').show();
+
+  }
+  else
+  {
+    $('#BeheerfeeMethodeGeenOpties').hide();
+    $('#feeToevoegMethode').prop('selectedIndex',0);
+    $("[name='BeheerfeeToevoegenAanPortefeuille']").prop('selectedIndex',0);
+  }
+  */
+}
+
+function checkVasteStart()
+{
+  if($('#consolidatie').prop('checked'))
+  {
+    $('#consolidatieVasteStart').show();
+    $('#consolidatieVasteEind').show();
+  }
+  else
+  {
+    $('#consolidatieVasteStart').hide();
+    $('#consolidatieVasteEind').hide();
+  }
+}
+
+</script>
+
+<br><br>
+<div class="tabbuttonRow">
+	<input type="button" class="tabbuttonInActive" style="width: 185px;" onclick="javascript:tabOpen('0')" id="tabbutton0" value="[vt]Gegevens[/vt]">
+	<input type="button" class="tabbuttonInActive" style="width: 185px;" onclick="javascript:tabOpen('1');checkBeheerfeeMethode();" id="tabbutton1" value="[vt]Beheerfee-methode[/vt]">
+	<input type="button" class="tabbuttonInActive" style="width: 185px;" onclick="javascript:tabOpen('2')" id="tabbutton2" value="[vt]Beheerfee-staffels[/vt]">
+</div>
+<br><br>
+
+
+<!--
+<select name="Products" id="Products" onchange="fillSelect('Products','test');">
+<option value="">Select Product</option>
+<option value="_">Select Product1</option>
+</select>
+-->
+
+
+<form name="editForm" action="{updateScript}">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+
+<!-- tab0 -->
+<div id='tab0' class="tabblad">
+
+<span class="form">
+
+<div class="formblock">
+<div class="formlinks">{Portefeuille_description} </div>
+<div class="formrechts">
+{Portefeuille_inputfield} {Portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{PortefeuilleDepotbank_description} </div>
+<div class="formrechts">
+{PortefeuilleDepotbank_inputfield} {PortefeuilleDepotbank_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{PortefeuilleVoorzet_description} </div>
+<div class="formrechts">
+{PortefeuilleVoorzet_inputfield} {PortefeuilleVoorzet_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Vermogensbeheerder_description} </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Accountmanager_description} </div>
+<div class="formrechts">
+{Accountmanager_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{tweedeAanspreekpunt_description} </div>
+<div class="formrechts">
+{tweedeAanspreekpunt_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Client_description} </div>
+<div class="formrechts">
+	{Client_inputfield} {Client_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{beperktToegankelijk_description} </div>
+<div class="formrechts">
+{beperktToegankelijk_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Vastetegenrekening_description} </div>
+<div class="formrechts">
+{Vastetegenrekening_inputfield} {Vastetegenrekening_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Depotbank_description} </div>
+<div class="formrechts">
+{Depotbank_inputfield} {Depotbank_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Startdatum_description} </div>
+<div class="formrechts">
+{Startdatum_inputfield} <span id="consolidatieVasteStart" {consolidatieVasteStartStyle}>{consolidatieVasteStart_description} {consolidatieVasteStart_inputfield} {consolidatieVasteStart_error}</span>
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Einddatum_description} </div>
+<div class="formrechts">
+{Einddatum_inputfield} <span id="consolidatieVasteEind" {consolidatieVasteEindStyle}>{consolidatieVasteEind_description} {consolidatieVasteEind_inputfield} {consolidatieVasteEind_error}</span>
+</div>
+</div>
+
+<div class="formblock">
+
+<div class="formlinks">{ClientVermogensbeheerder_description} </div>
+<div class="formrechts">
+{ClientVermogensbeheerder_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{InternDepot_description} </div>
+<div class="formrechts">
+{InternDepot_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{ModelPortefeuille_description} </div>
+<div class="formrechts">
+{ModelPortefeuille_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{RapportageValuta_description} </div>
+<div class="formrechts">
+{RapportageValuta_inputfield} {RapportageValuta_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Risicoklasse_description} </div>
+<div class="formrechts">
+{Risicoklasse_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AEXVergelijking_description} </div>
+<div class="formrechts">
+{AEXVergelijking_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{startdatumMeerjarenrendement_description} </div>
+<div class="formrechts">
+{startdatumMeerjarenrendement_inputfield} {startdatumMeerjarenrendement_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{AfwStartdatumRend_description} </div>
+<div class="formrechts">
+{AfwStartdatumRend_inputfield} {AfwStartdatumRend_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{SpecifiekeIndex_description} </div>
+<div class="formrechts">
+{SpecifiekeIndex_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{SoortOvereenkomst_description} </div>
+<div class="formrechts">
+{SoortOvereenkomst_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Aanbrenger_description} </div>
+<div class="formrechts">
+{Aanbrenger_inputfield} {Aanbrenger_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{HistorischeInfo_description} </div>
+<div class="formrechts">
+{HistorischeInfo_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{maandAfdrukken_description} </div>
+<div class="formrechts">
+{maandAfdrukken_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{kwartaalAfdrukken_description} </div>
+<div class="formrechts">
+{kwartaalAfdrukken_inputfield}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{Taal_description} </div>
+<div class="formrechts">
+{Taal_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Remisier_description} </div>
+<div class="formrechts">
+{Remisier_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AFMprofiel_description} </div>
+<div class="formrechts">
+{AFMprofiel_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{BestandsvergoedingUitkeren_description} </div>
+<div class="formrechts">
+{BestandsvergoedingUitkeren_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{OptieToestaan_description} </div>
+<div class="formrechts">
+{OptieToestaan_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Memo_description} </div>
+<div class="formrechts">
+{Memo_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{kleurcode_description} </div>
+<div class="formrechts">
+{kleurcode}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{TijdelijkUitsluitenZp_description} </div>
+<div class="formrechts">
+{TijdelijkUitsluitenZp_inputfield} {TijdelijkUitsluitenZp_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{ZpMethode_description} </div>
+<div class="formrechts">
+{ZpMethode_inputfield} {ZpMethode_error}
+</div>
+</div>
+
+	<div class="formblock">
+		<div class="formlinks">{spreadKosten_description}</div>
+		<div class="formrechts">
+			{spreadKosten_inputfield} {spreadKosten_error}
+		</div>
+	</div>
+	<div class="formblock">
+	<div class="formlinks">{overgangsdepot_description}</div>
+		<div class="formrechts">
+			{overgangsdepot_inputfield} {overgangsdepot_error}
+		</div>
+	</div>
+	<div class="formblock">
+		<div class="formlinks">{consolidatie_description}</div>
+		<div class="formrechts">
+			{consolidatie_inputfield} {consolidatie_error}
+		</div>
+	</div>
+			<div class="formblock">
+		<div class="formlinks">{selectieveld1_description}</div>
+		<div class="formrechts">
+			{selectieveld1_inputfield} {selectieveld1_error}
+		</div>
+			</div>
+				<div class="formblock">
+		<div class="formlinks">{selectieveld2_description}</div>
+		<div class="formrechts">
+			{selectieveld2_inputfield} {selectieveld2_error}
+		</div>
+			</div>
+
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab1' class="tabblad">
+
+<table border="0">
+<tr>
+	<td>{BeheerfeeBasisberekening_description}</td>
+	<td>{BeheerfeeBasisberekening_inputfield} </td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td><b>[vt]Beheerfee bepaling[/vt]</b></td>
+</tr>
+<tr>
+	<td><input type="radio" onclick="javascript:checkBeheerfeeMethode();" name="BeheerfeeMethode" value="0" {Methode_0}>
+    [vt]Geen, of toevoegen aan portefeuille[/vt] </td>
+	<td><div id="BeheerfeeMethodeGeenOpties" >{BeheerfeeToevoegenAanPortefeuille_inputfield} {feeToevoegMethode_inputfield} </div></td>
+</tr>
+	<tr>
+		<td colspan="2">[vt]Indien het de hoofdportefeuille betreft alleen de verdeelmethodiek toevoegen en portefeuille leeglaten[/vt]. <br><br> </td>
+	</tr>
+<tr>
+	<td><input type="radio" onclick="javascript:checkBeheerfeeMethode();" name="BeheerfeeMethode" value="1" {Methode_1}>
+    [vt]Standaard (op basis van staffels)[/vt] </td>
+	<td> </td>
+</tr>
+<tr>
+	<td><input type="radio" onclick="javascript:checkBeheerfeeMethode();" name="BeheerfeeMethode" value="2" {Methode_2}>
+    [vt]Standaard + procentuele korting[/vt] </td>
+	<td>{BeheerfeeKortingspercentage_inputfield}</td>
+</tr>
+<tr>
+	<td><input type="radio" onclick="javascript:checkBeheerfeeMethode();" name="BeheerfeeMethode" value="3" {Methode_3}>
+    [vt]Percentage over vermogen in beheer[/vt] </td>
+	<td>{BeheerfeePercentageVermogen_inputfield}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td> [vt]Beheerfee vast bedrag[/vt]</td>
+	<td>{BeheerfeeBedrag_inputfield} {BeheerfeeBedragVast_inputfield}{BeheerfeeBedragVast_description}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformancePercentage_description}</td>
+	<td>{BeheerfeePerformancePercentage_inputfield}</td>
+</tr>
+
+<tr>
+	<td>{BeheerfeePerformanceDrempelPercentage_description}</td>
+	<td>{BeheerfeePerformanceDrempelPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformanceViaHighwatermark_inputfield} {BeheerfeeHighwatermarkStart_description}</td>
+	<td>{BeheerfeeHighwatermarkStart_inputfield} {BeheerfeeHighwatermarkOnder_description}: {BeheerfeeHighwatermarkOnder_inputfield}</td>
+</tr>
+
+<tr>
+	<td>{BeheerfeeMinJaarBedrag_description}</td>
+	<td>{BeheerfeeMinJaarBedrag_inputfield}</td>
+</tr>
+<tr>
+	<td> [vt]Administratie vergoeding[/vt]</td>
+	<td>{BeheerfeeAdministratieVergoeding_inputfield} {BeheerfeeAdminVgConUitsluiten_inputfield}{BeheerfeeAdminVgConUitsluiten_description}
+		  {BeheerfeeAdminVergoedingJaarlijks_inputfield} {BeheerfeeAdminVergoedingJaarlijks_description}
+	</td>
+</tr>
+<tr>
+	<td>[vt]Remisiervergoeding[/vt]</td>
+	<td>{BeheerfeeRemisiervergoedingsPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>[vt]Teruggave over belegging in huisfondsen[/vt]</td>
+	<td>{BeheerfeeTeruggaveHuisfondsenPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>[vt]Kosten per transactie[/vt]</td>
+	<td>{BeheerfeeTransactiefeeKosten_inputfield}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{BeheerfeeHuisfondsenOvernemen_description}</td>
+	<td>{BeheerfeeHuisfondsenOvernemen_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeBedragBuitenFee_description}</td>
+	<td>{BeheerfeeBedragBuitenFee_inputfield}</td>
+</tr>
+<tr>
+	<td>[vt]BTW Tarief[/vt]</td>
+	<td>{BeheerfeeBTW_inputfield}</td>
+</tr>
+<tr>
+		<td>{afwijkendeOmzetsoort_description}</td>
+		<td>{afwijkendeOmzetsoort_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeBedragBuitenBTW_description}</td>
+	<td>{BeheerfeeBedragBuitenBTW_inputfield}</td>
+</tr>
+<tr>
+	<td>{afrekenvalutaKosten_description}</td>
+	<td>{afrekenvalutaKosten_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeAantalFacturen_description}</td>
+	<td>{BeheerfeeAantalFacturen_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformancefeeJaarlijks_description}</td>
+	<td>{BeheerfeePerformancefeeJaarlijks_inputfield}</td>
+</tr>
+<tr>
+	<td>{WerkelijkeDagen_description}</td>
+	<td>{WerkelijkeDagen_inputfield}</td>
+</tr>
+<tr>
+	<td>{valutaUitsluiten_description}</td>
+	<td>{valutaUitsluiten_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeLiquiditeitenViaModel_description}</td>
+	<td>{BeheerfeeLiquiditeitenViaModel_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeLiquiditeitenAnderPercentage_description}</td>
+	<td>{BeheerfeeLiquiditeitenAnderPercentage_inputfield} [vt]te gebruiken percentage van de liquiditeiten[/vt] {BeheerfeeLiquiditeitenPercentage_inputfield} %
+ <br> [vt]of liquiditeiten afromen tot[/vt] {BeheerfeeLiquiditeitenAfroomPercentage_inputfield} [vt]procent van totale rekenwaarde[/vt].
+</td>
+</tr>
+
+<tr>
+	<td>{BeheerfeeFacturatieVanaf_description}</td>
+	<td>{BeheerfeeFacturatieVanaf_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeFacturatieVooraf_description}</td>
+	<td>{BeheerfeeFacturatieVooraf_inputfield}</td>
+</tr>
+<tr>
+	<td>{BetalingsinfoMee_description}</td>
+	<td>{BetalingsinfoMee_inputfield}</td>
+</tr>
+<tr>
+	<td>{FactuurMemo_description}</td>
+	<td colspan="2">{FactuurMemo_inputfield}</td>
+</tr>
+
+</table>
+
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab2' class="tabblad">
+
+<div class="form">
+
+<table border="0">
+<tr>
+	<td>[vt]Waarde t/m[/vt] </td>
+	<td>[vt]Percentage[/vt]</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel1_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage1_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel2_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage2_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel3_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage3_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel4_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage4_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel5_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage5_inputfield}</td>
+</tr>
+<tr>
+	<td> &nbsp; </td>
+</tr>
+<tr>
+	<td>{BeheerfeeSchijvenTarief_description} </td>
+	<td>{BeheerfeeSchijvenTarief_inputfield}</td>
+</tr>
+
+</table>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+ </div>
+</div>
+
+</div>
+
+</div>
+
+</form></div>
+<script>
+  AEColor.initColors();
+  AEColor.initColorChange();
+</script>

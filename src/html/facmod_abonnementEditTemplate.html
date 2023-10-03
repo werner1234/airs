@@ -1,0 +1,188 @@
+<h3>{relatie}</h3>
+<br/>
+
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" name="totaal_excl" id="totaal_excl" value="{totaal_excl_value}">
+{id_inputfield}
+{rel_id_inputfield}
+<input type="hidden"  value="{factor_value}" id="factor" name="factor" >
+
+<div class="formblock">
+  <div class="formlinks">{artnr_description} </div>
+  <div class="formrechts">
+    <a href="javascript:select_artikel(document.editForm.artnr.value,600,400);">
+      <img src="images/16/lookup.gif" border="0" height="18" align="middle"></a>
+    {artnr_inputfield} {artnr_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{aantal_description} </div>
+  <div class="formrechts">
+  {aantal_inputfield} {aantal_error} {eenheid_inputfield} {eenheid_error} &nbsp;&nbsp;&nbsp;&nbsp;volgnr: {volgnr_inputfield} {volgnr_error} &nbsp;&nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+
+
+<div class="formblock">
+  <div class="formlinks">{txt_description} </div>
+  <div class="formrechts">
+  {txt_inputfield} {txt_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{stuksprijs_description} </div>
+  <div class="formrechts">
+  {stuksprijs_inputfield} {stuksprijs_error}  BTW tarief: {btw_inputfield} {btw_error}&nbsp;&nbsp;&nbsp; <b><a id="btwtxt"></a></b>
+  </div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks">periode  </div>
+    <div class="formrechts">
+      {periode_inputfield}&nbsp;({factor_description}: <span id="factorDisp" style="font-weight: 600; color: navy">..</span>)&nbsp;&nbsp;&nbsp;{achteraf_inputfield} {achteraf_description}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">&nbsp;</div>
+    <div class="formrechts">
+      {actief_inputfield} {actief_description} &nbsp;&nbsp;&nbsp;laatste verwerking: {vorigeVerwerkdatum_value}&nbsp;
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">rubriek  </div>
+    <div class="formrechts">
+      {rubriek_inputfield}&nbsp;
+    </div>
+  </div>
+
+<div class="formblock">
+  <div class="formlinks"> &nbsp;</div>
+  <div class="formrechts">
+  <table border="0">
+
+  <tr>
+   <td><b>totaal verkoop</b></td>
+   <td style="width: 240px; align: right"><b><span id="totaalex" style="font-size: 1.2rem">0</span></b>&nbsp; &nbsp;  Excl BTW</td>
+   <td style="width: 240px; align: right""><b><span id="totaalin" style="font-size: 1.2rem">0</span></b>&nbsp; &nbsp;  Incl BTW</td>
+  </tr>
+  <tr>
+    <td colspan="4"><br/>formule: <span id="formule"></span> (aantal x factor x stuksprijs)<br/><br/></td>
+  </tr>
+  </table>
+  </div>
+</div>
+
+
+<div class="formblock">
+  <div class="formlinks">&nbsp;</div>
+  <div class="formrechts">
+  {change_user_value} {change_date_value}
+  </div>
+</div>
+
+</form></div>
+
+<script>
+  $(document).ready(function(){
+      var btw_per = {btwH};
+      var factor = getFactor();
+
+      doMath();
+      $(window).keyup(function(){  doMath();  });
+      $("#btw").change(function(){  doMath();  });
+
+      $("#periode").change(getFactor);
+      $("#eenheid").change(getFactor);
+
+      function getFactor() {
+        var per = $( "#periode" ).val();
+        console.log('periode = '+ per + ' eenheid: '+ $("#eenheid").val());
+        if ($("#eenheid").val() == "uur")
+        {
+          $("#factor").val(1);
+        }
+        else
+        {
+
+          switch (per)
+          {
+            case "M":  $("#factor").val(1); break;
+            case "K":  $("#factor").val(3); break;
+            case "H":  $("#factor").val(6); break;
+            case "J":  $("#factor").val(12); break;
+            default:   $("#factor").val(1); break;
+          }
+        }
+        $("#factorDisp").text($("#factor").val());
+        doMath();
+      };
+
+      function bedrag(value)
+      {
+          var out = parseFloat(value);
+          return out.toFixed(2);
+      }
+      function doMath()
+      {
+          var aantal = parseFloat($("#aantal").val());
+          if (aantal == 0)
+          {
+              aantal = 1;
+          }
+
+          var factor      = $("#factor").val();
+          var stukprijs   = $("#stuksprijs").val();
+          var totaal_excl = 0;
+          var totaal_incl = 0;
+
+          switch ($("#btw").val())
+          {
+              case 'L':
+                  btw_per = {btwL};
+                  break;
+              case 'H':
+                  btw_per = {btwH};
+                  break;
+              default:
+                  btw_per = 0;
+          }
+          $("#btw_per").val(btw_per);
+
+          if (stukprijs == 0 && aantal == 0)
+          {
+              totaal_excl = 0;
+              totaal_incl = 0;
+              $('#totaalex').html("");
+              $('#totaalin').html("");
+          }
+          else
+          {
+              totaal_excl   = bedrag(stukprijs * aantal * factor);
+              totaal_incl   = bedrag(totaal_excl * eval(1+btw_per/100));
+              $('#totaalex').html(totaal_excl);
+              $('#totaalin').html(totaal_incl);
+
+              $("#totaal_excl").val(totaal_excl);
+              $("#totaal_incl").val(totaal_incl);
+              $('#btwtxt').html( 'Gebruikt BTW percentage: '+btw_per + ' % ');
+          }
+          $("#formule").html('<b>'+aantal+'</b>  x <b>'+factor+'</b> x <b>'+stukprijs+'</b> = <b>'+totaal_excl+'</b>');
+          console.log("aantal " + aantal);
+          console.log("factor " + factor);
+          console.log("btw_per " + btw_per);
+          console.log("totaal_excl " + totaal_excl);
+          console.log("totaal_incl " + totaal_incl + "("+ $("#totaal_incl").val()+")");
+
+      }
+
+
+
+  });
+</script>

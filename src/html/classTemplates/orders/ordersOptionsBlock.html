@@ -1,0 +1,122 @@
+<input type="hidden" value="{notaModule}" id="notaModule">
+<input type="hidden" value="{notaModule}" id="notaModule">
+
+<div class="formHolder box box12 box12-sm orderTabHolder" id="">
+  <div class="orderTabHeader">
+    <ul>
+      <li class="tab-extraOpties"><a href="#tab-extraOpties">[vt]Extra opties[/vt]</a></li>
+      <li class="tab-statusList {statusClass}"><a href="#tab-statusList">[vt]Status[/vt]</a></li>
+      <li class="tab-uitvoeringen"><a href="#uitvoeringen">[vt]Uitvoeringen[/vt]</a></li>
+      <li class="tab-controlles"><a href="#tab-controlles">[vt]Controles[/vt]</a></li>
+      <li class="tab-notas"><a href="#tab-notas">[vt]Nota's[/vt]</a></li>
+    </ul>
+  </div>
+  <div class="padded-10 tabContent">
+
+    <!--Tab extra opties-->
+    <div id="tab-extraOpties">
+      <table border="0" cellpadding="5" cellspacing="0">
+        <tr>
+          <td><label for="koersLimiet">{koersLimiet_description}</label></td>
+          <td><label for="tijdsSoort">{tijdsSoort_description}</label></td>
+          <td><label for="tijdsLimiet">{tijdsLimiet_description}</label></td>
+        </tr>
+        <tr>
+          <td>{koersLimiet_inputfield} {koersLimiet_error}
+            <input type="hidden" name="koersLimietHidden" id="koersLimietHidden"></td>
+          <td>{tijdsSoort_inputfield} {tijdsSoort_error}</td>
+          <td class="input-group">{tijdsLimiet_inputfield} {tijdsLimiet_error}</td>
+        </tr>
+      </table>
+
+      <fieldset class="uitgevoerdFields" style="width: 600px;;">
+        <legend>[vt]Nota[/vt]</legend>
+        <table border="0" cellpadding="5" cellspacing="0" >
+          <tr>
+            <td><label for="notaValutaKoers">{notaValutakoers_description}</label></td>
+            <td><label for="settlementdatum">{settlementdatum_description}</label></td>
+
+          </tr>
+          <tr>
+            <td>{notaValutakoers_inputfield} {notaValutakoers_error}</td>
+            <td>{settlementdatum_inputfield} {settlementdatum_error}</td>
+            <td>{notaHerrekenKnop}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>[vt]Herreken voorkeurs waarden[/vt]</b></td>
+          </tr>
+          <tr>
+            <td>voorkeurs PSAF</td>
+            <td>voorkeurs PSET</td>
+            <td>voorkeurs reden</td>
+          </tr>
+          <tr>
+            <td>{voorkeursPSAF}</td>
+            <td>{voorkeursPSET}</td>
+            <td>{voorkeursOrderReden}</td>
+          </tr>
+        </table>
+      </fieldset>
+      <table border="0" cellpadding="5" cellspacing="0">
+        <tr>
+          <td>{memo_description}</td>
+          <td><label>[vt]Order reden[/vt]</label></td>
+          
+        </tr>
+        <tr>
+          <td>{memo_inputfield} {memo_error}</td>
+          <td style="vertical-align: top"> {orderReden}</td>
+        </tr>
+      </table>
+
+      <fieldset id="adviesMailHolder" style="width: 600px;">
+        <legend>Order advies</legend>
+
+      <table>
+        <tr>
+          <td id="showAdviseMailSendDate">[vt]Advies mail verzonden op[/vt]: <span id="adviseOrderSendDate"></span></td>
+          <td id="adviseMailIsIgnored">[vt]Advies mail is genegeerd op[/vt]: <span id="adviseOrderIgnoreDate"></span></td>
+        </tr>
+        <tr>
+          <td id="viewAdviseMail"><span id="viewAdviseMailBtn" class="btn-new btn-default">[vt]Advies mail bekijken[/vt]</span></td>
+          <td id="sendAdviseMail"><span id="sendAdviseMailBtn" class="btn-new btn-default">[vt]Bericht opmaken[/vt]</span></td>
+
+          <td id="missingEMail"><span id="missingEmailBtn" class="btn-new btn-delete">[vt]E-mail adres van relatie ontbreekt[/vt]</span></td>
+
+          <td id="ignoreAdviseMail"><span id="ignoreAdviseMailBtn" class="btn-new btn-blue">[vt]Advies niet verzenden[/vt]</span></td>
+        </tr>
+      </table>
+        </fieldset>
+
+    </div>
+    <!--einde tab extra opties-->
+
+    <!--Tab status -->
+    <div id="tab-statusList" class="" style="overflow-y: scroll; height: 200px;">
+      {orderLogs}
+    </div>
+    <!--Einde tab status-->
+
+    <div id="uitvoeringen">
+      <div id="" class="" style="max-height:250px;"></div>
+    </div>
+
+    <div id="tab-controlles">
+      <div id="checksMessageBox"></div>
+      <table class="table table-boxed" id="controllesForm">{controlle_chk}</table>
+      {controleStatus_error}
+
+      <div class="form-actions clearB hideElement" id="controlActions">
+        <div class="row padded-10">
+          <span class="btn-new btn-save" id="insertOrder">[vt]Goedkeuren[/vt]</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tab-notas">
+
+    </div>
+
+  </div>
+</div>

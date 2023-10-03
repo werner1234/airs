@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-aug-2014, 15:01:32
+    Author     : cvs
+*/
+
+.al { text-align: left}
+.ac { text-align: center}
+.ar { text-align: right}
+.pl10 { padding-left: 10px; }
+.pr10 { padding-right: 10px; }
+.rood { color: red}
+.blauw {color: blue}
+.groen { color: green}
+.b1 { border: 1px solid #333}
+.vat { vertical-align: text-top}

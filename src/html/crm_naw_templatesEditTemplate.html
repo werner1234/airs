@@ -1,0 +1,29 @@
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}
+
+
+<div class="formblock">
+{intake_inputfield} {intake_description} {intakeOmschrijving_inputfield}  {pdfMaken_inputfield} {pdfMaken_description}
+</div>
+
+<div class="formblock">
+<div class="formlinks"><input type="checkbox" value="1" name="opslaanNew" checked> [vt]Opslaan als new record[/vt].</div>
+<div class="formrechts">
+{memo_inputfield}{memo_error}</div>
+</div>
+
+<div class="formblock">
+{tabs}
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

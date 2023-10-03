@@ -1,0 +1,49 @@
+<form name="editForm" enctype="multipart/form-data"  action="{updateScript}" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="256000000" />
+<input type="hidden" name="rel_id" value="{rel_id}" />
+
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}{dd_id_inputfield}{datastore_inputfield}<div class="formblock">
+<div class="formlinks"><label for="rootReference">{rootReference_description}</label> </div>
+<div class="formrechts">
+{rootReference_inputfield} {rootReference_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="description">{description_description}</label> </div>
+<div class="formrechts">
+{description_inputfield} {description_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="keywords">{keywords_description}</label> </div>
+<div class="formrechts">
+{keywords_inputfield} {keywords_error}
+</div>
+</div>
+
+{securitylevel_inputfield}{module_inputfield}{module_id_inputfield}{filename_inputfield}{filesize_inputfield}{filetype_inputfield}<div class="formblock">
+<div class="formlinks"><label for="categorie">{categorie_description}</label> </div>
+<div class="formrechts">
+{categorie_inputfield} {categorie_error}
+</div>
+</div>
+
+
+{toevoegenFile}
+
+{toPortaal}
+
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts" data-field="change_user">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

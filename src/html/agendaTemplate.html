@@ -1,0 +1,74 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}
+{adddate_inputfield}
+{gebruiker_inputfield}
+{rel_id_inputfield}
+
+<div class="formblock">
+<div class="formlinks">{done_description} </div>
+<div class="formrechts">
+{done_inputfield} {done_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{plandate_description} </div>
+<div class="formrechts">
+{plandate_inputfield} 
+{plantime_description} {plantime_inputfield}
+{plandate_error}
+{plantime_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{duur_description} </div>
+<div class="formrechts">
+{duur_inputfield} {duur_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{soort_description} </div>
+<div class="formrechts">
+{soort_inputfield} {soort_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">wie </div>
+<div class="formrechts">
+<select name="gebruikers[]" size="5" multiple>
+{gebruikerOptions}
+</select>
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{klant_description} </div>
+<div class="formrechts">
+<a href="javascript:select_naw(document.editForm.klant.value,600,400);">
+<img src="images/16/lookup.png" border="0"></a><input class="" type="text" size="40" value="{klant_value}" name="klant" readonly title="Klik op de zoekknop om een klant te koppelen" onclick="javascript:select_naw(document.editForm.klant.value,600,400);">
+ {klant_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{txt_description} </div>
+<div class="formrechts">
+{txt_inputfield} {txt_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

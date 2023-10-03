@@ -1,0 +1,456 @@
+<?
+/*
+    AE-ICT sourcemodule created 21 apr. 2021
+    Author              : Chris van Santen
+    Filename            : _template_import.php
+
+
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+///
+/// TEMPLATE file voor bankimport, dit bestand niet aanpassen
+/// maar opslaan als html/import/{fileprefix}_import.php
+///
+///////////////////////////////////////////////////////////////////////////////
+
+// settings voor import
+$set = array(
+  "banknaam"        => "Index People",              //  volledige banknaam
+  "depot"           => "IND",                  //  depotbankcode v/d bank
+  "filePrefix"      => "ip",                   //  fileprefix
+  "fileDelimit"     => ",",                     //  CSV delimter
+  "decimalSign"     => ".",                     //  decimaalteken in getallen
+  "thousandSign"    => " ",                     //  duizend scheidingsteken
+  "headerRow"       => true,                    //  is de eerste regel een header?
+  "transactieCodes" => "ipTransactieCodes",    //  tabelnaam van de transactiecodes
+  "bankCode"        => "IPCode"                //  veldnaam bankcode in de Fondsentabel
+);
+
+// todo in html/transaktieImport.php
+// aanmaken van een bankkeuze voor nieuwe partij
+
+// todo in html/import/{fileprefix}_functies.php
+// ------------------------------------------------------------------------------------------------
+// mapDataFields() hier worden de kolomen gemapped en conditioned
+// _cnvNumber($in) converteer nummers uit CSV naar PHP getalsnotatie NNNNN.dd
+// _cnvDate($in)   converteer datums uit CSV naar mysql formaat DDDD-MM-YY
+//
+
+include_once('../../classes/AE_cls_progressbar.php');
+include_once("wwwvars.php");
+include_once("algemeneImportFuncties.php");
+include_once("checkForDoubleImport.php");
+include_once("{$set["filePrefix"]}_functies.php");
+
+$afw = new AIRS_import_afwijkingen($set["depot"]);
+
+$depotBank          = $set["depot"];
+$doIt               = $_REQUEST["doIt"];
+$action             = $_REQUEST["action"];
+$bestand            = $_REQUEST["bestand"];
+$foutregels         = $_REQUEST["foutregels"];
+$manualBoekdatum    = $_REQUEST["manualBoekdatum"];
+$file               = $_REQUEST["file"];
+$skipFoutregels     = array();
+$meldArray          = array();
+$transactieMapping  = array();
+$transactieCodes    = array();
+$fonds              = array();
+$output             = array();
+
+//getTransactieMapping();
+
+if ($doIt == "1")  // validatie mislukt, wat te doen?
+{
+  switch ($action)
+  {
+    case "stop":
+      echo "<br>Het transactiebestand is verwijderd en de import is afgebroken";
+    	if (file_exists($bestand) ) unlink($bestand);
+		  exit();
+      break;
+    case "retry":
+      $doIt = 0;
+      $file = $bestand;
+      break;
+    default: 
+      $skipFoutregels = explode(",",$foutregels);
+
+		  $file = $bestand; 
+  }
+}
+
+
+
+//
+// check of er records in de TijdelijkeRekeningmutaties tabel zitten
+//
+$db               = new DB();
+$rekeningAddArray = array();
+$error            = array();
+$content          = array();
+
+$content["style"] = '
+  <link href="../style/workspace.css" rel="stylesheet" type="text/css" media="screen">
+  <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+  ';
+
+echo template("../".$__appvar["templateContentHeader"],$content);
+
+if ($_GET["retry"] == 1)
+{
+  $query = "DELETE FROM TijdelijkeRekeningmutaties WHERE add_user = '{$USR}' ";
+	$db->executeQuery($query);
+}
+else
+{
+  $tempRecords = $db->QRecords("SELECT id FROM TijdelijkeRekeningmutaties WHERE  TijdelijkeRekeningmutaties.change_user = '{$USR}'");
+  if ($tempRecords > 0)
+  {
+  	echo "
+  <br>
+  <br>
+  De tabel TijdelijkeRekeningmutaties is niet leeg voor gebruiker ({$USR}) ({$tempRecords})<br>
+  <br>
+  de import is geannuleerd ";
+  	exit;
+  }  
+}
+
+
+//
+// setup van de progressbar
+//
+$prb = new ProgressBar();	                  // create new ProgressBar
+$prb->pedding       = 2;	                  // Bar Pedding
+$prb->brd_color     = "#404040 #dfdfdf #dfdfdf #404040";	// Bar Border Color
+$prb->setFrame();          	                // set ProgressBar Frame
+$prb->frame['left'] = 50;	                  // Frame position from left
+$prb->frame['top']  = 	80;	                // Frame position from top
+$prb->addLabel('text','txt1','Bezig ...');	// add Text as Label 'txt1' and value 'Please wait'
+$prb->addLabel('procent','pct1');	          // add Percent as Label 'pct1'
+$prb->show();	                              // show the ProgressBar
+
+$csvRegels  = 1;
+
+include("{$set["filePrefix"]}_validate.php");
+
+if ($doIt != "1")  // validatie is al gebeurd dus skippen
+{
+	if (!validateCvsFile($file))
+	{
+    $prb->setLabelValue('txt1','');
+		$prb->hide();
+?>
+  	<table cellpadding="0" cellspacing="0">
+  	<tr>
+    	<td colspan="2" bgcolor="#BBBBBB">
+     	 Foutmelding bij validatie van <?=$set["depot"]?> bestand<br>
+     	 Bestandsnaam :<?=$file?>
+    	</td>
+  	</tr>
+<?
+	$foutregels = array();
+
+	foreach ($error as $foutRegel)
+	{
+		$parts        = explode(":", $foutRegel);
+		$regelNummer  = (int)$parts[0];
+		if ($regelNummer > 0 )
+    {
+      $foutregels[] = $regelNummer;
+    }
+
+?>
+  	<tr>
+    	<td bgcolor="#BBBBBB"><?=$x?></td>
+    	<td>&nbsp;&nbsp;
+	      <?= $foutRegel;?>
+  	  </td>
+  	</tr>
+
+<?
+
+	}
+
+  $foutregels == array_unique($foutregels);
+?>
+	</table>
+	<br>
+	<br>
+	<b>Vervolg aktie?</b>
+	<form action="<?=$PHP_SELF?>" method="POST">
+    <div id="kopje"></div>
+	  <input type="hidden" name="doIt" value="1">
+  	<input type="hidden" name="bestand" value="<?=$file?>">
+  	<input type="hidden" name="foutregels" value="<?=implode(",", $foutregels); ?>">
+  	<select name="action" id="frmAction">
+    	<option value="stop">Bestand verwijderen en import afbreken</option>
+    	<option value="go">Bestand inlezen en onvolledige regels overslaan</option>
+      <option value="retry">Bestand opnieuw inlezen en valideren</option>
+  	</select>
+    
+    <input type="hidden" name="addRekening" id="addRekening" value="0">
+  	<button id="btnSubmit"> Uitvoeren </button>
+	</form>
+  
+  <script>
+    $(document).ready(function(){
+
+      const checkBoxes = $('input[type="checkbox"]:checked').length;
+      let checkbox;
+      let errorTxt;
+      $("#btnSubmit").click(function()
+      {
+        errorTxt = "";
+        if (checkBoxes > 0)
+        {
+          for (let n=100; n <= indexCount; n++ )
+          {
+            checkbox = n+"_check";
+            if ($("#"+checkbox).is(':checked'))
+            {
+              var field = $('input[name='+n+'_rekNr]').attr("name");
+              var test  = $('input[name='+field+']').val();
+              if (test.length < 1)
+              {
+                errorTxt = errorTxt + "\nrij "+ eval(n-99)+": rekeningnr mag niet leeg zijn";
+              }
+             
+              var field = $('select[name='+n+'_portefeuille]').attr("name");
+              var test  = $('select[name='+field+']').val();
+             
+              if (test.length < 1)
+              {
+                errorTxt = errorTxt + "\nrij "+ eval(n-99)+": portefeuille mag niet leeg zijn";
+              }
+             
+              var field = $('select[name='+n+'_valuta]').attr("name");
+              var test  = $('select[name='+field+']').val();
+             
+              if (test.length < 1)
+              {
+                errorTxt = errorTxt + "\nrij "+ eval(n-99)+": valuta mag niet leeg zijn";
+              }
+            }
+            
+          }
+        }
+        if (errorTxt.length > 0)
+        {
+          alert(errorTxt);
+          return false;
+        }
+        
+      });
+      if (checkBoxes > 0)
+      {
+        $("#frmAction").hide();
+        $("#addRekening").val("1");
+        $("#kopje").html("<b>Rekeningen toevoegen</b>");
+      }
+      $('input[type="checkbox"]').change(function()
+      {
+        const checkBoxes = $('input[type="checkbox"]:checked').length;
+        if (checkBoxes > 0)
+        {
+          $("#frmAction").hide();
+          $("#addRekening").val("1");
+          $("#kopje").html("<b>Rekeningen toevoegen</b>");
+        }
+        else
+        {
+          $("#frmAction").show(200);
+          $("#addRekening").val("0");
+          $("#kopje").html("<b>Mutaties verwerken</b>");
+        }
+      });
+      
+    });
+  </script>
+<?
+	exit();
+	}
+}
+
+
+
+$progressStep = 0;
+$prb->setLabelValue('txt1','Inlezen regels ('.$csvRegels.' records)');
+
+$row            = 0;
+$handle         = fopen($file, "r");
+$pro_multiplier = (100/$csvRegels);
+$pro_step       = 0;
+$_tfile         = explode("/",$file);
+$_file          = $_tfile[count($_tfile)-1];
+$skipped        = "";
+
+
+$totaalRegels    = array();
+
+while ($data = fgetcsv($handle, 4096, $set["fileDelimit"]))
+{
+	$row++;
+  
+  if (count($data) < 2)
+  {
+    continue;  // lege regels overslaan
+  }
+  
+  if ($row == 1 AND $set["headerRow"])
+  {
+    continue;  //skip als headerregel
+  }
+  
+ 	$pro_step += $pro_multiplier;
+
+ 	$prb->moveStep($pro_step);
+	if (in_array($row, $skipFoutregels))
+ 	{
+ 		$skipped .= "- regel $row overgeslagen<br>";
+ 		continue; // rest overslaan, lees nieuwe regel
+ 	}
+
+  array_unshift($data,"leeg");
+  mapDataFields();
+
+  if ($data[1] == "account" and $data[2] == "fonds")
+  {
+    continue; // skip overige header regels
+  }
+
+
+  if ($data["isin"] != "")
+  {
+    getFonds();
+  }
+
+  $do_func = "do_V";
+  
+  $aankoopArray = array(
+    'kopen',
+    'bedongen fondsenkorting',
+    'dividend herinvesteren'
+  );
+  if(in_array(strtolower($data["transactieCode"]), $aankoopArray))
+  {
+    $do_func = "do_A";
+  }
+  
+  
+  // totalen berekenen
+  switch(strtolower($data["transactieCode"]))
+  {
+    case "herbalanceren":
+      // wel handmatig de functie bepalen
+      $do_func = "do_NVT";
+      if($data["nettoBedrag"]*-1 > 0)
+      {
+        $do_func = "do_A";
+      }
+      if($data["nettoBedrag"]*-1 < 0)
+      {
+        $do_func = "do_V";
+      }
+      break;
+
+    case "kopen":
+//    case "Storting":
+      // Kopen		Aankoop	som van regels per datum tegenboeken als STORT, omschrijving "Storting"
+    case "verkopen":
+//    case "Onttrekking":
+      //Verkopen som van regels per datum tegenboeken als ONTTR, omschrijving "Onttrekking"
+    case "kosten index people":
+      // Som van regels per datum tegenboeken als KNBA, omschrijving "Kosten index people"
+
+      $sleutel = "{$data['transactieCode']}/{$data['rekening']}/{$data['boekdatum']}";
+      if(!isset($totaalRegels[$sleutel]))
+      {
+        $totaalRegels[$sleutel] = 0;
+      }
+      $totaalRegels[$sleutel] += ($data["nettoBedrag"] * -1);
+
+      break;
+    default:
+      break;
+  }
+
+  if ( function_exists($do_func) )
+  {
+    call_user_func($do_func);
+  }
+  else
+  {
+    do_error();
+  }
+
+
+}
+$prb->hide();
+fclose($handle);
+
+/// totaal regels wegschrijven
+do_dagtotalen( $totaalRegels);
+
+//
+// plaats output in TijdelijkeRekeningmutaties table
+//
+$prb->moveStep(0);
+$prb->setLabelValue('txt1','Opslaan in tijdelijke tabel');
+$pro_step = 0;
+$pro_multiplier = 100/count($output);
+//debug($output);
+reset($output);
+for ($ndx=0;$ndx < count($output);$ndx++)
+{
+  if ($ndx == 0)
+  {
+    if (checkForDoubleImport($output[$ndx]) AND !$__develop )
+    {
+      $prb->hide();
+      Echo "<br> FOUT: De eerste transactieregel komt exact overeen met reeds aanwezige informatie";
+	    exit();
+    }
+  }
+  $pro_step += $pro_multiplier;
+  $prb->moveStep($pro_step);
+
+	$query = "
+    INSERT INTO TijdelijkeRekeningmutaties SET
+      add_date     = NOW()
+    , add_user     = '{$USR}'
+	  , change_date  = NOW()
+    , change_user  = '{$USR}'
+    ";
+
+	foreach ( $output[$ndx] as $key=>$value )
+	{
+ 	  if ($manualBoekdatum AND $key == "Boekdatum")
+	  {
+	    $value = $manualBoekdatum;
+	  }
+   $query .= ", {$key} = '".mysql_real_escape_string($value)."' ";
+	}
+
+	if (!$db->executeQuery($query))
+	{
+	  echo "{$db->errorstr}<br> FOUT bij het wegschrijven naar de database!";
+	  exit();
+	}
+}
+$prb->hide();
+
+include_once "verschillenLijst.html";
+
+?>
+
+Records in <?=$set["banknaam"]?> bestand :<?=$row?><br>
+aangemaakte mutatieregels : <?=count($output)?><BR>
+<?=$skipped?>
+<hr>
+<a href="../tijdelijkerekeningmutatiesList.php">Ga naar tijdelijk importbestand</a>
+<hr>
+<?
+echo template("../".$__appvar["templateRefreshFooter"],$content);

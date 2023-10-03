@@ -1,0 +1,28 @@
+<div class="row no-gutters">
+  
+  <div class="{labelClass}">
+    <label class="col-form-label">[vt]Actieve/alle[/vt]</label>
+  </div>
+  
+  <div class="{buttonClass}">
+    <div class="btn-group d-flex btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-hover btn-default w-100 {actiefCheckedClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?actief=actief'">
+        <input type="radio" name="actief" id="actief" value="actief" {actiefChecked} >
+        [vt]Actieve[/vt]
+      </label>
+      
+      <label class="btn btn-hover btn-default w-100 {eActiefCheckedClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?actief=eActief'">
+        <input type="radio" name="actief" id="eActief" value="eActief" {eActiefChecked} >
+        [vt]Eigen act.[/vt]
+      </label>
+      
+      <label class="btn btn-hover btn-default w-100 {inactiefCheckedClass}" onClick="parent.frames['content'].location = '{PHP_SELF}?actief=inactief'">
+        <input type="radio" name="actief" id="inactief" value="inactief" {inactiefChecked} >
+        [vt]Alle[/vt]
+      </label>
+    </div>
+  
+  </div>
+
+</div>
+<br />

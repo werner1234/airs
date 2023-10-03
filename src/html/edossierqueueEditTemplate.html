@@ -1,0 +1,56 @@
+
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="portefeuille">{portefeuille_description}</label> </div>
+<div class="formrechts">
+{portefeuille_inputfield} {portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="filename">{filename_description}</label> </div>
+<div class="formrechts">
+{filename_inputfield} {filename_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="filesize">{filesize_description}</label> </div>
+<div class="formrechts">
+{filesize_inputfield} {filesize_error}
+</div>
+</div>
+
+{filetype_inputfield}{categorie_inputfield}<div class="formblock">
+<div class="formlinks"><label for="description">{description_description}</label> </div>
+<div class="formrechts">
+{description_inputfield} {description_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="keywords">{keywords_description}</label> </div>
+<div class="formrechts">
+{keywords_inputfield} {keywords_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="subject">Bestand:</label> </div>
+<div class="formrechts">
+{attachment} 
+</div>
+</div>
+
+
+{module_inputfield}{module_id_inputfield}<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

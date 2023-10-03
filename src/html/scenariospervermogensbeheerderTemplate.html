@@ -1,0 +1,40 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="scenario">{scenario_description}</label> </div>
+<div class="formrechts">
+{scenario_inputfield} {scenario_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="percentage">{percentage_description}</label> </div>
+<div class="formrechts">
+{percentage_inputfield} {percentage_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="kleurcode">{kleurcode_description}</label> </div>
+<div class="formrechts">
+{kleurcode} 
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

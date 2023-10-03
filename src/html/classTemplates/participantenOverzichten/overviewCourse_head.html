@@ -1,0 +1,46 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+</style>
+
+
+<h2>[vt]Overzicht voor fonds[/vt]: {Fonds_name}</h2>
+
+<div>
+  <table  class="list_tabel table">  
+    <thead>
+      <tr class="list_kopregel">
+        <th style="width: 12%;" data-sort-direction="ASC" data-sort-field="participantenFondsVerloop.datum">[vt]Datum[/vt]</th>
+        <th style="width: 12%;" data-sort-direction="ASC" data-sort-field="participanten.registration_number">[vt]Registratienummer[/vt]</th>
+        <th style="width: 17%;" data-sort-direction="ASC" data-sort-field="participanten.crm_id">[vt]Zoekveld[/vt]</th>
+        <th style="width: 10%;" data-sort-direction="ASC" data-sort-field="participantenFondsVerloop.transactietype">[vt]Transactietype[/vt]</th>
+        <th style="text-align: right;width: 12.5%;" data-sort-direction="ASC" data-sort-field="participantenFondsVerloop.aantal">[vt]Aantal[/vt]</th>
+        <th style="text-align: right;width: 9%;" data-sort-direction="ASC" data-sort-field="participantenFondsVerloop.koers">[vt]Koers[/vt]</th>
+        <th style="text-align: right;width: 12.5%;">[vt]Waarde[/vt]</th>
+        <th style="width: 15%;" data-sort-field="">[vt]Omschrijving[/vt]</th>
+      </tr>
+    </thead>
+    <tbody>
+      {overview_row}
+    </tbody>
+  </table>
+</div>

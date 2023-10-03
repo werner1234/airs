@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.service.name }}
+  labels:
+    app: {{ .Values.service.name }}
+spec:
+  revisionHistoryLimit: {{ .Values.statefulSet.revisionHistoryLimit }}
+  serviceName: {{ .Values.service.name }}
+  replicas: {{ .Values.container.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.service.name }}
+  updateStrategy:
+    type: {{ .Values.statefulSet.updateStrategy }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.service.name }}
+        date: {{ .Values.misc.date }}
+    spec:
+      containers:
+      - name: {{ .Values.service.name }}
+        image: {{ .Values.container.image }}
+        resources:
+          requests:
+            cpu: {{ .Values.container.resources.requests.cpu }} 
+            memory: {{ .Values.container.resources.requests.memory }} 
+        env:
+          {{- range $key, $value := .Values.environmentVariables }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end }}
+          {{- $secretsKey := .Values.statefulSet.secretsKey }}
+          {{- range $key, $value := .Values.secrets }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $secretsKey }}
+                key: {{ $key }}
+          {{- end }}
+        volumeMounts:
+        - name: {{ .Values.service.name }}-storage
+          mountPath: {{ .Values.statefulSet.mountPath }}
+      imagePullSecrets:
+      - name: {{ .Values.statefulSet.imagePullSecrets }} 
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.service.name }}-storage
+    spec:
+      accessModes: {{ .Values.statefulSet.accessModes }}
+      storageClassName: {{ .Values.statefulSet.storageClassName }}
+      resources:
+        requests:
+          storage: {{ .Values.statefulSet.storage }}

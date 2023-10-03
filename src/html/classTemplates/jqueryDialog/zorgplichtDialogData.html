@@ -1,0 +1,117 @@
+<div  id="thisPageContent">
+    
+    {html}
+    
+    <div class="modalActions" style="float:right;">{actions}</div>
+
+    <script type="text/javascript">
+      {javascript}
+      $(document).ready(function () {
+        $('#SPANjsrs1').remove();
+        zorgplichtChanged(); /** get correct dropdown values **/
+        
+        $('#uiModalDiv').dialog({ 
+            width: 700,
+            autoOpen: false,
+            dialogClass: "test",
+            modal: true,
+            responsive: true,
+            title: "[vt]ZorgplichtPerFonds[/vt]"
+          });
+
+          $('#uiModalDiv').dialog("open");
+
+        $("#closeModal").on("click", function() {
+          $( "#uiModalDiv" ).dialog( "close" );
+          $( "#thisPageContent" ).remove();
+        });
+        
+        $("#zorgplichtSaveData").on("click", function() {
+          $('#zorgplichtPerFondsForm input[name=action]').val('update');
+          submitZorgplichtPerFondsForm();
+        });
+        
+        $("#zorgplichtRemoveData").on("click", function() {
+          $('#zorgplichtPerFondsForm input[name=action]').val('delete');
+          submitZorgplichtPerFondsForm();
+        });
+
+        function submitZorgplichtPerFondsForm() {
+          $('.help-block.with-errors').remove();
+          $('#zorgplichtPerFondsForm').find(':input').css('border-color', ''); //reset inputfield style
+          var postData = $('#zorgplichtPerFondsForm').serializeArray();
+          var formURL = $('#zorgplichtPerFondsForm').attr("action");
+
+          $.ajax({
+            url : formURL,
+            type: "GET",
+            dataType: 'json',
+            data : postData,
+            success:function(data, textStatus, jqXHR) {
+
+              if ( data.saved == true ) {
+                //update parrent
+                window.VermogensbeheerderChanged(data.Vermogensbeheerder);
+                //close modal
+                $('#uiModalDiv').dialog({});
+                $('#uiModalDiv').dialog('close');
+                //data: return data from server
+              } else {
+                setRecordErrorsDialog ('zorgplichtPerFondsForm', data.errors);
+              }
+            }
+          });
+        }
+      });
+      
+      function zorgplichtChanged()
+      {
+        jsrsExecute("selectRS.php", populateZorgplicht, "getZorgplicht",
+        buildQueryArray("zorgplichtperfondsEdit"), false);
+      }
+      function populateZorgplicht (valueTextStr)
+      {
+        var oldValue = $('#zorgplichtPerFondsForm #Zorgplicht').val();
+        populateDropDown('Zorgplicht', valueTextStr, oldValue);
+      }
+
+      function buildQueryArray(theFormName) {
+        var theForm = document.forms[theFormName];
+        var qs = new Object();
+        for (e=0;e<theForm.elements.length;e++) {
+          if (theForm.elements[e].name!="") {
+            qs[theForm.elements[e].name] = theForm.elements[e].value;
+            }
+          }
+        return qs;
+      }
+  
+
+      function populateDropDown (field, valueTextStr, oldValue)
+      {
+        $('#zorgplichtPerFondsForm #' + field).html('');
+          $('#zorgplichtPerFondsForm #' + field)
+            .append($('<option></option>')
+            .attr('value','')
+            .text('---')); 
+
+        // options in form "value~displaytext|value~displaytext|..."
+        var aOptionPairs = valueTextStr.split("|");
+        $.each( aOptionPairs, function( index, value ) {
+          if (value.indexOf("~") != -1) {
+            var aOptions = value.split("~");
+            if ( aOptions[1] != '' && aOptions[0] != '' ) {
+              $('#zorgplichtPerFondsForm #' + field)
+              .append($('<option></option>')
+              .attr('value', aOptions[1])
+              .text(aOptions[0]));
+            }
+          }
+        });
+        $('#zorgplichtPerFondsForm #' + field).val(oldValue);
+      }
+
+      
+      
+    </script>
+  </div>

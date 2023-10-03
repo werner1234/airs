@@ -1,0 +1,45 @@
+<style>
+  #doActie option{
+    font-family: monospace;
+  }
+</style>
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div style="margin-left: 100px; line-height: 1.5">
+        <b><u>Let op:</u></b><br/>
+          cash transactie beginnen met <b>C_</b><br/>
+          secu transactie beginnen met <b>S_</b><br/>
+          cost transactie beginnen met <b>T_</b><br/>
+    </div>
+    <div class="formblock">
+      <div class="formlinks"><label for="bankCode">{bankCode_description}</label> </div>
+      <div class="formrechts">
+        {bankCode_inputfield} {bankCode_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="omschrijving">{omschrijving_description}</label> </div>
+      <div class="formrechts">
+        {omschrijving_inputfield} {omschrijving_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="doActie">{doActie_description}</label> </div>
+      <div class="formrechts">
+        {doActie_inputfield} {doActie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

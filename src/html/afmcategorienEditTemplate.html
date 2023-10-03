@@ -1,0 +1,34 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="afmCategorie">{afmCategorie_description}</label> </div>
+<div class="formrechts">
+{afmCategorie_value}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="omschrijving">{omschrijving_description}</label> </div>
+<div class="formrechts">
+{omschrijving_value} 
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="standaarddeviatie">{standaarddeviatie_description}</label> </div>
+<div class="formrechts">
+min:{standaarddeviatieMin_value} < {standaarddeviatie_inputfield} < max:{standaarddeviatieMax_value} <div> {standaarddeviatie_error} </div>
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

@@ -1,0 +1,103 @@
+<div id="notaEditHolder" style="display:none;">
+  <input type="hidden" id="displayNotas" value="{showNotas}">
+  <input type="hidden" id="uitvoeringsValutaKoers" value="{fondsValutaKoers}">
+
+
+      <div id="notaOpties" {notaOptiesStyle}>
+
+<form action="{updateScript}" method="POST" id="notaForm" class="orderForm">
+  
+        <div class="formblock">
+          <div class="formlinks">{PSET_description}</div>
+          <div class="formrechts">
+            {PSET_inputfield} {PSET_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{PSAF_description}</div>
+          <div class="formrechts">
+            {PSAF_inputfield} {PSAF_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{brutoBedrag_description} (In {fondsValuta})</div>
+          <div class="formrechts">
+            {brutoBedrag_inputfield} {brutoBedrag_error} <span id="notaMelding">  </span>
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{kosten_description} (In {rekValuta})</div>
+          <div class="formrechts">
+            {kosten_inputfield} {kosten_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{brokerkosten_description} (In {rekValuta})</div>
+          <div class="formrechts">
+            {brokerkosten_inputfield} {brokerkosten_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{opgelopenRente_description} (In {fondsValuta})</div>
+          <div class="formrechts">
+            {opgelopenRente_inputfield} {opgelopenRente_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{nettoBedrag_description} (In {rekValuta})</div>
+          <div class="formrechts">
+            {nettoBedrag_inputfield} {nettoBedrag_error}
+          </div>
+        </div>
+
+
+
+
+  <div class="formblock">
+    <div class="formlinks">{notaDefinitief_description}</div>
+    <div class="formrechts">
+      {notaDefinitief_inputfield} {notaDefinitief_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">{BIC_tegenpartij_description}</div>
+    <div class="formrechts">
+      {BIC_tegenpartij_inputfield} {BIC_tegenpartij_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">Wisselkoers</div>
+    <div class="formrechts">
+     <!-- <span id="notaValutaKoersSpan"></span>-->
+      {regelNotaValutakoers_inputfield}
+    </div>
+  </div>
+
+
+  <div style="position: absolute; left: 400px; top: 120px;">
+  Memo<br>
+  <textarea rows="5" readonly>{memo_value}</textarea>
+  </div>
+
+</form>
+
+
+        <div class="modalActions" style="float:right;">
+          {notaFormHerrekenKnop}
+          <span style="float: right; margin-left: 10px;" id="btnCloseNota" class="btn-new btn-default">Sluiten</span>
+          <span style="float: right; margin-left: 10px;" id="BtnSavenota" class="btn-new btn-save">Opslaan</span>
+        </div>
+
+      </div>
+      <!--- Nota opties--->
+
+</div>
+

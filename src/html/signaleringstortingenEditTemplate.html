@@ -1,0 +1,70 @@
+
+<form name="editForm" action="{updateScript}" method="{method}" >
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+      <div class="formlinks"><label for="portefeuille">{portefeuille_description}</label> </div>
+      <div class="formrechts">
+        {portefeuille_inputfield} {portefeuille_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="bedrag">{bedrag_description}</label> </div>
+      <div class="formrechts">
+        {bedrag_inputfield} {bedrag_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="datum">{datum_description}</label> </div>
+      <div class="formrechts">
+        {datum_inputfield} {datum_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="rekeningmutatieId">{rekeningmutatieId_description}</label> </div>
+      <div class="formrechts">
+        {rekeningmutatieId_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="status">{status_description}</label> </div>
+      <div class="formrechts">
+        {status_inputfield} {status_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="toelichting">{toelichting_description}</label> </div>
+      <div class="formrechts">
+        {toelichting_inputfield} {toelichting_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="passend">{passend_description}</label> </div>
+      <div class="formrechts">
+        {passend_inputfield} {passend_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="opmerking">{opmerking_description}</label> </div>
+      <div class="formrechts">
+        {opmerking_inputfield} {opmerking_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,31 @@
+<fieldset id="RelatieSectie1">
+<legend> Algemeen </legend>
+<table>
+ <tr><td>&nbsp;</td>
+  <td>
+      <table>
+	  <tr>
+      <td valign="top">
+      <label id="debiteur">{debiteur_inputfield} {debiteur_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label id="crediteur">{crediteur_inputfield} {crediteur_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label id="overige">{overige_inputfield} {overige_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label id="tag">{tag_inputfield} {tag_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label id="aktief">{aktief_inputfield} {aktief_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label id="contactTijd" {contactTijdStyle} >{contactTijd_inputfield} {contactTijd_description}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label>{prospect_inputfield} {prospect_description}</label>
+      </td>
+      <td valign="top">
+        <span id='prospectStatusSpan'> {prospectStatus_inputfield} &nbsp; {prospectStatus_description} {prospectEigenaar_inputfield} &nbsp; {prospectEigenaar_description}
+        <br /> {prospectStatusChange_value} </span>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+      </tr>
+	  </table>
+  </td>
+</tr>
+<tr><td class="crm_links">{naam_description}</td><td>{naam_inputfield}{naam_error}<br>{naam1_inputfield}{naam1_error}</td></tr>
+<tr><td>{zoekveld_description}</td><td>{zoekveld_inputfield} {zoekveld_error} {bevatMemo}</td></tr>
+<tr><td>{debiteurnr_description}</td><td>{debiteurnr_inputfield}</td></tr>
+<tr><td>{portefeuille_description}</td><td>{portefeuille_inputfield} {portefeuille_error}  &nbsp;&nbsp;&nbsp;Relatie Sinds {relatieSinds_inputfield} {relatieSinds_error}  &nbsp;&nbsp;&nbsp; {wachtwoord_description} {wachtwoord_inputfield} {wachtwoord_error}</td></tr>
+<tr><td>{accountEigenaar_description}</td><td>{accountEigenaar_inputfield} {accountEigenaar_error} {CRMReviewDatum_description} {CRMReviewDatum_inputfield} {CRMReviewDatum_error}</td></tr>
+</table>
+</fieldset>

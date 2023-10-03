@@ -1,0 +1,64 @@
+#content{
+
+  width: 98%;
+  height: 99%;
+  overflow: auto;
+  padding-right: 5px;
+
+
+
+  font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size : 10pt;
+}
+.list_dataregel_rose{
+  background:#FF99CC;
+}
+.list_dataregel_oranje{
+  background:orange;
+}
+.list_dataregel_groen{
+  background:#80FF80;
+}
+.list_dataregel_cyaan{
+  background:#80FFFF;
+}
+.list_dataregel_maroon{
+  background:Maroon;
+}
+.list_dataregel_maroon td{
+  color:white;
+}  
+.list_dataregel_blauw td{
+  color:white;
+}  
+.list_dataregel_blauw{
+  background:#3E9EFF;
+  
+}
+.legenda{
+  padding:2px;
+  border-radius: 5px;
+  text-align: center;
+  border:1px solid #333;
+  height: 30px;
+  
+}
+.prio{
+  display: inline-block;
+  float: left;
+  width: 20px;
+  background: #333;
+  color:whitesmoke;
+  height: 15px;
+  border-radius: 5px;
+  text-align: center;
+  padding:7px;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.legendaTable{
+  width: 100%;
+}
+.legendaTable td{
+  width:50%;
+}

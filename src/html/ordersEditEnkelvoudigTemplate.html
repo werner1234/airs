@@ -1,0 +1,120 @@
+
+
+<style>
+.rood{
+  background-color: #FF9D9D;
+}
+.groen{
+  background-color: #80FF80;
+}
+
+</style>
+
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="redirect" value="0">
+  <input type="hidden" name="zoekveld" value="">
+  <input type="hidden" name="client" value="">
+  <input type="hidden" name="rekeningnr" value="">  
+  <input type="hidden" name="valutaKoersHidden" id="valutaKoersHidden" value="0" >
+  <input type="hidden" name="fondseenheidHidden" id="fondseenheidHidden" value="1" >
+  
+    {DepotbankOld}
+  {Depotbank}
+  {Risicoklasse}
+  {id_inputfield}
+  {vermogensBeheerder_inputfield}
+  {fonds_inputfield}
+
+
+<fieldset title="Order" class="{fieldsetClass}">
+
+  <table border="0" cellpadding="5" cellspacing="0">
+<tr>
+  <td class="" id="transAct"><label for="transactieSoort">{transactieSoort_description}</label></td>
+  <td><label for="Aantal">{aantal_description}</label></td>
+  <td><label for="ISIN">ISIN</label></td>
+  <td><label for="Portefeuille">Portefeuille</label></td>
+  <td><label for="Status">{laatsteStatus_description}</label></td>
+</tr>
+<tr>
+  <td>{transactieSoort_inputfield} {transactieSoort_error}</td>
+  <td>{aantal_inputfield} {aantal_error}</td>
+  <td>{fondsSelect} {fondsCode_inputfield} {fondsCode_error}</td>
+  <td>
+  <a href="javascript:lookupPort()">
+  <img src="images/16/lookup.gif" border="0" height="18" align="middle"></a> 
+  <input class="" type="text" size="10" onchange="lookupPort();getKoers();"  name="portefeuille" id="portefeuille" ></td>
+  <td>{laatsteStatus_inputfield} {laatsteStatus_error}</td>
+</tr>
+</table>
+
+</fieldset>
+
+
+<div align="right">{change_user_value} {change_date_value}</div>
+
+<fieldset title="Order" class="{fieldsetClass}">
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+  <td colspan="4"><a id="koersInfo">...</a><br><a id="orderWaarde">.</a></td>
+</tr>
+<tr>
+  <td>Order kenmerk</td>
+  <td><label for="fondsCode">{fondsOmschrijving_description}</label></td>
+  <td>{transactieType_description}</td>
+  <td>{koersLimiet_description}</td>
+  <td>{tijdsSoort_description}</td>
+  <td>{tijdsLimiet_description}</td>
+</tr>
+<tr>
+  <td><b>{orderid_value}</b></td>
+  <td>{fondsOmschrijving_inputfield} {fondsOmschrijving_error}</td>
+  <td>{transactieType_inputfield} {transactieType_error}</td>
+  <td>{koersLimiet_inputfield} {koersLimiet_error} <input type="hidden" name="koersLimietHidden" id="koersLimietHidden" > </td>
+  <td>{tijdsSoort_inputfield} {tijdsSoort_error}</td>
+  <td>{tijdsLimiet_inputfield} {tijdsLimiet_error}</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td>
+  <table>
+  <tr>
+    <td>{memo_description}</td>
+    <td colspan="5">{status_description}</td>
+  </tr>
+  <tr>
+    <td>{memo_inputfield} {memo_error} </td>
+    <td colspan="5">{status_inputfield}</td>
+  </tr>
+  </table>
+</td>
+<td valign="top">
+<div  id="uitoefenAantalDi" style="visibility:hidden;" >
+<table>
+<tr>
+ <td>
+ <iframe id="uitvoeringen" src="orderuitvoeringList.php?orderid={orderid_value}" width="600" height="150" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+ </td>
+ </tr>
+</table>
+ </div>
+</td>
+</tr>
+</table>
+
+</FIELDSET>
+{knoppen}
+<br><br>
+{controlle_chk} {controle_error}
+
+</form></div>
+<script>
+  setClass();
+</script>
+<iframe src="{iframe}" width="100%" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>

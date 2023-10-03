@@ -1,0 +1,68 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}
+{rel_id_inputfield}
+{naam_inputfield}
+
+<div class="formblock">
+  <div class="formlinks">{datum_description} </div>
+  <div class="formrechts">
+    {datum_inputfield} {datum_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{tav_description} </div>
+  <div class="formrechts">
+    {tav_inputfield} {tav_error}
+  </div>
+</div>
+
+
+<div class="formblock">
+  <div class="formlinks">{onderwerp_description} </div>
+  <div class="formrechts">
+    {onderwerp_inputfield} {onderwerp_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{ref_description} </div>
+  <div class="formrechts">
+    {ref_inputfield} {ref_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{fax_description} </div>
+  <div class="formrechts">
+    {fax_inputfield} {fax_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{paginas_description} </div>
+  <div class="formrechts">
+    {paginas_inputfield} &nbsp;(inclusief voorvel) {paginas_error}
+  </div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{text_inputfield} {text_error}
+</div>
+</div>
+
+
+
+</form></div>
+<script language="JavaScript" type="text/javascript">
+function doEditorOnload()
+{
+  loadEditor('text');
+}
+</script>

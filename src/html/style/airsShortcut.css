@@ -1,0 +1,70 @@
+form[action="CRM_nawList.php"] .airsShortcut:first-of-type {
+  margin-left: 8px !important;
+}
+
+form[action="CRM_nawList.php"] .airsShortcut:active,
+form[action="CRM_nawList.php"] .airsShortcut:link,
+form[action="CRM_nawList.php"] .airsShortcut:visited,
+form[action="CRM_nawList.php"] .airsShortcut:hover {
+  margin-left: 0px;
+  padding: 0px 0px;
+}
+
+.airsShortcut:active,
+.airsShortcut:link,
+.airsShortcut:visited{
+  
+  display: inline;
+  width: 20px;
+  text-decoration: NONE;
+  background-color: transparent;
+  border: 0px solid;
+  margin-left:4px;
+}
+
+.airsShortcut:hover {
+  display: inline;
+  width: 20px;
+  background-color: transparent;
+  border: 0px solid;
+  margin-left:4px;
+}
+
+.airsShortcutContainer
+{
+  position: relative;
+  display: block;
+  width: calc(100% - 10px);
+  background: #E7E7E7;
+  padding:4px;
+  margin-top:-30px;
+  margin-left:-5px;
+  margin-bottom: 10px;
+}
+
+.airsShortcutInput{
+  width: 65px;
+  height: 23px;
+  margin-left: 2px;
+  border-radius: 4px 0 0 4px;
+  background: #E7E7E7;
+  padding: 3px;
+}
+.airsShortcutIcon{
+  height: 16px;
+  vertical-align: middle;
+}
+
+.airsShortcutInputContainer button{
+  border-radius:  0 4px 4px 0;
+  height: 23px;
+  width: 21px;
+}
+
+.airsShortcutInputContainer{
+  margin-top: 4px;
+  padding:6px;
+  background: #CCC;
+  border-radius: 6px;
+  width: calc(100% - 13px);
+}

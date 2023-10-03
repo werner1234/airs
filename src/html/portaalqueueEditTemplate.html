@@ -1,0 +1,72 @@
+<form enctype="multipart/form-data" name="editForm" action="{updateScript}" method="POST">
+  <input type="hidden" name="MAX_FILE_SIZE" value="16777216" />
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}{crmId_inputfield}<div class="formblock">
+<div class="formlinks"><label for="status">{status_description}</label> </div>
+<div class="formrechts">
+{status_inputfield} {status_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="periode">{periode_description}</label> </div>
+<div class="formrechts">
+{periode_inputfield} {periode_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="raportageDatum">{raportageDatum_description}</label> </div>
+<div class="formrechts">
+{raportageDatum_inputfield} {raportageDatum_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="portefeuille">{portefeuille_description}</label> </div>
+<div class="formrechts">
+{portefeuille_inputfield} {portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="email">{email_description}</label> </div>
+<div class="formrechts">
+{email_inputfield} {email_error}
+</div>
+</div>
+
+{crmWachtwoord_inputfield}<div class="formblock">
+<div class="formlinks"><label for="naam">{naam_description}</label> </div>
+<div class="formrechts">
+{naam_inputfield} {naam_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="naam1">{naam1_description}</label> </div>
+<div class="formrechts">
+{naam1_inputfield} {naam1_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks"><label for="subject">[vt]Bestand[/vt]:</label> </div>
+<div class="formrechts">
+{attachment} {attachmentFactuur}
+
+  [vt]Vervangen[/vt]: <input type="file" name="bijlage" size="50">
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

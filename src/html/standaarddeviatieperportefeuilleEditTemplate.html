@@ -1,0 +1,51 @@
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+
+    <div class="formblock">
+    <div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+    <div class="formrechts">
+      {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+    </div>
+  </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Portefeuille">{Portefeuille_description}</label> </div>
+      <div class="formrechts">
+        {Portefeuille_inputfield} {Portefeuille_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Minimum">{Minimum_description}</label> </div>
+      <div class="formrechts">
+        {Minimum_inputfield} {Minimum_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Maximum">{Maximum_description}</label> </div>
+      <div class="formrechts">
+        {Maximum_inputfield} {Maximum_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Norm">{Norm_description}</label> </div>
+      <div class="formrechts">
+        {Norm_inputfield} {Norm_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+    <div class="formblock"><div class="formlinks">&nbsp;</div><div class="formrechts">{verzendKnop}</div></div>
+
+</form>

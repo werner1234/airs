@@ -1,0 +1,69 @@
+<br>{AEMessages}{invulScr}
+<fieldset name="test" value="" title="Mutatieformulier">
+  <legend accesskey="m">[vt]Kostenboeking[/vt] </legend>
+
+  <form name="editForm" id="kostenboeking-form" action="{updateScript}" onsubmit="checkValues();" >
+    <div class="form">
+      <input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="returnUrl" value="{returnUrl}">
+      <input type="hidden" name="id" value="{id_value}">
+      <input type="hidden" name="afschrift_id" value="{aId}">
+      <input type="hidden" name="Afschriftnummer" value="{Afschriftnummer_value}">
+      <input type="hidden" name="Verwerkt" value="{Verwerkt_value}">
+      <input type="hidden" name="Rekening" value="{Rekening_value}">
+      <input type="hidden" name="Fondskoerseenheid" value="{koerseenheid}">
+      <input type="hidden" name="RekeningValuta" value="{aValuta}">
+      <input type="hidden" name="RekeningValutakoers" value="1">
+      <input type="hidden" name="aMemoriaal" value="{aMemoriaal}">
+      <input type="hidden" name="rekeningafschriftenEdit" value="{rekeningafschriftenEdit}">
+      <input type="hidden" name="mutation_type" value="{mutation_type}">
+      <input type="hidden" name="Volgnummer" value="{Volgnummer}">
+
+      <input type="hidden" name="type" value="{type}">
+      <input type="hidden" id="boekDatumCheckDate" name="boekDatumCheckDate" value="{boekDatumCheckDate}">
+  
+      <div id="boekdatumMsg" style="display: none; color:red;">[vt]Datum mag niet voor Portefeuille startdatum liggen[/vt]</div>
+      <table border="0" cellspacing="0" cellspadding="2" class=" tableInlineForm">
+        <tr>
+          <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+          <td class="list_kopregel_data">[vt]Grootboek[/vt]</td>
+          <td class="list_kopregel_data">[vt]Waarde[/vt]</td>
+          <td class="list_kopregel_data">{Valuta_description}</td>
+          <td class="list_kopregel_data">[vt]V.koers[/vt] <span id="valuta-koers-info" class=""></span></td>
+          <td class="list_kopregel_data">[vt]Mutatiebedrag[/vt]</td>
+          <td class="list_kopregel_data">{Omschrijving_description}</td>
+        </tr>
+        <tr>
+          <td>{Boekdatum_inputfield}<span id="recalculate" title="Fonds/valutakoers bijwerken" style="cursor:hand;"><i class="fa fa-refresh"></i></span></td>
+          <td>{Grootboekrekening_inputfield}</td>
+          <td>{value_inputfield}</td>
+          <td>{Valuta_inputfield}</td>
+          <td><div class="input-group ">
+              {Valutakoers_inputfield}
+              <div class="input-group-append">
+                <span class="btn-xs  btn btn-gray inverseField"><img src='images/16/refresh.png' /> [vt]Inverse (F9)[/vt]</span>
+              </div>
+            </div></td>
+          <td>{Bedrag_inputfield}</td>
+          <td>{Omschrijving_inputfield}</td>
+        </tr>
+      </table>
+      
+      <br /><br />{btn_submit}
+    </div>
+  </form>
+</fieldset>
+
+
+<script>
+  $(function () {
+    $(document).on('focus, keyup', 'input, select', function () {
+      $(this).invulInstructie({
+        party: '{VB}',
+        script: 'rekeningmutaties_v2_kostenboeking.php',
+        consoleLog: '{consoleLog}'
+      });
+    });
+  });
+</script>

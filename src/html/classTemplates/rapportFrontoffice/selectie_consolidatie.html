@@ -1,0 +1,28 @@
+<div class="row no-gutters" >
+  
+  <div class="{labelClass}">
+    <label class="col-form-label">[vt]Consolidatie[/vt]</label>
+  </div>
+  
+  <div class="{buttonClass}">
+    <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+      <label class="btn btn-hover btn-default w-100 {consolidatieUitClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?metConsolidatie=0'">
+        <input type="radio" name="metConsolidatie" id="metConsolidatie" value="0" {consolidatieUit} >
+        [vt]Zonder[/vt]
+      </label>
+  
+      <label class="btn btn-hover btn-default w-100 {consolidatieCheckedClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?metConsolidatie=1'">
+        <input type="radio" name="metConsolidatie" id="metConsolidatie" value="1" {consolidatieChecked} >
+        [vt]Alleen[/vt]
+      </label>
+  
+      <label class="btn btn-hover btn-default w-100 {allCheckedClass}" onClick="parent.frames['content'].location = '{PHP_SELF}?metConsolidatie=10'">
+        <input type="radio" name="metConsolidatie" id="alles" value="10" {allChecked} >
+        [vt]Alle[/vt]
+      </label>
+    </div>
+  </div>
+</div>
+<br />
+
+

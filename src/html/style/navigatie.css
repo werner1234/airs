@@ -1,0 +1,50 @@
+body{
+     font-family : Arial, Helvetica, sans-serif;
+     font-size : 12px; 
+}
+
+TD{
+     font-family : Arial, Helvetica, sans-serif;
+     font-size : 12px;
+     background-color:#F7F7F7;
+}
+A:link    {
+  font: 12px 'Arial' bold;
+  color: Black;
+  text-decoration: none;
+}
+A:visited {
+  font: 12px 'Arial' bold;
+  color: Black;
+  text-decoration: none;
+}
+A:active  {
+  font: 12px 'Arial' bold;
+  color: Black;
+  text-decoration: none
+}
+
+.button {
+}
+.button_hover {
+	background-color : #dddddd;
+}
+.kop {
+	font: 14px 'Arial';
+	font-weight: bold;
+}
+
+.simbisIcon{
+  border: 0;
+  vertical-align: middle;
+  text-align: left;
+}
+.simbisIconGray{
+  border: 0;
+  vertical-align: middle;
+  text-align: left;
+  filter: url(gray.svg#desaturate);
+  -webkit-filter: grayscale(100%);
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
+  filter: gray; /* IE6-9 */
+}

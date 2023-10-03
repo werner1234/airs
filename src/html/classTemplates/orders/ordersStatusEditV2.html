@@ -1,0 +1,85 @@
+<style>
+    #orderId {
+        width: 300px;
+    }
+</style>
+
+<div class="main_content">
+
+    <div id="searchOrderIdBlock class="formHolder box box12">
+        <div class="formTitle textB">[vt]Soort Zoeken[/vt]</div>
+        <div class="padded-10 formContent">
+            <form action="{updateScript}" method="POST" id="searchOrderIdForm" style="padding: 10px 10px 20px 0px;">
+                <div class="form">
+                    <input type="hidden" name="action" value="{action}">
+                    <input type="hidden" name="updateScript" value="{updateScript}">
+                    <input type="hidden" name="return" value="{return}">
+                    <input type="hidden" name="redirect" value="0">
+                    <input type="hidden" name="zoekveld" value="">
+
+                    <div class="formblock">
+                        <div class="formlinks">[vt]Ordernummer[/vt]: </div>
+                        <div class="formrechts">
+                            {orderId} <button type="button" id="searchBtn" class="btn-new btn-default">[vt]Zoeken[/vt]</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="orderInfo class="{orderInfoDisplay} formHolder box box12">
+        <div class="formTitle textB">[vt]Order overzicht[/vt]</div>
+        <div class=" formContent">
+            <div class="padded-10" style="display: inline-block;">
+                <div>
+                    {orderInfo}
+
+                    <form action="{updateScript}" method="POST" id="changeorderStatusForm">
+                            <input type="hidden" name="action" value="{action}">
+                            <input type="hidden" name="updateScript" value="{updateScript}">
+                            <input type="hidden" name="return" value="{return}">
+                            <input type="hidden" name="redirect" value="0">
+                            <input type="hidden" name="zoekveld" value="">
+                            <input type="hidden" name="huidigeOrderId" value="{id_value}">
+                            <input type="hidden" name="huidigeOrderStatus" value="{orderStatus_value}">
+
+                            <div class="formblock">
+                                <div class="formlinks">[vt]Nieuwe[/vt] {orderStatus_description}</div>
+                                <div class="formrechts">
+                                    {orderStatus_inputfield} {orderStatus_error}
+                                </div>
+                            </div>
+  
+                            <div class="formblock">
+                              <div class="" style="width: 500px;">{isFixMessage}</div>
+                            </div>
+                      
+                    </form>
+                </div>
+            </div>
+            <div class="form-actions clearB order1form" id="saveForm">
+                <div class="row padded-10 ">
+                    <span id="changeStatusSave" class="btn-new btn-save">[vt]Opslaan[/vt]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $(document).on('click', '#searchBtn', function () {
+            $( "#searchOrderIdForm" ).submit();
+        });
+
+        $(document).on('click', '#changeStatusSave', function(event) {
+            event.preventDefault();
+            {confirmEvent}
+        });
+        
+      
+      
+    })
+</script>

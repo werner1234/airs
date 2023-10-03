@@ -1,0 +1,99 @@
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="redirect" value="0">
+  {id_inputfield}
+  {vermogensBeheerder_inputfield}
+
+<div align="right">{change_user_value} {change_date_value}</div>
+<fieldset title="Order" class="{fieldsetClass}">
+<legend accesskey="R">O<U>r</U>der muteren</legend>
+
+
+<style>
+.rood{
+  background-color: #FF9D9D;
+}
+.groen{
+  background-color: #80FF80;
+}
+
+</style>
+
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+  <td colspan="2">
+    <label for="fondsCode">ISIN</label>
+  </td>
+  <td colspan="4">
+    <label for="fondsCode">Fonds</label>
+  </td>
+  <td colspan="20">
+    order kenmerk
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <input class="" type="text" size="16" name="fondsCode" id="fondsCode" value="{fondsCode_value}" READONLY>     {fondsCode_error}
+  </td>
+  <td colspan="4">
+    <input class="" type="text" size="50" value="{fonds_value}" READONLY>      {fonds_error}
+  </td>
+  <td colspan="20">
+    <b>{orderid_value}</b>
+  </td>
+</tr>
+<tr>
+  <td><label for="aantal">{aantal_description}</label></td>
+  <td><label for="transactieType">{transactieType_description}</label></td>
+  <td><label for="koersLimiet">{koersLimiet_description}</label></td>
+  <td class="" id="transAct"><label for="transactieSoort">{transactieSoort_description}</label></td>
+  <td><label for="tijdsSoort">{tijdsSoort_description}</label></td>
+  <td><label for="tijdsLimiet">{tijdsLimiet_description}</label></td>
+  <td><label for="laatsteStatus">{laatsteStatus_description}</label></td>
+  <td></td>
+</tr>
+<tr>
+  <td><input class="" type="text" size="12" value="{aantal_value}" READONLY>  {aantal_error}</td>
+  <td><input class="" type="text" size="12" value="{transactieType}" READONLY>  {transactieType_error}</td>
+  <td><input class="" type="text" size="12" value="{koersLimiet_value}" READONLY> <input type="hidden" name="koersLimietHidden" id="koersLimietHidden" > {koersLimiet_error}</td>
+  <td><input class="" type="text" size="12" value="{transactieSoort}" READONLY>  {transactieSoort_error}</td>
+  <td><input class="" type="text" size="12" value="{tijdsSoort}" READONLY>  {tijdsSoort_error}</td>
+  <td><input class="" type="text" size="12" value="{tijdsLimiet_value}" READONLY>  {tijdsLimiet_error}</td>
+  <td>{laatsteStatus_inputfield} {laatsteStatus_error}</td>
+</tr>
+
+<tr>
+  <td colspan="5"><a id="koersInfo">...</a><br></td>
+  <td><div id="uitoefenPrijsDiv" style="visibility:hidden">{uitvoeringsPrijs_description} <br> 
+                                                           <input class="" type="text" size="12"  value="{uitvoeringsPrijs_value}" READONLY> 
+                                                           {uitvoeringsPrijs_error}</div> </td>
+  <td><div id="uitoefenDatumDiv" style="visibility:hidden">{uitvoeringsDatum_description} <br> 
+                                                            <input class="" type="text" size="12"  value="{uitvoeringsDatum_value}" READONLY> 
+                                                           {uitvoeringsDatum_error}</div> </td>
+</tr>
+</table>
+
+<div class="formblock">
+<div class="formlinks"><label for="memo">{memo_description}</label> </div>
+<div class="formrechts">
+{memo_inputfield} {memo_error}
+</div>
+
+</div>
+<div class="formblock">
+<div class="formlinks"><label for="status">{status_description}</label> </div>
+<div class="formrechts">
+{status_inputfield} 
+</div>
+</div>
+</FIELDSET>
+{knoppen}
+
+</form></div>
+<script>
+  setClass();
+</script> 
+<iframe src="{iframe}" width="100%" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>

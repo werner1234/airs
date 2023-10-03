@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: SERVICE_NAME
+  labels:
+    run: SERVICE_NAME
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      run: SERVICE_NAME
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: SERVICE_NAME
+        date: CURRENT_DATE
+    spec:
+      containers:
+      - name: SERVICE_NAME
+        image: DOCKER_IMAGE
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: SERVICE_NAME-storage
+          mountPath: /var/www/SERVICE_NAME/storage
+      volumes:
+      - name: SERVICE_NAME-storage
+        persistentVolumeClaim:
+          claimName: SERVICE_NAME-storage-pv
+      imagePullSecrets:
+      - name: gitlab-docker-registry

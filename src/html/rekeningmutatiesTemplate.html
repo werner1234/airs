@@ -1,0 +1,155 @@
+<script type="text/javascript">
+
+function checkValues()
+{
+  var ret=true;
+  try
+  {
+  	document.editForm.Transactietype.disabled = false;
+		document.editForm.Fonds.disabled 					= false;
+		document.editForm.Fondskoers.disabled			= false;
+		document.editForm.Aantal.disabled 				= false;
+		document.editForm.Bewaarder.disabled 			= false;
+    document.editForm.Valutakoers.readOnly = false;
+    document.editForm.RekeningValutakoers.readOnly = false;
+  }
+  catch(err) { }
+  
+  {blockdate}
+  
+  return ret;
+}
+</script>
+
+<br>
+<form name="afschriftForm">
+<fieldset title="Rekeningafschrift" class="{fieldsetClass}">
+<legend accesskey="R">[vt]Afschrift[/vt]</legend>
+<table width="100%" border="0" cellspacing="0" cellspadding="0">
+<tr>
+	<td>&nbsp;</td>
+	<td width="150" class="list_kopregel_data">[vt]Rekening[/vt]</td>
+	<td width="120" class="list_kopregel_data">[vt]Datum[/vt]</td>
+	<td width="120" class="list_kopregel_data">[vt]Afschriftnummer[/vt]</td>
+	<td width="100" class="list_kopregel_data">{txtSaldo}</td>
+	<td width="100" class="list_kopregel_data">{txtNieuwSaldo}</td>
+
+	<td align="right"><b>[vt]Totaal mutatie[/vt]: </b></td>
+	<td><input type="text" name="totaalMutatie" value="{aTotaal}" size="12" align="right" disabled> </td>
+</tr>
+<tr>
+	<td><a href="{rekeningafschriftenEdit}?action=edit&id={aId}&memoriaal={aMemoriaal}&afschrift_id={aId}" class="button"><img src="images//16/muteer.gif" width="16" height="16" border="0" alt="" align="absmiddle"></a></td>
+	<td>{aRekening}</td>
+	<td>{aDatum}</td>
+	<td>{aAfschriftnummer}</td>
+	<td>{aSaldo}</td>
+	<td>{aNieuwSaldo}</td>
+	<td align="right"><b>[vt]Mutatie verschil[/vt]: </b></td>
+	<td width="150"><input type="text" name="mutatieVerschil" value="{mutatieVerschil}" size="12" align="right" disabled> </td>
+	<td align="left"><input type="button" name="verschilOpheffen" value="[vt]Mutatie verschil opheffen[/vt]" size="12" align="right" onclick="javascript:document.editForm.action.value='opheffen';submitForm();"> </td>
+</tr>
+</table>
+  [vt]druk op[/vt] <i>[vt]Insert[/vt]</i> [vt]voor nieuw afschrift[/vt].
+</fieldset>
+</form>
+<!--<br><b>Afschriftregels toevoegen </b><br>-->
+<form name="editForm" action="{updateScript}" onsubmit="return checkValues();" >
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" name="id" value="{id_value}">
+<input type="hidden" name="afschrift_id" value="{aId}">
+<input type="hidden" name="Afschriftnummer" value="{Afschriftnummer_value}">
+<input type="hidden" name="Verwerkt" value="{Verwerkt_value}">
+<input type="hidden" name="Rekening" value="{Rekening_value}">
+<input type="hidden" name="Fondskoerseenheid" value="{koerseenheid}">
+<input type="hidden" name="RekeningValuta" value="{aValuta}">
+<input type="hidden" name="RekeningValutakoers" value="1">
+<input type="hidden" name="aMemoriaal" value="{aMemoriaal}">
+<input type="hidden" name="rekeningafschriftenEdit" value="{rekeningafschriftenEdit}">
+
+
+<fieldset name="test" value="" title="Mutatieformulier">
+<legend accesskey="m">[vt]Afschriftregel mutatie[/vt]</legend>
+
+<table border="0" cellspacing="0" cellspadding="2">
+<tr>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+
+	<td class="list_kopregel_data"><a onblur="document.editForm.Fonds.focus();" href="javascript:select_fonds('');" id="fondsLookup"><img src="images/16/lookup.gif" border="0" height="18" align="middle"></a></td>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+	<td class="list_kopregel_data"></td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td class="list_kopregel_data">[vt]Volgnr[/vt].</td>
+	<td class="list_kopregel_data">[vt]Datum[/vt]</td>
+	<td class="list_kopregel_data">{Omschrijving_description}</td>
+	<td class="list_kopregel_data">[vt]Grootboek[/vt]</td>
+
+	<td class="list_kopregel_data">{Fonds_description}{Fonds_error}</td>
+	<td class="list_kopregel_data">[vt]T.type[/vt]</td>
+	<td class="list_kopregel_data">[vt]F.koers[/vt]</td>
+	<td class="list_kopregel_data">{Aantal_description}</td>
+	<td class="list_kopregel_data">{Bewaarder_description}</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{Volgnummer_inputfield}</td>
+	<td>{Boekdatum_inputfield}</td>
+	<td>{Omschrijving_inputfield}</td>
+	<td>{Grootboekrekening_inputfield}</td>
+	<td>{Fonds_inputfield}</td>
+	<td>{Transactietype_inputfield}</td>
+	<td>{Fondskoers_inputfield}</td>
+	<td>{Aantal_inputfield}</td>
+	<td>{Bewaarder_inputfield}</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td class="list_kopregel_data" align="right">{Valuta_description}</td>
+	<td class="list_kopregel_data"><a tabindex="100" style="color: Red;" title="Omwisselen" onfocus="document.editForm.Valuta.focus();" href="javascript:focusveld='Valutakoers';f9pressed();">
+      [vt]V.koers[/vt]</a>  </td>
+	<td>&nbsp;</td>
+	<td class="list_kopregel_data"><a tabindex="100" style="color: Red;" title="Berekenen" href="javascript:focusveld='Debet';f9pressed();">[vt]Debet[/vt]</a></td>
+	<td class="list_kopregel_data"><a tabindex="100" style="color: Red;" title="Berekenen"  href="javascript:focusveld='Credit';f9pressed();">[vt]Credit[/vt]</a>  </td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td class="list_kopregel_data">[vt]Mutatiebedrag[/vt]</td>
+
+</tr>
+<tr>
+	<td align="right">{Valuta_inputfield}</td>
+	<td>{Valutakoers_inputfield}</td>
+	<td>&nbsp; (F9)</td>
+	<td>{Debet_inputfield}</td>
+	<td>{Credit_inputfield}</td>
+	<td>&nbsp; (F9)</td>
+	<td>&nbsp;</td>
+	<td><input type="text" size="9" value="{Bedrag_value}" name="Bedrag" readonly ></td>
+	<td>
+	{opslaanButton}
+    <!--<input type="image" src="images/16/save.gif"  alt="sla de wijzigingen op" align="absmiddle">-->
+	</td>
+</tr>
+
+<tr>
+  <td colspan="9"><a id="koersInfo">...</a></td>
+</tr>
+
+</table>
+</fieldset>
+</form>
+</div>
+
+<br>{Verwerkt_error}<b>{message}</b><br><b>[vt]Afschriftregels[/vt]</b><br>
+
+<iframe src="{listurl}?afschrift_id={aId}" width="100%" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+

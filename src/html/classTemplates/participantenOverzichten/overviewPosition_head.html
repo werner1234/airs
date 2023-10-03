@@ -1,0 +1,43 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+</style>
+
+
+<h2>[vt]Overzicht voor fonds[/vt]: {Fonds_name} [vt]per[/vt] {date}</h2>
+
+<div>
+  <table class="list_tabel table">  
+    <thead>
+      <tr class="list_kopregel" style="background-color: #E8E8E8;">
+        <th style="width: 20%;">[vt]Registratienummer[/vt]</th>
+        <th style="width: 30%;">[vt]Zoekveld[/vt]</th>
+        <th style="width: 20%; text-align: right">[vt]Aantal[/vt]</th>
+        <th style="width: 10%; text-align: right">[vt]Koers[/vt]</th>
+        <th style="width: 20%; text-align: right">[vt]Waarde[/vt]</th>
+      </tr>
+    </thead>
+    <tbody>
+      {overview_row}
+    </tbody>
+  </table>
+</div>

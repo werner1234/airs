@@ -1,0 +1,53 @@
+<!--
+/* 	
+  AE-ICT source module
+    Author                 : $Author: cvs $
+    Laatste aanpassing     : $Date: 2012/03/09 09:23:28 $
+    File Versie            : $Revision: 1.1 $
+ 		
+    $Log: importgrootboektoewijzingEditTemplate.html,v $
+    Revision 1.1  2012/03/09 09:23:28  cvs
+    *** empty log message ***
+
+ 		
+ 	
+*/
+-->
+
+
+<form name="editForm" action="{updateScript}"> 
+  
+<div class="form"> 
+  <input type="hidden" name="action" value="{action}"> 
+  <input type="hidden" name="updateScript" value="{updateScript}"> 
+  <input type="hidden" name="returnUrl" value="{returnUrl}"> 
+  {id_inputfield}
+  
+<div class="formblock"> 
+  <div class="formlinks"><label for="depotbank">{depotbank_description}</label> </div> 
+  <div class="formrechts"> 
+    {depotbank_inputfield} {depotbank_error}
+  </div> 
+</div> 
+ 
+<div class="formblock"> 
+  <div class="formlinks"><label for="tekst">{tekst_description}</label> </div> 
+  <div class="formrechts"> 
+    {tekst_inputfield} {tekst_error}
+  </div> 
+</div> 
+ 
+<div class="formblock"> 
+  <div class="formlinks"><label for="grootboek">{grootboek_description}</label> </div> 
+  <div class="formrechts"> 
+    {grootboek_inputfield} {grootboek_error}
+  </div> 
+</div> 
+ 
+<div class="formblock"> 
+  <div class="formlinks">&nbsp;</div> 
+  <div class="formrechts"> 
+    {change_user_value} {change_date_value}</div> 
+</div> 
+ 
+</form></div> 

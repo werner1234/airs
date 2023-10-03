@@ -1,0 +1,381 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 80%;
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+  
+  #ajaxSpinnerContainer {height:11px;}
+  #ajaxSpinnerContainer {display:none;}
+
+  .maskNumeric6DigitsAllowNegative {
+     text-align: right;
+   }
+</style>
+
+<br />
+<div id="message"></div>
+<form id="addMutation" name="overviewCourse" action="participantsRegisterOverview.php">
+  <input type="hidden" name="type" value="overviewCourse">
+  
+  <fieldset  title="overviewCourse">
+    
+    <legend accesskey="R"><strong>[vt]Invoer mutaties[/vt]</strong></legend>
+    
+    <table border="0" cellspacing="0" cellspadding="0">
+      <tr>
+        <td  class="list_kopregel_data"></td>
+        <td width="250" class="list_kopregel_data">[vt]Fonds[/vt]</td>
+        <td width="300" class="list_kopregel_data">[vt]Registratienummer[/vt] </td>
+        <td width="150" class="list_kopregel_data">[vt]Zoeknaam[/vt] </td>
+      </tr>
+      <tr>
+         <td width="20" class="list_kopregel_data">1:</td>
+        <td>{Fonds_inputfield}</td>
+        <td>
+          {client}
+          <input type="hidden" id="clientId" name="client_id" value="">
+          <input type="hidden" id="crm_id" name="crm_id" value="">
+          <input type="hidden" id="registrationNumber" name="registration_number" value="">
+          <input type="hidden" id="participantenId" name="participanten_id" value="">
+        </td>
+        <td><strong><span id="zoekveld"></span></strong></td>
+      </tr>
+    </table>
+      <div style="display:none;" id="messages" class="alert"></div>
+    <table id="addMutation"  style="margin-bottom:15px;">  
+      <tr>
+        <td  class="list_kopregel_data"></td>
+        <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td class="list_kopregel_data">[vt]Transactiesoort[/vt]</td>
+        <td class="list_kopregel_data">[vt]Aantal[/vt]</td>
+        <td class="list_kopregel_data">[vt]Koers[/vt]</td>
+        <td class="list_kopregel_data">[vt]Omschrijving[/vt]</td>
+      </tr>
+      <tr>
+        <td width="20" class="list_kopregel_data">2:</td>
+        <td>{datum_inputfield}</td>
+        <td>{transactietype_inputfield}</td>
+        <td>{aantal_inputfield}</td>
+        <td>{koers_inputfield}</td>
+        <td>{omschrijving_inputfield}</td>
+      </tr>
+    </table>
+    
+    {btn_submit}
+    
+  </fieldset>
+</form>
+
+<div id="ajaxSpinnerContainer">
+  <img src="images/ajax-loader.gif" id="ajaxSpinnerImage" title="working...">[vt]Laden[/vt]
+</div>
+
+<div id="overviewResult" style="display:hidden;"></div>
+
+
+
+
+<fieldset>
+  <legend>[vt]Mutatie overzicht[/vt]</legend>
+  <div id="overviewResult">
+    <table style="margin-bottom:15px;" class="list_tabel table">  
+      <thead>
+        <tr class="list_kopregel">
+          <td class="list_button"></td>
+          <td class="list_kopregel_data">[vt]Reg[/vt]</td>
+          <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Aantal[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Koers[/vt]</td>
+          <td class="list_kopregel_data">[vt]Transactiesoort[/vt]</td>
+          <td class="list_kopregel_data">[vt]Omschrijving[/vt]</td>
+          <td style="text-align: right" class="list_kopregel_data">[vt]Waarde[/vt]</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="overviewResultEmpty"><td colspan="7">[vt]Er zijn geen mutaties ingevoerd![/vt]</td></tr>
+        {dataRow}
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+
+<script>
+  var currentUrl = 'lookups/autocomplete.php?object=virtual&field=client';
+
+  $('#registrationNumber').hide();
+  function listRegistrationNumbers(client, fonds) {
+    $.ajax({
+      url: 'lookups/participanten.php?type=listRegistrationNumbers&fonds=' + fonds + '&clientId=' + client,
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        $('#registrationNumber').hide();
+
+        if (!jQuery.isEmptyObject(data)) {
+          $('#registrationNumber').empty();
+          $('#registrationNumber').append('<option value="">----</option>');
+          $.each(data, function (k, v) {
+            $('#registrationNumber').append('<option value="' + k + '">' + v + '</option>');
+          });
+          $('#registrationNumber').show();
+        }
+      },
+      error: function (data) {
+      },
+      cache: false
+    });
+  }
+
+  function limitFonds(client, registrationNumber) {
+    var $currentFonds = '';
+    if ($('#Fonds').val()) {
+      var $currentFonds = $('#Fonds').val();
+    }
+
+    $.ajax({
+      url: 'lookups/participanten.php?type=getFondsForClient&registrationNumber=' + registrationNumber + '&clientId=' + client,
+      type: 'POST',
+      dataType: 'json',
+      success: function (data) {
+        $('#Fonds').empty();
+        $('#Fonds').append('<option value="">----</option>');
+        
+        $.each(data, function (k, v) {
+          $('#Fonds').append('<option value="' + k + '">' + v + '</option>');
+        });
+        $('#Fonds').val($currentFonds);
+
+      },
+      error: function (data) {
+      },
+      cache: false
+    });
+  }
+
+  function ConvertFormToJSON(form) {
+    var array = jQuery(form).serializeArray();
+    var json = {};
+
+    jQuery.each(array, function () {
+      json[this.name] = this.value || '';
+    });
+    return json;
+  }
+
+  $(function () {
+
+      $(document).on('change', '#aantal, #transactietype', function () {
+          if ( $('#transactietype').val() !== '' ) {
+              if (jQuery.inArray($('#transactietype').val(), ['B', 'A', 'D', 'BK', 'H']) != -1) {
+                  if ($('#aantal').val() < 0) {
+                      $('#messages').addClass('alert-info');
+                      $('#messages').html('[vt]Aantal dient positief ingevoerd te worden![/vt]');
+                      $('#messages').show();
+                  } else {
+                      $('#messages').removeClass('alert-info');
+                      $('#messages').html('');
+                      $('#messages').hide();
+                  }
+              } else {
+                  if ($('#aantal').val() > 0) {
+                      $('#messages').addClass('alert-info');
+                      $('#messages').html('[vt]Aantal dient negatief ingevoerd te worden![/vt]');
+                      $('#messages').show();
+                  } else {
+                      $('#messages').removeClass('alert-info');
+                      $('#messages').html('');
+                      $('#messages').hide();
+                  }
+              }
+          }
+      });
+
+    
+    $('input[name="datum"], #aantal, #transactietype').on('change', function(event) {
+
+      if ( $('input[name="datum"]').val() != '' && $('#aantal').val() != '' && $('#transactietype').val() != '' ) {
+        event.preventDefault();
+        var form = $('.saveRow').closest('form');
+        var json = ConvertFormToJSON(form);
+        $.ajax({
+          url: 'lookups/ajaxLookup.php',
+          type: 'POST',
+          data: {
+            fromClass : 'AE_ShortPositions',
+            type : 'getParticipantShortPositionAjax',
+            postData: json,
+            saveRow: 'true'
+          },
+          dataType: "json",
+          success: function (data) {
+            checkShortPositions (data.aantal, $('#aantal').val(), $('#transactietype').val())
+          },
+          error: function (data) {
+          },
+          cache: false
+        });
+      }
+    });
+    
+    
+    
+    
+    $('#registrationNumber').on('change', function () {
+      if ($('#registrationNumber').val()) {
+        $('#Fonds').val('');
+        $('#Fonds').hide();
+      } else {
+        $('#Fonds').show();
+      }
+    });
+    
+    $('#client').on('change', function () {
+      if (!$('#client').val() || $('#client').val().length == 1) {
+        $('#client').val('')
+        $('#clientId').val('');
+        $('#registrationNumber').val('');
+        $('#registrationNumber').hide();
+        
+        limitFonds(null, null);
+      }
+    });
+
+    $('#Fonds').on('change', function () {
+      if (!$('#Fonds').val()) {
+        $("#client").autocomplete('option', 'source', currentUrl);
+        
+      } else {
+        $("#client").autocomplete('option', 'source', currentUrl + '&fonds_fonds=' + $('#Fonds').val());
+        $('#client').val('');
+        $('#clientId').val('');
+        $('#registrationNumber').val('');
+        $('#participantenId').val('');
+        
+        //lets reset some fields
+        $('#transactietype').val('');
+        $('input[name=datum]').val('');
+        $('#koers').val('00.00');
+        $('#aantal').val('');
+        $('#omschrijving').val('');
+      }
+    });
+
+    $('#generateOverview').on('click', function () {
+      event.preventDefault();
+      $('#overviewResult').html('');//clear html
+      var form = $('#overviewCourse');
+      var json = ConvertFormToJSON(form);
+
+      $.ajax({
+        url: 'participants_inputOverview.php',
+        type: 'POST',
+        data: json,
+        dataType: "html",
+        success: function (data) {
+          $('#overviewResult').html(data); //clear messages
+          $('#overviewResult').slideDown("slow");
+          
+        },
+        error: function (data) {
+        },
+        cache: false
+      });
+    });
+
+$(document)
+  .ajaxStart(function () {
+    $("#ajaxSpinnerContainer").show(200);
+  })
+  .ajaxStop(function () {
+    $("#ajaxSpinnerContainer").hide(200);
+  });
+});
+{script}
+
+
+function shortPositioncallback(value) {
+  if (value) {
+
+  } else {
+    $('#aantal').val('')
+  }
+}
+
+  function ConvertFormToJSON(form) {
+    var array = jQuery(form).serializeArray();
+    var json = {};
+
+    jQuery.each(array, function () {
+      json[this.name] = this.value || '';
+    });
+    return json;
+  }
+
+  $(function () {
+    $('.saveRow').on('click', function () {
+      event.preventDefault();
+      var form = $('.saveRow').closest('form');
+      form.find(':input').css('border-color', ''); //reset inputfield style
+      var json = ConvertFormToJSON(form);
+      $.ajax({
+        url: '{updateScript}',
+        type: 'POST',
+        data: {
+          postData: json,
+          saveRow: 'true'
+        },
+        dataType: "json",
+        success: function (data) {
+          $('#message').html('');
+          
+          $.each(data.fieldErrors, function(field, fieldData) {
+            $('#addMutation [name=' + field + ']').css('border-color', 'red');
+          });
+          
+          if (data.template) {
+            $('#overviewResultEmpty').hide();
+            $('#overviewResult table tbody').prepend(data.template); 
+           
+            //lets reset some fields
+            $('#transactietype').val('');
+            $('#aantal').val('');
+            
+            $('#client').val('');
+            $('#clientId').val('');
+            $('#registrationNumber').val('');
+            $('#participantenId').val('');
+            
+            //focus on field
+            $('#client').focus();
+          }
+          
+          if (data.message) {
+            $('#message').html(data.message);
+          }
+        },
+        error: function (data) {
+        },
+        cache: false
+      });
+    });
+  });
+</script>

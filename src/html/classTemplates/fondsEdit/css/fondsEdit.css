@@ -1,0 +1,22 @@
+#optionForm {
+  width: 500px;
+  float: left;
+  display: inline;
+  border: none;
+  display: none;
+}
+
+#turboForm {
+  width: 500px;
+  float: left;
+  display: inline;
+  border: none;
+  display: none;
+}
+
+
+#fondsForm {
+  border: none;
+  display: inline;
+  width: 750px;
+}

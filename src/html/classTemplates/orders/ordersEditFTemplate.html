@@ -1,0 +1,147 @@
+<div style="display:none;" id="uiModalDiv">
+  <div id="modelContent"></div>
+</div>
+
+{addFonds}
+{addNota}
+
+<div class="main_content">
+  <div id="messageHolder">{AEMessage}</div>
+
+  <form action="{updateScript}" method="POST" id="fxForm" class="orderForm">
+    <div class="form">
+      <input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="return" value="{return}">
+      <input type="hidden" name="redirect" value="0">
+      <input type="hidden" name="zoekveld" value="">
+      <input type="hidden" name="valutaKoersHidden" id="valutaKoersHidden" value="0">
+      <input type="hidden" name="fondseenheidHidden" id="fondseenheidHidden" value="1">
+      <input type="hidden" name="batchId" value="{batchId}" id="batchId">
+      <input type="hidden" name="valuta" value="">
+      <input type="hidden" name="fondsValuta" id="fondsValuta" value="{fondsValuta_value}">
+      <input type="hidden" name="fonds_id" value="">
+      <input type="hidden" name="orderbedrag" id="orderbedrag" value="0">
+      <input type="hidden" name="verzenden" id="verzenden" value="">
+      <input type="hidden" value="{depotbank_value}" name="depotbank" id="Depotbank">
+      <input type="hidden" value="{DepotbankOld_value}" name="DepotbankOld" id="DepotbankOld">
+      <input type="hidden" value="{Risicoklasse_value}" name="Risicoklasse" id="Risicoklasse">
+      <input type="hidden" name="portefeuille_id" value="">
+      <input type="hidden" value="{fonds_value}" name="fonds" id="fonds">
+      <input type="hidden" value="{id_value}" name="id" id="id">
+      <input type="hidden" value="{orderid_value}" name="orderid" id="orderid">
+      <input type="hidden" value="{orderregelId}" name="orderregelId" id="orderregelId">
+      <input type="hidden" value="0" name="cancel" id="cancel">
+      <input type="hidden" value="{copyFrom}" name="copyFrom" id="copyFrom">
+      <input type="hidden" value="{rekeningNrTonen}" name="rekeningNrTonen" id="rekeningNrTonen">
+      <input type="hidden" value="{fixTonen}" name="fixTonen" id="fixTonen">
+      <input type="hidden" value="{fondseenheid_value}" name="fondseenheid" id="fondseenheid">
+      <input type="hidden" value="{optieSymbool_value}" name="optieSymbool" id="optieSymbool">
+      <input type="hidden" value="{optieType_value}" name="optieType" id="optieType">
+      <input type="hidden" value="{optieUitoefenprijs_value}" name="optieUitoefenprijs" id="optieUitoefenprijs">
+      <input type="hidden" value="{optieExpDatum_value}" name="optieExpDatum" id="optieExpDatum">
+      <input type="hidden" value="{fondssoort_value}" name="fondssoort" id="fondssoort">
+      <input type="hidden" value="{orderStatus_value}" name="originalOrderStatus" id="originalOrderStatus">
+      <input type="hidden" value="{handmatig_uitvoeringenMuteren}" name="handmatig_uitvoeringenMuteren" id="handmatig_uitvoeringenMuteren">
+      <input type="hidden" value="{fondsBankcode_value}" name="fondsBankcode" id="fondsBankcode">
+      
+      <input type="hidden" name="OrderuitvoerBewaarder" id="OrderuitvoerBewaarder" value="{OrderuitvoerBewaarder}">
+      <input type="hidden" name="OrderuitvoerBewaarder_rekening_depotbank" id="OrderuitvoerBewaarder_rekening_depotbank" value="{OrderuitvoerBewaarder_rekening_depotbank}">
+      <input type="hidden" name="resetControle" id="resetControle" value="0">
+      
+      <button type="button" style="margin-bottom: 5px;" tabindex="0" class="btn-new btn-blue" id='toOrderlistTop'>[vt]Terug naar overzicht[/vt]</button>
+      <div id="orderSoortForm">{newOrder}</div>
+
+      <div class="row">
+
+        <div class="formHolder box box12">
+          <div class="formTitle textB">[vt]Order[/vt] {order_identificatie}</div>
+          <div class="formContent">
+            <div class="padded-10">
+              <table border="0" cellpadding="6" cellspacing="0">
+                <tr>
+                  <td><label id="PortefeuilleSelectieLabel" for="PortefeuilleSelectie">[vt]Client[/vt]</label></td>
+                  <td>[vt]Portefeuille[/vt]</td>
+                  <td>
+                    <div>[vt]Rekening[/vt]</div>
+                  </td>
+
+
+                  <td><label>[vt]Depotbank[/vt]</label></td>
+                  <td><label>[vt]Profiel[/vt]</label></td>
+                  <td>
+                    <div>[vt]Status[/vt]</div>
+                  </td>
+
+                </tr>
+                <tr>
+                  <td>{PortefeuilleSelectie}<input type="hidden" name="client" id="client" value="{client_value}"></td>
+                  <td>
+                    <input type="text" name="portefeuille" id="portefeuille" value="{portefeuille_value}" READONLY style="background-color:#DDD">
+                    {portefeuille_error}
+                  </td>
+                  <td>
+                    <div>{rekening_inputfield}</div>
+                  </td>
+
+
+                  <td id="depobankValue">{depobankValue}</td>
+                  <td id="profileValue">{profileValue}</td>
+
+                  <td>
+                    <div>{orderStatus_inputfield} {orderStatus_error} {UitvoeringOngelijk}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <table border="0" cellpadding="6" cellspacing="0" class="inline">
+                <tr>
+                  <td>[vt]Valutafonds[/vt] <span id="fonds-koers-info" class=""></span></td>
+                  <td><label for="ISINCode">[vt]Fondsomschrijving[/vt]</label> <span id="fonds-info" class=""></span></td>
+                  <td><label class="" id="transAct" for="transactieSoort">{transactieSoort_description}</label></td>
+                  <td>[vt]Fonds valuta[/vt]</td>
+                  <td>[vt]Aantal[/vt]</td>
+                  <td><label for="transactieType">{transactieType_description}</label></td>
+                </tr>
+                <tr>
+                  <td>{Fonds}
+                    <div id="showFxFonds" class="input-group-addon  btn-new btn-default btn-xs" style="display: inline-block;margin-bottom: 3px;margin-left: -4px;">
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                  </td>
+                  <td>{fondsOmschrijving_inputfield}
+                    {fondsOmschrijving_error}<input type="hidden" id="fondsOmschrijvingHidden" value="{fondsOmschrijving_value}">
+                  </td>
+                  <td>{transactieSoort_inputfield} {transactieSoort_error}</td>
+                  <td><span id="fondsValutaDisplay"></span></td>
+                  <td>{aantal_inputfield} {aantal_error}</td>
+                  <td>{transactieType_inputfield} {transactieType_error}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="form-actions clearB" id="saveForm">
+              <span class="" id="koersInfo"></span><br>
+              <span id="fondsOwnedInfo"></span><br>
+              <span id="orderWaarde"></span>
+            </div>
+          </div>
+        </div>
+        {orderOptionsBlock}
+  </form>
+</div>
+
+<div class="form-actions clearB" id="saveForm">
+  <div class="row padded-10">
+    <div class="box box12">{copyOrder}{opslaanKnop}</div>
+  </div>
+
+
+  <div class="row padded-10">
+    <div class="box box2"><span class="btn-new btn-blue" id='toOrderlist'>[vt]Terug[/vt]</span></div>
+    <div class="box box2">{annuleerKnop}</div>
+    <span class="floatR">{formMessage}{change_user_value} {change_date_value}</span>
+  </div>
+</div>
+
+
+</div>

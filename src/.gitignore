@@ -1,0 +1,33 @@
+/.idea
+/temp
+/codex
+/database
+*.log
+**/.cvsignore
+.DS_Store
+
+/config/bedrijf.ini
+/html/importdata/
+/html/__cnvDB_win2lin_2020-09-14.php
+/AWS/AIRS_createTables.sql
+/html/__moka.php
+/html/style/aeStyle.css
+/AWS/aws.sql
+/html/__cnvDB_win2lin_2020-10-12.php
+/html/CRM_naw_AdressenEditTemplate_custom.html
+/html/CRM_naw_ContactpersoonEditTemplate_custom.html
+/html/CRM_naw_RekeningenEditTemplate_custom.html
+/IMPORTDATA
+/html/api/apiVars - kopie.php
+/html/.htaccess
+/html/api/apiVars.php
+/html/apiExternal/apiVars.php
+/html/output
+/html/_10293.php
+/html/ajax/ae_config_log.txt
+/html/apiExternal/apiVars - kopie.php
+/html/PDF_templates/
+/html/custom/Menu727977.php
+/config/buildinfo.txt
+/html/__makeDB_win2lin_ConvertScript.php
+/html/__cnvDB_win2lin_2022-10-19.php

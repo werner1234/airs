@@ -1,0 +1,20 @@
+td.menu{
+	height : 25px;
+	background-color : #98cbcb;
+}
+
+td.bookmarks{
+	height : 30px;
+	background-color : #98cbcb;
+	border-bottom : 1px solid Gray;
+}
+
+td.navigatie{
+	height : 25px;
+	border-bottom : 1px dotted Gray;
+}
+
+td.submenu{
+	border-right : 1px solid Gray;
+
+}

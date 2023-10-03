@@ -1,0 +1,61 @@
+<form id="{formId}" name="{formName}" action="{updateScript}" method="get">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+<input type="hidden" value="{orderid_value}" name="orderid" >
+
+<div class="form" >
+<div class="formblock">
+<div class="formlinks">{uitvoeringsAantal_description} </div>
+<div class="formrechts">
+{uitvoeringsAantal_inputfield} {uitvoeringsAantal_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{uitvoeringsPrijs_description} </div>
+<div class="formrechts">
+{uitvoeringsPrijs_inputfield} {uitvoeringsPrijs_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{uitvoeringsDatum_description} </div>
+<div class="formrechts">
+{uitvoeringsDatum_inputfield} {uitvoeringsDatum_error} (YYYY-MM-DD hh:mm:ss)
+</div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks">{opgelopenrente_description} </div>
+    <div class="formrechts">
+      {opgelopenrente_inputfield} {opgelopenrente_error}
+    </div>
+  </div>
+
+
+  <div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{submit}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{change_user_value} {change_date_value}
+</div>
+</div>
+
+</div>
+
+</form>
+
+
+
+
+
+
+

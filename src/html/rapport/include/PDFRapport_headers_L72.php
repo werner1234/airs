@@ -1,0 +1,1050 @@
+<?php
+
+function Header_basis_L72($object)
+{
+   $pdfObject = &$object;
+   $pdfObject->last_rapport_type=$pdfObject->rapport_type;
+	 if ($pdfObject->rapport_type == "BRIEF")
+    {
+      $pdfObject->HeaderFACTUUR();
+    }
+    elseif ($pdfObject->rapport_type == "FACTUUR")
+    {
+      $pdfObject->HeaderFACTUUR();
+    }
+    elseif ($pdfObject->rapport_type == "FRONT")
+    {
+		  $pdfObject->SetTextColor($pdfObject->rapport_kop2_fontcolor[r],$pdfObject->rapport_kop2_fontcolor[g],$pdfObject->rapport_kop2_fontcolor[b]);
+		  $pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+      //if($pdfObject->rapportCounter <> $pdfObject->rapportCounterLast)
+  		  $pdfObject->customPageNo = 0;
+  		$pdfObject->rapportNewPage = $pdfObject->page;
+    }
+    else
+    {
+    	if($pdfObject->rapportCounter <> $pdfObject->rapportCounterLast)
+  	  	$pdfObject->customPageNo = 0;
+
+		$pdfObject->customPageNo++;
+
+		$pdfObject->SetLineWidth($pdfObject->lineWidth);
+
+		if(empty($pdfObject->top_marge))
+			$pdfObject->top_marge = $pdfObject->marge;
+		$pdfObject->SetY($pdfObject->top_marge);
+
+		$pdfObject->SetTextColor($pdfObject->rapport_kop2_fontcolor[r],$pdfObject->rapport_kop2_fontcolor[g],$pdfObject->rapport_kop2_fontcolor[b]);
+		$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+		$y = $pdfObject->GetY();
+
+		// default header stuff
+		$pdfObject->SetX($pdfObject->marge);
+
+		if($pdfObject->__appvar['consolidatie']['rekeningOnderdrukken'])
+		{
+  		$pdfObject->rapport_naam1=$pdfObject->__appvar['consolidatie']['portefeuillenaam1'];
+  		$pdfObject->rapport_naam2=$pdfObject->__appvar['consolidatie']['portefeuillenaam2'];
+		}
+
+		$pdfObject->rapport_liquiditeiten_omschr = str_replace("{PortefeuilleVoorzet}",  $pdfObject->rapport_portefeuilleVoorzet, $pdfObject->rapport_liquiditeiten_omschr);
+
+		//rapport_risicoklasse
+		if(is_file($pdfObject->rapport_logo))
+		{
+			$tmp=base64_decode('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');
+
+			if($pdfObject->portefeuilledata['Accountmanager'] =='FL' && $pdfObject->rapport_type=='ORDERL')
+			{
+			$logo = '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';
+			$width = 100;
+			//$logopos = 297 / 2 - $width / 2;
+				$logopos = ($pdfObject->w / 2) - ($xSize / 2);
+			$pdfObject->memImage(base64_decode($logo),$logopos, 5,$width);
+
+			}
+			else
+			{
+				$factor=0.0268;
+				$xSize=448*$factor;
+				$ySize=448*$factor;
+        if ($pdfObject->rapport_type == "OIV")
+				{
+          $logopos = $pdfObject->w - $xSize - $pdfObject->marge;
+				}
+				else
+        {
+          $logopos = ($pdfObject->w / 2) - ($xSize / 2);
+        }
+				$pdfObject->MemImage($tmp, $logopos, 5, $xSize, $ySize);
+			}
+		}
+
+		if(isset($pdfObject->__appvar['consolidatie']))
+		{
+		  $db=new DB();
+		  $pdfObject->rapport_naam1='';
+      foreach ($pdfObject->portefeuilles as $index=>$portefeuille)
+      {
+        if(!isset($pdfObject->ALPConsolidatie[$portefeuille]))
+        {
+          $query="SELECT Client,Accountmanager,tweedeAanspreekpunt FROM Portefeuilles WHERE Portefeuille='$portefeuille'";
+          $db->SQL($query);
+          $pdata=$db->lookupRecord();
+          $query="SELECT Accountmanager,Naam FROM Accountmanagers WHERE Accountmanager IN('".$pdata['Accountmanager']."','".$pdata['tweedeAanspreekpunt']."')";
+          $db->SQL($query);
+          $db->Query();
+          while ($data=$db->nextRecord())
+          {
+            if($data['Accountmanager'] == $pdata['Accountmanager'])
+            	$pdata['Accountmanager']=$data['Naam'];
+            elseif($data['Accountmanager'] == $pdata['tweedeAanspreekpunt'])
+            	$pdata['tweedeAanspreekpunt']=$data['Naam'];
+          }
+          $pdfObject->ALPConsolidatie[$portefeuille]=$pdata;
+        }
+
+        if($index==0)
+        {
+          $pdfObject->portefeuilledata['AccountmanagerNaam']= $pdfObject->ALPConsolidatie[$portefeuille]['Accountmanager'];
+          $pdfObject->portefeuilledata['AccountmanagerNaam2']= $pdfObject->ALPConsolidatie[$portefeuille]['tweedeAanspreekpunt'];
+        }
+
+        $pdfObject->rapport_naam1 .= $pdfObject->ALPConsolidatie[$portefeuille]['Client'];
+        if($index != count($pdfObject->portefeuilles)-1)
+          $pdfObject->rapport_naam1.=", ";
+
+      }
+		}
+
+			if($pdfObject->rapport_type!='ORDERL' && $pdfObject->rapport_type!= 'ORDERPC')
+			{
+				$pdfObject->SetFont($pdfObject->rapport_font, '', $pdfObject->rapport_fontsize - 1);
+				$pdfObject->AutoPageBreak = false;
+				$pdfObject->SetXY(8, -10);
+				$pdfObject->MultiCell(240, 4, vertaalTekst('Aan deze opgave kunnen geen rechten worden ontleend.', $pdfObject->rapport_taal), '0', 'L');
+				$pdfObject->AutoPageBreak = true;
+				if($pdfObject->rapport_type == 'VHO')
+					$extraText=' ('.vertaalTekst('Historische kostprijs',$pdfObject->rapport_taal).')';
+				else
+					$extraText='';
+
+			$pdfObject->SetXY($pdfObject->marge,8);
+			$pdfObject->SetFont($pdfObject->rapport_font,'b',14);
+			$pdfObject->MultiCell(297-$pdfObject->marge*2,4,vertaalTekst($pdfObject->rapport_titel,$pdfObject->rapport_taal).$extraText,0,'L');
+			$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+			$pdfObject->SetXY($pdfObject->marge,14);
+
+				$naam1='';
+			if($pdfObject->portefeuilledata['ondernemingsvorm']=='Persoon')
+			{
+				if($pdfObject->portefeuilledata['Naam1'] <> '')
+				  $naam1 = "\n" . $pdfObject->portefeuilledata['Naam1'];
+			}
+			//elseif($pdfObject->portefeuilledata['verzendPaAanhef'])
+			//	$naam1="\n".$pdfObject->portefeuilledata['verzendPaAanhef'];
+
+		  $pdfObject->MultiCell(297 - $pdfObject->marge * 2, 4, $pdfObject->portefeuilledata['Naam'].$naam1, 0, 'L');
+			$pdfObject->SetXY(150,8);
+
+			if($pdfObject->rapport_type=='TRANS' || $pdfObject->rapport_type=='MUT')
+			{
+					$rapportagePeriode = "\n \nVerslagperiode: " .DatumFull_L72($pdfObject, $pdfObject->rapport_datumvanaf) . ' ' . vertaalTekst('t/m', $pdfObject->rapport_taal) . ' ' .DatumFull_L72($pdfObject, $pdfObject->rapport_datum);
+			}
+			else
+				$rapportagePeriode='';
+
+					$pdfObject->MultiCell(140, 4, vertaalTekst("Rapportagedatum:", $pdfObject->rapport_taal) . " " . DatumFull_L72($pdfObject, $pdfObject->rapport_datum) . $rapportagePeriode, 0, 'R');
+			//	echo 'a'.$pdfObject->rapport_type;exit;
+			//echo 'b'.$pdfObject->rapport_type;exit;
+			}
+
+
+		$pdfObject->SetXY(8,20);
+		$pdfObject->lastRapport=$pdfObject->rapport_type;
+    $pdfObject->lastPortefeuille=$pdfObject->portefeuilledata['Portefeuille'];
+			$pdfObject->headerStart = $pdfObject->getY()+16;
+    }
+   $pdfObject->SetTextColor($pdfObject->rapport_default_fontcolor['r'],$pdfObject->rapport_default_fontcolor['g'],$pdfObject->rapport_default_fontcolor['b']);
+}
+
+function DatumFull_L72($object,$julDatum)
+{
+	if($object->rapport_taal==1)
+	{
+		return vertaalTekst($object->__appvar["Maanden"][date("n", $julDatum)], $object->rapport_taal) . " " . date("d", $julDatum) . ", " . date("Y", $julDatum);
+	}
+	else
+	{
+			return date("d", $julDatum) .' '.vertaalTekst($object->__appvar["Maanden"][date("n", $julDatum)], $object->rapport_taal) . " ". date("Y", $julDatum);
+	}
+}
+function DatumShort_L72($object,$julDatum)
+{
+	if($object->rapport_taal==1)
+	{
+		return date("m-d-Y", $julDatum);
+	}
+	else
+	{
+		return date("d-m-Y", $julDatum);
+	}
+}
+
+function HeaderVKM_L72($object)
+{
+  $pdfObject = &$object;
+  $pdfObject->HeaderVKM();
+  
+}
+
+	function HeaderVKMS_L72($object)
+	{
+		$pdfObject = &$object;
+    $pdfObject->ln();
+    $widthBackup=$pdfObject->widths;
+    $dataWidth=array(28,50,20,20,20,20,20,18,18,18,18,18,15);
+    $pdfObject->SetWidths($dataWidth);
+    $pdfObject->SetAligns(array('L','L','R','R','R','R','R','R','R','R','R','R','R'));
+    $pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+    $pdfObject->ln();
+    $lastColors=$pdfObject->CellFontColor;
+    unset($pdfObject->CellFontColor);
+    unset($pdfObject->CellBorders);
+    if(!isset($pdfObject->vmkHeaderOnderdrukken))
+    {
+      unset($pdfObject->vmkHeaderOnderdrukken);
+
+    }
+    $pdfObject->widths=$widthBackup;
+    $pdfObject->CellFontColor=$lastColors;
+    $pdfObject->SetLineWidth(0.1);
+
+	}
+
+
+function HeaderDOORKIJK_L72($object)
+{
+  $pdfObject = &$object;
+}
+function HeaderOIV_L72($object)
+{
+  $pdfObject = &$object;
+}
+function HeaderDOORKIJKVR_L72($object)
+{
+  $pdfObject = &$object;
+}
+function HeaderZORG_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->HeaderZORG();
+
+}
+
+function HeaderSMV_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->ln();
+	$pdfObject->SetFont($pdfObject->rapport_font,'B',$pdfObject->rapport_fontsize);
+	$pdfObject->Row(array(vertaalTekst('Boekdatum',$pdfObject->rapport_taal),
+										vertaalTekst('Saldo',$pdfObject->rapport_taal),
+										vertaalTekst('Bedrag',$pdfObject->rapport_taal),
+										vertaalTekst('C/D',$pdfObject->rapport_taal),
+										vertaalTekst('GB',$pdfObject->rapport_taal),
+										vertaalTekst('Omschrijving',$pdfObject->rapport_taal)));
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+  function HeaderATT_L72($object)
+	{
+    $pdfObject = &$object;
+    $pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+    $pdfObject->ln();
+	}
+
+function HeaderPERFG_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+	$pdfObject->ln();
+}
+
+  function HeaderPERF_L72($object)
+	{
+  $pdfObject = &$object;
+	$pdfObject->ln();
+	$dataWidth=array(28,55,15,25,25,20,22,22,22,18,20);
+	$pdfObject->SetWidths($dataWidth);
+	$pdfObject->SetAligns(array('L','L','L','R','R','R','R','R','R','R','R','R'));
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+	$pdfObject->ln();
+	$lastColors=$pdfObject->CellFontColor;
+	unset($pdfObject->CellFontColor);
+	$pdfObject->Row(array(vertaalTekst("Risico\nCategorie",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Fonds",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Valuta",$pdfObject->rapport_taal),
+										"\n".DatumShort_L72($pdfObject,$pdfObject->rapport_datumvanaf),
+										"\n".DatumShort_L72($pdfObject,$pdfObject->rapport_datum),
+										"\n".vertaalTekst("Mutaties",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Resultaat",$pdfObject->rapport_taal),
+										vertaalTekst("Gemiddeld vermogen",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Resultaat %",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Weging",$pdfObject->rapport_taal),
+										vertaalTekst("Bijdrage",$pdfObject->rapport_taal)."\n".vertaalTekst("rendement",$pdfObject->rapport_taal)));
+	$pdfObject->CellFontColor=$lastColors;
+	$pdfObject->Line(($pdfObject->marge),$pdfObject->GetY(),$pdfObject->marge + array_sum($dataWidth),$pdfObject->GetY());
+	$pdfObject->SetLineWidth(0.1);
+	if(is_array($pdfObject->widthsBackup))
+		$pdfObject->widths=$pdfObject->widthsBackup;
+	// listarray($pdfObject->widths);echo "new page <br>\n";
+}
+
+function HeaderKERNZ_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+function HeaderRISK_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+function HeaderJOURNAAL_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+function HeaderTRANSFEE_L72($object)
+{
+	$pdfObject = &$object;
+	//$pdfObject->SetFont($pdfObject->rapport_font,$pdfObject->rapport_kop_fontstyle,$pdfObject->rapport_fontsize);
+	
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+
+
+	$pdfObject->SetX(100);
+		$pdfObject->MultiCell(100,4,vertaalTekst("Verslagperiode",$pdfObject->rapport_taal)." ".DatumFull_L72($pdfObject,$pdfObject->rapport_datumvanaf)." ".
+vertaalTekst("tot en met",$pdfObject->rapport_taal)." ".DatumFull_L72($pdfObject,$pdfObject->rapport_datum),0,'C');
+		$pdfObject->ln();
+	
+	
+	// achtergrond kleur
+	
+		$pdfObject->SetFillColor($pdfObject->rapport_kop_bgcolor[r],$pdfObject->rapport_kop_bgcolor[g],$pdfObject->rapport_kop_bgcolor[b]);
+		$pdfObject->Rect($pdfObject->marge, $pdfObject->getY(), array_sum($pdfObject->widthB), 16 , 'F');
+		$pdfObject->SetTextColor($pdfObject->rapport_kop_fontcolor[r],$pdfObject->rapport_kop_fontcolor[g],$pdfObject->rapport_kop_fontcolor[b]);
+		
+		// afdrukken header groups
+		$inkoop			= $pdfObject->marge + $pdfObject->widthB[0] + $pdfObject->widthB[1] + $pdfObject->widthB[2] + $pdfObject->widthB[3];
+		$inkoopEind = $inkoop + $pdfObject->widthB[4] + $pdfObject->widthB[5] + $pdfObject->widthB[6];
+		
+		$verkoop			= $inkoopEind;
+		$verkoopEind = $verkoop + $pdfObject->widthB[7] + $pdfObject->widthB[8] + $pdfObject->widthB[9];
+		
+	
+	$resultaat			= $verkoopEind;
+	$resultaatEind = $pdfObject->marge + array_sum($pdfObject->widthB);
+	
+	
+		$pdfObject->SetX($inkoop);
+		$pdfObject->Cell($inkoopEind - $inkoop,4, vertaalTekst("Gegevens inzake aankoop",$pdfObject->rapport_taal), 0,0, "C");
+		$pdfObject->SetX($verkoop);
+		$pdfObject->Cell($verkoopEind - $verkoop,4, vertaalTekst("Gegevens inzake verkoop",$pdfObject->rapport_taal), 0,0, "C");
+		$pdfObject->SetX($resultaat);
+		$pdfObject->Cell($resultaatEind - $resultaat,4, vertaalTekst("Resultaat bepaling",$pdfObject->rapport_taal), 0,0, "C");
+		$pdfObject->ln();
+	
+		$pdfObject->Line(($inkoop+2),$pdfObject->GetY(),$inkoopEind,$pdfObject->GetY());
+		$pdfObject->Line(($verkoop+2),$pdfObject->GetY(),$verkoopEind,$pdfObject->GetY());
+		$pdfObject->Line(($resultaat+2),$pdfObject->GetY(),$resultaatEind,$pdfObject->GetY());
+	
+	// bij layout 1 zit het % totaal
+	if($pdfObject->rapport_TRANS_procent == 1)
+		$procentTotaal = "%";
+	
+	$pdfObject->SetWidths($pdfObject->widthA);
+	$pdfObject->SetAligns($pdfObject->alignA);
+	
+		$pdfObject->row(array(vertaalTekst("Datum",$pdfObject->rapport_taal),
+								 vertaalTekst("Aan/ Ver Koop",$pdfObject->rapport_taal),
+								 vertaalTekst("Aantal",$pdfObject->rapport_taal),
+								 vertaalTekst("Fonds",$pdfObject->rapport_taal),
+								 vertaalTekst("Aankoop koers in valuta",$pdfObject->rapport_taal),
+								 vertaalTekst("Aankoop waarde in valuta",$pdfObject->rapport_taal),
+								 vertaalTekst("Aankoop waarde in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+								 vertaalTekst("Verkoop koers in valuta",$pdfObject->rapport_taal),
+								 vertaalTekst("Verkoop waarde in valuta",$pdfObject->rapport_taal),
+								 vertaalTekst("Verkoop waarde in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+								 vertaalTekst("Historische kostprijs in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+								 vertaalTekst("Resultaat voorafgaand verslagperiode",$pdfObject->rapport_taal),
+								 vertaalTekst("Resultaat gedurende verslagperiode",$pdfObject->rapport_taal),
+								 $procentTotaal));
+	
+	
+		$pdfObject->SetWidths($pdfObject->widthA);
+		$pdfObject->SetAligns($pdfObject->alignA);
+		$pdfObject->Line($pdfObject->marge,$pdfObject->GetY(),$pdfObject->marge + array_sum($pdfObject->widthB),$pdfObject->GetY());
+	
+}
+
+
+	function HeaderVOLK_L72($object)
+	{
+    $pdfObject = &$object;
+    $pdfObject->SetWidths(array(78,22,14,20,25,25,26,23,16,32));
+    $pdfObject->SetAligns(array('L','R','R','R','R','R','R','R','R','L'));
+    $pdfObject->ln();
+
+	}
+
+function HeaderOIB_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetWidths(array(78,22,14,20,25,25,26,23,16,32));
+	$pdfObject->SetAligns(array('L','R','R','R','R','R','R','R','R','L'));
+	$pdfObject->ln();
+
+}
+
+
+function HeaderOIS_L72($object)
+{
+  $pdfObject = &$object;
+}
+
+
+function HeaderOIH_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetWidths(array(78,22,14,20,25,25,26,23,16,32));
+	$pdfObject->SetAligns(array('L','R','R','R','R','R','R','R','R','L'));
+	$pdfObject->ln();
+
+}
+
+function HeaderVAR_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'B',$pdfObject->rapport_fontsize);
+	$pdfObject->SetWidths(array(79,12,1,16,21,21,25, 5,  20,20,20,20,20));
+
+	foreach ($pdfObject->widths as $id=>$waarde)
+	{
+		if($id < 1)
+			$positie['fondsStart'] +=$waarde;
+		if($id < 5)
+			$positie['fondsEind'] +=$waarde;
+		if($id < 8)
+		{
+			$positie['waardeStart'] +=$waarde;
+			if($id==7)
+			{
+				$positie['midden'] = $positie['waardeStart'] ;
+				$positie['midden'] -=$waarde/2;
+			}
+		}
+		if($id < 11)
+			$positie['waardeEind'] +=$waarde;
+//      echo "$id => $waarde \n<br>";
+	}
+	foreach ($positie as $key=>$value)
+		$positie[$key]+=$pdfObject->marge;
+
+	$y=$pdfObject->GetY()+5;
+	$pdfObject->pageTop=array($positie['midden'],$y+1);
+
+	$pdfObject->SetAligns(array('L','L','L','R','R','R','R', 'C'  ,'R','R','R','R','R','R'));
+	$pdfObject->CellBorders = array('U','U','U','U','U','U','U','U','U','U','U','U','U','U');
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+	$pdfObject->ln();
+	//$pdfObject->row(array("\nNaam","Rating instr.","Rating debiteur","\nValuta","\nNominaal","\nKoers","\nMarktwaarde",'',"Coupon\nYield","Yield to\nMaturity","Macaulay\nduration","Resterende\nlooptijd","%\nport."));
+
+
+	$pdfObject->row(array(
+										"\n".vertaalTekst("Naam",$pdfObject->rapport_taal),
+										vertaalTekst("Rating instr.",$pdfObject->rapport_taal),
+										'',
+										"\n".vertaalTekst("Valuta",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Nominaal",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Koers",$pdfObject->rapport_taal),
+										"\n".vertaalTekst("Marktwaarde",$pdfObject->rapport_taal),'',
+										vertaalTekst("Coupon",$pdfObject->rapport_taal)."\n".vertaalTekst("Yield",$pdfObject->rapport_taal),
+										vertaalTekst("Yield to",$pdfObject->rapport_taal)."\n".vertaalTekst("Maturity",$pdfObject->rapport_taal),
+										vertaalTekst("Modified",$pdfObject->rapport_taal)."\n".vertaalTekst("duration",$pdfObject->rapport_taal),
+										vertaalTekst("Resterende",$pdfObject->rapport_taal)."\n".vertaalTekst("looptijd",$pdfObject->rapport_taal),
+										vertaalTekst("%",$pdfObject->rapport_taal)."  \n".vertaalTekst("port.",$pdfObject->rapport_taal)));
+
+
+	unset($pdfObject->CellBorders);//"Modified\nduration",
+}
+		function HeaderHSE_L72($object)
+	{
+    $pdfObject = &$object;
+		//echo $pdfObject->marge." ";
+		//echo array_sum(array(74,22,25,18,25,30,25,20,36,2));exit;
+
+    $pdfObject->SetWidths(array(78,26,27,23,12,22,29,22,14,28,1));
+    $pdfObject->SetAligns(array('L','R','L','R','R','R','R','R','R','L','L'));
+    $pdfObject->ln();
+
+	}
+
+
+function HeaderORDERL_L72($object)
+{
+	$pdfObject = &$object;
+  $pdfObject->SetFont('arial', 'B', 10);
+	$width = 297-8;
+
+	if($pdfObject->portefeuilledata['Accountmanager'] =='FL')
+  	$pdfObject->portefeuilledata['VermogensbeheerderNaam']='Quercus Vermogensverwaltung';
+
+	$query = "SELECT Adres,Woonplaats FROM Vermogensbeheerders WHERE Vermogensbeheerder='" . $pdfObject->portefeuilledata['Vermogensbeheerder'] . "'";
+	$db = new DB();
+	$db->SQL($query);
+	$verm = $db->lookupRecord();
+	if ($pdfObject->page == 1)
+	{
+			$pdfObject->MultiCell($width - 2 * $pdfObject->marge, 5, $pdfObject->portefeuilledata['VermogensbeheerderNaam'] .
+																									"\n" . $verm['Adres'] .
+																									"\n" . $verm['Woonplaats'] .
+																									"\n T:" . $pdfObject->portefeuilledata['VermogensbeheerderTelefoon'] .
+																									"\n E:" . $pdfObject->portefeuilledata['VermogensbeheerderEmail'], 0, 'R');
+	}
+	else
+	{
+		$pdfObject->MultiCell($width - 2 * $pdfObject->marge, 5, $pdfObject->portefeuilledata['VermogensbeheerderNaam'], 0, 'R');
+	}
+	$pdfObject->SetY(25);
+}
+
+function HeaderORDERPC_L72($object)
+{
+	global $__appvar;
+	$pdfObject = &$object;
+	$pdfObject->SetFont('arial', '', 8);
+	$width = 210-8;
+
+	if($pdfObject->portefeuilledata['Accountmanager'] =='FL')
+		$pdfObject->portefeuilledata['VermogensbeheerderNaam']='Quercus';
+
+	//$query = "SELECT Adres,Woonplaats FROM Vermogensbeheerders WHERE Vermogensbeheerder='" . $pdfObject->portefeuilledata['Vermogensbeheerder'] . "'";
+	//$db = new DB();
+	//$db->SQL($query);
+	//$verm = $db->lookupRecord();
+	$pdfObject->SetY(10);
+	if ($pdfObject->page == 1)
+	{
+		$pdfObject->MultiCell($width - 2 * $pdfObject->marge, 5, "Telefoonnummer " .$pdfObject->portefeuilledata['VermogensbeheerderNaam'].": 088-6001633/639", 0, 'R');
+	}
+	else
+	{
+		$pdfObject->MultiCell($width - 2 * $pdfObject->marge, 5, $pdfObject->portefeuilledata['VermogensbeheerderNaam'], 0, 'R');
+	}
+
+
+	$pdfObject->SetWidths(array(110,30,52));
+	$pdfObject->SetAligns(array('L','L','L','L'));
+	$pdfObject->ln(4);
+	$pdfObject->CellBorders = array('','','U');
+	$pdfObject->row(array('','Datum:',date('d',db2jul($pdfObject->portefeuilledata['orderAdd_date'])).' '.vertaalTekst($__appvar["Maanden"][date("n",db2jul($pdfObject->portefeuilledata['orderAdd_date']))],$pdfObject->rapport_taal).' '.date('Y, H:i',db2jul($pdfObject->portefeuilledata['orderAdd_date']))." uur"));
+	$pdfObject->ln(4);
+	$pdfObject->SetWidths(array(110,30,30,12,10));
+	$pdfObject->CellBorders = array('','','U','','U');
+	$pdfObject->row(array('','Naam beheerder:',$pdfObject->orderData['beheerder1'],'Paraaf:',''));
+	$pdfObject->ln(2);
+	$pdfObject->row(array('','Naam beheerder:',$pdfObject->orderData['beheerder2'],'Paraaf:',''));
+	$pdfObject->ln(2);
+	$pdfObject->row(array('','Doorgegeven door:',$pdfObject->orderData['doorgegeven'],'Paraaf:',''));//$_SESSION['usersession']['gebruiker']['Naam']
+	$pdfObject->SetY(25);
+}
+
+function HeaderVHO_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetWidths(array(78,22,14,20,25,25,26,23,16,32));
+	$pdfObject->SetAligns(array('L','R','R','R','R','R','R','R','R','L'));
+	$pdfObject->ln();
+
+}
+
+function HeaderCASHY_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+function HeaderTRANS_L72($object)
+{
+	$pdfObject = &$object;
+	//$pdfObject->SetFont($pdfObject->rapport_font,'I',$pdfObject->rapport_fontsize);
+	//$pdfObject->Cell(140,4, $pdfObject->portefeuilledata['Client'], 0, 0,"L");
+	//$periode="Periode: ".date('d-m-Y',$pdfObject->rapport_datumvanaf)." t/m ".date('d-m-Y',$pdfObject->rapport_datum);
+	//$pdfObject->Cell(140,4, $periode, 0,0, "R");
+	$pdfObject->ln(5);
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+
+//	$pdfObject->HeaderTRANS();
+
+}
+function HeaderMUT_L72($object)
+{
+	$pdfObject = &$object;
+	//$pdfObject->SetFont($pdfObject->rapport_font,'I',$pdfObject->rapport_fontsize);
+	//$pdfObject->Cell(140,4, $pdfObject->portefeuilledata['Client'], 0, 0,"L");
+	//$periode="Periode: ".date('d-m-Y',$pdfObject->rapport_datumvanaf)." t/m ".date('d-m-Y',$pdfObject->rapport_datum);
+	//$pdfObject->Cell(140,4, $periode, 0,0, "R");
+	$pdfObject->ln(5);
+	$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+}
+
+  function HeaderAFM_L72($object)
+	{
+    $pdfObject = &$object;
+ //   $pdfObject->HeaderOIB();
+		$pdfObject->ln();
+		$pdfObject->SetFont($pdfObject->rapport_font,$pdfObject->rapport_kop_fontstyle,$pdfObject->rapport_fontsize);
+		$lijn1 			= $pdfObject->widthB[0]+$pdfObject->widthB[1];
+		$lijn1eind 	= $lijn1+$pdfObject->widthB[2] + $pdfObject->widthB[3] + $pdfObject->widthB[4] + $pdfObject->widthB[5];
+		// achtergrond kleur
+		$pdfObject->SetFillColor($pdfObject->rapport_kop_bgcolor[r],$pdfObject->rapport_kop_bgcolor[g],$pdfObject->rapport_kop_bgcolor[b]);
+		$pdfObject->Rect($pdfObject->marge, $pdfObject->getY(), array_sum($pdfObject->widthB), 8 , 'F');
+
+		$pdfObject->SetTextColor($pdfObject->rapport_kop_fontcolor[r],$pdfObject->rapport_kop_fontcolor[g],$pdfObject->rapport_kop_fontcolor[b]);
+    $pdfObject->SetX($pdfObject->marge+$lijn1+5);
+	  $pdfObject->MultiCell(90,4, vertaalTekst("Waarden",$pdfObject->rapport_taal), 0, "C");
+
+	  $pdfObject->Line(($pdfObject->marge+$lijn1+5),$pdfObject->GetY(),$pdfObject->marge + $lijn1eind,$pdfObject->GetY());
+
+	  $pdfObject->SetWidths($pdfObject->widthA);
+	  $pdfObject->SetAligns($pdfObject->alignA);
+		$pdfObject->row(array(vertaalTekst("AFM categorie",$pdfObject->rapport_taal),
+											vertaalTekst("Valutasoort",$pdfObject->rapport_taal),
+											vertaalTekst("in valuta",$pdfObject->rapport_taal),
+											vertaalTekst("in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+											vertaalTekst("in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+											vertaalTekst("in %",$pdfObject->rapport_taal)));
+ 		$pdfObject->SetFont($pdfObject->rapport_font,'',$pdfObject->rapport_fontsize);
+		$pdfObject->Line($pdfObject->marge,$pdfObject->GetY(),$pdfObject->marge + array_sum($pdfObject->widthB),$pdfObject->GetY());                     
+       
+      
+	}
+
+function HeaderOIR_L72($object)
+{
+	$pdfObject = &$object;
+	$pdfObject->ln();
+	$pdfObject->SetFont($pdfObject->rapport_font,$pdfObject->rapport_kop_fontstyle,$pdfObject->rapport_fontsize);
+
+	$huidige 			= $pdfObject->widthB[0]+$pdfObject->widthB[1]+$pdfObject->widthB[2];
+	$eindhuidige 	= $huidige +$pdfObject->widthB[3]+$pdfObject->widthB[4]+$pdfObject->widthB[5];
+
+	$actueel 			= $eindhuidige + $pdfObject->widthB[6];
+	$eindactueel 	= $actueel + $pdfObject->widthB[7] + $pdfObject->widthB[8] + $pdfObject->widthB[9];
+
+	$resultaat 		= $eindactueel + $pdfObject->widthB[10];
+	$eindresultaat = $resultaat +  $pdfObject->widthB[11] +  $pdfObject->widthB[12] +  $pdfObject->widthB[13]+  $pdfObject->widthB[14] +  $pdfObject->widthB[15];
+
+	// achtergrond kleur
+	$pdfObject->SetFillColor($pdfObject->rapport_kop_bgcolor[r],$pdfObject->rapport_kop_bgcolor[g],$pdfObject->rapport_kop_bgcolor[b]);
+	$pdfObject->Rect($pdfObject->marge, $pdfObject->getY(), array_sum($pdfObject->widthB), 16 , 'F');
+	$pdfObject->SetTextColor($pdfObject->rapport_kop_fontcolor[r],$pdfObject->rapport_kop_fontcolor[g],$pdfObject->rapport_kop_fontcolor[b]);
+
+
+	// lijntjes onder beginwaarde in het lopende jaar
+	$pdfObject->SetX($pdfObject->marge+$huidige+5);
+
+	if(substr(jul2form($pdfObject->rapport_datumvanaf),0,5) == '01-01')
+		$pdfObject->Cell(65,4, vertaalTekst("Beginwaarde in het lopende jaar",$pdfObject->rapport_taal), 0,0,"C");
+	else
+		$pdfObject->Cell(65,4, vertaalTekst("Beginwaarde rapportage periode",$pdfObject->rapport_taal), 0,0,"C");
+	$pdfObject->SetX($pdfObject->marge+$actueel);
+	$pdfObject->Cell(65,4, vertaalTekst("Actuele koers",$pdfObject->rapport_taal), 0,0, "C");
+	$pdfObject->SetX($pdfObject->marge+$resultaat);
+	$pdfObject->Cell(60,4, vertaalTekst("Resultaat",$pdfObject->rapport_taal), 0,1, "C");
+
+	$pdfObject->Line(($pdfObject->marge+$huidige+5),$pdfObject->GetY(),$pdfObject->marge + $eindhuidige,$pdfObject->GetY());
+	$pdfObject->Line(($pdfObject->marge+$actueel),$pdfObject->GetY(),$pdfObject->marge + $eindactueel,$pdfObject->GetY());
+	$pdfObject->Line(($pdfObject->marge+$resultaat),$pdfObject->GetY(),$pdfObject->marge + $eindresultaat,$pdfObject->GetY());
+
+
+	$pdfObject->SetWidths($pdfObject->widthB);
+	$pdfObject->SetAligns($pdfObject->alignB);
+
+	$y = $pdfObject->getY();
+
+
+	$pdfObject->row(array("",
+										"\n".vertaalTekst("Fondsomschrijving",$pdfObject->rapport_taal),
+										vertaalTekst("Aantal",$pdfObject->rapport_taal),
+										vertaalTekst("Per stuk in valuta",$pdfObject->rapport_taal),
+										vertaalTekst("Portefeuille in valuta",$pdfObject->rapport_taal),
+										vertaalTekst("Portefeuille in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+										"",
+										vertaalTekst("Per stuk in valuta",$pdfObject->rapport_taal),
+										vertaalTekst("Portefeuille in valuta",$pdfObject->rapport_taal),
+										vertaalTekst("Portefeuille in ".$pdfObject->rapportageValuta,$pdfObject->rapport_taal),
+										vertaalTekst("Aandeel op totaal",$pdfObject->rapport_taal),
+										vertaalTekst("Fonds-\nresultaat",$pdfObject->rapport_taal),
+										vertaalTekst("Valuta-\nresultaat",$pdfObject->rapport_taal),
+										vertaalTekst("Directe\nopbrengst",$pdfObject->rapport_taal),
+										vertaalTekst("in %",$pdfObject->rapport_taal)
+									));
+
+
+	$pdfObject->setY($y);
+	$pdfObject->SetFont($pdfObject->rapport_font,"bi",$pdfObject->rapport_fontsize);
+	$pdfObject->SetWidths($pdfObject->widthA);
+	$pdfObject->SetAligns($pdfObject->alignA);
+	$pdfObject->row(array(vertaalTekst("Categorie\n",$pdfObject->rapport_taal)));
+	$pdfObject->SetWidths($pdfObject->widthB);
+	$pdfObject->SetAligns($pdfObject->alignB);
+	$pdfObject->ln();
+	$pdfObject->ln();
+
+	$pdfObject->Line($pdfObject->marge,$pdfObject->GetY(),$pdfObject->marge + $eindresultaat,$pdfObject->GetY());
+	$pdfObject->ln();
+}
+
+
+
+if(!function_exists('getTypeGrafiekData'))
+{
+	function getTypeGrafiekData($object, $type, $extraWhere = '', $items = array())
+	{
+		global $__appvar;
+		$DB = new DB();
+		if (!is_array($object->pdf->grafiekKleuren))
+		{
+			$q = "SELECT grafiek_kleur FROM Vermogensbeheerders WHERE Vermogensbeheerder = '" . $object->pdf->portefeuilledata['Vermogensbeheerder'] . "'";
+			$DB->SQL($q);
+			$DB->Query();
+			$kleuren = $DB->LookupRecord();
+			$kleuren = unserialize($kleuren['grafiek_kleur']);
+			$object->pdf->grafiekKleuren = $kleuren;
+		}
+		$kleurVertaling = array('Beleggingscategorie' => 'OIB', 'Valuta' => 'OIV', 'Regio' => 'OIR', 'Beleggingssector' => 'OIS');
+		$kleuren = $object->pdf->grafiekKleuren[$kleurVertaling[$type]];
+
+		if (!isset($object->pdf->rapportageDatumWaarde) || $extraWhere != '')
+		{
+			$query = "SELECT SUM(actuelePortefeuilleWaardeEuro) AS totaal FROM TijdelijkeRapportage WHERE " .
+				" rapportageDatum = '" . $object->rapportageDatum . "' AND " .
+				" portefeuille = '" . $object->portefeuille . "' $extraWhere"
+				. $__appvar['TijdelijkeRapportageMaakUniek'];
+			$DB->SQL($query);
+			$DB->Query();
+			$portefwaarde = $DB->nextRecord();
+			$portTotaal = $portefwaarde['totaal'];
+			if ($extraWhere == '')
+			{
+				$object->pdf->rapportageDatumWaarde = $portTotaal;
+			}
+		}
+		else
+		{
+			$portTotaal = $object->pdf->rapportageDatumWaarde;
+		}
+
+		$query = "SELECT TijdelijkeRapportage.portefeuille, TijdelijkeRapportage." . $type . "Omschrijving as Omschrijving, TijdelijkeRapportage." . $type . " as type,SUM(TijdelijkeRapportage.actuelePortefeuilleWaardeEuro) AS subtotaalactueel  " .
+			" FROM TijdelijkeRapportage
+                        WHERE (TijdelijkeRapportage.portefeuille = '" . $object->portefeuille . "') AND " .
+			" TijdelijkeRapportage.rapportageDatum = '" . $object->rapportageDatum . "' $extraWhere"
+			. $__appvar['TijdelijkeRapportageMaakUniek'] .
+			" GROUP BY " . $type . "  ORDER BY TijdelijkeRapportage." . $type . "Volgorde";
+		debugSpecial($query, __FILE__, __LINE__);
+
+		$DB->SQL($query);
+		$DB->Query();
+
+		while ($categorien = $DB->NextRecord())
+		{
+			$object->pdf->veldOmschrijvingen[$type][$categorien['type']] = vertaalTekst($categorien['Omschrijving'], $object->pdf->rapport_taal);
+			if ($categorien['type'] == '')
+			{
+				$categorien['type'] = 'geenWaarden';
+			}
+
+			if (count($items) > 0 && !in_array($categorien['type'], $items))
+			{
+				$categorien['type'] = 'Overige';
+				$object->pdf->veldOmschrijvingen[$type][$categorien['type']] = 'Overige';
+				$kleuren[$categorien['type']] = array('R' => array('value' => 100), 'G' => array('value' => 100), 'B' => array('value' => 100));
+			}
+
+
+			$valutaData[$categorien['type']]['port']['waarde'] += $categorien['subtotaalactueel'];
+		}
+
+		foreach ($valutaData as $waarde => $data)
+		{
+			if (isset($data['port']['waarde']))
+			{
+				$veldnaam = $object->pdf->veldOmschrijvingen[$type][$waarde];
+				if ($veldnaam == '')
+				{
+					$veldnaam = 'Overige';
+				}
+
+				$typeData['port']['procent'][$waarde] = $data['port']['waarde'] / $portTotaal;
+				$typeData['port']['waarde'][$waarde] = $data['port']['waarde'];
+				$typeData['grafiek'][$veldnaam] = $typeData['port']['procent'][$waarde] * 100;
+
+				//if($veldnaam=='Overige' && isset($kleuren['Liquiditeiten']))
+				//  $waarde='Liquiditeiten';
+
+				$typeData['grafiekKleur'][] = array($kleuren[$waarde]['R']['value'], $kleuren[$waarde]['G']['value'], $kleuren[$waarde]['B']['value']);
+			}
+		}
+
+		$object->pdf->grafiekData[$type] = $typeData;
+
+	}
+}
+
+
+function printValutaPerformanceOverzicht_L72($object,$portefeuille, $rapportageDatum, $rapportageDatumVanaf,$omkeren=false)
+{
+	global $__appvar;
+	$object->ln();
+
+	$metJanuari = $object->rapport_valutaPerformanceJanuari;
+
+	if($metJanuari == true)
+	{
+		$julRapDatumVanaf = db2jul($rapportageDatumVanaf);
+		$rapJaar = date('Y',$julRapDatumVanaf);
+		$dagMaand = date('d-m',$julRapDatumVanaf);
+		$januariDatum = $rapJaar.'-01-01';
+		if($dagMaand =='01-01')
+			$metJanuari = false;
+	}
+
+	if($object->printValutaPerformanceOverzichtProcentTeken)
+		$teken = '%';
+	else
+		$teken = '';
+
+	// selecteer distinct valuta.
+	$q = "SELECT DISTINCT(TijdelijkeRapportage.valuta) AS val, Valutas.Omschrijving AS ValutaOmschrijving, TijdelijkeRapportage.actueleValuta,  TijdelijkeRapportage.rapportageDatum".
+		" FROM TijdelijkeRapportage, Valutas ".
+		" WHERE TijdelijkeRapportage.portefeuille = '".$portefeuille."' AND ".
+		" TijdelijkeRapportage.rapportageDatum = '".$rapportageDatum."' AND ". //OR TijdelijkeRapportage.rapportageDatum = '".$rapportageDatumVanaf."' )
+		" TijdelijkeRapportage.valuta <> '".$object->rapportageValuta."' AND ".
+		" TijdelijkeRapportage.valuta = Valutas.Valuta "
+		.$__appvar['TijdelijkeRapportageMaakUniek'].
+		" ORDER BY Valutas.Afdrukvolgorde asc, TijdelijkeRapportage.rapportageDatum";
+	debugSpecial($q,__FILE__,__LINE__);
+	$DB = new DB();
+	$DB->SQL($q);
+	$DB->Query();
+
+	if($DB->records() > 0)
+	{
+		while ($valuta = $DB->NextRecord())
+		{
+			$valutas[$valuta['val']][$valuta['rapportageDatum']]['omschrijving'] = $valuta['ValutaOmschrijving'];
+			$valutas[$valuta['val']][$valuta['rapportageDatum']]['koers'] = $valuta['actueleValuta'] / $object->ValutaKoersEind;
+		}
+
+		$valutaKeys = array_keys($valutas);
+		foreach ($valutaKeys as $valuta)
+		{
+			$query="SELECT Valutas.Omschrijving AS ValutaOmschrijving, Valutakoersen.Koers
+               FROM Valutas ,Valutakoersen
+               WHERE Valutas.valuta = Valutakoersen.valuta AND
+               Valutakoersen.datum <= date '".$rapportageDatumVanaf."' AND
+               Valutas.valuta = '".$valuta."'
+               ORDER BY Valutakoersen.datum desc LIMIT 1";
+			$DB->SQL($query);
+			$DB->Query();
+			$valutawaarden = $DB->NextRecord();
+
+			$valutas[$valuta][$rapportageDatumVanaf]['omschrijving'] = $valutawaarden['ValutaOmschrijving'];
+			$valutas[$valuta][$rapportageDatumVanaf]['koers'] = $valutawaarden['Koers'] / $object->ValutaKoersBegin;
+
+			if($metJanuari == true)
+			{
+				$query="SELECT Valutas.Omschrijving AS ValutaOmschrijving, Valutakoersen.Koers
+                 FROM Valutas ,Valutakoersen
+                 WHERE Valutas.valuta = Valutakoersen.valuta AND
+                 Valutakoersen.datum <= date '$januariDatum' AND
+                 Valutas.valuta = '".$valuta."'
+                 ORDER BY Valutakoersen.datum desc LIMIT 1";
+				$DB->SQL($query);
+				$DB->Query();
+				$valutawaarden = $DB->NextRecord();
+
+				$valutas[$valuta][$januariDatum]['omschrijving'] = $valutawaarden['ValutaOmschrijving'];
+				$valutas[$valuta][$januariDatum]['koers'] = $valutawaarden['Koers'] / $object->ValutaKoersStart;
+				$extraBreedte = 50;
+			}
+		}
+		//listarray($valutas);
+		$kop = "Valuta";
+
+		$regels = count($valutas);
+		$hoogte = ($regels * 4) + 8;
+		if(($object->GetY() + $hoogte) > $object->pagebreak)
+		{
+			$object->AddPage();
+			$object->ln();
+		}
+
+		$object->ln();
+		$object->SetFillColor($object->rapport_kop_bgcolor[r],$object->rapport_kop_bgcolor[g],$object->rapport_kop_bgcolor[b]);
+		//$object->Rect($object->marge,$object->getY(),110+$extraBreedte,$hoogte,'F');
+		$object->SetFillColor(0);
+	//	$object->Rect($object->marge,$object->getY(),110+$extraBreedte,$hoogte);
+		$object->SetX($object->marge);
+
+		// kopfontcolor
+		$object->SetTextColor($object->rapport_kop_fontcolor[r],$object->rapport_kop_fontcolor[g],$object->rapport_kop_fontcolor[b]);
+		$object->SetFont($object->rapport_kop4_font,$object->rapport_kop4_fontstyle,$object->rapport_kop4_fontsize);
+		$object->Cell(40,4, vertaalTekst($kop,$object->rapport_taal), 0,0, "L");
+
+		$object->SetFont($object->rapport_font,$object->rapport_fontstyle,$object->rapport_fontsize);
+		$object->SetTextColor($object->rapport_kop_fontcolor[r],$object->rapport_kop_fontcolor[g],$object->rapport_kop_fontcolor[b]);
+		if($metJanuari == true)
+			$object->Cell(23,4, date("d-m-Y",db2jul($januariDatum)), 0,0, "R");
+		$object->Cell(23,4, date("d-m-Y",db2jul($rapportageDatumVanaf)), 0,0, "R");
+		$object->Cell(23,4, date("d-m-Y",db2jul($rapportageDatum)), 0,0, "R");
+		if($metJanuari == true)
+		{
+			$object->Cell(23,4, vertaalTekst("Performance",$object->rapport_taal), 0,0, "R");
+			$object->Cell(23,4, vertaalTekst("Jaar Perf.",$object->rapport_taal), 0,1, "R");
+		}
+		else
+			$object->Cell(23,4, vertaalTekst("Performance",$object->rapport_taal), 0,1, "R");
+
+
+
+		while (list($key, $data) = each($valutas))
+		{
+			$performance = ($data[$rapportageDatum]['koers'] - $data[$rapportageDatumVanaf]['koers']) / ($data[$rapportageDatumVanaf]['koers']/100 );
+//echo 		"	$performance = (".$data[$rapportageDatum]['koers']." - ".$data[$rapportageDatumVanaf]['koers'].") / (".$data[$rapportageDatumVanaf]['koers']."/100 );";
+			$object->Cell(40,4, vertaalTekst($data[$rapportageDatumVanaf]['omschrijving'],$object->rapport_taal), 0,0, "L");
+			if($metJanuari == true)
+			{
+				if($omkeren==true)
+					$object->Cell(23,4, $object->formatGetal(1/$data[$januariDatum]['koers'],4), 0,0, "R");
+				else
+					$object->Cell(23,4, $object->formatGetal($data[$januariDatum]['koers'],4), 0,0, "R");
+			}
+			if($omkeren==true)
+				$object->Cell(23,4, $object->formatGetal(1/$data[$rapportageDatumVanaf]['koers'],4), 0,0, "R");
+			else
+				$object->Cell(23,4, $object->formatGetal($data[$rapportageDatumVanaf]['koers'],4), 0,0, "R");
+			if($omkeren==true)
+				$object->Cell(23,4, $object->formatGetal(1/$data[$rapportageDatum]['koers'],4), 0,0, "R");
+			else
+				$object->Cell(23,4, $object->formatGetal($data[$rapportageDatum]['koers'],4), 0,0, "R");
+			if($metJanuari == true)
+			{
+				$object->Cell(23,4, $object->formatGetal($performance,2).$teken, 0,0, "R");
+				$performanceJaar = ($data[$rapportageDatum]['koers'] - $data[$januariDatum]['koers']) / ($data[$januariDatum]['koers']/100 );
+				$object->Cell(23,4, $object->formatGetal($performanceJaar,2).$teken, 0,1, "R");
+			}
+			else
+				$object->Cell(23,4, $object->formatGetal($performance,2).$teken, 0,1, "R");
+		}
+		$object->ln();
+		$object->ln();
+	}
+}
+
+if(!function_exists('getOnttrekkingenKruis'))
+{
+	function getOnttrekkingenKruis($portefeuille, $van, $tot, $valuta = 'EUR', $kruispostOphalen = false)
+	{
+		if ($valuta != "EUR")
+		{
+			$koersQuery = " / (SELECT Koers FROM Valutakoersen WHERE Valuta='" . $valuta . "' AND Datum <= Rekeningmutaties.Boekdatum ORDER BY Datum DESC LIMIT 1 ) ";
+		}
+		else
+		{
+			$koersQuery = "";
+		}
+
+		$query = "SELECT " .
+			"SUM((ABS(Rekeningmutaties.Debet) * Rekeningmutaties.Valutakoers)$koersQuery) AS subdebet , " .
+			"SUM((ABS(Rekeningmutaties.Credit) * Rekeningmutaties.Valutakoers)$koersQuery) AS subcredit " .
+			"FROM Rekeningmutaties, Rekeningen, Portefeuilles " .
+			"WHERE " .
+			"Rekeningmutaties.Rekening = Rekeningen.Rekening AND " .
+			"Rekeningen.Portefeuille = '" . $portefeuille . "' AND " .
+			"Rekeningen.Portefeuille = Portefeuilles.Portefeuille AND " .
+			"Rekeningmutaties.Verwerkt = '1' AND " .
+			"Rekeningmutaties.Boekdatum > '" . $van . "' AND " .
+			"Rekeningmutaties.Boekdatum <= '" . $tot . "' AND " .
+			"Rekeningmutaties.Grootboekrekening IN ";
+		$DB = new DB();
+		$DB->SQL($query . "(SELECT Grootboekrekening FROM Grootboekrekeningen WHERE Onttrekking=1)");
+		$DB->Query();
+		$data = $DB->nextRecord();
+		$onttrekking = 0;
+		$kruispost = 0;
+		$onttrekking = $data['subdebet'] - $data['subcredit'];
+		if ($kruispostOphalen == true)
+		{
+			$DB->SQL($query . "('KRUIS')");
+			$DB->Query();
+			$data = $DB->nextRecord();
+			$kruispost += $data['subdebet'];
+		}
+
+		return array('onttrekking' => $onttrekking, 'kruispost' => $kruispost);
+	}
+}
+
+
+if(!function_exists('getStortingenKruis'))
+{
+	function getStortingenKruis($portefeuille, $van, $tot, $valuta = 'EUR', $kruispostOphalen = false)
+	{
+		if ($valuta != "EUR")
+		{
+			$koersQuery = " / (SELECT Koers FROM Valutakoersen WHERE Valuta='" . $valuta . "' AND Datum <= Rekeningmutaties.Boekdatum ORDER BY Datum DESC LIMIT 1 ) ";
+		}
+		else
+		{
+			$koersQuery = "";
+		}
+
+		$query = "SELECT " .
+			"SUM((ABS(Rekeningmutaties.Credit) * Rekeningmutaties.Valutakoers)$koersQuery) AS subcredit , " .
+			"SUM((ABS(Rekeningmutaties.Debet) * Rekeningmutaties.Valutakoers)$koersQuery) AS subdebet " .
+			"FROM Rekeningmutaties, Rekeningen, Portefeuilles " .
+			"WHERE " .
+			"Rekeningmutaties.Rekening = Rekeningen.Rekening AND " .
+			"Rekeningen.Portefeuille = '" . $portefeuille . "' AND " .
+			"Rekeningen.Portefeuille = Portefeuilles.Portefeuille AND " .
+			"Rekeningmutaties.Verwerkt = '1' AND " .
+			"Rekeningmutaties.Boekdatum > '" . $van . "' AND " .
+			"Rekeningmutaties.Boekdatum <= '" . $tot . "' AND " .
+			"Rekeningmutaties.Grootboekrekening IN";
+		$DB = new DB();
+		$DB->SQL($query . " (SELECT Grootboekrekening FROM Grootboekrekeningen WHERE Storting=1)");
+		$DB->Query();
+		$data = $DB->nextRecord();
+		$storting = 0;
+		$kruispost = 0;
+		$storting = $data['subcredit'] - $data['subdebet'];
+		if ($kruispostOphalen == true)
+		{
+			$DB->SQL($query . "('KRUIS')");
+			$DB->Query();
+			$data = $DB->nextRecord();
+			$kruispost += $data['subcredit'];
+		}
+
+		return array('storting' => $storting, 'kruispost' => $kruispost);
+	}
+}
+
+
+
+?>

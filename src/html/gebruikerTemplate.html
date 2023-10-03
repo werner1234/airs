@@ -1,0 +1,445 @@
+<br/>
+<style>
+  .wwbDialog {
+    width: 600px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    margin-bottom: 25px;
+    box-shadow: 2px 2px 5px 2px #808080;
+    background-image: -webkit-gradient(linear, top, bottom, color-stop(0, #B0E0E6), color-stop(1, #F5F5F5));
+    background-image: -o-linear-gradient(top, #B0E0E6, #F5F5F5);
+    background-image: -moz-linear-gradient(top, #B0E0E6, #F5F5F5);
+    background-image: -webkit-linear-gradient(top, #B0E0E6, #F5F5F5);
+    background-image: linear-gradient(to bottom, #B0E0E6, #F5F5F5);
+    font-weight: bold;
+  }
+</style>
+
+{wwb}
+<div class="tabbuttonRow">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('0')" id="tabbutton0" value="[vt]Algemeen[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('2')" id="tabbutton2" value="[vt]Details[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('1')" id="tabbutton1" value="[vt]Rechten[/vt]">
+</div>
+
+<form name="editForm" id="editForm" action="{updateScript}" method="POST">
+  <div class="form">
+    <input type="hidden" name="action" id="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    <input type="hidden" name="wwReset" id="wwReset" value="false">
+    {id_inputfield}
+
+    <div id='tab0' class="tabblad">
+      <div class="form">
+        <fieldset id="rechten" style="width:800">
+          <legend>[vt]Algemeen[/vt]</legend>
+
+          <div class="formblock">
+            <div class="formlinks">&nbsp;</div>
+            <div class="formrechts">
+              {smsCodes}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="Gebruiker">{Gebruiker_description}</label></div>
+            <div class="formrechts">
+              {Gebruiker_inputfield} {Gebruiker_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="Naam">{Naam_description}</label></div>
+            <div class="formrechts">
+              {Naam_inputfield} {Naam_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="EmailAdres">{emailAdres_description} ([vt]terugmelding verwerkte records[/vt])</label></div>
+            <div class="formrechts">
+              {emailAdres_inputfield} {emailAdres_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="Titel">{mobiel_description}</label></div>
+            <div class="formrechts">
+              {mobiel_inputfield} {mobiel_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="Titel">{taal_description}</label></div>
+            <div class="formrechts">
+              {taal_inputfield} {taal_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="Wachtwoord">{Wachtwoord_description}</label></div>
+            <div class="formrechts">
+              {Wachtwoord_inputfield} {Wachtwoord_error} {WWreset}
+            </div>
+          </div>
+
+
+
+          <div class="formblock">
+            <div class="formlinks"><label for="updateInfoAan">{updateInfoAan_description}</label></div>
+            <div class="formrechts">
+              {updateInfoAan_inputfield} {updateInfoAan_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="bgkleur">{bgkleur_description}</label></div>
+            <div class="formrechts">
+              {bgkleur_inputfield} {bgkleur_error}
+            </div>
+            </a>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="emailHandtekening">{emailHandtekening_description}</label></div>
+            <div class="formrechts">
+              {emailHandtekening_inputfield} {emailHandtekening_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">&nbsp;</div>
+            <div class="formrechts">
+              {change_user_value} {change_date_value}
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <!-- new tab -->
+    <div id='tab1' class="tabblad">
+      <div class="form">
+
+        <fieldset id="rechten_algemeen" style="width:800">
+          <legend>[vt]Algemeen[/vt]</legend>
+          <div class="formblock">
+            <div class="formlinks"><label for="Gebruikersbeheer">{Gebruikersbeheer_description}</label></div>
+            <div class="formrechts">
+              {Gebruikersbeheer_inputfield} {Gebruikersbeheer_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="Beheerder">{Beheerder_description}</label></div>
+            <div class="formrechts">
+              {Beheerder_inputfield} {Beheerder_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="CRMeigenRecords">{CRMxlsExport_description}</label></div>
+            <div class="formrechts">
+              {CRMxlsExport_inputfield} {CRMxlsExport_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{Accountmanager_description}</div>
+            <div class="formrechts">
+              {Accountmanager_inputfield} {Accountmanager_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks">{overigePortefeuilles_description}</div>
+            <div class="formrechts">
+              {overigePortefeuilles_inputfield} {overigePortefeuilles_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="beperkingOpheffen">{beperkingOpheffen_description}</label></div>
+            <div class="formrechts">
+              {beperkingOpheffen_inputfield} {beperkingOpheffen_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="verzendRechten">{verzendrechten_description}</label></div>
+            <div class="formrechts">
+              {verzendrechten_inputfield} {verzendrechten_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="rechtenExterneQueries">{rechtenExterneQueries_description}</label></div>
+            <div class="formrechts">
+              {rechtenExterneQueries_inputfield} {rechtenExterneQueries_error}
+            </div>
+          </div>
+
+
+        </fieldset>
+
+        <fieldset id="rechten_CRM" style="width:800">
+          <legend>[vt]CRM[/vt]</legend>
+          <div class="formblock">
+            <div class="formlinks"><label for="CRMlevel">{CRMlevel_description}</label></div>
+            <div class="formrechts">
+              {CRMlevel_inputfield} {CRMlevel_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="CRMlevel">{crmImport_description}</label></div>
+            <div class="formrechts">
+              {crmImport_inputfield} {crmImport_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="bestandsvergoedingEdit">{bestandsvergoedingEdit_description}</label>
+            </div>
+            <div class="formrechts">
+              {bestandsvergoedingEdit_inputfield} {bestandsvergoedingEdit_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="participanten">{participanten_description}</label></div>
+            <div class="formrechts">
+              {participanten_inputfield} {participanten_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="urenregistratie">{urenregistratie_description}</label></div>
+            <div class="formrechts">
+              {urenregistratie_inputfield} {urenregistratie_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="CRMeigenRecords">{CRMeigenRecords_description}</label></div>
+            <div class="formrechts">
+              {CRMeigenRecords_inputfield} {CRMeigenRecords_error}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"> [vt]Relatiesoorten[/vt]</div>
+            <div class="formrechts">
+              <table border="0">
+                <form action="<?=$PHP_SELF?>" name="editForm" method="POST">
+                  <input type="hidden" name="fillin" value="true">
+                  <tr>
+                    <td>
+                      <b>[vt]Geen toegang tot[/vt]</b>
+                    </td>
+
+                    <td>&nbsp;</td>
+                    <td>
+                      <b>[vt]Toegang tot[/vt]</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="style2" valign="top">
+                        <select name="geenToegang[]" size="10" multiple style="width:120px">
+                          {geenToegang}
+                        </select>
+                      </div>
+                    </td>
+                    <td valign="top" width="30">
+                      <br><br>
+                      <a href="javascript:moveItem(document.editForm['geenToegang[]'],document.editForm['welToegang[]']);"><img src="images/16/pijl_rechts.png" width="16" height="16" border="0" alt="[vt]toevoegen[/vt]" align="absmiddle"></a>
+
+                      <br><br>
+                      <a href="javascript:moveItem(document.editForm['welToegang[]'],document.editForm['geenToegang[]']);"><img src="images/16/pijl_links.png" width="16" height="16" border="0" alt="[vt]verwijderen[/vt]" align="absmiddle"></a>
+                    </td>
+                    <td>
+                      <select name="welToegang[]" size="10" multiple style="width:120px">
+                        {welToegang}
+                      </select>
+                    </td>
+                  <tr>
+                </form>
+              </table>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <fieldset id="rechten_Mutaties" style="width:800">
+          <legend>[vt]Mutaties aanleveren[/vt]</legend>
+          <div class="formblock">
+            <div class="formlinks"><label for="mutatiesAanleveren">{mutatiesAanleveren_description}</label></div>
+            <div class="formrechts">
+              {mutatiesAanleveren_inputfield} {mutatiesAanleveren_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="fondsmutatiesAanleveren">{fondsmutatiesAanleveren_description}</label>
+            </div>
+            <div class="formrechts">
+              {fondsmutatiesAanleveren_inputfield} {fondsmutatiesAanleveren_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="fondsaanvragenAanleveren">{fondsaanvragenAanleveren_description}</label>
+            </div>
+            <div class="formrechts">
+              {fondsaanvragenAanleveren_inputfield} {fondsaanvragenAanleveren_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="portefeuilledetailsAanleveren">{portefeuilledetailsAanleveren_description}</label>
+            </div>
+            <div class="formrechts">
+              {portefeuilledetailsAanleveren_inputfield} {portefeuilledetailsAanleveren_error}
+            </div>
+          </div>
+  
+          <div class="formblock">
+            <div class="formlinks">{internePortefeuilles_description}</div>
+            <div class="formrechts">
+              {internePortefeuilles_inputfield} {internePortefeuilles_error}
+            </div>
+          </div>
+
+        </fieldset>
+
+        <fieldset id="rechten_order" style="width:800">
+          <legend>Orders</legend>
+
+
+          <div class="formblock">
+            <div class="formlinks"><label for="orderRechten">{orderRechten_description}</label></div>
+            <div class="formrechts">
+              {orderRechten}
+            </div>
+          </div>
+
+          <div class="formblock">
+            <div class="formlinks"><label for="ordersNietAanmaken">{ordersNietAanmaken_description}</label></div>
+            <div class="formrechts">
+              {ordersNietAanmaken_inputfield} {ordersNietAanmaken_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="ordersNietVerwerken">{ordersNietVerwerken_description}</label></div>
+            <div class="formrechts">
+              {ordersNietVerwerken_inputfield} {ordersNietVerwerken_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="orderdesk">{orderdesk_description}</label></div>
+            <div class="formrechts">
+              {orderdesk_inputfield} {orderdesk_error}
+            </div>
+          </div>
+          <div class="formblock">
+            <div class="formlinks"><label for="orderdesk">{orderbeheerder_description}</label></div>
+            <div class="formrechts">
+              {orderbeheerder_inputfield} {orderbeheerder_error}
+            </div>
+          </div>
+        </fieldset>
+  
+  
+        <fieldset id="email_rechten" style="width:800">
+          <legend>[vt]eMails[/vt]</legend>
+          <div class="formblock">
+            <div class="formlinks"><label for="emailRechten">{emailRechten_description}</label></div>
+            <div class="formrechts">
+              {emailRechten}
+            </div>
+          </div>
+        </fieldset>
+        
+
+      </div>
+    </div>
+
+    <!-- new tab -->
+    <div id='tab2' class="tabblad">
+      <div class="form">
+        <fieldset id="details" style="width:800px">
+          <div class="form">
+            <div class="formblock">
+              <div class="formlinks"><label for="titel">{titel_description}</label></div>
+              <div class="formrechts">
+                {titel_inputfield} {titel_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="voornamen">{voornamen_description}</label></div>
+              <div class="formrechts">
+                {voornamen_inputfield} {voornamen_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="tussenvoegsel">{tussenvoegsel_description}</label></div>
+              <div class="formrechts">
+                {tussenvoegsel_inputfield} {tussenvoegsel_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="achternaam">{achternaam_description}</label></div>
+              <div class="formrechts">
+                {achternaam_inputfield} {achternaam_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="geboortedatum">{geboortedatum_description}</label></div>
+              <div class="formrechts">
+                {geboortedatum_inputfield} {geboortedatum_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="paspoortNummer">{paspoortNummer_description}</label></div>
+              <div class="formrechts">
+                {paspoortNummer_inputfield} {paspoortNummer_error}
+              </div>
+            </div>
+            <div class="formblock">
+              <div class="formlinks"><label for="paspoortGeldigTot">{paspoortGeldigTot_description}</label></div>
+              <div class="formrechts">
+                {paspoortGeldigTot_inputfield} {paspoortGeldigTot_error}
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+<div class="AIRSdatepicker" style="display:none"></div>
+
+<script language="JavaScript" type="text/javascript">
+  function doEditorOnload()
+  {
+    loadEditor('emailHandtekening', 300, 800);
+  }
+
+  $(document).ready(function ()
+  {
+
+    $("#btnWwReset").click(function (e)
+    {
+      e.preventDefault();
+      $("#wwReset").val("true");
+      $("#action").val("updateStay");
+      $("#editForm").submit();
+    });
+    $("#btnTfaReset").click(function (e)
+    {
+      e.preventDefault();
+      $("#wwReset").val("tfa");
+      $("#action").val("updateStay");
+      $("#editForm").submit();
+    });
+  });
+</script>

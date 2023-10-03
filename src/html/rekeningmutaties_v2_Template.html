@@ -1,0 +1,85 @@
+<script type="text/javascript">
+
+  function checkValues()
+  {
+    return true;
+  }
+</script>
+
+
+<br>{AEMessages}{invulScr}
+<form name="afschriftForm" id="afschriftForm">
+  
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="afschrift_id" value="{aId}">
+  <input type="hidden" name="Rekening" value="{aRekening}">
+  <input type="hidden" name="Afschriftnummer" value="{aAfschriftnummer}">
+  <input type="hidden" name="type" value="{type}">
+  
+  <fieldset id="mutationFieldset" title="Rekeningafschrift" class="{fieldsetClass}">
+    <legend accesskey="R"><strong>[vt]Afschrift[/vt]</strong></legend>
+    <table width="100%" border="0" cellspacing="0" cellspadding="0">
+      <tr>
+        <td>{changeAfschrift}</td>
+        <td width="150" class="list_kopregel_data">[vt]Rekening[/vt]</td>
+        <td width="120" class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td width="120" class="list_kopregel_data">[vt]Afschriftnummer[/vt]</td>
+        <td width="100" class="list_kopregel_data">{txtSaldo}</td>
+        <td width="100" class="list_kopregel_data">{txtNieuwSaldo}</td>
+        <td align="right"><b>[vt]Totaal mutatie[/vt]: </b></td>
+        <td><input type="text" name="totaalMutatie" value="{aTotaal}" size="12" align="right" disabled> </td>
+        <td align="left" rowspan="3">{balanceAccount} {counterRules} &nbsp;</td>
+      </tr>
+      <tr>
+        <td style="width: 100px;">{deleteAfschrift}</td>
+        <td>{aRekening}<input type="hidden" name="editRekening" value="{aRekening}"><input type="hidden" id="isMemoriaal" name="Memoriaal" value="{Memoriaal}"><input type="hidden" id="isAfschriftId" name="afschriftId" value="{aId}"></td>
+        <td>{aDatum}</td>
+        <td>{aAfschriftnummer}<input type="hidden" name="editAfschriftNummer" value="{aAfschriftnummer}"></td>
+        <td>{aSaldo}</td>
+        <td>{aNieuwSaldo}</td>
+        <td align="right"><b>[vt]Mutatie verschil[/vt]: </b></td>
+        <td width="150"><input type="text" name="mutatieVerschil" value="{mutatieVerschil}" size="12" align="right" disabled> </td>
+      </tr>
+      
+      <tr>
+        <td colspan="6">[vt]druk op[/vt] <i>Insert</i> [vt]voor nieuw afschrift[/vt].</td>
+        <td align="right" colspan="2" >{mutationDifferenceMessage}</td>
+      </tr>
+    </table>
+    
+  </fieldset>
+</form>
+<div id="radio-select">{radio_select}</div>
+<br />
+<div id="radio-messages"></div>
+<div id="radio-result">{memoriaal}</div>        
+
+
+<br />
+<fieldset style="padding:0px;" title="[vt]Afschriftregels[/vt]">
+  <legend style="margin-left: 10px;">
+    <strong>[vt]Afschriftregels[/vt]</strong>
+    <!--<button type="button" id="reload-frame1" class="btn btn-default btn-xs">Verversen</button>-->
+  </legend>
+  <iframe 
+    src="{listurl}?afschrift_id={aId}&type={type}&mutatieId={mutatieId}"
+    width="100%" 
+    height="400" 
+    marginwidth="0" 
+    id="rules" 
+    marginheight="0" 
+    hspace="0" 
+    vspace="0" 
+    align="middle" 
+    frameborder="0">
+  </iframe>
+</fieldset>
+
+<script>
+  $(function() {
+    $('#balanceAccount').on('click', function () {
+      $('#afschriftForm input[name="action"]').val('opheffen');
+      $('#afschriftForm').submit();
+    });
+  });
+</script>

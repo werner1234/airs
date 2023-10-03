@@ -1,0 +1,205 @@
+<script>
+  function fondssoortChange()
+  {
+    if($("#fondssoort").val()=='OPT')
+    {
+      $('#perStuk').show();
+      $('#brokerPerStuk').show();
+
+
+    }
+    else
+    {
+      $('#perStuk').hide();
+      $('#brokerPerStuk').hide();
+      $('#prijsPerStukBroker').val('');
+      $('#prijsPerStuk').val('');
+    }
+  }
+
+
+  function berekenwijzeChange()
+  {
+    var berekenwijze=$("#berekenwijze").val();
+    if(berekenwijze=='1' || berekenwijze=='2')
+    {
+      $('#kostenpercentage').val('');
+    }
+
+  }
+
+  function initKostenFields()
+  {
+    fondssoortChange();
+    berekenwijzeChange();
+  }
+
+
+</script>
+
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="vermogensbeheerder">{vermogensbeheerder_description}</label></div>
+      <div class="formrechts">
+        {vermogensbeheerder_inputfield} {vermogensbeheerder_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="portefeuille">{portefeuille_description}</label></div>
+      <div class="formrechts">
+        {portefeuille_inputfield} {portefeuille_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="fondssoort">{fondssoort_description}</label></div>
+      <div class="formrechts">
+        {fondssoort_inputfield} {fondssoort_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="valuta">{valuta_description}</label></div>
+      <div class="formrechts">
+        {valuta_inputfield} {valuta_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="beursregio">{beursregio_description}</label></div>
+      <div class="formrechts">
+        {beursregio_inputfield} {beursregio_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="transactievorm">{transactievorm_description}</label></div>
+      <div class="formrechts">
+        {transactievorm_inputfield} {transactievorm_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="berekenwijze">{berekenwijze_description}</label></div>
+      <div class="formrechts">
+        {berekenwijze_inputfield} {berekenwijze_error}
+      </div>
+    </div>
+
+    <fieldset id="kostenField" style="width:500px;">
+      <legend>[vt]TRANSACTIEKOSTEN[/vt] </legend>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="kostenpercentage">{kostenpercentage_description}</label></div>
+        <div class="formrechts">
+          {kostenpercentage_inputfield} {kostenpercentage_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="kostenminimumbedrag">{kostenminimumbedrag_description}</label></div>
+        <div class="formrechts">
+          {kostenminimumbedrag_inputfield} {kostenminimumbedrag_error}
+        </div>
+      </div>
+      <div class="formblock" id="perStuk">
+        <div class="formlinks"><label for="prijsPerStuk">{prijsPerStuk_description}</label></div>
+        <div class="formrechts">
+          {prijsPerStuk_inputfield} {prijsPerStuk_error}
+        </div>
+      </div>
+
+    </fieldset>
+
+
+    <fieldset id="kostenBrokerField" style="width:500px;">
+      <legend>[vt]BROKERKOSTEN[/vt]  </legend>
+      <div class="formblock">
+        <div class="formlinks"><label for="brokerkostenpercentage">{brokerkostenpercentage_description}</label></div>
+        <div class="formrechts">
+          {brokerkostenpercentage_inputfield} {brokerkostenpercentage_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks"><label for="brokerkostenminimumbedrag">{brokerkostenminimumbedrag_description}</label>
+        </div>
+        <div class="formrechts">
+          {brokerkostenminimumbedrag_inputfield} {brokerkostenminimumbedrag_error}
+        </div>
+      </div>
+      <div class="formblock" id="brokerPerStuk">
+        <div class="formlinks"><label for="prijsPerStuk">{prijsPerStukBroker_description}</label></div>
+        <div class="formrechts">
+          {prijsPerStukBroker_inputfield} {prijsPerStukBroker_error}
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset id="staffelField" style="width:500px;">
+      <legend>[vt]STAFFEL[/vt]</legend>
+      <table>
+        <tr>
+          <td>[vt]Waarde t/m[/vt]</td>
+          <td>[vt]Percentage[/vt]</td>
+        </tr>
+        <tr>
+          <td>{staffel1_inputfield}{staffel1_error}</td>
+          <td>{staffelPercentage1_inputfield}{staffelPercentage1_error}</td>
+        </tr>
+        <tr>
+          <td>{staffel2_inputfield}{staffel2_error}</td>
+          <td>{staffelPercentage2_inputfield}{staffelPercentage2_error}</td>
+        </tr>
+        <tr>
+          <td>{staffel3_inputfield}{staffel3_error}</td>
+          <td>{staffelPercentage3_inputfield}{staffelPercentage3_error}</td>
+        </tr>
+        <tr>
+          <td>{staffel4_inputfield}{staffel4_error}</td>
+          <td>{staffelPercentage4_inputfield}{staffelPercentage4_error}</td>
+        </tr>
+        <tr>
+          <td>{staffel5_inputfield}{staffel5_error}</td>
+          <td>{staffelPercentage5_inputfield}{staffelPercentage5_error}</td>
+        </tr>
+      </table>
+    </fieldset>
+  
+    <fieldset id="valutaFactor" style="width:500px;">
+      <legend>[vt]VALUTA FACTOR[/vt] </legend>
+      <div class="formblock">
+        <div class="formlinks">{factorCHF_description}</label></div>
+        <div class="formrechts">
+          {factorCHF_inputfield} {factorCHF_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{factorGBP_description}</label></div>
+        <div class="formrechts">
+          {factorGBP_inputfield} {factorGBP_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{factorUSD_description}</label></div>
+        <div class="formrechts">
+          {factorUSD_inputfield} {factorUSD_error}
+        </div>
+      </div>
+    </fieldset>
+  
+  
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value} {verzendKnop}
+      </div>
+    </div>
+
+</form></div>

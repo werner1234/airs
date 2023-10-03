@@ -1,0 +1,18 @@
+service:
+  name: REPLACED_BY_HELM
+  port: 80 
+container:
+  image: REPLACED_BY_HELM
+  port: 80 
+  replicas: 1
+  imagePullPolicy: Always
+deployment:
+  revisionHistoryLimit: 0  
+  replicas: 1
+  strategy: Recreate
+  imagePullSecrets: gitlab-docker-registry
+  secretsKey: REPLACED_BY_HELM
+misc:
+  date: REPLACED_BY_HELM
+environmentVariables:
+secrets:

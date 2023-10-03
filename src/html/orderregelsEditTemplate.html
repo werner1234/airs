@@ -1,0 +1,183 @@
+
+<form name="editForm" action="{updateScript}">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="prevPort" value="{portefeuille_value}">
+  <input type="hidden" name="adding" value="0">
+  {DepotbankOld}
+  {Depotbank}
+  <input class="" type="hidden" value="{Risicoklasse_value}" name="Risicoklasse" id="Risicoklasse">
+  {id_inputfield}
+  {status_inputfield}
+  {orderid_inputfield}
+  {client_inputfield}
+  {positie_inputfield}
+  {fondsEenheid}
+  {fonds}
+  {gemiddeldePrijs}
+  {transactieSoort}
+
+
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+  <td><label for="positie">{positie_description}</label></td>
+  <td><label for="portefeuille">{portefeuille_description}</label></td>
+  <td> [vt]client[/vt]</td>
+  <td><label for="rekeningnr">{rekeningnr_description}</label></td>
+  <td><label for="valuta">{valuta_description}</label></td>
+  <td><label for="aantal">{aantal_description}</label></td>
+   <td><label for="transactieAantal">{transactieAantal_description}</label></td>
+
+</tr>
+<tr>
+  <td>{positie_value}</td>
+  <td><a href="javascript:lookupPort()">
+      <img src="images/16/lookup.gif" border="0" height="18" align="middle"></a>
+      {portefeuille_inputfield}
+      {portefeuille_error}</td>
+  <td><a id="clientNaam">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td>
+
+  <td>{rekeningnr_inputfield} {rekeningnr_error}</td>
+  <td>{valuta_inputfield} {valuta_error} <sup>* [vt]valuta's hebben geen bestaande rekening[/vt]</sup></td>
+  <td>{aantal_inputfield} {aantal_error}</td>
+  <td>{transactieAantal_inputfield} {transactieAantal_error}</td>
+
+</tr>
+<tr>
+  <td>{memo_description}</td>
+  <td colspan="11">{memo_inputfield} {memo_error}</td>
+</tr>
+<br>
+<tr>
+
+</tr>
+
+</table>
+
+<br>
+<br>
+{knoppen}
+<br>
+<br>
+<b>[vt]Controle negeren[/vt]</b>
+<br>
+{controlle_chk} <br> {controle_error}
+
+
+<div  id="notaOpties" {notaOptiesStyle} >
+<div class="formblock">
+<div class="formlinks">{handelsDag_description} </div>
+<div class="formrechts">
+{handelsDag_inputfield}{handelsDag_error} {handelsTijd_description} &nbsp;&nbsp; {handelsTijd_inputfield} {handelsTijd_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{interneNummer_description} </div>
+<div class="formrechts">
+{interneNummer_inputfield} {interneNummer_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{beurs_description} </div>
+<div class="formrechts">
+{beurs_inputfield} {beurs_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{PSET_description} </div>
+<div class="formrechts">
+{PSET_inputfield} {PSET_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{PSAF_description} </div>
+<div class="formrechts">
+{PSAF_inputfield} {PSAF_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{USDsettlement_description} </div>
+<div class="formrechts">
+{USDsettlement_inputfield} {USDsettlement_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{memoHandel_description} </div>
+<div class="formrechts">
+{memoHandel_inputfield} {memoHandel_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{valutakoers_description} </div>
+<div class="formrechts">
+{valutakoers_inputfield} {valutakoers_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{fondsKoers_description} </div>
+<div class="formrechts">
+{fondsKoers_inputfield} {fondsKoers_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{brutoBedrag_description} </div>
+<div class="formrechts">
+{brutoBedrag_inputfield} {brutoBedrag_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{kosten_description} </div>
+<div class="formrechts">
+{kosten_inputfield} {kosten_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{brokerkosten_description} </div>
+<div class="formrechts">
+{brokerkosten_inputfield} {brokerkosten_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{opgelopenRente_description} </div>
+<div class="formrechts">
+{opgelopenRente_inputfield} {opgelopenRente_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{nettoBedrag_description} </div>
+<div class="formrechts">
+{nettoBedrag_inputfield} {nettoBedrag_error}
+</div>
+</div>
+<div class="formblock">
+<div class="formlinks">{definitief_description} </div>
+<div class="formrechts">
+{definitief_inputfield} {definitief_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{aanvullendeInfo_description} </div>
+<div class="formrechts">
+{aanvullendeInfo_inputfield} {aanvullendeInfo_error}
+</div>
+</div>
+
+</div>
+<!--- Nota opties--->
+
+</form>
+</div>
+

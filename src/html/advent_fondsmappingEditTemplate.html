@@ -1,0 +1,82 @@
+<style>
+.ui-widget-header{
+  background: #AAA;
+}
+</style>
+<form name="editForm" action="{updateScript}">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Fonds">Airs Fondscode</label> </div>
+      <div class="formrechts">
+      {Fonds_inputfield} {Fonds_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Omschrijving">{Omschrijving_description}</label> </div>
+      <div class="formrechts">
+      <input  class="" type="text"  size="50" value="{Omschrijving_value}" name="Omschrijving" id="Omschrijving" readonly="" />
+       {Omschrijving_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="adventCode">Advent Fondscode</label> </div>
+      <div class="formrechts">
+      {adventCode_inputfield} {adventCode_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="adventSecCode">Advent securitycode</label> </div>
+      <div class="formrechts">
+      {adventSecCode_inputfield} {adventSecCode_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+      {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>
+
+<script>
+  $(document).ready(function(){
+
+
+    $("#Fonds").autocomplete(
+    {
+
+      source : "lookups/getFonds.php", // link naar lookup script
+      create : function(event, ui)// onCreate sla oude waardes op om te kunnen resetten in onClose bij geen selectie
+      {
+
+      },
+      close : function(event, ui)// controle of ID gevuld is anders reset naar onCreate waarden
+      {
+      },
+      search : function(event, ui)// als zoeken gestart het ID veld leegmaken
+      {
+      },
+      select : function(event, ui)// bij selectie clientside vars updaten
+      {
+        $("#Fonds").val(ui.item.Fonds);
+        $("#Omschrijving").val(ui.item.Omschrijving);
+        $("#adventCode").select().focus();
+      },
+      //autoFocus: true,
+      minLength : 2, // pas na de tweede letter starten met zoeken
+      delay : 0
+
+    });
+ });
+
+
+</script>

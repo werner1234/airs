@@ -1,0 +1,203 @@
+<style>
+  INPUT{
+    width: 400px;
+  }
+  .AIRSdatepicker{
+    width: 100px;
+  }
+
+
+</style>
+
+<form name="editForm"  method="POST" id="newForm">
+  <input type="hidden" name="action" value="go">
+  
+  
+  
+  <fieldset >
+    <legend> Persoonsinfo</legend>
+    
+    <div class="formblock">
+      <div class="formlinks">voorletters, tussenvoegsel, achternaam</div>
+      <div class="formrechts">
+        <input  class="" type="text"  size="15" value="{voorletters_value}" name="voorletters" id="voorletters" >
+        &nbsp;&nbsp;
+        <input  class="" type="text"  size="15" value="{tussenvoegsel_value}" name="tussenvoegsel" id="tussenvoegsel" >
+        &nbsp;&nbsp;
+        <input  class="" type="text"  size="35" value="{achternaam_value}" name="achternaam" id="achternaam" >
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">{geboortedatum_description}</div>
+      <div class="formrechts">
+        <input name="geboortedatum" value="{geboortedatum_value}" type="text"  class='AIRSdatepicker'  />
+
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">{geslacht_description}</div>
+      <div class="formrechts">
+        <select  class="" type="select"  name="geslacht" id="geslacht" >
+          {geslacht_options}
+        </select>
+
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">{nationaliteit_description}</div>
+      <div class="formrechts">
+        <select name="nationaliteit">
+          {landen}
+        </select>
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">{BSN_description}</div>
+      <div class="formrechts">
+        <input  class="" type="text"  size="15" value="{BSN_value}" name="BSN" id="BSN" > <span id="bsnTxt"></span>
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">soort</div>
+      <div class="formrechts">
+        <select  class="" type="select"  name="legitimatie" id="legitimatie" >
+         {legitimatie_options}
+        </select>  &nbsp;&nbsp;&nbsp;nummer: <input  class="" type="text"  size="15" value="{nummerID_value}" name="nummerID" id="nummerID" >
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks">geldig tot</div>
+      <div class="formrechts">
+        <input name="IdGeldigTot" value="{IdGeldigTot_value}" type="text"  class='AIRSdatepicker'  />
+      </div>
+    </div>
+  
+  </fieldset>
+  
+  <fieldset >
+    <legend> Verzendadres</legend>
+    
+    <div class="formblock">
+      <div class="formlinks"><label for="verzendAdres">Adres, nr, toev.</label></div>
+      <div class="formrechts">
+        {verzendAdres_inputfield} {verzendAdres_error}&nbsp;&nbsp;<input type="text" name="VerzAdrHuisnr" style="width: 60px"/>&nbsp;&nbsp;<input type="text" name="VerzAdrToev" style="width: 60px"/>
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks"><label for="verzendPc">Postcode & Plaats</label></div>
+      <div class="formrechts">
+        {verzendPc_inputfield} {verzendPc_error}&nbsp;&nbsp;{verzendPlaats_inputfield} {verzendPlaats_error}
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks"><label for="verzendPlaats">Land</label></div>
+      <div class="formrechts">
+        <select name="verzendLand">
+          {landen}
+        </select>
+      </div>
+    </div>
+  </fieldset>
+  
+  
+  <fieldset>
+    <legend> Telefoon</legend>
+    <div class="formblock">
+      <div class="formlinks">eerste telefoon</div>
+      <div class="formrechts">
+        {tel1_inputfield} {tel1_error} &nbsp;&nbsp;{tel1_oms_inputfield} {tel1_oms_error}
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">tweede telefoon</div>
+      <div class="formrechts">
+        {tel2_inputfield} {tel2_error} &nbsp;&nbsp;{tel2_oms_inputfield} {tel2_oms_error}
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">{email_description}</div>
+      <div class="formrechts">
+        {email_inputfield} {email_error}
+      </div>
+    </div>
+  
+  
+  </fieldset>
+  <br/>
+  <br/>
+  <button id="btnSubmit">naar ModuleZ zenden</button>
+
+</form>
+
+<script>
+  
+  $(document).ready(function () {
+
+
+    $("#BSN").keyup(function(){
+      if (checkBSN($(this).val()))
+      {
+        $(this).css("color","green");
+        $("#bsnTxt").html("BSN voldoet");
+      }
+      else
+      {
+        $(this).css("color","red");
+        $("#bsnTxt").html("<b>GEEN BSN nummer</b>");
+      }
+
+      });
+    $("#btnSubmit").click(function (e) {
+      var errors = "";
+      e.preventDefault();
+      $(".datecheck").each(function (i) {
+        var value = $(this).val();
+        if (!isValidDate(value) && value != "")
+        {
+          errors += "\n" + value + " is een ongeldige datum ";
+        }
+      });
+      if (errors.length > 1)
+      {
+        alert(errors);
+        return false;
+      }
+      $("#newForm").submit();
+    });
+    
+  });
+  
+  function checkBSN(bsn){
+
+    numbers = bsn.split("");
+
+    check = (parseInt(numbers[0],10)*9) +
+      (parseInt(numbers[1],10)*8) +
+      (parseInt(numbers[2],10)*7) +
+      (parseInt(numbers[3],10)*6) +
+      (parseInt(numbers[4],10)*5) +
+      (parseInt(numbers[5],10)*4) +
+      (parseInt(numbers[6],10)*3) +
+      (parseInt(numbers[7],10)*2) +
+      (parseInt(numbers[8],10)*-1);
+
+    return (check % 11 === 0);
+  }
+  
+  function isValidDate(s) {
+    var bits = s.split('-');
+    var d = new Date(bits[2] + '/' + bits[1] + '/' + bits[0]);
+    return !!(d && (d.getMonth() + 1) == bits[1] && d.getDate() == Number(bits[0]));
+  }
+
+  
+  
+</script>

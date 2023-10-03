@@ -1,0 +1,84 @@
+<style>
+  .ac{
+    text-align: right;
+  }
+  .ac:after{
+    content: ':';
+  }
+  .legendaTbl{
+    border: 2px solid #ddd;
+    padding: .25rem;
+    margin-left: 1rem;
+    float: right;
+  }
+</style>
+<form name="editForm" action="{updateScript}" method="{method}" >
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="Bedrijf">{Bedrijf_description}</label> </div>
+      <div class="formrechts">
+        {Bedrijf_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="exportId">{exportId_description}</label> </div>
+      <div class="formrechts">
+        {exportId_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="type">{type_description}</label> </div>
+      <div class="formrechts">
+        {type_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="filename">{filename_description}</label> </div>
+      <div class="formrechts">
+        {filename_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="filesize">{filesize_description}</label> </div>
+      <div class="formrechts">
+        {filesize_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="complete">{complete_description}</label> </div>
+      <div class="formrechts">
+        {complete_inputfield}
+        <table class="legendaTbl">
+          <tr><td class="ac">0</td><td>nog op te halen</td></tr>
+          <tr><td class="ac">1</td><td>opgehaald</td></tr>
+          <tr><td class="ac">2</td><td>bezig met update</td></tr>
+          <tr><td class="ac">99</td><td>wachtstand</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="terugmelding">{terugmelding_description}</label> </div>
+      <div class="formrechts">
+        <pre>
+        {terugmelding_value}
+          </pre>
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+  </div>
+</form>

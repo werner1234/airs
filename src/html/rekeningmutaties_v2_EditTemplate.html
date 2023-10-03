@@ -1,0 +1,200 @@
+<link rel="stylesheet" href="style/fontAwesome/font-awesome.min.css">
+<br>{AEMessages}{invulScr}
+<form name="afschriftForm">
+  <fieldset id="mutationFieldset" title="Rekeningafschrift" class="{fieldsetClass}">
+    <legend accesskey="R"><strong><U>A</U>fschrift</strong></legend>
+    <table width="100%" border="0" cellspacing="0" cellspadding="0">
+      <tr>
+        <td>&nbsp;</td>
+        <td width="150" class="list_kopregel_data">[vt]Rekening[/vt]</td>
+        <td width="120" class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td width="120" class="list_kopregel_data">[vt]Afschriftnummer[/vt]</td>
+        <td width="100" class="list_kopregel_data">{txtSaldo}</td>
+        <td width="100" class="list_kopregel_data">{txtNieuwSaldo}</td>
+
+        <td align="right"><b>[vt]Totaal mutatie[/vt]: </b></td>
+        <td><input type="text" name="totaalMutatie" value="{aTotaal}" size="12" align="right" disabled> </td>
+        <td align="left" rowspan="3"> {counterRules}</td>
+      <tr>
+        <td>
+
+        </td>
+        <td>{aRekening}<input type="hidden" name="editRekening" value="{aRekening}"><input type="hidden" id="isMemoriaal" name="Memoriaal" value="{Memoriaal}"><input type="hidden" id="isAfschriftId" name="afschriftId" value="{aId}"></td>
+        <td>{aDatum}</td>
+        <td>{aAfschriftnummer}<input type="hidden" name="editAfschriftNummer" value="{aAfschriftnummer}"></td>
+        <td>{aSaldo}</td>
+        <td>{aNieuwSaldo}</td>
+        <td align="right"><b>[vt]Mutatie verschil[/vt]: </b></td>
+        <td width="150"><input type="text" name="mutatieVerschil" value="{mutatieVerschil}" size="12" align="right" disabled> </td>
+
+      </tr>
+
+      <tr>
+        <td colspan="6">[vt]druk op[/vt] <i>[vt]Insert[/vt]</i> [vt]voor nieuw afschrift[/vt].</td>
+        <td align="right" colspan="2" >{mutationDifferenceMessage}</td>
+      </tr>
+    </table>
+
+  </fieldset>
+</form>
+<br />
+<div id="radio-messages"></div>
+
+<!--<br><b>Afschriftregels toevoegen </b><br>-->
+<form name="editForm" id="edit-form" action="{updateScript}" onsubmit="checkValues();" >
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+      <input type="hidden" name="updateScript" value="{updateScript}">
+      <input type="hidden" name="returnUrl" value="{returnUrl}">
+      <input type="hidden" name="id" value="{id_value}">
+      <input type="hidden" name="afschrift_id" value="{aId}">
+      <input type="hidden" name="Afschriftnummer" value="{Afschriftnummer_value}">
+      <input type="hidden" name="Verwerkt" value="{Verwerkt_value}">
+      <input type="hidden" name="Rekening" value="{Rekening_value}">
+      <input type="hidden" name="Fondskoerseenheid" value="{koerseenheid}">
+      <input type="hidden" name="Fonds_hidden" value="">
+      <input type="hidden" name="RekeningValuta" value="{aValuta}">
+      <input type="hidden" name="RekeningValutakoers" value="1">
+      <input type="hidden" name="aMemoriaal" value="{aMemoriaal}">
+      <input type="hidden" name="rekeningafschriftenEdit" value="{rekeningafschriftenEdit}">
+      <input type="hidden" name="mutation_type" value="{mutation_type}">
+      <input type="hidden" name="Volgnummer" value="{Volgnummer}">
+
+      <input type="hidden" name="type" value="{type}">
+
+<fieldset name="test" value="" title="Mutatieformulier">
+  <legend accesskey="m"><strong>[vt]Afschriftregel wijzigen[/vt]</strong></legend>
+
+<table border="0" cellspacing="0" cellspadding="2" class="tableInlineForm">
+
+<tr>
+	<td class="list_kopregel_data">[vt]Volgnr[/vt].</td>
+	<td class="list_kopregel_data">[vt]Datum[/vt]</td>
+	<td class="list_kopregel_data">{Omschrijving_description}</td>
+	<td class="list_kopregel_data">[vt]Grootboek[/vt]</td>
+
+	<td class="list_kopregel_data">{Fonds_description} <span id="fonds-info" class=""></span> <span id="fondsOwnedInfo" class=""></span></td>
+	<td class="list_kopregel_data">[vt]T.type[/vt]</td>
+	<td class="list_kopregel_data">[vt]F.koers[/vt] <span id="fonds-koers-info" class=""></span></td>
+	<td class="list_kopregel_data">{Aantal_description}</td>
+	<td class="list_kopregel_data">{Bewaarder_description}</td>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{Volgnummer_inputfield}</td>
+	<td>{Boekdatum_inputfield}<span id="recalculate" title="Fonds/valutakoers bijwerken" style="cursor:hand;"><i class="fa fa-refresh"></i></span></td>
+	<td>{Omschrijving_inputfield}</td>
+	<td>{Grootboekrekening_inputfield}</td>
+	<td>{Fonds}</td>
+	<td>{Transactietype_inputfield}</td>
+	<td>{Fondskoers_inputfield}</td>
+	<td>{Aantal_inputfield}</td>
+	<td>{Bewaarder_inputfield}</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+</tr>
+
+</table>
+<table border="0" cellspacing="0" cellspadding="2" class="tableInlineForm">
+  <tr>
+	<td class="list_kopregel_data">{Valuta_description}</td>
+	<td class="list_kopregel_data"> [vt]V.koers[/vt] <span id="valuta-koers-info" class=""></span></td>
+	<td>&nbsp;</td>
+	<td class="list_kopregel_data">[vt]Debet[/vt]</td>
+	<td class="list_kopregel_data">[vt]Credit[/vt]</td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td class="list_kopregel_data">[vt]Mutatiebedrag[/vt]</td>
+	<td class="list_kopregel_data">[vt]Bank transactie id[/vt]</td>
+
+</tr>
+<tr>
+	<td align="right">{Valuta_inputfield}</td>
+  <td>
+    <div class="input-group ">
+      {Valutakoers_inputfield}
+      <div class="input-group-append">
+        <span class="btn-xs  btn btn-gray inverseField"><img src='images/16/refresh.png' /> [vt]Inverse[/vt] (F9)</span>
+      </div>
+    </div>
+  </td>
+	<td>&nbsp; </td>
+  <td>{Debet_inputfield}<div class="input-group-addon" style="margin-top: -3px;">(F9)</div></td>
+  <td>{Credit_inputfield}<div class="input-group-addon" style="margin-top: -3px;">(F9)</div></td>
+	<td>&nbsp; </td>
+	<td>&nbsp;</td>
+	<td><input type="text" size="9" class='' value="{Bedrag_value}" name="Bedrag" readonly ></td>
+	<td><input type="text" size="15" class='' value="{bankTransactieId_value}" name="bankTransactieId" readonly > <span data-toggle="tooltip" data-placement="top" title="[vt]Bank transactie id wijzigen[/vt]" id="enableTransactionId" class="btn-new btn-default"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></td>
+	<td>
+    <!--<input type="image" src="images/16/save.gif"  alt="sla de wijzigingen op" align="absmiddle">-->
+	</td>
+</tr>
+<tr>
+	<td align="right"></td>
+	<td></td>
+	<td><input type="hidden" name="mutationUnknownField" class='mutationUnknownField' value="0"></td>
+  <td colspan='2' class='mutationUnknown'></td>
+	<td>&nbsp; </td>
+	<td>&nbsp;</td>
+	<td></td>
+	<td></td>
+</tr>
+
+</table>
+
+
+  <br /><br />
+      {btn_submit}&nbsp; &nbsp; {deleteButton}
+
+</fieldset>
+</form>
+</div>
+
+
+<br />
+<fieldset style="padding:0px;" title="Afschriftregels">
+  <legend style="margin-left: 10px;">
+    <strong>[vt]Afschriftregels[/vt]</strong>
+    <!--<button type="button" id="reload-frame1" class="btn btn-default btn-xs">Verversen</button>-->
+  </legend>
+  <iframe
+    src="{listurl}?afschrift_id={aId}&type={type}&mutatieId={mutatieId}"
+    width="100%"
+    height="400"
+    marginwidth="0"
+    id="rules"
+    marginheight="0"
+    hspace="0"
+    vspace="0"
+    align="middle"
+    frameborder="0">
+  </iframe>
+</fieldset>
+
+<script>
+  $(function () {
+
+    $(document).on('click', '#enableTransactionId', function () {
+      $('input[name=bankTransactieId]').prop('readonly', false);
+    })
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({'trigger' : 'hover'});
+    })
+
+    $(document).on('focus, keyup', 'input, select', function () {
+      $(this).invulInstructie({
+        party: '{VB}',
+        script: 'rekeningmutaties_v2_edit.php',
+        consoleLog: '{consoleLog}'
+      });
+    });
+
+  });
+
+ function submitForm()
+{
+	//check values ?
+	document.editForm.submit();
+}
+  </script>

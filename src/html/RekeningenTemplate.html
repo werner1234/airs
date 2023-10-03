@@ -1,0 +1,179 @@
+<script type="text/javascript">
+
+</script>
+
+<br>
+
+<br>
+
+<form name="editForm" action="{updateScript}" method="get">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+
+
+<div class="form" >
+
+<div class="formblock">
+<div class="formlinks">{Rekening_description} </div>
+<div class="formrechts">
+{Rekening_inputfield} {Rekening_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{RekeningDepotbank_description} </div>
+<div class="formrechts">
+{RekeningDepotbank_inputfield} {RekeningDepotbank_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Memoriaal_description} </div>
+<div class="formrechts">
+{Memoriaal_inputfield} {Memoriaal_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{Termijnrekening_description} </div>
+<div class="formrechts">
+{Termijnrekening_inputfield} {Termijnrekening_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Portefeuille_description} </div>
+<div class="formrechts">
+{Portefeuille_inputfield} {Portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Valuta_description} </div>
+<div class="formrechts">
+{Valuta_inputfield} {Valuta_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Tenaamstelling_description} </div>
+<div class="formrechts">
+{Tenaamstelling_inputfield} {Tenaamstelling_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{RenteBerekenen_description} </div>
+<div class="formrechts">
+{RenteBerekenen_inputfield} {RenteBerekenen_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Deposito_description} </div>
+<div class="formrechts">
+{Deposito_inputfield} {Deposito_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Inleg_description}</div>
+<div class="formrechts">
+{Inleg_inputfield} {Inleg_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Beleggingscategorie_description}</div>
+<div class="formrechts">
+{Beleggingscategorie_inputfield} {Beleggingscategorie_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AttributieCategorie_description}</div>
+<div class="formrechts">
+{AttributieCategorie_inputfield} {AttributieCategorie_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{Depotbank_description} </div>
+<div class="formrechts">
+{Depotbank_inputfield} {Depotbank_error}
+</div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{typeRekening_description} </div>
+  <div class="formrechts">
+  {typeRekening_inputfield} {typeRekening_error}
+  </div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{Inactief_description}</div>
+<div class="formrechts">
+{Inactief_inputfield} {Inactief_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{IBANnr_description} </div>
+<div class="formrechts">
+{IBANnr_inputfield} {IBANnr_error} <button onclick="javascript:checkIban();"  type="button" >[vt]controleer IBAN[/vt]</button>
+</div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks">{Afdrukvolgorde_description} </div>
+    <div class="formrechts">
+      {Afdrukvolgorde_inputfield} {Afdrukvolgorde_error}
+    </div>
+  </div>
+
+<div class="formblock">
+<fieldset id="RenteField">
+<div class="formlinks">{Rente30_360_description} </div>
+<div class="formrechts">
+{Rente30_360_inputfield} {Rente30_360_error}
+</div>
+</fieldset>
+</div>
+  
+  <div class="formblock">
+    <div class="formlinks"> </div>
+    <div class="formrechts">
+      {rekeningparameterHistorie}
+    </div>
+  </div>
+
+
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{change_user_value} {change_date_value}
+</div>
+</div>
+</div>
+
+  <div class="formblock"><div class="formlinks">&nbsp;</div><div class="formrechts">{verzendKnop}</div></div>
+
+</form>
+
+
+<div class="formblock">
+<iframe name="rente" id="rente" src="{iframe}" width="100%" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+</div>
+
+
+
+
+
+

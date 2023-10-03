@@ -1,0 +1,1289 @@
+<script type="text/javascript">
+
+</script>
+
+
+<br><br>
+<div class="tabbuttonRow">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('0')" id="tabbutton0" value="[vt]Algemeen[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('1')" id="tabbutton1" value="[vt]Rapp.Info[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('2')" id="tabbutton2" value="[vt]Rapporten[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('3')" id="tabbutton3" value="[vt]Dag portaal Exp.[/vt]">
+  {ordercontrole_active}
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('7')" id="tabbutton7" value="[vt]Kleuren I[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('8')" id="tabbutton8" value="[vt]Kleuren II[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('9')" id="tabbutton9" value="[vt]Kleuren III[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('10')" id="tabbutton10" value="[vt]Modules[/vt]">
+  <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('11')" id="tabbutton11" value="[vt]Controles[/vt]">
+</div>
+<br><br>
+
+<form name="editForm" action="{updateScript}" method="post">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" value="{id_value}" name="id">
+  {PerformanceBerekening_error}
+  <!-- tab0 -->
+  <div id='tab0' class="tabblad">
+
+    <div class="form">
+
+      
+      <fieldset id="Test1 ">
+        <legend><strong>[vt]Algemeen[/vt]</strong></legend>
+  
+        <div class="formblock">
+          <div class="formlinks">{Vermogensbeheerder_description}</div>
+          <div class="formrechts">
+            {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Naam_description}</div>
+          <div class="formrechts">
+            {Naam_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Adres_description}</div>
+          <div class="formrechts">
+            {Adres_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Woonplaats_description}</div>
+          <div class="formrechts">
+            {Woonplaats_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Telefoon_description}</div>
+          <div class="formrechts">
+            {Telefoon_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Fax_description}</div>
+          <div class="formrechts">
+            {Fax_inputfield}
+          </div>
+        </div>
+
+        
+
+        <div class="formblock">
+          <div class="formlinks">{website_description}</div>
+          <div class="formrechts">
+            {website_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Contactpersoon_description}</div>
+          <div class="formrechts">
+            {Contactpersoon_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{rekening_description}</div>
+          <div class="formrechts">
+            {rekening_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{bank_description}</div>
+          <div class="formrechts">
+            {bank_inputfield}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{LEInrVBH_description}</div>
+          <div class="formrechts">
+            {LEInrVBH_inputfield} {LEInrVBH_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Einddatum_description}</div>
+          <div class="formrechts">
+            {Einddatum_inputfield} {Einddatum_error}
+          </div>
+        </div>
+  
+        
+        
+      </fieldset>
+
+
+      <fieldset id="Test1">
+        <legend><strong>[vt]Update informatie[/vt]</strong></legend>
+        <div class="formblock">
+          <div class="formlinks">{aanlevertijd_description}</div>
+          <div class="formrechts">
+            {aanlevertijd_inputfield} {aanlevertijd_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{koersExport_description}</div>
+          <div class="formrechts">
+            {koersExport_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{fondskostenDoorkijkExport_description}</div>
+          <div class="formrechts">
+            {fondskostenDoorkijkExport_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset id="Tes2t">
+        <legend><strong>[vt]Verzenden mutaties[/vt]</strong></legend>
+
+        <div class="formblock">
+          <div class="formlinks">{CrmTerugRapportage_description}</div>
+          <div class="formrechts">
+            {CrmTerugRapportage_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{CrmAutomatischVerzenden_description}</div>
+          <div class="formrechts">
+            {CrmAutomatischVerzenden_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset id="Test3">
+        <legend><strong>[vt]Mail/Documenten[/vt]</strong></legend>
+
+        <div class="formblock">
+          <div class="formlinks">{ddInleesLocatie_description}</div>
+          <div class="formrechts">
+            {ddInleesLocatie_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{ddInleesPortefeuillePreg_description}</div>
+          <div class="formrechts">
+            {ddInleesPortefeuillePreg_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+  
+      <fieldset id="e-mail">
+        <legend><strong>[vt]E-mailadressen[/vt]</strong></legend>
+    
+        <div class="formblock">
+          <div class="formlinks">{Email_description}</div>
+          <div class="formrechts">
+            {Email_inputfield}
+          </div>
+        </div>
+    
+        <div class="formblock">
+          <div class="formlinks">{transactiemeldingEmail_description}</div>
+          <div class="formrechts">
+            {transactiemeldingEmail_inputfield} {transactiemeldingEmail_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{fondsenmeldingEmail_description}</div>
+          <div class="formrechts">
+            {fondsenmeldingEmail_inputfield} {fondsenmeldingEmail_error}
+          </div>
+        </div>
+    
+        <div class="formblock">
+          <div class="formlinks">{emailSignaleringen_description}</div>
+          <div class="formrechts">
+            {emailSignaleringen_inputfield} {emailSignaleringen_error}
+          </div>
+        </div>
+    
+        <div class="formblock">
+          <div class="formlinks">{orderControleEmail_description}</div>
+          <div class="formrechts">
+            {orderControleEmail_inputfield} {orderControleEmail_error}
+          </div>
+        </div>
+    
+        <div class="formblock">
+          <div class="formlinks">{emailPortaalvulling_description}</div>
+          <div class="formrechts">
+            {emailPortaalvulling_inputfield} {emailPortaalvulling_error}
+          </div>
+        </div>
+  
+      </fieldset>
+      
+      
+      <fieldset id="Test4">
+        <legend><strong>[vt]Overige[/vt]</strong></legend>
+        <div class="formblock">
+          <div class="formlinks">{OptieTools_description}</div>
+          <div class="formrechts">
+            {OptieTools_inputfield}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{adventVerwerking_description}</div>
+          <div class="formrechts">
+            {adventVerwerking_inputfield}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{millogicVerwerking_description}</div>
+          <div class="formrechts">
+            {millogicVerwerking_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Attributie_description}</div>
+          <div class="formrechts">
+            {Attributie_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{txtKoppeling_description}</div>
+          <div class="formrechts">
+            {txtKoppeling_inputfield} {txtKoppeling_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{VerouderdeKoersDagen_description}</div>
+          <div class="formrechts">
+            {VerouderdeKoersDagen_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{bestandsvergoedingNiveau_description}</div>
+          <div class="formrechts">
+            {bestandsvergoedingNiveau_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{verrekeningBestandsvergoeding_description}</div>
+          <div class="formrechts">
+            {verrekeningBestandsvergoeding_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{bestandsvergoedingBtw_description}</div>
+          <div class="formrechts">
+            {bestandsvergoedingBtw_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{TransactiefeeBtw_description}</div>
+          <div class="formrechts">
+            {TransactiefeeBtw_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!-- /tab 0 -->
+
+  <!--  tab 1-->
+
+  <div id='tab1' class="tabblad">
+
+    <div class="form">
+
+      <fieldset id="index">
+        <legend accesskey="I"><strong>[vt]Gewogen Index[/vt]</strong></legend>
+
+        <div class="formblock">
+          <div class="formlinks">{Index1_description}</div>
+          <div class="formrechts">
+            {Index1_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{Index2_description}</div>
+          <div class="formrechts">
+            {Index2_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{IndexRisicovrij_description}</div>
+          <div class="formrechts">
+            {IndexRisicovrij_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+      <br><br>
+      <div class="formblock">
+        <div class="formlinks">{PerformanceBerekening_description}</div>
+        <div class="formrechts">
+          {PerformanceBerekening_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{FactuurBeheerfeeBerekening_description}</div>
+        <div class="formrechts">
+          {FactuurBeheerfeeBerekening_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{HTMLRapportage_description}</div>
+        <div class="formrechts">
+          {HTMLRapportage_inputfield} {HTMLRapportage_error} &nbsp;&nbsp;&nbsp;&nbsp; {WelkomMenuV2_description} {WelkomMenuV2_inputfield} {WelkomMenuV2_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{vvRappToegestaan_description}</div>
+        <div class="formrechts">
+          {vvRappToegestaan_inputfield} {vvRappToegestaan_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">&nbsp;</div>
+        <div class="formrechts">
+        </div>
+      </div>
+
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!-- /tab1 -->
+
+  <!--  tab 2-->
+  <div id='tab2' class="tabblad">
+
+
+    <div class="formblock">
+      <div class="formlinks"><strong>{Layout_description}</strong></div>
+      <div class="formrechts">
+        {Layout_inputfield}
+      </div>
+    </div>
+    <br/><br/><br/>
+
+    <div class="form">
+
+      <fieldset id="Rapport">
+        <!--<legend accesskey="I">Gewogen <u>I</u>ndex</legend>-->
+
+        <div class="formblock">
+          <div class="formlinks">{AfdrukSortering_description}</div>
+          <div class="formrechts">
+            {AfdrukSortering_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {SamenvoegenClientRapporten_inputfield} {SamenvoegenClientRapporten_description}
+          </div>
+        </div>
+
+
+        <div class="formblock">
+          <div class="formlinks">{Logo_description}</div>
+          <div class="formrechts">
+            {Logo_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{csvSeperator_description}</div>
+          <div class="formrechts">
+            {csvSeperator_inputfield}
+          </div>
+        </div>
+  
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {callableDatumGebruiken_inputfield} {callableDatumGebruiken_description}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {rapportLink_inputfield} {rapportLink_description}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {attributieInPerformance_inputfield} {attributieInPerformance_description}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {grafiek_sortering_inputfield} {grafiek_sortering_description}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">&nbsp; </div>
+          <div class="formrechts">
+            {naamInExport_inputfield} {naamInExport_description}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{rapportLinkUrl_description}</div>
+          <div class="formrechts">
+            {rapportLinkUrl_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{geenStandaardSector_description}</div>
+          <div class="formrechts">
+            {geenStandaardSector_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{rapportDoorkijk_description}</div>
+          <div class="formrechts">
+            {rapportDoorkijk_inputfield}
+          </div>
+        </div>
+      </fieldset>
+
+
+      <br><br>
+      <table border="0">
+        <tr>
+
+          <table border="0">
+            <tr>
+              <td valign="top">
+                <fieldset id="Frontoffice">
+                  <legend accesskey="K"><strong><u>[vt]Front office[/vt]</strong></legend>
+                  {export_frontOffice_checkbox}
+                </fieldset>
+              </td>
+            </tr>
+          </table>
+
+        </tr>
+      </table>
+
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!-- /tab 2 -->
+
+  <!-- tab 3 -->
+
+  <div id='tab3' class="tabblad">
+
+    <div class="form">
+
+      <fieldset id="Rapport">
+        <!--<legend accesskey="I">Gewogen <u>I</u>ndex</legend>-->
+
+        <div class="formblock">
+          <div class="formlinks">{Export_dag_pad_description}</div>
+          <div class="formrechts">
+            {Export_dag_pad_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="DagExport">
+              <legend accesskey="D"><strong>[vt]Dag Export[/vt]</strong></legend>
+              {export_dag_checkbox}
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+
+
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!--  /tab 3-->
+
+  <!-- tab 4 -->
+
+  <div id='tab4' class="tabblad">
+
+    <div class="form">
+
+      <fieldset id="Rapport">
+        <!--<legend accesskey="I">Gewogen <u>I</u>ndex</legend>-->
+
+        <div class="formblock">
+          <div class="formlinks">{Export_maand_pad_description}</div>
+          <div class="formrechts">
+            {Export_maand_pad_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{maandRapportageYTD_description}</div>
+          <div class="formrechts">
+            {maandRapportageYTD_inputfield}
+          </div>
+        </div>
+
+
+      </fieldset>
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="MaandExport">
+              <legend accesskey="M"><strong>[vt]Maand Export[/vt]</strong></legend>
+              {export_maand_checkbox}
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+
+
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!--  /tab 4-->
+
+  <!-- tab 5 -->
+
+  <div id='tab5' class="tabblad">
+    <div class="form">
+
+      <fieldset id="Rapport">
+        <!--<legend accesskey="I">Gewogen <u>I</u>ndex</legend>-->
+
+        <div class="formblock">
+          <div class="formlinks">{Export_kwartaal_pad_description}</div>
+          <div class="formrechts">
+            {Export_kwartaal_pad_inputfield}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{kwartaalRapportageYTD_description}</div>
+          <div class="formrechts">
+            {kwartaalRapportageYTD_inputfield}
+          </div>
+        </div>
+
+      </fieldset>
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="KwartaalExport">
+              <legend accesskey="K"><strong>[vt]Kwartaal Export[/vt]</strong></legend>
+              {export_kwartaal_checkbox}
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+
+      <!-- /form -->
+    </div>
+  </div>
+  <!--  /tab 5-->
+
+
+  <!-- tab 6 -->
+
+  <div id='tab6' class="tabblad">
+    <div class="form">
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="Order controle">
+              <legend accesskey="O"><strong>[vt]Order controle[/vt]</strong></legend>
+              {export_order_controle_checkbox}
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+
+      <fieldset id="ModOrdDef">
+        <legend><strong>[vt]Defaults[/vt]</strong></legend>
+        <div class="formblock">
+          <div class="formlinks">{OrderStandaardType_description}</div>
+          <div class="formrechts">
+            {OrderStandaardType_inputfield} {OrderStandaardType_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OrderStandaardTijdsSoort_description}</div>
+          <div class="formrechts">
+            {OrderStandaardTijdsSoort_inputfield} {OrderStandaardTijdsSoort_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OrderStandaardMemo_description}</div>
+          <div class="formrechts">
+            {OrderStandaardMemo_inputfield} {OrderStandaardMemo_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OrderStandaardTransactieType_description}</div>
+          <div class="formrechts">
+            {OrderStandaardTransactieType_inputfield} {OrderStandaardTransactieType_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{OrderCheckClientNaam_description}</div>
+          <div class="formrechts">
+            {OrderCheckClientNaam_inputfield} {OrderCheckClientNaam_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{orderPreValidatie_description}</div>
+          <div class="formrechts">
+            {orderPreValidatie_inputfield} {orderPreValidatie_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OrderOrderdesk_description}</div>
+          <div class="formrechts">
+            {OrderOrderdesk_inputfield} {OrderOrderdesk_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{orderVierOgen_description}</div>
+          <div class="formrechts">
+            {orderVierOgen_inputfield} {orderVierOgen_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{orderGeenHervalidatie_description}</div>
+          <div class="formrechts">
+            {orderGeenHervalidatie_inputfield} {orderGeenHervalidatie_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+        <div class="formlinks">{OrderuitvoerBewaarder_description}</div>
+        <div class="formrechts">
+          {OrderuitvoerBewaarder_inputfield} {OrderuitvoerBewaarder_error}
+        </div>
+      </div>
+  
+        <div class="formblock">
+          <div class="formlinks">{orderViaConsolidatie_description}</div>
+          <div class="formrechts">
+            {orderViaConsolidatie_inputfield} {orderViaConsolidatie_error}
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <fieldset id="OrdStat">
+        <legend><strong>[vt]Statussen[/vt]</strong></legend>
+        <div class="formblock">
+          <div class="formlinks">{OrderStatusKeuze_description}</div>
+          <div class="formrechts">
+            {OrderStatusKeuzeChecks} {OrderStatusKeuze_error}
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- /form -->
+    </div>
+  </div>
+  <!--  /tab 6-->
+
+  <!-- tab 7 -->
+
+  <div id='tab7' class="tabblad">
+
+    <div class="form">
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="OIB Grafiek">
+              <legend accesskey="B"><strong>[vt]Beleggingscategorien[/vt]</strong></legend>
+              {OIB_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="OIV Grafiek">
+              <legend accesskey="V"><strong>[vt]Valuta[/vt]</strong></legend>
+              {OIV_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="AFM Grafiek">
+              <legend accesskey="F"><strong>[vt]AFM[/vt]</strong></legend>
+              {AFM_grafiek_kleur}
+            </fieldset>
+          </td>
+
+        </tr>
+      </table>
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!--  /tab 7-->
+
+  <!-- tab 8 -->
+
+  <div id='tab8' class="tabblad">
+
+    <div class="form">
+      <table border="0">
+        <tr>
+          <td valign="top">
+            <fieldset id="OIR Grafiek">
+              <legend accesskey="B"><strong>[vt]Regio[/vt]</strong></legend>
+              {OIR_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="OIS Grafiek">
+              <legend accesskey="S"><strong>[vt]Sectoren[/vt]</strong></legend>
+              {OIS_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="ATT Grafiek">
+              <legend accesskey="A"><strong>[vt]Attributie categorien[/vt]</strong></legend>
+              {ATT_grafiek_kleur}
+            </fieldset>
+          </td>
+
+        </tr>
+      </table>
+      <!-- /form -->
+    </div>
+
+  </div>
+  <!--  /tab 8-->
+
+
+  <!-- tab 9 -->
+  <div id='tab9' class="tabblad">
+
+    <div class="form">
+      <table border="0">
+        <tr>
+
+          <td valign="top">
+            <fieldset id="Depotbank Grafiek">
+              <legend accesskey="F"><strong>[vt]Depotbank[/vt]</strong></legend>
+              {DEP_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="Rating Grafiek">
+              <legend accesskey="R"><strong>[vt]Rating categorien[/vt]</strong></legend>
+              {Rating_grafiek_kleur}
+            </fieldset>
+          </td>
+
+          <td valign="top">
+            <fieldset id="Rating Grafiek">
+              <legend accesskey="R"><strong>[vt]Grootboekrekeningen[/vt]</strong></legend>
+              {Grootboek_grafiek_kleur}
+            </fieldset>
+          </td>
+          <td valign="top">
+            <fieldset id="Duurzaam Grafiek">
+              <legend accesskey="R"><strong>[vt]Duurzaam categorie[/vt]</strong></legend>
+              {DUU_grafiek_kleur}
+            </fieldset>
+          </td>
+        </tr>
+      </table>
+      <!-- /form -->
+    </div>
+
+  </div>
+
+  <!--  /tab 9-->
+
+  <!-- tab 10 -->
+  <div id='tab10' class="tabblad">
+
+    <fieldset id="ModCRM">
+      <legend><strong> [vt]CRM[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_CRM_description}</div>
+        <div class="formrechts">
+          {check_module_CRM_inputfield} {check_module_CRM_error} &nbsp;&nbsp;&nbsp;&nbsp; {kwartaalCheck_description}
+          {kwartaalCheck_inputfield}
+          &nbsp;&nbsp;&nbsp;&nbsp; {ddVerwijderen_description} {ddVerwijderen_inputfield}
+          &nbsp;&nbsp;&nbsp;&nbsp; {CRM_GesprVerslagVerwWijz_description} {CRM_GesprVerslagVerwWijz_inputfield}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{check_module_CRM_eigenVelden_description}</div>
+        <div class="formrechts">
+          {check_module_CRM_eigenVelden_inputfield} {check_module_CRM_eigenVelden_CRM_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {CRM_alleenNAW_description} {CRM_alleenNAW_inputfield} {NAW_inclDocumenten_description} {NAW_inclDocumenten_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{check_module_VRAGEN_description}</div>
+        <div class="formrechts">
+          {check_module_VRAGEN_inputfield} {check_module_VRAGEN_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{CrmPortefeuilleInformatie_description}</div>
+        <div class="formrechts">
+          {CrmPortefeuilleInformatie_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{CrmExtraSpatie_description}</div>
+        <div class="formrechts">
+          {CrmExtraSpatie_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{CrmClientNaam_description}</div>
+        <div class="formrechts">
+          {CrmClientNaam_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{CRM_eigenTemplate_description}</div>
+        <div class="formrechts">
+          {CRM_eigenTemplate_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{eMailInlezen_description}</div>
+        <div class="formrechts">
+          {eMailInlezen_inputfield}
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset id="ModPortaal">
+      <legend><strong> [vt]Portaal[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_PORTAAL_description}</div>
+        <div class="formrechts">
+          {check_module_PORTAAL_inputfield} {check_module_PORTAAL_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {check_portaalDocumenten_description} {check_portaalDocumenten_inputfield} {check_portaalDocumenten_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{autoPortaalVulling_description}</div>
+        <div class="formrechts">
+          {autoPortaalVulling_inputfield} {autoPortaalVulling_error} {check_portaalCrmVink_description}
+          {check_portaalCrmVink_inputfield} {portaalPeriode_description}{portaalPeriode_inputfield} &nbsp;
+          {portaalDailyClientSync_description} {portaalDailyClientSync_inputfield} {portaalDailyClientSync_error}
+        </div>
+      </div>
+  
+      <div class="formblock">
+        <div class="formlinks">{documentloosPortaal_description}</div>
+        <div class="formrechts">
+          {documentloosPortaal_inputfield} {cdocumentloosPortaal_error} &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+      
+    </fieldset>
+
+    <fieldset id="ModBeheerfee">
+      <legend><strong>[vt]Beheerfee[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_FACTUURHISTORIE_description}</div>
+        <div class="formrechts">
+          {check_module_FACTUURHISTORIE_inputfield} {check_module_FACTUURHISTORIE_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {FACTUURHISTORIE_gebruikLaatsteWaarde_description} {FACTUURHISTORIE_gebruikLaatsteWaarde_inputfield}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{FactuurMinimumBedrag_description}</div>
+        <div class="formrechts">
+          {FactuurMinimumBedrag_inputfield} {FactuurMinimumBedrag_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{FactuurMinimumPerTransactie_description}</div>
+        <div class="formrechts">
+          {FactuurMinimumPerTransactie_inputfield} {FactuurMinimumPerTransactie_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{BeheerfeeAdministratieVergoedingVast_description}</div>
+        <div class="formrechts">
+          {BeheerfeeAdministratieVergoedingVast_inputfield} {BeheerfeeAdministratieVergoedingVast_error}
+        </div>
+      </div>
+
+    </fieldset>
+
+    <fieldset id="ModOrders">
+      <legend><strong>[vt]Ordermodule[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_ORDER_description}</div>
+        <div class="formrechts">
+          {check_module_ORDER_inputfield} {check_module_ORDER_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {OrderLoggingOpNota_description} {OrderLoggingOpNota_inputfield}
+          &nbsp;&nbsp;&nbsp;&nbsp; {OrderCheck_description} {OrderCheck_inputfield}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{check_module_ORDERNOTAS_description}</div>
+        <div class="formrechts">
+          {check_module_ORDERNOTAS_inputfield} {check_module_ORDERNOTAS_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {kasbankBrokerVerwerking_description} {kasbankBrokerVerwerking_inputfield} {kasbankBrokerVerwerking_error} &nbsp;&nbsp;&nbsp;&nbsp;
+          {orderFxToestaan_description} {orderFxToestaan_inputfield} {orderFxToestaan_error}
+        </div>
+      </div>
+
+
+      <div class="formblock">
+        <div class="formlinks">{orderCheckMaxAge_description}</div>
+        <div class="formrechts">
+          {orderCheckMaxAge_inputfield} {orderCheckMaxAge_error}
+        </div>
+      </div>
+
+      
+
+      <div class="formblock">
+        <div class="formlinks">{orderAdviesNotificatie_description}</div>
+        <div class="formrechts">
+          {orderAdviesNotificatie_inputfield} {orderAdviesNotificatie_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{orderAdviesBcc_description}</div>
+        <div class="formrechts">
+          {orderAdviesBcc_inputfield} {orderAdviesBcc_error}
+        </div>
+      </div>
+      
+      
+      <div class="formblock">
+        <div class="formlinks">{orderredenVerplicht_description}</div>
+        <div class="formrechts">
+          {orderredenVerplicht_inputfield} {orderredenVerplicht_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{orderTransRep_description}</div>
+        <div class="formrechts">
+          {orderTransRep_inputfield} {orderTransRep_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{orderTransRepDecisionMaker_description}</div>
+        <div class="formrechts">
+          {orderTransRepDecisionMaker_inputfield} {orderTransRepDecisionMaker_error}
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset id="SdInstellingen">
+      <legend><strong>[vt]Standaarddeviaties[/vt]</strong></legend>
+
+      <div class="formblock">
+        <div class="formlinks">{SdFrequentie_description}</div>
+        <div class="formrechts">
+          {SdFrequentie_inputfield}{SdFrequentie_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{SdMethodiek_description}</div>
+        <div class="formrechts">
+          {SdMethodiek_inputfield}{SdMethodiek_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{SdWaarnemingen_description}</div>
+        <div class="formrechts">
+          {SdWaarnemingen_inputfield}{SdWaarnemingen_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{SdOpbouw_description}</div>
+        <div class="formrechts">
+          {SdOpbouw_inputfield}{SdOpbouw_error}
+        </div>
+      </div>
+
+    </fieldset>
+
+    <fieldset id="ModMutaties">
+      <legend><strong>[vt]Mutaties aanleveren[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_BOEKEN_description}</div>
+        <div class="formrechts">
+          {check_module_BOEKEN_inputfield} {check_module_BOEKEN_error}
+        </div>
+      </div>
+
+    </fieldset>
+
+    <fieldset id="ModOverige">
+      <legend><strong>[vt]Overige[/vt]</strong></legend>
+      <div class="formblock">
+        <div class="formlinks">{check_module_SCENARIO_description}</div>
+        <div class="formrechts">
+          {check_module_SCENARIO_inputfield} {check_module_SCENARIO_error}&nbsp;&nbsp;&nbsp;&nbsp;
+          {ScenarioMinimaleKans_description} {ScenarioMinimaleKans_inputfield} {ScenarioMinimaleKans_error}&nbsp;&nbsp;&nbsp;&nbsp;
+          {ScenarioGewenstProfiel_description} {ScenarioGewenstProfiel_inputfield} {ScenarioGewenstProfiel_error}&nbsp;&nbsp;&nbsp;&nbsp;
+          {ScenarioAfwijkendProfielPDF_description} {ScenarioAfwijkendProfielPDF_inputfield} {ScenarioAfwijkendProfielPDF_error}
+
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{module_bestandsvergoeding_description}</div>
+        <div class="formrechts">
+          {module_bestandsvergoeding_inputfield} {module_bestandsvergoeding_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{check_module_portefeuilleWaarde_description}</div>
+        <div class="formrechts">
+          {check_module_portefeuilleWaarde_inputfield} {check_module_portefeuilleWaarde_error} {portefeuilleWaardeInclVkm_description} {portefeuilleWaardeInclVkm_inputfield} {portefeuilleWaardeInclVkm_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{check_module_UREN_description}</div>
+        <div class="formrechts">
+          {check_module_UREN_inputfield} {check_module_UREN_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{check_participants_description}</div>
+        <div class="formrechts">
+          {check_participants_inputfield} {check_participants_error}
+        </div>
+      </div>
+
+      
+      <div class="formblock">
+        <div class="formlinks">{transactiemeldingWaarde_description}</div>
+        <div class="formrechts">
+          {transactiemeldingWaarde_inputfield} {transactiemeldingWaarde_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{transactieMeldingType_description}</div>
+        <div class="formrechts">
+          {transactieMeldingType_inputfield} {transactieMeldingType_error}
+        </div>
+      </div>
+      
+      
+      <div class="formblock">
+        <div class="formlinks">{standaardRapportageFreq_description}</div>
+        <div class="formrechts">
+          {standaardRapportageFreq_inputfield} {standaardRapportageFreq_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">{bedragTransactiesignalering_description}</div>
+        <div class="formrechts">
+          {bedragTransactiesignalering_inputfield} {bedragTransactiesignalering_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{spreadKosten_description}</div>
+        <div class="formrechts">
+          {spreadKosten_inputfield} {spreadKosten_error}
+        </div>
+      </div>
+
+
+      <div class="formblock">
+        <div class="formlinks">{jaarafsluitingPerBewaarder_description}</div>
+        <div class="formrechts">
+          {jaarafsluitingPerBewaarder_inputfield}
+        </div>
+      </div>
+  
+      <div class="formblock">
+        <div class="formlinks">{ixpVerwerking_description}</div>
+        <div class="formrechts">
+          {ixpVerwerking_inputfield}
+        </div>
+      </div>
+  
+      <div class="formblock">
+        <div class="formlinks">{morningstar_description}</div>
+        <div class="formrechts">
+          {morningstar_inputfield} {morningstar_error}
+        </div>
+      </div>
+      
+      
+
+    </fieldset>
+
+    <div class="form">
+
+      <!--
+      <div class="formblock">
+        <div class="formlinks">{frontofficeClientExcel_description} </div>
+        <div class="formrechts">
+          {frontofficeClientExcel_inputfield} {frontofficeClientExcel_error}
+        </div>
+      </div> -->
+
+      <!-- /form -->
+    </div>
+  </div>
+  <!-- /tab 10 -->
+
+<!-- tab11 -->
+<div id='tab11' class="tabblad">
+
+  <fieldset id="Consistentiecontroles">
+    <legend><strong>[vt]Consistentiecontroles[/vt]</strong></legend>
+    <table>
+      <tbody>
+      <tr>
+        <td> {check_categorie_inputfield} {check_categorie_description}{check_categorie_error}
+        </td>
+        <td> {check_rekeningmutaties_inputfield} {check_rekeningmutaties_description} {check_rekeningmutaties_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_sector_inputfield} {check_sector_description} {check_sector_error}
+        </td>
+        <td> {check_zorgplichtPortefeuille_inputfield} {check_zorgplichtPortefeuille_description}{check_zorgplichtPortefeuille_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_zorgplichtFonds_inputfield} {check_zorgplichtFonds_description}{check_zorgplichtFonds_error}
+        </td>
+        <td> {check_historischePortefeuilleIndex_inputfield} {check_historischePortefeuilleIndex_description}{check_historischePortefeuilleIndex_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_hoofdcategorie_inputfield} {check_hoofdcategorie_description}{check_hoofdcategorie_error}
+        </td>
+        <td> {check_kruisposten_inputfield} {check_kruisposten_description}{check_kruisposten_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_hoofdsector_inputfield} {check_hoofdsector_description}{check_hoofdsector_error}
+        </td>
+        <td> {check_rekeningATT_inputfield} {check_rekeningATT_description}{check_rekeningATT_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_sectorRegio_inputfield} {check_sectorRegio_description}{check_sectorRegio_error}
+        </td>
+        <td> {check_rekeningCat_inputfield} {check_rekeningCat_description}{check_rekeningCat_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_sectorAttributie_inputfield} {check_sectorAttributie_description}{check_sectorAttributie_error}
+        </td>
+        <td> {check_rekeningDepotbank_inputfield} {check_rekeningDepotbank_description}{check_rekeningDepotbank_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_afmCategorie_inputfield}{check_afmCategorie_description} {check_afmCategorie_error}
+        </td>
+        <td> {check_Beurs_inputfield} {check_Beurs_description}{check_Beurs_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_duurzaamheid_inputfield} {check_duurzaamheid_error}{check_duurzaamheid_description}
+        </td>
+        <td> {check_BB_Landcodes_inputfield} {check_BB_Landcodes_description}{check_BB_Landcodes_error}
+        </td>
+      </tr>
+      <tr>
+        <td> {check_duurzaamCategorie_inputfield} {check_duurzaamCategorie_error}{check_duurzaamCategorie_description}
+        </td>
+        <td>  &nbsp;
+        </td>
+      </tr>
+  </tbody>
+    </table>
+  </fieldset>
+  <!-- /form -->
+</form>
+</div>
+<!-- /tab 11 -->
+
+
+<script>
+  AEColor.initColors();
+  AEColor.initColorChange();
+  $(document).ready(function()
+  {
+  
+  });
+  
+</script>

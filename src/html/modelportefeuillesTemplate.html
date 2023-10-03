@@ -1,0 +1,240 @@
+<script type="text/javascript">
+
+
+
+  $(function () {
+
+    $('#newDate').on('change', function () {
+      var selectedDate = $('#newDate').datepicker('getDate');
+      var now = new Date();
+      now.setHours(0,0,0,0);
+      if (selectedDate > now) {
+        $('#newDate').val('');
+        AEMessage('Letop: Datum mag niet in de toekomst liggen!', 'Datum');
+      }
+
+      var options = $('#FixedDatum option');
+
+
+      var formatedSelectedDate = $.datepicker.formatDate('yy-mm-dd', selectedDate);
+      $.map(options ,function(option) {
+        if ( $.datepicker.formatDate('yy-mm-dd', new Date(option.value)) === formatedSelectedDate) {
+          $('#newDate').val('');
+          AEMessage('Letop: Geselecteerde datum bestaat al!', 'Datum');
+        }
+      });
+
+
+    });
+
+
+    $(document).on('click', '#copy', function () {
+      $('#currentSelectedDateView').html($("#FixedDatum option:selected").text());
+      $('#currentSelectedDateInput').val($('#FixedDatum').val());
+
+      dialog = $( "#copyDialog" ).dialog({
+        autoOpen: false,
+//      height: 400,
+//      width: 350,
+        modal: true,
+        buttons: {
+          "Regels kopieren": function() {
+            if ( $('#newDate').val() !== '' ) {
+              parent.frames['content'].location = "modelportefeuillesEdit.php?type=copyTo&id={id_value}&useDate=" + $('#currentSelectedDateInput').val() + "&newDate=" + $('#newDate').val() + "";
+            }
+            else {
+              AEMessage('Letop: Er moet een datum ingevuld worden!', 'Datum');
+            }
+          },
+          Cancel: function() {
+            dialog.dialog( "close" );
+          }
+        },
+        close: function() {
+          dialog.dialog( "close" );
+        }
+      });
+
+
+      dialog.dialog( "open" );
+    });
+  });
+
+
+function showFixed()
+{
+  for (var i=0; i < document.editForm.Fixed.length; i++)
+  {
+    if (document.editForm.Fixed[i].checked)
+    {
+      var rad_val = document.editForm.Fixed[i].value;
+    }
+  }
+
+  if (rad_val > 0 && rad_val < 3)
+  {
+    document.getElementById('fixedModel').src = "modelportefeuillefixedList.php?Portefeuille="+document.getElementById('Portefeuille').value+"&Datum="+document.getElementById('FixedDatum').value+"&type="+rad_val;
+    document.getElementById('fixedDatumDiv').style.visibility='visible';
+    if (rad_val > 1)
+    {
+      document.getElementById('toonGrafiek').style.visibility='hidden';
+    }
+    else
+    {
+      document.getElementById('toonGrafiek').style.visibility='visible';
+    }
+  }
+  else
+  {
+    document.getElementById('fixedModel').src = "blank.html";
+    document.getElementById('fixedDatumDiv').style.visibility='hidden';
+  }
+
+ /*
+  var theForm = document.editForm.elements, z = 0;
+  for(z=0; z<theForm.length;z++)
+  {
+   if(theForm[z].type == "checkbox")
+   {
+     if(theForm[z].name == "Fixed")
+     {
+       if (theForm[z].checked == true)
+       {
+        document.getElementById('fixedModel').src = "modelportefeuillefixedList.php?Portefeuille="+document.getElementById('Portefeuille').value+"&Datum="+document.getElementById('FixedDatum').value;
+        document.getElementById('fixedDatumDiv').style.visibility='visible';
+       }
+       else
+       {
+         document.getElementById('fixedModel').src = "blank.html";
+         document.getElementById('fixedDatumDiv').style.visibility='hidden';
+       }
+     }
+   }
+  }
+  */
+}
+
+function reloadFixed()
+{
+  document.getElementById('fixedModel').src = "modelportefeuillefixedList.php?Portefeuille="+document.getElementById('Portefeuille').value+"&Datum="+document.getElementById('FixedDatum').value;
+}
+
+function toonGrafiek()
+{
+
+  window.open('rapportFixedModelAfdrukken.php?Portefeuille='+document.getElementById('Portefeuille').value+'&Datum='+document.getElementById('FixedDatum').value,'Grafiek','');
+
+}
+
+  function toonDoorkijk()
+  {
+
+    window.open('rapportFixedModelAfdrukken.php?Portefeuille='+document.getElementById('Portefeuille').value+'&Datum='+document.getElementById('FixedDatum').value+'&rapport=DOORKIJK','Doorkijk','');
+
+  }
+
+</script>
+
+<div id="copyDialog" title="Kopieer naar nieuwe datum" style="display: none;">
+  <input type="hidden" name="currentSelectedDate" id="currentSelectedDateInput" value="" />
+  <p>Regels kopieren van <span id="currentSelectedDateView"></span> uit portefeuille: {Portefeuille_value}</p>
+
+  <div class="formblock">
+    <div class="formlinks">Kopieren naar: </div>
+    <div class="formrechts">
+      <input id="newDate" type="text" class="AIRSdatepicker"/>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<form name="editForm" action="{updateScript}" method="get">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" value="{id_value}" name="id" >
+
+
+<div class="form" >
+
+<div class="formblock">
+<div class="formlinks">{Portefeuille_description} </div>
+<div class="formrechts">
+{Portefeuille_inputfield} {Portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Omschrijving_description} </div>
+<div class="formrechts">
+{Omschrijving_inputfield} {Omschrijving_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Beleggingscategorie_description} </div>
+<div class="formrechts">
+{Beleggingscategorie_inputfield} {Beleggingscategorie_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{VerwerkingsmethodeDiv_description} </div>
+<div class="formrechts">
+{VerwerkingsmethodeDiv_inputfield} {VerwerkingsmethodeDiv_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Fixed_description} </div>
+<div class="formrechts">
+{Fixed_inputfield} {Fixed_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AfdrukNiveau_description} </div>
+<div class="formrechts">
+{AfdrukNiveau_inputfield} {AfdrukNiveau_error}
+</div>
+</div>
+
+
+<div class="formblock" id='fixedDatumDiv'>
+<div class="formlinks">{FixedDatum_description} </div>
+<div class="formrechts">
+{FixedDatum_inputfield} {FixedDatum_error}
+</div>
+  <div id='toonGrafiek'>&nbsp; | <a href="javascript:toonGrafiek();"> Toon Grafiek</a> | <a href="javascript:toonDoorkijk();"> Toon Doorkijk</a> |</div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks">{copyBtn} </div>
+  </div>
+
+
+
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{change_user_value} {change_date_value}
+</div>
+</div>
+
+</div>
+</form>
+
+
+<div class="formblock">
+<iframe name="fixedModel" id="fixedModel" src="blank.html" style="width:95%;" height="400" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+</div>
+
+
+
+
+
+

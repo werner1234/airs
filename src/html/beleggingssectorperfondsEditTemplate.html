@@ -1,0 +1,59 @@
+<form id="beleggingsSectorPerFondsForm" name="editForm" action="{updateScript}" method="get">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    <input type="hidden" value="{newFonds}" name="newFonds" >
+
+    {id_inputfield}
+    <div class="formblock">
+      <div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label></div>
+      <div class="formrechts">
+        {Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Fonds">{Fonds_description}</label></div>
+      <div class="formrechts">
+        {Fonds_inputfield} {Fonds_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Beleggingssector">{Beleggingssector_description}</label></div>
+      <div class="formrechts">
+        {Beleggingssector_inputfield} {Beleggingssector_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Regio">{Regio_description}</label></div>
+      <div class="formrechts">
+        {Regio_inputfield} {Regio_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="AttributieCategorie">{AttributieCategorie_description}</label></div>
+      <div class="formrechts">
+        {AttributieCategorie_inputfield} {AttributieCategorie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="Vanaf">{Vanaf_description}</label></div>
+      <div class="formrechts">
+        {Vanaf_inputfield} {Vanaf_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}
+      </div>
+    </div>
+
+  </div>
+</form>

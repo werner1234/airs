@@ -1,0 +1,153 @@
+<div style="display:none;" id="uiModalDiv">
+  <div id="modelContent" ></div>
+</div>
+
+{addFonds}
+
+
+<div class="main_content">
+
+  <div id="messageHolder">{AEMessage}</div>
+<form name="editForm" method="POST">
+<!--
+  <br>
+  Pagina :
+  <select name="pagina" onChange="document.editForm.action.value = 'edit';document.editForm.submit();">
+    <option value="{maxPagina}">Nieuw</option>
+    {paginaOptions}
+  </select>
+
+  <br>
+  <br>
+  -->
+  <script>
+    function isNumber( value )
+    {
+      return isFinite( (value * 1.0) );
+    }
+
+
+    function koersLimietChangeBulk()
+    {
+      if( $('#koersLimietHidden').val() != '')
+      {
+        if( isNumber ($('#koersLimiet').val()) && $('#koersLimiet').val() != 0 && isNumber ($('#koersLimietHidden').val()))
+        {
+          var tmp = ($('#koersLimiet').val() / $('#koersLimietHidden').val()) *100;
+          if(tmp < 90 || tmp > 110)
+            AEMessage('Limiet wijkt meer dan 10% van de laatst bekende koers af.','Limiet afwijking',function (){ tmp=false;}  );
+        }
+        else
+        {
+          alert('Geen getal opgegeven.');
+        }
+      }
+      aantalChanged();
+    }
+
+
+
+
+  </script>
+
+  <div class="row">
+    <div class="formHolder box box12 {fieldsetClass}">
+      <div class="formTitle textB">[vt]Order regels toevoegen[/vt]</div>
+      <div class="formContent">
+        <div class="padded-10">
+
+
+            <div class="form" >
+              <input type="hidden" name="action" value="update">
+              <input type="hidden" name="updateScript" value="{updateScript}">
+              <input type="hidden" name="returnUrl" value="{returnUrl}">
+              <input type="hidden" name="redirect" value="0">
+              <input type="hidden" name="id" value="{id_value}">
+              <input type="hidden" name="bron" value="bulkInvoer">
+              <input type="hidden" name="orderbedrag" id="orderbedrag" value="0">
+              <input type="hidden" name="fonds_id" value="">
+              <input type="hidden" name="fondseenheidHidden" id="fondseenheidHidden" value="1" >
+              <input type="hidden" name="valutaKoersHidden" id="valutaKoersHidden" value="{valutaKoers_value}" >
+              <input type="hidden" value="{fondseenheid_value}" name="fondseenheid" id="fondseenheid">
+              <input type="hidden" value="{optieSymbool_value}" name="optieSymbool" id="optieSymbool">
+              <input type="hidden" value="{optieType_value}" name="optieType" id="optieType">
+              <input type="hidden" value="{optieUitoefenprijs_value}" name="optieUitoefenprijs" id="optieUitoefenprijs">
+              <input type="hidden" value="{optieExpDatum_value}" name="optieExpDatum" id="optieExpDatum">
+              <input type="hidden" value="{fondssoort_value}" name="fondssoort" id="fondssoort">
+              <input type="hidden" name="fondsValuta" id="fondsValuta" value="{fondsValuta_value}" >
+              <input type="hidden" name="valuta" value="">
+              <input type="hidden" value="{Risicoklasse_value}" name="Risicoklasse" id="Risicoklasse">
+              <input type="hidden" name="portefeuille_id" value="">
+              <input type="hidden" value="{fonds_value}" name="fonds" id="fonds">
+              <input type="hidden" value="{orderid_value}" name="orderid" id="orderid">
+
+              <input type="hidden" name="setDepotbank"   value="{depotbank_value}" id="Depotbank" >
+              <input type="hidden" value="{fondsBankcode_value}" name="fondsBankcode" id="fondsBankcode">
+
+              <table border="0" cellpadding="6" cellspacing="0">
+                <tr>
+                  <td>#</td>
+                  <td>[vt]Client[/vt]</td>
+                  <td>[vt]ISIN[/vt] <span id="fonds-koers-info" class=""></span></td>
+                  <td>[vt]Transactiesoort[/vt]</td>
+                  <td>[vt]Aantal[/vt]</td>
+                  <td><label for="koersLimiet">{koersLimiet_description}</label></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>{regelNr_inputfield} {regelNr_error} </td>
+                  <td>{PortefeuilleSelectie}<input type="hidden" name="client" id="client" value="{client_value}"></td>
+
+                  <td>{Fonds}<div id="addNewFonds" class="input-group-addon  btn-new btn-default btn-xs">[vt]Nieuw[/vt]</div></td>
+
+
+                  <td>{transactieSoort_inputfield} {transactieSoort_error}</td>
+                  <td>{aantal_inputfield} {aantal_error}</td>
+
+                   <td>{koersLimiet_inputfield} {koersLimiet_error} <input type="hidden" name="koersLimietHidden" id="koersLimietHidden" value="{koersLimietHidden_value}"  > </td>
+                  <td>{opslaanKnop}</td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>
+                    <input type="text" name="portefeuille" id="portefeuille" class="readOnlyField" value="{portefeuille_value}" READONLY style=" width: 154px;"  >
+                    {portefeuille_error}
+                  </td>
+                  <td colspan="2">
+                    <input class="" type="hidden" size="25" value="{fonds_value}" name="fonds" id="fonds">
+
+
+                    <input style=" width: 364px;" READONLY type="text" id="fondsOmschrijving" class="readOnlyField" name="fondsOmschrijving" value="{fondsOmschrijving_value}"><input type="hidden" id="fondsOmschrijvingHidden" value="">
+                    {fonds_error}{fondsOmschrijving_error}
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+
+              {knoppen}
+
+            </div>
+
+        </div>
+        <div class="form-actions clearB" id="saveForm">
+              <span id="fondsOwnedInfo"></span><span style="margin-left: 50px;" id="BankDepotCodes"></span><br>
+              <span class="" id="koersInfo"></span><br>
+              <span id="orderWaarde"></span>
+            </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+</div>
+</form>

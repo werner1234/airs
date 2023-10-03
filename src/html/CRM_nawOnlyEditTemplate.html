@@ -1,0 +1,596 @@
+
+
+<script>
+function portefeuilleChange()
+{
+  var theForm = document.editForm.elements, z = 0;
+  for(z=0; z<theForm.length;z++)
+  {
+   if(theForm[z].type == "text")
+   {
+     if(theForm[z].name == "Portefeuille")
+     {
+       theForm[z].value = "";
+       theForm[z].disabled=true;
+     }
+   }
+  }
+}
+</script>
+
+<form name="editForm" action="{updateScript}" method="POST">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="aktief" value="1">
+  {id_inputfield}
+
+<div class="form">
+<fieldset id="RelatieSectie1">
+  <legend> [vt]Algemeen[/vt] </legend>
+
+  
+    <div class="formblock">
+    <div class="formlinks">{portefeuille_description} </div>
+    <div class="formrechts">
+    {portefeuille_inputfield} {portefeuille_error}
+    </div>
+  </div>
+  
+  <div class="formblock">
+    <div class="formlinks">{PortefeuilleDepotbank_description} </div>
+    <div class="formrechts">
+      {PortefeuilleDepotbank_inputfield} {PortefeuilleDepotbank_error}
+    </div>
+  </div>
+  
+  <div class="formblock">
+    <div class="formlinks">{naam_description} </div>
+    <div class="formrechts">
+      {naam_inputfield} {naam_error}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">{naam1_description} </div>
+    <div class="formrechts">
+      {naam1_inputfield} {naam1_error}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">[vt]Telefoon[/vt] </div>
+    <div class="formrechts">
+        <input class="" type="text" size="20" value="{tel1_value}" name="tel1"  >
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">{profielOverigeBeperkingen_description} </div>
+    <div class="formrechts">
+      {profielOverigeBeperkingen_inputfield}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">{aktief_description} </div>
+    <div class="formrechts">
+      {aktief_inputfield}
+    </div>
+  </div>
+  
+</fieldset>
+<fieldset id="RelatieSectie2" >
+  <legend> [vt]Adres[/vt] </legend>
+  <div class="formblock">
+    <div class="formlinks">[vt]aanhef[/vt] </div>
+    <div class="formrechts">
+      <input class="" type="text" size="60"  value="{verzendAanhef_value}"      name="verzendAanhef" >&nbsp;&nbsp;&nbsp;
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">[vt]straat[/vt] </div>
+    <div class="formrechts">
+        <input class="" type="text" size="60" value="{adres_value}" name="adres"  >
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks">[vt]PC[/vt], [vt]plaats[/vt], [vt]land[/vt] </div>
+    <div class="formrechts">
+      <input class="" type="text" size="7"  value="{pc_value}"      name="pc" >&nbsp;&nbsp;&nbsp;
+      <input class="" type="text" size="30" value="{plaats_value}"  name="plaats" >&nbsp;&nbsp;&nbsp;
+      <input class="" type="text" size="15" value="{land_value}"    name="land" >
+    </div>
+  </div>
+</fieldset>
+ 
+<fieldset id="RelatieSectie2" >
+  <legend> [vt]Portaal/Email[/vt] </legend>
+  <div class="formblock">
+    <div class="formlinks">[vt]email[/vt] </div>
+    <div class="formrechts">
+        <input class="" type="text" size="60" value="{email_value}" name="email"  > {email_error}
+    </div>
+  </div>
+  
+  <div class="formblock">
+    <div class="formlinks">[vt]wachtwoord[/vt] </div>
+    <div class="formrechts">
+        <input class="" type="text" size="60" value="{wachtwoord_value}" name="wachtwoord"  > {wachtwoord_error}
+    </div>
+  </div>
+  
+  
+  <div class="formblock">
+    <div class="formlinks">{blancoId_description} </div>
+    <div class="formrechts">
+      {blancoId_inputfield} {blancoId_error}
+    </div>
+  </div>
+  
+  
+</fieldset>
+</div>
+
+  <div class="tabbuttonRow">
+  <table>
+  {naarAirsVerzenden}
+  <tr><td>
+  </td></tr>
+  <tr><td>{PortefeuilleTabs}
+  
+  </td></tr>
+  </table>
+  {errorHtml}
+	</div>
+  
+  <div id='tab9' class="tabblad">
+    <fieldset >
+      <iframe id="extraFrame" name="extraFrame" src="{frameSrc}" width="1200" height="1000" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+    </fieldset>
+  </div>
+  
+<div id='tab10' class="tabblad">
+
+<div class="form">
+
+<fieldset id="PortefeuilleGegevens" >
+  <legend> [vt]Portefeuille gegevens[/vt] </legend>
+
+  <input type="hidden" name="portefeuilleId" id="portefeuilleId" value="{portefeuilleId}">
+
+<div class="formblock">
+<div class="formlinks">{Portefeuille_description} </div>
+<div class="formrechts">
+{Portefeuille_inputfield} {Portefeuille_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{PortefeuilleVoorzet_description} </div>
+<div class="formrechts">
+{PortefeuilleVoorzet_inputfield} {PortefeuilleVoorzet_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Vermogensbeheerder_description} </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield}
+</div>
+</div>
+  
+  <div class="formblock">
+    <div class="formlinks">{selectieveld1_description} </div>
+    <div class="formrechts">
+      {selectieveld1_inputfield}
+    </div>
+  </div>
+
+<div class="formblock">
+<div class="formlinks">{Accountmanager_description} </div>
+<div class="formrechts">
+{Accountmanager_inputfield}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{tweedeAanspreekpunt_description} </div>
+<div class="formrechts">
+{tweedeAanspreekpunt_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Client_description} </div>
+<div class="formrechts">
+{Client_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{beperktToegankelijk_description} </div>
+<div class="formrechts">
+{beperktToegankelijk_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Depotbank_description} </div>
+<div class="formrechts">
+{Depotbank_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Vastetegenrekening_description} </div>
+<div class="formrechts">
+{Vastetegenrekening_inputfield} {Vastetegenrekening_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Startdatum_description} </div>
+<div class="formrechts">
+{Startdatum_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Einddatum_description} </div>
+<div class="formrechts">
+{Einddatum_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+
+<div class="formlinks">{ClientVermogensbeheerder_description} </div>
+<div class="formrechts">
+{ClientVermogensbeheerder_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{ModelPortefeuille_description} </div>
+<div class="formrechts">
+{ModelPortefeuille_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{RapportageValuta_description} </div>
+<div class="formrechts">
+{RapportageValuta_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Risicoklasse_description} </div>
+<div class="formrechts">
+{Risicoklasse_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AEXVergelijking_description} </div>
+<div class="formrechts">
+{AEXVergelijking_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{SpecifiekeIndex_description} </div>
+<div class="formrechts">
+{SpecifiekeIndex_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{SoortOvereenkomst_description} </div>
+<div class="formrechts">
+{SoortOvereenkomst_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{HistorischeInfo_description} </div>
+<div class="formrechts">
+{HistorischeInfo_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{maandAfdrukken_description} </div>
+<div class="formrechts">
+{maandAfdrukken_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{kwartaalAfdrukken_description} </div>
+<div class="formrechts">
+{kwartaalAfdrukken_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Taal_description} </div>
+<div class="formrechts">
+{Taal_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Remisier_description} </div>
+<div class="formrechts">
+{Remisier_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{AFMprofiel_description} </div>
+<div class="formrechts">
+{AFMprofiel_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{ZpMethode_description} </div>
+<div class="formrechts">
+{ZpMethode_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{OptieToestaan_description} </div>
+<div class="formrechts">
+{OptieToestaan_inputfield}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{Memo_description} </div>
+<div class="formrechts">
+{Memo_inputfield}
+</div>
+</div>
+</fieldset>
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab11' class="tabblad">
+
+<fieldset id="Beheerfee" >
+  <legend> [vt]Beheerfee-methode[/vt] </legend>
+<table border="0">
+<tr>
+	<td>{BeheerfeeBasisberekening_description}</td>
+	<td>{BeheerfeeBasisberekening_inputfield} </td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td><b>[vt]Beheerfee bepaling[/vt]</b></td>
+</tr>
+<tr>
+	<td><input type="radio" name="BeheerfeeMethode" value="0" {Methode_0}> [vt]Geen, Toevoegen aan portefeuille[/vt] </td>
+	<td>{BeheerfeeToevoegenAanPortefeuille_inputfield} </td><td> {feeToevoegMethode_inputfield} </td>
+</tr>
+<tr>
+	<td><input type="radio" name="BeheerfeeMethode" value="1" {Methode_1}> [vt]Standaard (op basis van staffels)[/vt] </td>
+	<td> </td>
+</tr>
+<tr>
+	<td><input type="radio" name="BeheerfeeMethode" value="2" {Methode_2}> [vt]Standaard + procentuele korting[/vt] </td>
+	<td>{BeheerfeeKortingspercentage_inputfield}</td>
+</tr>
+<tr>
+	<td><input type="radio" name="BeheerfeeMethode" value="3" {Methode_3}> [vt]Percentage over vermogen in beheer[/vt] </td>
+	<td>{BeheerfeePercentageVermogen_inputfield}</td>
+</tr>
+<tr>
+	<td><input type="radio" name="BeheerfeeMethode" value="4" {Methode_4}> [vt]Bedrag[/vt]</td>
+	<td>{BeheerfeeBedrag_inputfield}</td>
+</tr>
+
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformancePercentage_checkbox} {BeheerfeePerformancePercentage_description}</td>
+	<td>{BeheerfeePerformancePercentage_inputfield}</td>
+</tr>
+
+<tr>
+	<td>{BeheerfeePerformanceDrempelPercentage_checkbox} {BeheerfeePerformanceDrempelPercentage_description}</td>
+	<td>{BeheerfeePerformanceDrempelPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformanceDrempelBedrag_checkbox} {BeheerfeePerformanceDrempelBedrag_description}</td>
+	<td>{BeheerfeePerformanceDrempelBedrag_inputfield}</td>
+</tr>
+
+<tr>
+	<td>{BeheerfeeMinJaarBedrag_checkbox} {BeheerfeeMinJaarBedrag_description}</td>
+	<td>{BeheerfeeMinJaarBedrag_inputfield}</td>
+</tr>
+<tr>
+	<td>{AdministratieVergoeding_checkbox} [vt]Administratie vergoeding[/vt]</td>
+	<td>{BeheerfeeAdministratieVergoeding_inputfield}</td>
+</tr>
+<tr>
+	<td>{Remisier_checkbox} [vt]Remisiervergoeding[/vt]</td>
+	<td>{BeheerfeeRemisiervergoedingsPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>{Huisfonds_checkbox} [vt]Teruggave over belegging in huisfondsen[/vt]</td>
+	<td>{BeheerfeeTeruggaveHuisfondsenPercentage_inputfield}</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>{BeheerfeeBedragBuitenFee_description}</td>
+	<td>{BeheerfeeBedragBuitenFee_inputfield}</td>
+</tr>
+<tr>
+	<td>[vt]BTW Tarief[/vt]</td>
+	<td>{BeheerfeeBTW_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeAantalFacturen_description}</td>
+	<td>{BeheerfeeAantalFacturen_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeePerformancefeeJaarlijks_description}</td>
+	<td>{BeheerfeePerformancefeeJaarlijks_inputfield}</td>
+</tr>
+<tr>
+	<td>{WerkelijkeDagen_description}</td>
+	<td>{WerkelijkeDagen_inputfield}</td>
+</tr>
+<tr>
+	<td>{valutaUitsluiten_description}</td>
+	<td>{valutaUitsluiten_inputfield}</td>
+<tr>
+  <td>{BeheerfeeLiquiditeitenViaModel_description}</td>
+  <td>{BeheerfeeLiquiditeitenViaModel_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeFacturatieVanaf_description}</td>
+	<td>{BeheerfeeFacturatieVanaf_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeFacturatieVooraf_description}</td>
+	<td>{BeheerfeeFacturatieVooraf_inputfield}</td>
+</tr>
+<tr>
+	<td>{BetalingsinfoMee_description}</td>
+	<td>{BetalingsinfoMee_inputfield}</td>
+</tr>
+<tr>
+	<td>{FactuurMemo_description}</td>
+	<td colspan="2">{FactuurMemo_inputfield}</td>
+</tr>
+</table>
+</fieldset>
+<!-- einde form -->
+</div>
+<!-- einde tab0 -->
+</div>
+
+<!-- tab1 -->
+<div id='tab12' class="tabblad">
+
+<div class="form">
+<fieldset id="Beheerfee-staffels" >
+  <legend> [vt]Beheerfee-methode[/vt] </legend>
+
+<table border="0">
+<tr>
+	<td>[vt]Waarde t/m[/vt] </td>
+	<td>[vt]Percentage[/vt]</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel1_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage1_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel2_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage2_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel3_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage3_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel4_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage4_inputfield}</td>
+</tr>
+<tr>
+	<td>{BeheerfeeStaffel5_inputfield} </td>
+	<td>{BeheerfeeStaffelPercentage5_inputfield}</td>
+</tr>
+<tr>
+	<td> &nbsp; </td>
+</tr>
+<tr>
+	<td>{BeheerfeeSchijvenTarief_description} </td>
+	<td>{BeheerfeeSchijvenTarief_inputfield}</td>
+</tr>
+
+</table>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+ </div>
+</div>
+
+</fieldset>
+</div>
+</div>
+
+<div id='tab13' class="tabblad">
+  {vulling_tab13}
+</div>
+  <div id='tab14' class="tabblad">
+    {vulling_tab14}
+  </div>
+  
+  <div id='tab6' class="tabblad">
+    <fieldset id="RelatieSectie5">
+      <legend> [vt]rapportage[/vt] </legend>
+      
+      <div class="formblock">
+        <div class="formlinks">{begeleidendeBrief_description}  </div>
+        <div class="formrechts">
+          {begeleidendeBrief_inputfield}{begeleidendeBrief_error}
+        </div>
+      </div>
+      
+      <div class="formblock">
+        <div class="formlinks"> </div>
+        <div class="formrechts">
+          
+          {rapportageMatrix}
+        </div>
+      </div>
+      
+      {hide_rapportage_textbox_start}
+      <div class="formblock">
+        <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{maandrapportage_description}</label> </div>
+        <div class="formrechts">
+          {maandrapportage_inputfield} {maandrapportage_error}
+        </div>
+      </div>
+      
+      <div class="formblock">
+        <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{kwartaalrapportage_description}</label> </div>
+        <div class="formrechts">
+          {kwartaalrapportage_inputfield} {kwartaalrapportage_error}
+        </div>
+      </div>
+      
+      <div class="formblock">
+        <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{halfjaarrapportage_description}</label> </div>
+        <div class="formrechts">
+          {halfjaarrapportage_inputfield} {halfjaarrapportage_error}
+        </div>
+      </div>
+      
+      <div class="formblock">
+        <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{jaarrapportage_description}</label> </div>
+        <div class="formrechts">
+          {jaarrapportage_inputfield} {jaarrapportage_error}
+        </div>
+      </div>
+      {hide_rapportage_textbox_eind}
+    
+    </fieldset>
+  </div>
+
+</form>
+

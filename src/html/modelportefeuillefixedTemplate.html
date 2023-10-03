@@ -1,0 +1,62 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" name="type" value="{type}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Portefeuille">{Portefeuille_description}</label> </div>
+<div class="formrechts">
+{Portefeuille_inputfield} {Portefeuille_error}
+</div>
+</div>
+
+<!-- 
+
+javascript:select_fonds(document.editForm.Fonds.value); 
+
+javascript:getAjaxWaarden('eJzTCHb1cXUOUVD38QxU11H3ySwszUzJLEkFojx1TYVQP09%2FPwUNqCK3%2FLyUYh3%2F3OLkjKLMrLLMvHQFtyB%2FX4h4ap5CuIdrkKuCa2ZeiktiSWmugp2Cn3%2B4hqaCfxCSoK2CugEQ6IKROlDOxTVIwSkSYogmAISYKvk%3D','',this.name)
+javascript:getAjaxWaarden('eJzTCHb1cXUOUVD38QxU11H3ySwszUzJLEkFojx1TYVQP09%2FPwUNqCK3%2FLyUYh3%2F3OLkjKLMrLLMvHQFtyB%2FX4h4ap5CuIdrkKuCa2ZeiktiSWmugp2Cn3%2B4hqaCfxCSoK2CugEQ6IKROlDOxTVIwSkSYogmAISYKvk%3D','',document.getElementById('Fonds').name)
+
+
+-->
+
+
+
+<script language=JavaScript src="javascript/popup.js" type=text/javascript></script>
+<div class="formblock">
+<div class="formlinks">{Fonds_description}  <a href="javascript:select_fonds(document.editForm.Fonds.value); getAjaxWaarden('{getFonds}','',document.editForm.Fonds.name)">
+    <img src="images/16/lookup.gif" border="0" height="18" align="middle"></a> </div>
+<div class="formrechts">    
+{Fonds_inputfield} {Fonds_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Percentage">{Percentage_description}</label> </div>
+<div class="formrechts">
+{Percentage_inputfield} {Percentage_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Percentage">{Datum_description}</label> </div>
+<div class="formrechts">
+{Datum_inputfield} {Datum_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"> </div>
+<div class="formrechts">
+{submit}
+</div>
+</div>
+
+</form></div>

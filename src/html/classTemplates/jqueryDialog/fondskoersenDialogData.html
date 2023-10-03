@@ -1,0 +1,73 @@
+<div  id="thisPageContent">
+    
+    {html}
+    
+    <div class="modalActions" style="float:right;">{actions}</div>
+
+    <script type="text/javascript">
+      {javascript}
+      $(document).ready(function () {
+
+        $('#uiModalDiv').dialog({ 
+            width: 700,
+            autoOpen: false,
+            dialogClass: "test",
+            modal: true,
+            responsive: true,
+            title: "[vt]Fondskoersen[/vt]"
+          });
+
+          $('#uiModalDiv').dialog("open");
+
+        $("#closeModal").on("click", function() {
+          $( "#uiModalDiv" ).dialog( "close" );
+          $( "#thisPageContent" ).remove();
+        });
+        
+        $("#fondskoersenSaveData").on("click", function() {
+          $('#fondskoersenEditForm input[name=action]').val('update');
+          submitfondskoersenForm();
+        });
+        
+        $("#fondskoersenRemoveData").on("click", function() {
+          $('#fondskoersenEditForm input[name=action]').val('delete');
+          submitfondskoersenForm();
+        });
+
+        function submitfondskoersenForm() {
+          
+          var postData = $('#fondskoersenEditForm').serializeArray();
+          var formURL = $('#fondskoersenEditForm').attr("action");
+
+          $('.help-block.with-errors').remove();
+          $('#fondskoersenEditForm').find(':input').css('border-color', ''); //reset inputfield style
+
+          $.ajax({
+            url : formURL,
+            type: "GET",
+            dataType: 'json',
+            data : postData,
+            success:function(data, textStatus, jqXHR) {
+
+              if ( data.saved == true ) {
+                //close modal
+                $('#uiModalDiv').dialog({});
+                $('#uiModalDiv').dialog('close');
+                
+                getFondskoersenList();
+                //data: return data from server
+              } else {
+                $.each(data.errors, function(field, fieldData) {
+                  if ( field == 'Datum' ) {
+                    $('#fondskoersenEditForm [name=' + field + ']').parent().find('.help-block').remove();
+                  }
+                  $('#fondskoersenEditForm [name=' + field + ']').css('border-color', 'red');
+                  $('#fondskoersenEditForm [name=' + field + ']').parent().append('<span class="help-block with-errors">' + fieldData.message + '</span>');
+                });
+              }
+            }
+          });
+        }
+      });
+    </script>
+  </div>

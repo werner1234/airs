@@ -1,0 +1,21 @@
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  
+      <span class="btn btn-hover btn-default  {selectieAllesClass}"
+             onClick="parent.frames['content'].document.location = '{PHP_SELF}?selectieMethode=alles'">
+        <input type="radio" name="selectieMethode" id="alles" value="alles" {selectieAllesUit} >
+        [vt]Multi[/vt]
+      </span>
+  
+        <span  class="btn btn-hover btn-default {selectiePortefeuilleClass}"
+               onClick="parent.frames['content'].document.location = '{PHP_SELF}?selectieMethode=portefeuille'">
+        <input type="radio" name="selectieMethode" id="portefeuille" value="portefeuille" {selectiePortefeuille} >
+        [vt]Enkelvoudige[/vt]
+      </span>
+  
+          <span  class="btn btn-hover btn-default {selectieVinkClass}"
+                 onClick="parent.frames['content'].location = '{PHP_SELF}?selectieMethode=vink'">
+        <input type="radio" name="selectieMethode" id="vink" value="vink" {selectieVink} >
+        [vt]Aangepaste[/vt]
+      </span>
+
+</div>

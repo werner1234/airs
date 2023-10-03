@@ -1,0 +1,26 @@
+<div class="row no-gutters" >
+  
+  <div class="{labelClass}">
+    <label class="col-form-label">[vt]Interne/Externe[/vt]</label>
+  </div>
+  
+  <div class="{buttonClass}">
+    <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+      <label class="btn btn-hover btn-default w-100 {externCheckedClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?portefeuilleIntern=0'">
+        <input type="radio" name="portefeuilleIntern" id="portefeuilleIntern" value="0" {externChecked} >
+        [vt]Externe[/vt]
+      </label>
+      
+      <label class="btn btn-hover btn-default w-100 {internCheckedClass}" onClick="parent.frames['content'].document.location = '{PHP_SELF}?portefeuilleIntern=1'">
+        <input type="radio" name="portefeuilleIntern" id="portefeuilleIntern" value="1" {internChecked} >
+        [vt]Interne[/vt]
+      </label>
+      
+      <label class="btn btn-hover btn-default w-100 {allCheckedClass}" onClick="parent.frames['content'].location = '{PHP_SELF}?portefeuilleIntern=10'">
+        <input type="radio" name="portefeuilleIntern" id="alles" value="10" {allChecked} >
+        [vt]Alle[/vt]
+      </label>
+    </div>
+  </div>
+</div>
+<br />

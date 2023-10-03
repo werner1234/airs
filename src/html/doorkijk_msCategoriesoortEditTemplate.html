@@ -1,0 +1,86 @@
+<form name="editForm" action="{updateScript}" method="post">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+
+    {id_inputfield}
+
+    <div class="formblock">
+      <div class="formlinks"><label for="msCategoriesoort">{msCategoriesoort_description}</label></div>
+      <div class="formrechts">
+        {msCategoriesoort_inputfield} {msCategoriesoort_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="msCategorie">{msCategorie_description}</label></div>
+      <div class="formrechts">
+        {msCategorie_inputfield} {msCategorie_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="omschrijving">{omschrijving_description}</label></div>
+      <div class="formrechts">
+        {omschrijving_inputfield} {omschrijving_error}
+      </div>
+    </div>
+
+
+    <div class="formblock">
+      <div class="formlinks"><label>{grafiekKleur_description}</label></div>
+      <div class="formrechts">
+        <table>
+          <tr>
+            <td>R</td>
+            <td>G</td>
+            <td>B</td>
+            <td>Kleur</td>
+          </tr>
+          <tr>
+            <td><input id='rood' name="grafiekKleur[0]" value="{Rood}" class="colorp"></td>
+            <td><input id='groen' name="grafiekKleur[1]" value="{Groen}" class="colorp"></td>
+            <td><input id='blauw' name="grafiekKleur[2]" value="{Blauw}" class="colorp"></td>
+            <td id="kleur"></td>
+          </tr>
+        </table>
+                    <span style="color:red">
+                        {grafiekKleur_error}
+                    </span>
+      </div>
+    </div>
+    
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<script>
+  $(document).ready(function ()
+  {
+    function toonKleur()
+    {
+      var rood = parseInt($("#rood").val());
+      var groen = parseInt($("#groen").val());
+      var blauw = parseInt($("#blauw").val());
+
+      var color = "rgba(" + parseInt(rood) + "," + parseInt(groen) + "," + parseInt(blauw) + ",1)";
+      //console.log(color);
+      $("#kleur").css("background", color);
+    } // --- enf of function toonKleur() ---
+
+    $(".colorp").change(function ()
+    {
+      toonKleur();
+    });
+
+    toonKleur();
+
+  });  // --- end of document ready ---
+</script>

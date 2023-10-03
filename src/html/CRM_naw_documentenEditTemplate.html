@@ -1,0 +1,44 @@
+<script>
+  function updateValues()
+  {
+    document.editForm.bestandsnaam.value = document.editForm.filename.value ;
+    return;
+  }
+</script>
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  {id_inputfield}
+  {rel_id_inputfield}
+  {bestandsnaam_inputfield}
+
+<div class="formblock">
+  <div class="formlinks">huidige {bestandsnaam_description}  </div>
+  <div class="formrechts">
+  {bestandsnaam_value}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">nieuwe {bestandsnaam_description}  </div>
+  <div class="formrechts">
+  <input type="file" name="filename" size="65" onchange="updateValues()"> {bestandsnaam_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">{omschrijving_description} </div>
+  <div class="formrechts">
+  {omschrijving_inputfield} {omschrijving_error}
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">&nbsp;</div>
+  <div class="formrechts">
+  {change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

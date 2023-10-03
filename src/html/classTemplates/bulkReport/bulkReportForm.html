@@ -1,0 +1,114 @@
+<br />
+<form id="overviewCourse" name="overviewCourse" action="participants_bulkReport.php" target="_blank" method="post">
+  <input type="hidden" name="type" value="overviewCourse">
+  <fieldset  title="overviewCourse">
+    <legend accesskey="R"><strong>[vt]Bulk rapportage[/vt]</strong></legend>
+    <table border="0" cellspacing="0" cellspadding="0">
+      <tr>
+        <!--<td width="150" class="list_kopregel_data">Client</td>-->
+        <td width="150" class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td width="100" class="list_kopregel_data"></td>
+        <td width="150" class="list_kopregel_data">[vt]Datum (Positie)[/vt]</td>
+      </tr>
+      <tr>
+        <td>{DateStart_inputfield}</td>
+        <td>[vt]Tot en met[/vt]</td>
+        <td>{DateEnd_inputfield}</td>
+      </tr>
+      <tr>
+        <td style="height:30px" colspan="3" ></td>
+      </tr>
+    </table>
+
+    <fieldset style="width:800px; border: 0;">
+      <legend style="width: 100%; border-bottom: 1px solid #e5e5e5;"><strong>[vt]Filter (Client of Fonds)[/vt]</strong></legend>
+      <table border="0" cellspacing="0" cellspadding="0">  
+        <tr>
+          <td style="height:10px" colspan="3" ></td>
+        </tr>
+        
+        <tr>
+          <td width="300" class="list_kopregel_data">[vt]Client[/vt]</td>
+          <td width="100" class="list_kopregel_data"></td>
+          <td width="150" class="list_kopregel_data">[vt]Client (Mag leeg zijn bij &#233;&#233;n client)[/vt]</td>
+        </tr>
+        
+        <tr>
+          <td >{client_from}<input type="hidden" name="client_from_id" id="client_from_id" value=""></td>
+          <td>[vt]Tot en met[/vt]</td>
+          <td >{client_to}<input type="hidden" name="client_to_id" id="client_to_id" value=""></td>
+        </tr>
+        
+        <tr>
+          <td style="height:40px" colspan="3" class="list_kopregel_data">[vt]Of[/vt]</td>
+        </tr>
+        
+        <tr>
+          <td width="300" class="list_kopregel_data">[vt]Fonds[/vt]</td>
+          <td width="100" class="list_kopregel_data"></td>
+          <td width="150" class="list_kopregel_data"></td>
+        </tr>
+        
+        <tr>
+          <td >{Fonds_inputfield}</td>
+          <td></td>
+          <td ></td>
+        </tr>
+      </table>
+    </fieldset>  
+
+
+
+
+    <table border="0" cellspacing="0" cellspadding="0">  
+      <tr>
+        <td style="height:30px" colspan="3" ></td>
+      </tr>
+      <tr>
+        <td colspan="3" >
+          <table>
+            <tr>
+              <td><strong>[vt]Rapportage[/vt]</strong></td>
+              <td colspan='2'><strong>[vt]Uitvoer naar[/vt]</strong></td>
+            </tr>
+            <tr>
+              <td style='width: 160px;'>
+                <input type="radio" name="rapportType" value="verloop" checked>[vt]Participatie Verloop[/vt]
+                <br>
+                <input type="radio" name="rapportType" value="positie">[vt]Participatie Positie[/vt]
+              </td>
+              <td>{buttonToPdf}</td>
+              <td>{buttonToPortal}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+</form>
+
+<script>
+  $(function () {
+    
+    $('#Fonds').on('change', function(event) {
+      $('#client_from').val('');
+      $('#client_to').val('');
+    });
+    
+    $('#client_from, #client_to').on('change', function() {
+      $('#Fonds').val('');
+    });
+    
+    
+    $('#bulkPdf').on('click', function(event) {
+      if ( ( $('#client_from').val() != '' || $('#client_to').val() != '' ) &&  $('#Fonds').val() != '') {
+        alert('U kunt geen Client en Fonds als filter opgeven!');
+        return false;
+      }
+    });
+    
+    $('#bulkPortal').on('click', function () {
+      $('#overviewCourse').attr('target', '');
+    });
+  });
+</script>

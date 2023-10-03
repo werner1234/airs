@@ -1,0 +1,618 @@
+<script>
+function huidigeTotaal()
+{
+  document.editForm.huidigesamenstellingTotaal.value = round(eval(document.editForm.huidigesamenstellingAandelen.value) + 
+                                                             eval(document.editForm.huidigesamenstellingObligaties.value) +
+                                                             eval(document.editForm.huidigesamenstellingOverige.value) +
+                                                             eval(document.editForm.huidigesamenstellingLiquiditeiten.value));
+}
+</script>
+
+<form name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}
+{rel_id_inputfield}
+
+<div class="tabbuttonRow">
+	<input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('10')" id="tabbutton10" name="but10" value="Algemeen">
+	<input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('11')" id="tabbutton11" name="but11" value="Beleggen">
+	<input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('12')" id="tabbutton12" name="but12" value="Rapportage">
+	<input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('13')" id="tabbutton13" name="but13" value="Profiel">
+	
+</div>
+
+<div id='tab10' class="tabblad">
+
+<fieldset id="RelatieSectie2">
+  <legend> documenten in dossier </legend>
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+      {kvkInDossier_inputfield} {kvkInDossier_error} <label for="kvkInDossier">KvK in dossier </label>
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">&nbsp;</div>
+    <div class="formrechts">
+      {statutenInDossier_inputfield} {statutenInDossier_error} <label for="statutenInDossier">Statuten in dossier</label>
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="rekeningActiefSinds">Rekening actief d.d.</label> </div>
+    <div class="formrechts">
+      {rekeningActiefSinds_inputfield} {rekeningActiefSinds_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">&nbsp; </div>
+    <div class="formrechts">
+      {tripartieteInDossier_inputfield} {tripartieteInDossier_error}<label for="tripartieteInDossier"> <label for="tripartieteInDossier">Tripartiete in dossier</label> sinds </label> {tripartieteDatum_inputfield} {tripartieteDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">&nbsp; </div>
+    <div class="formrechts">
+    {vermogenbeheerOvereenkomstInDossier_inputfield} {vermogenbeheerOvereenkomstInDossier_error} <label for="vermogenbeheerOvereenkomstInDossier">Vermogenbeheerovereenkomst in dossier</label>
+     sinds {vermogenbeheerOvereenkomstDatum_inputfield} {vermogenbeheerOvereenkomstDatum_error}
+    </div>
+  </div>
+ 
+</fieldset>
+<fieldset id="RelatieSectie92">
+  <legend> custodian </legend>
+  <div class="formblock">
+    <div class="formlinks"> <label for="custodian">{custodian_description}</label> </div>
+    <div class="formrechts">
+      {custodian_inputfield} {custodian_error} 
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks"> <label for="custodianRekeningNr">{custodianRekeningNr_description}</label> </div>
+    <div class="formrechts">
+      {custodianRekeningNr_inputfield} {custodianRekeningNr_error} 
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks"> <label for="custodianAfwijkendeAfspraak">{custodianAfwijkendeAfspraak_description}</label> </div>
+    <div class="formrechts">
+      {custodianAfwijkendeAfspraak_inputfield} {custodianAfwijkendeAfspraak_error} 
+    </div>
+  </div>
+
+</fieldset>
+<fieldset id="RelatieSectie2">
+  <legend></legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="kinderen">{kinderen_description}</label> </div>
+    <div class="formrechts">
+    {kinderen_inputfield} {kinderen_error}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks"><label for="verzendFreq">{verzendFreq_description}</label> </div>
+    <div class="formrechts">
+    {verzendFreq_inputfield} {verzendFreq_error}
+    </div>
+  </div>
+</fieldset>  
+
+<fieldset id="RelatieSectie3">
+  <legend> inkomen </legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="inkomenSoort">Soort inkomen</label> </div>
+    <div class="formrechts">
+    {inkomenSoort_inputfield} {inkomenSoort_error}, loon indicatie:&nbsp;&nbsp;{inkomenIndicatie_inputfield} {inkomenIndicatie_error}
+    </div>
+  </div>
+</fieldset>  
+
+<fieldset id="RelatieSectie4">
+  <legend> vermogen </legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenOnroerendGoed">Onroerendgoed</label> </div>
+    <div class="formrechts">
+    {vermogenOnroerendGoed_inputfield} {vermogenOnroerendGoed_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenHypotheek">Hypotheek</label> </div>
+    <div class="formrechts">
+    {vermogenHypotheek_inputfield} {vermogenHypotheek_error}
+    </div>
+  </div>
+  
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenOverigVermogen">Overig vermogen</label> </div>
+    <div class="formrechts">
+    {vermogenOverigVermogen_inputfield} {vermogenOverigVermogen_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenOverigSchuld">Overige schulden</label> </div>
+    <div class="formrechts">
+    {vermogenOverigSchuld_inputfield} {vermogenOverigSchuld_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenTotaalBelegbaar">Totaal belegbaar</label> </div>
+    <div class="formrechts">
+    {vermogenTotaalBelegbaar_inputfield} {vermogenTotaalBelegbaar_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenBelegdViaDC">Belegd {vermogensbeheerder}</label> </div>
+    <div class="formrechts">
+    {vermogenBelegdViaDC_inputfield} {vermogenBelegdViaDC_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenHerkomst">Herkomst</label> </div>
+    <div class="formrechts">
+    {vermogenHerkomst_inputfield} {vermogenHerkomst_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="vermogenVerplichtingen">Verplichtingen</label> </div>
+    <div class="formrechts">
+    {vermogenVerplichtingen_inputfield} {vermogenVerplichtingen_error}
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="RelatieSectieVerplichting">
+  <legend> verplichtingen </legend>
+  <div class="formblock">
+    <div class="formlinks"><label>{verplichtingenBelasting_description}</label> </div>
+    <div class="formrechts">
+    {verplichtingenBelasting_inputfield} {verplichtingenBelasting_error}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks"><label>{verplichtingenAssurantien_description}</label> </div>
+    <div class="formrechts">
+    {verplichtingenAssurantien_inputfield} {verplichtingenAssurantien_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{verplichtingenKrediet_description}</label> </div>
+    <div class="formrechts">
+    {verplichtingenBelasting_inputfield} {verplichtingenKrediet_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{verplichtingenAlimentatie_description}</label> </div>
+    <div class="formrechts">
+    {verplichtingenAlimentatie_inputfield} {verplichtingenAlimentatie_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{verplichtingenStudieKinderen_description}</label> </div>
+    <div class="formrechts">
+    {verplichtingenStudieKinderen_inputfield} {verplichtingenStudieKinderen_error}
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="RelatieSectieToekomstigVermogen">
+  <legend> Toekomstig vermogen </legend>
+  <div class="formblock">
+    <div class="formlinks"><label>{toekomstigErfenis_description}</label> </div>
+    <div class="formrechts">
+    {toekomstigErfenis_inputfield} {toekomstigErfenis_error}
+    </div>
+  </div>
+  <div class="formblock">
+    <div class="formlinks"><label>{toekomstigKapitaalsverz_description}</label> </div>
+    <div class="formrechts">
+    {toekomstigKapitaalsverz_inputfield} {toekomstigKapitaalsverz_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{toekomstigVerkoopZaak_description}</label> </div>
+    <div class="formrechts">
+    {toekomstigVerkoopZaak_inputfield} {toekomstigVerkoopZaak_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{toekomstigOptieregeling_description}</label> </div>
+    <div class="formrechts">
+    {toekomstigOptieregeling_inputfield} {toekomstigOptieregeling_error}
+    </div>
+  </div>
+    <div class="formblock">
+    <div class="formlinks"><label>{toekomstigPensioenopbouw_description}</label> </div>
+    <div class="formrechts">
+    {toekomstigPensioenopbouw_inputfield} {toekomstigPensioenopbouw_error}
+    </div>
+  </div>
+</fieldset>
+
+
+<fieldset id="RelatieSectie5">
+  <legend> In contact door </legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="inContactDoor">In contact door</label> </div>
+    <div class="formrechts">
+    {inContactDoor_inputfield} {inContactDoor_error}
+    </div>
+  </div>
+</fieldset>
+
+  <div class="formblock">
+    
+    <div class="formrechts">
+    {change_user_value} {change_date_value}</div>
+  </div> 
+</div>
+</div>
+
+
+
+<div id='tab11' class="tabblad" title="memosectie">
+<fieldset id="RelatieSectie5">
+  <legend> </legend>
+  <div class="formblock">
+    <div class="formlinks"><label for="ervaringBelegtSinds">Belegt sinds</label> </div>
+    <div class="formrechts">
+    {ervaringBelegtSinds_inputfield} {ervaringBelegtSinds_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">Ervaring </div>
+    <div class="formrechts">
+    {ervaringBelegtInEigenbeheer_inputfield} <label for="ervaringBelegtInEigenbeheer">{ervaringBelegtInEigenbeheer_description} </label>{ervaringBelegtInEigenbeheer_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringBelegtInVermogensadvies_inputfield}<label for="ervaringBelegtInVermogensadvies"> {ervaringBelegtInVermogensadvies_description}</label> {ervaringBelegtInVermogensadvies_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringBelegtInProducten_inputfield} <label for="ervaringBelegtInProducten">{ervaringBelegtInProducten_description} </label>{ervaringBelegtInProducten_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks">Ervaring met  </div>
+    <div class="formrechts">
+    {ervaringMetVastrentende_inputfield} {ervaringMetVastrentende_error} <label for="ervaringMetVastrentende">{ervaringMetVastrentende_description}</label> sinds {ervaringMetVastrentendeDatum_inputfield} {ervaringMetVastrentendeDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringMetBeleggingsFondsen_inputfield} {ervaringMetBeleggingsFondsen_error} <label for="ervaringMetBeleggingsFondsen">{ervaringMetBeleggingsFondsen_description}</label> sinds {ervaringMetBeleggingsFondsenDatum_inputfield} {ervaringMetBeleggingsFondsenDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringMetIndividueleAandelen_inputfield} {ervaringMetIndividueleAandelen_error} <label for="ervaringMetIndividueleAandelen">{ervaringMetIndividueleAandelen_description}</label> sinds {ervaringMetIndividueleAandelenDatum_inputfield} {ervaringMetIndividueleAandelenDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringMetOpties_inputfield} {ervaringMetOpties_error} <label for="ervaringMetOpties">{ervaringMetOpties_description}</label> sinds {ervaringMetOptiesDatum_inputfield} {ervaringMetOptiesDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringMetFutures_inputfield} {ervaringMetFutures_error} <label for="ervaringMetFutures">{ervaringMetFutures_description}</label> sinds {ervaringMetFuturesDatum_inputfield} {ervaringMetFuturesDatum_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"> &nbsp;</div>
+    <div class="formrechts">
+    {ervaringMetGestructureerdeProducten_inputfield} {ervaringMetGestructureerdeProducten_error} <label for="ervaringMetGestructureerdeProducten">{ervaringMetGestructureerdeProducten_description}</label> sinds {ervaringMetGestructureerdeProductenDatum_inputfield} {ervaringMetGestructureerdeProductenDatum_error}
+    </div>
+  </div>  
+  
+  <div class="formblock">
+    <div class="formlinks"><label for="beleggingsHorizon">{beleggingsHorizon_description}</label> </div>
+    <div class="formrechts">
+    {beleggingsHorizon_inputfield} {beleggingsHorizon_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="beleggingsDoelstelling">{beleggingsDoelstelling_description}</label> </div>
+    <div class="formrechts">
+    {beleggingsDoelstelling_inputfield} {beleggingsDoelstelling_error}
+    </div>
+  </div>  
+
+  <div class="formblock">
+    <div class="formlinks"><label for="opleidingsniveau">{opleidingsniveau_description}</label> </div>
+    <div class="formrechts">
+    {opleidingsniveau_inputfield} {opleidingsniveau_error}
+    </div>
+  </div>  
+  
+  </fieldset>
+  <fieldset id="RelatieSectie5">
+  <legend> huidige samenstelling </legend>
+  
+  <div class="formblock">
+    <div class="formlinks"><label for="huidigesamenstellingAandelen">{huidigesamenstellingAandelen_description}</label> </div>
+    <div class="formrechts">
+    {huidigesamenstellingAandelen_inputfield} {huidigesamenstellingAandelen_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="huidigesamenstellingObligaties">{huidigesamenstellingObligaties_description}</label> </div>
+    <div class="formrechts">
+    {huidigesamenstellingObligaties_inputfield} {huidigesamenstellingObligaties_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="huidigesamenstellingOverige">{huidigesamenstellingOverige_description}</label> </div>
+    <div class="formrechts">
+    {huidigesamenstellingOverige_inputfield} {huidigesamenstellingOverige_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="huidigesamenstellingLiquiditeiten">{huidigesamenstellingLiquiditeiten_description}</label> </div>
+    <div class="formrechts">
+    {huidigesamenstellingLiquiditeiten_inputfield} {huidigesamenstellingLiquiditeiten_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="huidigesamenstellingTotaal">{huidigesamenstellingTotaal_description}</label> </div>
+    <div class="formrechts">
+    {huidigesamenstellingTotaal_inputfield} {huidigesamenstellingTotaal_error}
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="ProvisieAfspraak">
+  <legend> Provisie afspraak </legend>
+  <div class="formblock">
+    <div class="formlinks">{provisieAfspraak_description}</label> </div>
+    <div class="formrechts">
+    {provisieAfspraak_inputfield} {provisieAfspraak_error}
+    </div>
+  </div>
+</fieldset>
+</div>
+
+<div id='tab12' class="tabblad">
+<fieldset id="RelatieSectie5">
+  <legend> rapportage </legend>
+  
+  <div class="formblock">
+  <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{maandrapportage_description}</label> </div>
+    <div class="formrechts">
+    {maandrapportage_inputfield} {maandrapportage_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+  <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{kwartaalrapportage_description}</label> </div>
+    <div class="formrechts">
+    {kwartaalrapportage_inputfield} {kwartaalrapportage_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+  <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{halfjaarrapportage_description}</label> </div>
+    <div class="formrechts">
+    {halfjaarrapportage_inputfield} {halfjaarrapportage_error}
+    </div>
+  </div>
+  
+  <div class="formblock">
+  <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{jaarrapportage_description}</label> </div>
+    <div class="formrechts">
+    {jaarrapportage_inputfield} {jaarrapportage_error}
+    </div>
+  </div>
+    
+</fieldset> 
+</div>
+
+
+<div id='tab13' class="tabblad">
+<fieldset id="RelatieSectie5">
+  <legend> risicoprofiel </legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="risicoprofielFinancieleGegevens">{risicoprofielFinancieleGegevens_description}</label> </div>
+    <div class="formrechts">
+    {risicoprofielFinancieleGegevens_inputfield} {risicoprofielFinancieleGegevens_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="risicoprofielGesprek">{risicoprofielGesprek_description}</label> </div>
+    <div class="formrechts">
+    {risicoprofielGesprek_inputfield} {risicoprofielGesprek_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="risicoprofielAfwijkendeAfspraak">{risicoprofielAfwijkendeAfspraak_description}</label> </div>
+    <div class="formrechts">
+    {risicoprofielAfwijkendeAfspraak_inputfield} {risicoprofielAfwijkendeAfspraak_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="risicoprofielOverig">{risicoprofielOverig_description}</label> </div>
+    <div class="formrechts">
+    {risicoprofielOverig_inputfield} {risicoprofielOverig_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="risicoprofiel">{risicoprofiel_description}</label> </div>
+    <div class="formrechts">
+    {risicoprofiel_inputfield} {risicoprofiel_error}
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="RelatieSectie5">
+  <legend> beleggingsprofiel </legend>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielAandelenBinnenland">{profielAandelenBinnenland_description}</label> </div>
+    <div class="formrechts">
+    {profielAandelenBinnenland_inputfield} {profielAandelenBinnenland_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielAandelenBuitenland">{profielAandelenBuitenland_description}</label> </div>
+    <div class="formrechts">
+    {profielAandelenBuitenland_inputfield} {profielAandelenBuitenland_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielObligatiesEuro">{profielObligatiesEuro_description}</label> </div>
+    <div class="formrechts">
+    {profielObligatiesEuro_inputfield} {profielObligatiesEuro_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielObligatiesOverigeValuta">{profielObligatiesOverigeValuta_description}</label> </div>
+    <div class="formrechts">
+    {profielObligatiesOverigeValuta_inputfield} {profielObligatiesOverigeValuta_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielWarrants">{profielWarrants_description}</label> </div>
+    <div class="formrechts">
+    {profielWarrants_inputfield} {profielWarrants_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOptiesKopenCalls">{profielOptiesKopenCalls_description}</label> </div>
+    <div class="formrechts">
+    {profielOptiesKopenCalls_inputfield} {profielOptiesKopenCalls_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOptiesOngedektVerkopenCalls">{profielOptiesOngedektVerkopenCalls_description}</label> </div>
+    <div class="formrechts">
+    {profielOptiesOngedektVerkopenCalls_inputfield} {profielOptiesOngedektVerkopenCalls_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOptiesGedektVerkopenCalls">{profielOptiesGedektVerkopenCalls_description}</label> </div>
+    <div class="formrechts">
+    {profielOptiesGedektVerkopenCalls_inputfield} {profielOptiesGedektVerkopenCalls_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOptiesKopenPuts">{profielOptiesKopenPuts_description}</label> </div>
+    <div class="formrechts">
+    {profielOptiesKopenPuts_inputfield} {profielOptiesKopenPuts_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOptiesVerkopenPuts">{profielOptiesVerkopenPuts_description}</label> </div>
+    <div class="formrechts">
+    {profielOptiesVerkopenPuts_inputfield} {profielOptiesVerkopenPuts_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielTermijnFuturesOptiesVerkopenPuts">{profielTermijnFutures_description}</label> </div>
+    <div class="formrechts">
+    {profielTermijnFutures_inputfield} {profielTermijnFutures_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielValutasInclOTC">{profielValutasInclOTC_description}</label> </div>
+    <div class="formrechts">
+    {profielValutasInclOTC_inputfield} {profielValutasInclOTC_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielEdelmetalen">{profielEdelmetalen_description}</label> </div>
+    <div class="formrechts">
+    {profielEdelmetalen_inputfield} {profielEdelmetalen_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielVerleentToestemmingDebetstanden">{profielVerleentToestemmingDebetstanden_description}</label> </div>
+    <div class="formrechts">
+    {profielVerleentToestemmingDebetstanden_inputfield} {profielVerleentToestemmingDebetstanden_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielNietTerbeurzeBeleggingsfondsen">{profielNietTerbeurzeBeleggingsfondsen_description}</label> </div>
+    <div class="formrechts">
+    {profielNietTerbeurzeBeleggingsfondsen_inputfield} {profielNietTerbeurzeBeleggingsfondsen_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielInsiderRegeling">{profielInsiderRegeling_description}</label> </div>
+    <div class="formrechts">
+    {profielInsiderRegeling_inputfield} {profielInsiderRegeling_error}
+    </div>
+  </div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="profielOverigeBeperkingen">{profielOverigeBeperkingen_description}</label> </div>
+    <div class="formrechts">
+    {profielOverigeBeperkingen_inputfield} {profielOverigeBeperkingen_error}
+    </div>
+  </div>
+</fieldset>
+
+
+
+
+</div>
+
+  
+</form></div>

@@ -1,0 +1,77 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Bedrijf">{Bedrijf_description}</label> </div>
+<div class="formrechts">
+{Bedrijf_inputfield} {Bedrijf_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="exportId">{exportId_description}</label> </div>
+<div class="formrechts">
+{exportId_inputfield} {exportId_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="type">{type_description}</label> </div>
+<div class="formrechts">
+{type_inputfield} {type_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="filename">{filename_description}</label> </div>
+<div class="formrechts">
+{filename_inputfield} {filename_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="filesize">{filesize_description}</label> </div>
+<div class="formrechts">
+{filesize_inputfield} {filesize_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="server">{server_description}</label> </div>
+<div class="formrechts">
+{server_inputfield} {server_error}
+</div>
+</div>
+
+{username_inputfield}{password_inputfield}<div class="formblock">
+<div class="formlinks"><label for="complete">{complete_description}</label> </div>
+<div class="formrechts">
+{complete_inputfield} {complete_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="terugmelding">{terugmelding_description}</label> </div>
+<div class="formrechts">
+{terugmelding_inputfield} {terugmelding_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="terugmelding">[vt]tabel vergelijking[/vt]</label> </div>
+<div class="formrechts">
+{tablediff}
+</div>
+</div>
+<br/>
+<br/>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

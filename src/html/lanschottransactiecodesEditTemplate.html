@@ -1,0 +1,38 @@
+<style>
+  #doActie option{
+    font-family: monospace;
+  }
+</style>
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="FVLCode">{FVLCode_description}</label> </div>
+<div class="formrechts">
+{FVLCode_inputfield} {FVLCode_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="omschrijving">{omschrijving_description}</label> </div>
+<div class="formrechts">
+{omschrijving_inputfield} {omschrijving_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="doActie">{doActie_description}</label> </div>
+<div class="formrechts">
+{doActie_inputfield} {doActie_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

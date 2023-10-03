@@ -1,0 +1,270 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+<input type="hidden" name="inclTotaal" value="{inclTotaal}">
+<input type="hidden" name="datum" value="{datum}">
+{id_inputfield}
+
+<div class="formblock">
+  <div class="formlinks">factuurnummer </div>
+  <div class="formrechts">
+    <b>{voorzet_value}{facnr_value}</b>
+  </div>
+</div>
+
+<div class="formblock">
+  <div class="formlinks">factuurdatum </div>
+  <div class="formrechts">
+  {factuurdatum} 
+  </div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{firmanaam_description} </div>
+<div class="formrechts">
+{firmanaam_value}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{status_description} </div>
+<div class="formrechts">
+
+{status_inputfield} {status_error}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">Factuur opbouw</div>
+<div class="formrechts">
+<style>
+.bgtd{
+background-color: #F0F0F0;
+
+}
+
+</style>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr> 
+  <td height="25" class="bgtd">&nbsp;</td>
+  <td class="bgtd" align="right">Excl. bedrag&nbsp;</td>
+  <td class="bgtd" align="right">BTW&nbsp;</td>
+  <td class="bgtd" align="right">Incl. bedrag&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr>
+  <td width="100" class="bgtd" align="right">Hoog&nbsp;</td>
+  <td align="right" width="100">{bedrag_ex_h_value}&nbsp;</td>
+  <td align="right"width="100">{btw_h_value}&nbsp;</td>
+  <td align="right"width="100">{inclHoog}&nbsp;&nbsp;</td>
+</tr>
+<tr>
+  <td class="bgtd" align="right">Laag&nbsp;</td>
+  <td align="right">{bedrag_ex_l_value}&nbsp;</td>
+  <td align="right">{btw_l_value}&nbsp;</td>
+  <td align="right">{inclLaag}&nbsp;&nbsp;</td>
+</tr>
+<tr>
+  <td class="bgtd" align="right">BTW vrij&nbsp;</td>
+  <td align="right">{bedrag_0_value}&nbsp;</td>
+  <td align="right">&nbsp;</td>
+  <td align="right">{incl0}&nbsp;&nbsp;</td>
+</tr>
+<tr>
+  <td class="bgtd" align="right">Verlegd hoog&nbsp;</td>
+  <td align="right">{bedrag_vh_value}&nbsp;</td>
+  <td align="right">&nbsp;</td>
+  <td align="right">{inclVerlegdHoog}&nbsp;&nbsp;</td>
+</tr>
+<tr>
+  <td class="bgtd" align="right">Verlegd laag&nbsp;</td>
+  <td align="right">{bedrag_vl_value}&nbsp;</td>
+  <td align="right">&nbsp;</td>
+  <td align="right">{inclVerlegdLaag}&nbsp;&nbsp;</td>
+</tr>
+<tr >
+  <td height="25" class="bgtd"></td>
+  <td align="right" colspan="2" class="bgtd">Factuurbedrag&nbsp;</td>
+  <td align="right" class="bgtd"><b>{inclTotaal}</b>&nbsp;&nbsp;</td>
+</tr>
+
+</table>
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">deelbetalingen <br>
+<a id="deelbedrag"></a></div>
+<div class="formrechts">
+ {deelbetaling_1_inputfield} d.d. {deelbetaling_1_datum_inputfield}<br>
+ {deelbetaling_2_inputfield} d.d. {deelbetaling_2_datum_inputfield}<br>
+ {deelbetaling_3_inputfield} d.d. {deelbetaling_3_datum_inputfield}
+</div>
+</div>
+
+
+<div class="formblock">
+<div class="formlinks">{bedrag_voldaan_description} </div>
+<div class="formrechts">
+{bedrag_voldaan_inputfield} d.d. {betaal_datum_inputfield} {bedrag_voldaan_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{betalingstermijn_description} </div>
+<div class="formrechts">
+{betalingstermijn_inputfield} betaald na {betaal_dagen_inputfield} dagen aangemaakt door {door_value}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">E-mail info </div>
+<div class="formrechts">
+{email_factuur_value}<hr/>
+  LOG:<br/>
+  <pre>{factuurEmailLog_value}</pre>
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{memo_description} </div>
+<div class="formrechts">
+{memo_inputfield} {memo_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+</div>
+</form>
+
+<script>
+
+    function updateScript()
+    {
+        with (document.editForm)
+        {
+            betaal_dagen.value = dagen_verschil(betaal_datum.value,datum.value);
+            if (isNaN(betaal_dagen.value))  betaal_dagen.value = '';
+            deelbet();
+        }
+    }
+
+    function initScript()
+    {
+        placeFocus();
+    }
+
+
+
+    function submitter()
+    {
+        doMath();
+        editForm.submit();
+    }
+
+    function doMath()
+    {
+        with (document.editForm)
+        {
+
+        }
+    }
+
+
+    function StatusAction()
+    {
+        switch (document.editForm.status.value)
+        {
+            case 'G':
+                deelbet(false);
+                document.editForm.bedrag_voldaan.value = 0;
+                document.editForm.betaal_datum.value = '';
+                break;
+            case 'V':
+                deelbet(true);
+                vandaag = new Date();
+                bedragIncl = new String(document.editForm.inclTotaal.value);
+                bedragIncl = bedragIncl.replace(" ","");
+                document.editForm.bedrag_voldaan.value = bedragIncl;
+                document.editForm.betaal_datum.value = vandaag.getDate()+'-'+eval(vandaag.getMonth()+1)+'-'+vandaag.getFullYear();
+                document.editForm.betaal_dagen.value = dagen_verschil(document.editForm.betaal_datum.value,document.editForm.datum.value);
+                document.editForm.betaal_datum.focus();
+                var range = document.editForm.betaal_datum.createTextRange();
+                range.select();
+                break;
+            case 'D':
+                deelbet(false);
+                sumdeels();
+                document.editForm.deelbetaling_1.focus();
+                var range = document.editForm.deelbetaling_1.createTextRange();
+                range.select();
+                break;
+        }
+    }
+
+    function sumdeels()
+    {
+
+        if (isNaN(document.editForm.deelbetaling_1.value))
+            document.editForm.deelbetaling_1.value = 0;
+        else
+            document.editForm.deelbetaling_1.value = round(document.editForm.deelbetaling_1.value);
+
+        if (isNaN(document.editForm.deelbetaling_2.value))
+            document.editForm.deelbetaling_2.value = 0;
+        else
+            document.editForm.deelbetaling_2.value = round(document.editForm.deelbetaling_2.value);
+
+        if (isNaN(document.editForm.deelbetaling_3.value))
+            document.editForm.deelbetaling_3.value = 0;
+        else
+            document.editForm.deelbetaling_3.value = round(document.editForm.deelbetaling_3.value);
+
+        document.editForm.bedrag_voldaan.value = round(eval(document.editForm.deelbetaling_1.value) +
+            eval(document.editForm.deelbetaling_2.value) +
+            eval(document.editForm.deelbetaling_3.value) );
+        bedragIncl = new String(document.editForm.inclTotaal.value);
+        bedragIncl = bedragIncl.replace(" ","");
+        document.getElementById('deelbedrag').innerHTML= '<br>restant <b><font color=red>'+round(eval(bedragIncl - document.editForm.bedrag_voldaan.value))+'</b></font>';
+
+        if (eval(document.editForm.bedrag_voldaan.value) > eval(bedragIncl))
+        {
+            alert('LET OP: som van de deelbedragen is groter dan het factuurbedrag\n\nfactuurbedrag = '+bedragIncl + '\nbedrag voldaan = '+document.editForm.bedrag_voldaan.value);
+        }
+
+    }
+
+    function deelbet()
+    {
+        with (document.editForm)
+        {
+            if (status.value == "D")
+                sw = false;
+            else
+                sw = true;
+            deelbetaling_1.disabled=sw;
+            deelbetaling_2.disabled=sw;
+            deelbetaling_3.disabled=sw;
+            deelbetaling_1_datum.disabled=sw;
+            deelbetaling_2_datum.disabled=sw;
+            deelbetaling_3_datum.disabled=sw;
+        }
+    }
+
+    function betaaldagen ()
+    {
+        with (document.editForm)
+        {
+            betaal_dagen.value = dagen_verschil(betaal_datum.value,datum.value);
+        }
+    }
+
+
+
+</script>

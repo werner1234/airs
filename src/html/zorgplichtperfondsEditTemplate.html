@@ -1,0 +1,40 @@
+<form id="zorgplichtPerFondsForm" name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Zorgplicht">{Zorgplicht_description}</label> </div>
+<div class="formrechts">
+{Zorgplicht_inputfield} {Zorgplicht_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Fonds">{Fonds_description}</label> </div>
+<div class="formrechts">
+{Fonds_inputfield} {Fonds_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Percentage">{Percentage_description}</label> </div>
+<div class="formrechts">
+{Percentage_inputfield} {Percentage_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</div></form>

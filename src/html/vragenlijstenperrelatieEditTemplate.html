@@ -1,0 +1,139 @@
+<!--
+ AE-ICT CODEX source module versie 1.6, 22-11-2017
+    Author              : $Author: cvs $
+    Laatste aanpassing  : $Date: 2018/02/01 13:02:18 $
+    File Versie         : $Revision: 1.3 $
+
+    $Log: vragenlijstenperrelatieEditTemplate.html,v $
+    Revision 1.3  2018/02/01 13:02:18  cvs
+    update naar airsV2
+
+
+-->
+<style>
+  .vragenBlockFrame
+  {
+    width: 94%;
+    height:90%;
+    background: white;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #fsDetail{
+    width: 94%;
+  }
+
+
+  #fsDetail legend{
+    padding: 5px;
+    padding-left: 5px;
+    padding-right: 20px;
+    background: #999;
+    color: whitesmoke;
+    font-weight: bold;
+  }
+  #detailBlok{
+    display: none;
+  }
+  .formblock{
+    width: 90%!important;
+  }
+</style>
+
+<form name="editForm" action="{updateScript}" method="post">
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}
+    {datum_inputfield}
+    {nawId_inputfield}
+
+    <div class="formblock">
+      <div class="formlinks"><label for="vragenLijstId">{vragenLijstId_description}</label> </div>
+      <div class="formrechts">
+        {vragenLijstId_inputfield} {vragenLijstId_error}
+      </div>
+    </div>
+    <fieldset id="fsDetail">
+      <legend ><button id="btnDetail"> +/- </button>&nbsp;&nbsp; [vt]details[/vt]</legend>
+      <div id="detailBlok">
+        <div class="formblock">
+          <div class="formlinks"><label for="omschrijving">{omschrijving_description}</label></div>
+          <div class="formrechts">
+            {omschrijving_inputfield} {omschrijving_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks"><label for="zichtbaarInPortaal">{zichtbaarInPortaal_description}</label></div>
+          <div class="formrechts">
+            {zichtbaarInPortaal_inputfield} {zichtbaarInPortaal_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks"><label for="portaalStatus">{portaalStatus_description}</label></div>
+          <div class="formrechts">
+            {portaalStatus_inputfield} {portaalStatus_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks"><label for="portaalDatumIngevuld">{portaalDatumIngevuld_description}</label></div>
+          <div class="formrechts">
+            {portaalDatumIngevuld_inputfield} {portaalDatumIngevuld_error}
+          </div>
+        </div>
+
+
+        <div class="formblock">
+          <div class="formlinks"><label for="memo">{memo_description}</label></div>
+          <div class="formrechts">
+            {memo_inputfield} {memo_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks"><label for="log">{log_description}</label></div>
+          <div class="formrechts">
+            {log_inputfield} {log_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">&nbsp;</div>
+          <div class="formrechts">
+            {change_user_value} {change_date_value}
+          </div>
+        </div>
+      </div>
+    </fieldset>
+</form>
+</div>
+
+
+<iframe id="vragenBlock" name="vragenBlock" src="" class="vragenBlockFrame">
+  laden..
+</iframe>
+<script>
+  $(document).ready(function(){
+    $("#btnDetail").click(function (e) {
+      e.preventDefault();
+      $("#detailBlok").toggle(300);
+    });
+    console.log($("input[name='id']").val());
+    $("#vragenLijstId").change(function(){
+      console.log($(this).val());
+      $("#omschrijving").val($( "#vragenLijstId option:selected" ).text());
+      $("#vragenBlock").attr("src","vragenlijstenperrelatie_vragenblok.php?vId="+$(this).val());
+    });
+    if ($("input[name='id']").val() != "0"){  // niet meer te wijzigen in muteren, alleen tijden NEW
+      console.log("readonly " + $("input[name='id']").val());
+      $("#vragenLijstId").attr("disabled", true);
+      $("#vragenBlock").attr("src","vragenlijstenperrelatie_vragenblok.php?id="+ $("input[name='id']").val());
+    }
+  });
+
+</script>

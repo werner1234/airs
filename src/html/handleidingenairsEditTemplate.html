@@ -1,0 +1,53 @@
+<form name="editForm" enctype="multipart/form-data" action="{updateScript}" method="POST">
+<div class="form">
+<input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="titel">{titel_description}</label> </div>
+<div class="formrechts">
+{titel_inputfield} {titel_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="informatie">{informatie_description}</label> </div>
+<div class="formrechts">
+{informatie_inputfield} {informatie_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="categorie">{categorie_description}</label> </div>
+<div class="formrechts">
+{categorie_inputfield} {categorie_error}
+</div>
+</div>
+<div class="formblock">
+  <div class="formlinks"><label for="categorie">{documentType_description}</label> </div>
+  <div class="formrechts">
+    {documentType_inputfield} {documentType_error}
+  </div>
+</div>
+<div class="formblock">
+<div class="formlinks"><label for="bijlage">{bijlage_description}</label> </div>
+<div class="formrechts">
+<input type="file" name="bijlage" size="50">{bijlage_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="publiceer">{publiceer_description}</label> </div>
+<div class="formrechts">
+{publiceer_inputfield} {publiceer_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

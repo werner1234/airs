@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Values.service.name }}
+  labels:
+    run:  {{ .Values.service.name }}
+spec:
+  revisionHistoryLimit: {{ .Values.deployment.revisionHistoryLimit }}
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      run:  {{ .Values.service.name }}
+  strategy:
+    type: {{ .Values.deployment.strategy }}
+  template:
+    metadata:
+      labels:
+        run:  {{ .Values.service.name }}
+        date: {{ .Values.misc.date }}
+    spec:
+      containers:
+      - name:  {{ .Values.service.name }}
+        image: {{ .Values.container.image }}
+        imagePullPolicy: {{ .Values.container.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.container.port }} 
+        env:
+          {{- range $key, $value := .Values.environmentVariables }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end }}
+          {{- $secretsKey := .Values.deployment.secretsKey }}
+          {{- range $key, $value := .Values.secrets }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $secretsKey }}
+                key: {{ $key }}
+          {{- end }}
+      imagePullSecrets:
+      - name: {{ .Values.deployment.imagePullSecrets  }} 

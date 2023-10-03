@@ -1,0 +1,24 @@
+service:
+  name: REPLACED_BY_HELM
+  port: 3306
+container:
+  image: REPLACED_BY_HELM
+  port: 3306
+  replicas: 1
+  imagePullPolicy: Always
+  resources:
+    requests:
+      cpu: 1
+      memory: 3Gi
+statefulSet:
+  imagePullSecrets: gitlab-docker-registry
+  revisionHistoryLimit: 0
+  updateStrategy: RollingUpdate
+  mountPath: /var/lib/mysql
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: "do-block-storage"
+  storage: 8Gi
+misc:
+  date: REPLACED_BY_HELM
+environmentVariables:
+secrets:

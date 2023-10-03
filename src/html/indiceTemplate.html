@@ -1,0 +1,47 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Beursindex">{Beursindex_description}</label> </div>
+<div class="formrechts">
+{Beursindex_inputfield} {Beursindex_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Afdrukvolgorde">{Afdrukvolgorde_description}</label> </div>
+<div class="formrechts">
+{Afdrukvolgorde_inputfield} {Afdrukvolgorde_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{specialeIndex_description} </div>
+<div class="formrechts">
+{specialeIndex_inputfield} {specialeIndex_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">{toelichting_description} </div>
+<div class="formrechts">
+{toelichting_inputfield} {toelichting_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

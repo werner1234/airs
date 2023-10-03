@@ -1,0 +1,74 @@
+<div  id="thisPageContent">
+    
+    {html}
+    
+    <div class="modalActions" style="float:right;">{actions}</div>
+
+    <script type="text/javascript">
+      {javascript}
+      $(document).ready(function () {
+        var thisForm = '#rentepercentageEditForm';
+        
+        $(thisForm + ' #Datum').on('change', function () {
+          $(thisForm + ' #GeldigVanaf').val($(thisForm + ' #Datum').val());
+          $(thisForm + ' #GeldigVanaf').trigger('change');
+        });
+        
+        $('#uiModalDiv').dialog({ 
+            width: 700,
+            autoOpen: false,
+            modal: true,
+            responsive: true,
+            title: "[vt]Rentepercentage[/vt]"
+          });
+
+          $('#uiModalDiv').dialog("open");
+
+        $("#closeModal").on("click", function() {
+          $( "#uiModalDiv" ).dialog( "close" );
+          $( "#thisPageContent" ).remove();
+        });
+        
+        $("#rentepercentageSaveData").on("click", function() {
+          $('#rentepercentageEditForm input[name=action]').val('update');
+          submitRentepercentageForm();
+        });
+        
+        $("#rentepercentageRemoveData").on("click", function() {
+          $('#rentepercentageEditForm input[name=action]').val('delete');
+          submitRentepercentageForm();
+        });
+
+        function submitRentepercentageForm() {
+          
+          blockDate();
+          if ( ret == true ) {
+            $('.help-block.with-errors').remove();
+            $('#rentepercentageEditForm').find(':input').css('border-color', ''); //reset inputfield style
+            var postData = $('#rentepercentageEditForm').serializeArray();
+            var formURL = $('#rentepercentageEditForm').attr("action");
+
+            $.ajax({
+              url : formURL,
+              type: "GET",
+              dataType: 'json',
+              data : postData,
+              success:function(data, textStatus, jqXHR) {
+
+                if ( data.saved == true ) {
+                  //close modal
+                  $('#modelContent').html();
+                  $('#uiModalDiv').dialog({});
+                  $('#uiModalDiv').dialog('close');
+                  renteFrame();
+                  //data: return data from server
+                } else {
+                  setRecordErrorsDialog ('rentepercentageEditForm', data.errors);
+                }
+              }
+            });
+          }
+        }
+      });
+    </script>
+  </div>

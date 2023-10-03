@@ -1,0 +1,750 @@
+<style>
+  {fondsEditStyle}
+
+  .tabblad {
+    width: 99%;
+  }
+  
+</style>
+<div style="display:none;" id="uiModalDiv">
+  <div id="modelContent" ></div>
+</div>
+
+<br>
+
+<form name="editForm" action="{updateScript}" method="get" id="fondsEditForm">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" value="{id_value}" name="id" >
+  <input type="hidden" value="{fondsInputType}" name="fondsInputType" >
+  {createOption}
+  <fieldset id="boven">
+    <div class="form" >
+      
+      <!--turbo symbolen selectie-->
+      <fieldset id="turboForm">
+        <input type="hidden" name="turboLong" id="turboLong" value="{turboLong}">
+        <input type="hidden" name="turboShort" id="turboShort" value="{turboShort}">
+        <div class="formblock">
+          <div class="formlinks">Onderliggend Fonds</div>
+          <div class="formrechts">
+            {fondsTurboSymbolen}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{turbo_isinCode_description}</div>
+          <div class="formrechts">
+            {turbo_isinCode_inputfield}
+            {turbo_isinCode_error}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{turbo_issuer_description}</div>
+          <div class="formrechts">
+            {turbo_issuer_inputfield}
+            {turbo_issuer_error}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{turbo_kind_description}</div>
+          <div class="formrechts">
+            {turbo_kind_inputfield}
+            {turbo_kind_error}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{turbo_longShort_description}</div>
+          <div class="formrechts">
+            {turbo_longShort_inputfield}
+            {turbo_longShort_error}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{turbo_stopLoss_description}</div>
+          <div class="formrechts">
+            {turbo_stopLoss_inputfield}
+            {turbo_stopLoss_error}
+          </div>
+        </div>
+        
+      </fieldset>
+      
+      <!--Optie symbolen--> 
+      <fieldset id="optionForm">
+        <input type="hidden" name="optieIdentifierVWD" id="optieIdentifierVWD" value="">
+        <input type="hidden" name="optieVWDSuffix" id="optieVWDSuffix" value="">
+        <input type="hidden" name="optieVWDFactor" id="optieVWDFactor" value="">
+        
+        <div class="formblock">
+          <div class="formlinks">Symbool</div>
+          <div class="formrechts">
+            {fondsOptieSymbolen}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{optieOptieType_description}</div>
+          <div class="formrechts">
+            {optieOptieType_inputfield} {optieOptieType_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OptieExpDatum_description}</div>
+          <div class="formrechts">
+            <select class="" type="select"  name="optieexpiratieMaand" id="optieexpiratieMaand">
+              <option value=""> --- </option>
+              {OptieExpMaand}
+            </select>
+            <select class="" type="select"  name="optieexpiratieJaar"  id="optieexpiratieJaar">
+              <option value=""> --- </option>
+              {OptieExpJaar}
+            </select>
+            
+            {optieexpiratieMaand_error}
+            {optieexpiratieJaar_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{optieOptieUitoefenPrijs_description}</div>
+          <div class="formrechts">
+            {optieOptieUitoefenPrijs_inputfield} {optieOptieUitoefenPrijs_error}
+          </div>
+        </div>
+        
+      </fieldset>
+      
+<fieldset id="fondsForm">
+      <div class="formblock">
+        <div class="formlinks">{Fonds_description} </div>
+        <div class="formrechts">
+          {Fonds_inputfield} {Fonds_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{Omschrijving_description} </div>
+        <div class="formrechts">
+          {Omschrijving_inputfield} {Omschrijving_error} {FondsOmschrijvingVanafTxt}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{FondsImportCode_description} </div>
+        <div class="formrechts">
+          {FondsImportCode_inputfield} {FondsImportCode_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{Valuta_description} </div>
+        <div class="formrechts">
+          {Valuta_inputfield} {Valuta_error} {fondssoort_description} {fondssoort_inputfield} {fondssoort_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">{Fondseenheid_description} </div>
+        <div class="formrechts">
+          {Fondseenheid_inputfield} {Fondseenheid_error}
+        </div>
+      </div>
+</fieldset>
+    </div><!--end form -->
+  </fieldset>
+
+  <div style="float: left; margin: 1px; width: 95%;">  </div>
+
+
+  <div class="tabbuttonRow">
+    <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('1')" id="tabbutton1" value="[vt]Algemeen[/vt]">
+    <input {codeErrorStyle} type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('4');" id="tabbutton4" value="[vt]Codes[/vt]">
+    <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('2')" id="tabbutton2" value="[vt]Opties[/vt]">
+    <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('3');
+      renteFrame();" id="tabbutton3" value="[vt]Obligaties[/vt]">
+    
+    <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('5');" id="tabbutton5" value="[vt]Koppelingen[/vt]">
+    <input type="button" class="tabbuttonInActive" onclick="javascript:tabOpen('6');" id="tabbutton6" value="[vt]Fondskoersen[/vt]">
+    {tab7_extraVelden}
+    {tab8_extraVelden}
+
+  </div>
+  <br>
+  <!--  tab 1-->
+
+  <div id='tab1' class="tabblad">
+    <fieldset id="onder1">
+      <div class="form" >
+
+        <div class="formblock">
+          <div class="formlinks">{ISINCode_description} </div>
+          <div class="formrechts">
+            {ISINCode_inputfield} {ISINCode_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{bbLandcode_description} </div>
+          <div class="formrechts">
+            {bbLandcode_inputfield} {bbLandcode_error}
+          </div>
+        </div>
+        
+        <div class="formblock">
+          <div class="formlinks">{standaardSector_description} </div>
+          <div class="formrechts">
+            {standaardSector_inputfield} {standaardSector_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{rating_description} </div>
+          <div class="formrechts">
+            {rating_inputfield} {rating_error}
+          </div>
+        </div>
+          
+        <div class="formblock">
+          <div class="formlinks">{Huisfonds_description}</div>
+          <div class="formrechts">
+            {Huisfonds_inputfield} {Portefeuille_description} {Portefeuille_inputfield} {Portefeuille_error} {Huisfonds_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{VKM_description} </div>
+          <div class="formrechts">
+           {VKM_inputfield} {VKM_error} &nbsp;&nbsp;&nbsp;&nbsp; {passiefFonds_description} {passiefFonds_inputfield} <span id="passiefFondsMelding"></span> {passiefFonds_error}
+          </div>
+        </div>
+        <HR style="clear: both; margin: 15px 0;">
+
+        <div class="formblock">
+          <div class="formlinks">{Beurs_description} </div>
+          <div class="formrechts">
+            {Beurs_inputfield} {Beurs_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{orderinlegInBedrag_description} </div>
+          <div class="formrechts">
+            {orderinlegInBedrag_inputfield} {orderinlegInBedrag_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{minOrdergrootte_description} </div>
+          <div class="formrechts">
+            {minOrdergrootte_inputfield} {minOrdergrootte_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{handelseenheid_description} </div>
+          <div class="formrechts">
+            {handelseenheid_inputfield} {handelseenheid_error}
+          </div>
+        </div>
+
+        <HR style="clear: both; margin: 15px 0;">
+
+        <div class="formblock">
+          <div class="formlinks">{Garantiepercentage_description} </div>
+          <div class="formrechts">
+            {Garantiepercentage_inputfield} {Garantiepercentage_error}
+          </div>
+        </div>
+
+
+        <div class="formblock">
+          <div class="formlinks">{FondsOverslaanInValutaRisico_description} </div>
+          <div class="formrechts">
+            {FondsOverslaanInValutaRisico_inputfield} {FondsOverslaanInValutaRisico_error}
+
+            {valutaRisicoPercentage_inputfield} {valutaRisicoPercentage_description} {valutaRisicoPercentage_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{EindDatum_description} </div>
+          <div class="formrechts">
+            {EindDatum_inputfield} {EindDatum_error}
+          </div>
+        </div>
+        
+        <HR style="clear: both; margin: 15px 0;">
+        
+        <div class="formblock"><strong>Forwards</strong></div>
+        <div class="formblock">
+          <div class="formlinks">{forward_description}  </div>
+          <div class="formrechts">
+            {forward_inputfield} {forward_error}
+            </select>
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{forwardReferentieKoers_description}  </div>
+          <div class="formrechts">
+            {forwardReferentieKoers_inputfield} {forwardReferentieKoers_error}
+            </select>
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{forwardAfloopDatum_description}  </div>
+          <div class="formrechts">
+            {forwardAfloopDatum_inputfield} {forwardAfloopDatum_error}
+            </select>
+          </div>
+        </div>
+
+        <!-- /form -->
+      </div>
+    </fieldset>
+  </div>
+  <!-- /tab1 -->
+
+
+  <!--  tab 2-->
+  <div id='tab2' class="tabblad">
+    <fieldset id="onder2">
+      <div class="form" >
+
+        <div class="formblock">
+          <div class="formlinks">{HeeftOptie_description}</div>
+          <div class="formrechts">
+            {HeeftOptie_inputfield} {HeeftOptie_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OptieType_description}</div>
+          <div class="formrechts">
+            {OptieType_inputfield} {OptieType_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OptieExpDatum_description}</div>
+          <div class="formrechts">
+            <select class="" type="select"  name="expiratieMaand" id="expiratieMaand">
+              <option value=""> --- </option>
+              {OptieExpMaand}
+            </select>
+            <select class="" type="select"  name="expiratieJaar"  id="expiratieJaar">
+              <option value=""> --- </option>
+              {OptieExpJaar}
+            </select>
+            {OptieExpDatum_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OptieUitoefenPrijs_description}</div>
+          <div class="formrechts">
+            {OptieUitoefenPrijs_inputfield} {OptieUitoefenPrijs_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{OptieBovenliggendFonds_description}</div>
+          <div class="formrechts">
+            {OptieBovenliggendFonds_inputfield} {OptieBovenliggendFonds_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{optieCode_description}</div>
+          <div class="formrechts">
+            {optieCode_inputfield} {optieCode_error}
+          </div>
+        </div>
+
+
+        <!-- /form -->
+      </div>
+    </fieldset>
+  </div>
+  <!-- /tab 2 -->
+
+
+  <!-- tab 3 -->
+
+  <div id='tab3' class="tabblad">
+    <fieldset id="onder3" style="float:left; width:50%">
+
+      <div class="form" >
+
+        <table>
+          <tr>
+            <td width="500" valign="top">
+              <div class="formblock">
+                <div class="formlinks">{Rentedatum_description}</div>
+                <div class="formrechts">
+                  {Rentedatum_inputfield} {Rentedatum_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{Renteperiode_description}</div>
+                <div class="formrechts">
+                  {Renteperiode_inputfield} {Renteperiode_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{EersteRentedatum_description}</div>
+                <div class="formrechts">
+                  {EersteRentedatum_inputfield} {EersteRentedatum_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{Lossingsdatum_description}</div>
+                <div class="formrechts">
+                  {Lossingsdatum_inputfield} {Lossingsdatum_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{callabledatum_description}</div>
+                <div class="formrechts">
+                  {callabledatum_inputfield} {callabledatum_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{lossingskoers_description}</div>
+                <div class="formrechts">
+                  {lossingskoers_inputfield} {lossingskoers_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{Rente30_360_description}</div>
+                <div class="formrechts">
+                  {Rente30_360_inputfield} {Rente30_360_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{variabeleCoupon_description} </div>
+                <div class="formrechts">
+                  {variabeleCoupon_inputfield} {variabeleCoupon_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{OblSoortFloater_description} </div>
+                <div class="formrechts">
+                  {OblSoortFloater_inputfield} {OblSoortFloater_error} {OblFloaterJaar_inputfield}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{inflatieGekoppeld_description} </div>
+                <div class="formrechts">
+                  {inflatieGekoppeld_inputfield} {inflatieGekoppeld_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{RevConvertable_description} </div>
+                <div class="formrechts">
+                  {RevConvertable_inputfield} {RevConvertable_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{OblPerpetual_description} </div>
+                <div class="formrechts">
+                  {OblPerpetual_inputfield} {OblPerpetual_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{OblDirtyPr_description} </div>
+                <div class="formrechts">
+                  {OblDirtyPr_inputfield} {OblDirtyPr_error}
+                </div>
+              </div>
+              <div class="formblock">
+                <div class="formlinks">{OblMemo_description} </div>
+                <div class="formrechts">
+                  {OblMemo_inputfield} {OblMemo_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks">{datumControleStatics_description} </div>
+                <div class="formrechts">
+                  {datumControleStatics_inputfield} {datumControleStatics_error}
+                </div>
+              </div>
+
+              <div class="formblock">
+                <div class="formlinks"> </div>
+                <div class="formrechts">
+                  {fondsparameterHistorie} 
+                </div>
+              </div>
+            </td>
+<!--            <td>
+              <iframe id="rente" src="blank.html" width="600" height="300" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+            </td>-->
+
+          </tr>
+        </table>
+
+        <!-- /form -->
+      </div>
+    </fieldset>
+    
+    <fieldset id="renteList" style="height: 288px; display: inline-block; overflow-y: scroll;">
+<!--              <iframe id="rente" src="blank.html" width="600" height="300" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>-->
+      
+    </fieldset>
+    
+  </div>
+
+  <!--  /tab 3-->
+
+  <!--  tab 4-->
+  <div id='tab4' class="tabblad">
+    <fieldset id="onder4">
+      <div class="form" >
+
+        <table width='1000'><tr>
+          <td valign='top'><div class="formblock">
+            <div class="formblock"> <div class="formlinks">{AABCode_description}</div> <div class="formrechts">{AABCode_inputfield}{AABCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{aabbeCode_description}</div> <div class="formrechts">{aabbeCode_inputfield}{aabbeCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{ABRCode_description}</div> <div class="formrechts">{ABRCode_inputfield}{ABRCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{BILcode_description}</div> <div class="formrechts">{BILcode_inputfield}{BILcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{binckCode_description}</div> <div class="formrechts">{binckCode_inputfield}{binckCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{BNPBGLcode_description}</div> <div class="formrechts">{BNPBGLcode_inputfield}{BNPBGLcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{bucketCode_description}</div> <div class="formrechts">{bucketCode_inputfield}{bucketCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{CAWcode_description}</div> <div class="formrechts">{CAWcode_inputfield}{CAWcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{CSCode_description}</div> <div class="formrechts">{CSCode_inputfield}{CSCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{Dierickscode_description}</div> <div class="formrechts">{Dierickscode_inputfield}{Dierickscode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{FVLCode_description}</div> <div class="formrechts">{FVLCode_inputfield}{FVLCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{giroCode_description}</div> <div class="formrechts">{giroCode_inputfield}{giroCode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{GScode_description}</div> <div class="formrechts">{GScode_inputfield}{GScode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{HSBCcode_description}</div> <div class="formrechts">{HSBCcode_inputfield}{HSBCcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{IBcode_description}</div> <div class="formrechts">{IBcode_inputfield}{IBcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{INGCode_description}</div> <div class="formrechts">{INGCode_inputfield}{INGCode_error}</div></div>
+
+            <div class="formblock"> <div class="formlinks">{JBLuxcode_description}</div> <div class="formrechts">{JBLuxcode_inputfield}{JBLuxcode_error}</div></div>
+            <div class="formblock"> <div class="formlinks">{JBcode_description}</div> <div class="formrechts">{JBcode_inputfield}{JBcode_error}</div></div>
+
+          </div>
+          </td><td valign='top'><div class="formblock">
+          <div class="formblock"> <div class="formlinks">{JPMcode_description}</div> <div class="formrechts">{JPMcode_inputfield}{JPMcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{kasbankCode_description}</div>  <div class="formrechts">{kasbankCode_inputfield}{kasbankCode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{KBCcode_description}</div>  <div class="formrechts">{KBCcode_inputfield}{KBCcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{KNOXcode_description}</div>  <div class="formrechts">{KNOXcode_inputfield}{KNOXcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{LYNXcode_description}</div> <div class="formrechts">{LYNXcode_inputfield}{LYNXcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{Lomcode_description}</div> <div class="formrechts">{Lomcode_inputfield}{Lomcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{optCode_description}</div>  <div class="formrechts">{optCode_inputfield}{optCode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{PICcode_description}</div> <div class="formrechts">{PICcode_inputfield}{PICcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{Quintetcode_description}</div> <div class="formrechts">{Quintetcode_inputfield}{Quintetcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{raboCode_description}</div> <div class="formrechts">{raboCode_inputfield}{raboCode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{Sarasincode_description}</div> <div class="formrechts">{Sarasincode_inputfield}{Sarasincode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{SAXOcode_description}</div> <div class="formrechts">{SAXOcode_inputfield}{SAXOcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{snsSecCode_description}</div> <div class="formrechts">{snsSecCode_inputfield}{snsSecCode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{stroeveCode_description}</div> <div class="formrechts">{stroeveCode_inputfield}{stroeveCode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{UBPcode_description}</div> <div class="formrechts">{UBPcode_inputfield}{UBPcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{UBScode_description}</div> <div class="formrechts">{UBScode_inputfield}{UBScode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{UBSLcode_description}</div> <div class="formrechts">{UBSLcode_inputfield}{UBSLcode_error}</div></div>
+          <div class="formblock"> <div class="formlinks">{VPcode_description}</div> <div class="formrechts">{VPcode_inputfield}{VPcode_error}</div></div>
+        </div>
+        </td></tr></table>
+         <hr>
+        <h3>[vt]FIX gegevens[/vt]</h3>
+        <table width='1000'><tr>
+          <td valign='top'><div class="formblock">
+             <div class="formblock"> <div class="formlinks">{binckValuta_description}</div> <div class="formrechts">{binckValuta_inputfield}{binckValuta_error}</div></div>
+          </div>
+          </td><td valign='top'><div class="formblock">
+             <div class="formblock"> <div class="formlinks">{binckBeurs_description}</div> <div class="formrechts">{binckBeurs_inputfield}{binckBeurs_error}</div></div>
+          </div>
+          </td></tr></table>
+        <!-- /form -->
+      </div>
+    </fieldset>
+  </div>
+
+  <!--  /tab 4-->
+
+
+
+  <!--  tab 5-->
+  <div id='tab5' class="tabblad">
+    <fieldset id="onder5">
+      <div class="form" >
+
+        <div class="formblock">
+          <div class="formlinks">[vt]Vermogensbeheerder[/vt] </div>
+          <div class="formrechts">
+            <select class="" type="select"  name="Vermogensbeheerder" id="Vermogensbeheerder"  onchange="javascript:VermogensbeheerderChanged();">
+              {selectVermogensbeheerder}
+            </select>
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">[vt]Koppelingen[/vt] </div>
+          <div class="formrechts">
+
+            <div id="huidigeKoppeling">  </div>
+            
+          </div>
+        </div>
+
+      </div>
+    </fieldset>
+  </div>
+  <!--  /tab 5-->
+
+
+  <!--  tab 6-->
+  <div id='tab6' class="tabblad">
+    <fieldset id="onder6">
+      <div class="form" >
+
+        <div class="formblock">
+          <div class="formlinks">{identifierVWD_description} </div>
+          <div class="formrechts">
+            {identifierVWD_inputfield} {identifierVWD_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{identifierFactSet_description} </div>
+          <div class="formrechts">
+            {identifierFactSet_inputfield} {identifierFactSet_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{koersmethodiek_description} </div>
+          <div class="formrechts">
+            {koersmethodiek_inputfield} {koersmethodiek_error} <span id="koersVBHspan" style="display:none">{koersVBH_description} {koersVBH_inputfield} </span>
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{KoersAltijdAanvragen_description} </div>
+          <div class="formrechts">
+            {KoersAltijdAanvragen_inputfield} {KoersAltijdAanvragen_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{koersControle_description} </div>
+          <div class="formrechts">
+            {koersControle_inputfield} {koersControle_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{koersmemo_description} </div>
+          <div class="formrechts">
+            {koersmemo_inputfield} {koersmemo_error}
+          </div>
+        </div>
+
+        <div class="formblock">
+          <div class="formlinks">{koersBron_description} </div>
+          <div class="formrechts">
+            {koersBron_inputfield} {koersBron_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{koersbronOpm_description} </div>
+          <div class="formrechts">
+            {koersbronOpm_inputfield} {koersbronOpm_error}
+          </div>
+        </div> 
+        <div class="formblock">
+          <div class="formlinks">{koersFrequentie_description} </div>
+          <div class="formrechts">
+            {koersFrequentie_inputfield} {koersFrequentie_error}
+          </div>
+        </div>        
+        <div class="formblock">
+          <div class="formlinks">{revisieDatum_description} </div>
+          <div class="formrechts">
+            {revisieDatum_inputfield} {revisieDatum_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{IdentifierMS_description} </div>
+          <div class="formrechts">
+            {IdentifierMS_inputfield} {IdentifierMS_error}
+          </div>
+        </div>
+        <div class="formblock">
+          <div class="formlinks">{KIDformulier_description} </div>
+          <div class="formrechts">
+            {KIDformulier_testKnop} {KIDformulier_inputfield}  {KIDformulier_error}
+          </div>
+        </div>
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>[vt]Fondskoersen[/vt]</legend>
+      <div id="fondskoersenList"></div>
+      <!--<iframe id="fondskoersenFrame" src="fondsFondskoersen.php?id={id_value}" width="100%" height="300" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="1"></iframe>-->
+    </fieldset>
+    
+  </div>
+  <!--  /tab 6-->
+
+  <!--  tab 7-->
+  <div id='tab7' class="tabblad">
+    <fieldset id="onder7">
+      <div class="form" >
+
+        {tab7_data}
+        <iframe id="fondsextrainformatieFrame" src="fondsextrainformatieEdit.php?frame=1&action=edit&id={tab7_recordId}&fonds={Fonds_value}" width="100%" height="600" marginwidth="0" marginheight="0" hspace="0" vspace="0" align="middle" frameborder="1"></iframe>
+
+        <!-- /form -->
+      </div>
+    </fieldset>
+  </div>
+  <!-- /tab 7 -->
+
+  <!--  tab 8-->
+  <div id='tab8' class="tabblad">
+    <fieldset id="posities8">
+
+       {positieDetails}
+
+      
+    </fieldset>
+    {fondsInfo}
+    <fieldset id="doorkijk8">
+      <div class="form" >
+       <b>[vt]Doorkijk[/vt]</b>
+        {doorkijkDetails}
+      </div>
+    </fieldset>
+  </div>
+  <!-- /tab 8 -->
+
+
+  </div>
+
+</form>
+
+<script>
+
+  $(document).ready(function ()
+  {
+      $("#KIDformulier").change(function()
+      {
+         var kidUrl = $("#KIDformulier").val();
+         $("#btnKidUrl").attr("href",kidUrl);
+      });
+  });
+
+</script>

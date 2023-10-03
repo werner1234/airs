@@ -1,0 +1,193 @@
+<style>
+  th {
+    text-align: left;
+  }
+  .table {
+    width: 95%;
+    max-width: 98%;
+    margin-bottom: 20px;
+  }
+  
+  .list_button {
+    width:-1px!important;
+    background-color: white;
+    border-top: 1px solid white!important;
+  }
+  
+  .table > thead > tr > th,
+  .table > tbody > tr > th,
+  .table > tfoot > tr > th,
+  .table > thead > tr > td,
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #dddddd;
+  }
+  .table > tbody > tr:hover {
+    background-color: #E8E8E8;
+  }
+  
+</style>
+
+<br />
+<div id="message"></div>
+
+<form>
+  <fieldset style="width:900px;">
+    <legend><strong>[vt]Participatie toevoegen[/vt]</strong></legend>
+    <input type="hidden" id="CRMGebrNaam" name="CRMGebrNaam" value="{CRMGebrNaam}">
+    <input type="hidden" id="bucketCode" name="bucketCode" value="">
+    <input type="hidden" id="oldBucketCode" name="oldBucketCode" value="">
+    
+    <table id="addParticipation" style="margin-bottom:15px;">
+      <thead>
+        <tr>
+          <td class="list_kopregel_data">[vt]Fonds[/vt]</td>
+          <td class="list_kopregel_data">[vt]Registratienummer[/vt]</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <select name="fonds_fonds" id="Fonds">
+              <option value="0">---</option>
+              {Fonds_options}
+            </select>
+          </td>
+          <td><input name="registration_number" type="text" id="registrationNumber"></td>
+          <td>{btn_submit}</td>
+        </tr>
+      </tbody>
+      
+      <thead>
+        <tr>
+          <td class="list_kopregel_data">{memo_description}</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2">{memo_inputfield}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </fieldset>
+</form>
+
+<fieldset style="width:900px;">
+  <legend><strong>[vt]Participaties[/vt]</strong></legend>
+  <div id="overviewResult">
+    <table class="list_tabel table" style="margin-bottom:15px;">  
+      <thead>
+        <tr class="list_kopregel">
+          <td width="5%"  class="list_button"></td>
+          <td width="30%" class="list_kopregel_data">[vt]Fonds[/vt]</td>
+          <td width="25%" class="list_kopregel_data">[vt]Registratienummer[/vt]</td>
+          <td width="40%" class="list_kopregel_data">{memo_description}</td>
+        </tr>
+      </thead>
+      <tbody>
+        {participantenRow}
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+<script>
+  function ConvertFormToJSON(form) {
+    var array = jQuery(form).serializeArray();
+    var json = {};
+
+    jQuery.each(array, function () {
+      json[this.name] = this.value || '';
+    });
+    return json;
+  };
+  
+  function makeRegistrationNumber () {
+    $('#registrationNumber').val($('#CRMGebrNaam').val() + $('#bucketCode').val());
+  }
+  
+  function getFondsBucketCode () {
+    $.ajax({
+      url: 'lookups/ajaxLookup.php',
+      type: 'GET',
+      data: {
+        fonds: $('#Fonds').val(),
+        fromClass: 'AE_Participants',
+        type: 'getFondsBucketCode'
+      },
+      dataType: "json",
+      success: function (data) {
+
+        $('#bucketCode').val(data.bucketCode);
+
+        makeRegistrationNumber();
+      },
+      error: function (data) {
+      },
+      cache: false
+    });
+  }
+  
+  $('#Fonds').on('change', function () {
+    $('#oldBucketCode').val($('#bucketCode').val());
+    var oldCode = $('#oldBucketCode').val();
+    var newCode = $('#bucketCode').val();
+
+    if ( $('#registrationNumber').val() === $('#CRMGebrNaam').val() + oldCode) {
+      getFondsBucketCode ();
+    }else if ( (oldCode === "" && newCode === "") && $('input[name=registration_number]').val() === "" ) {
+      getFondsBucketCode ();
+    }else if ( $('input[name=registration_number]').val() === "" ) {
+      getFondsBucketCode ();
+    }
+  });
+
+  $(function () {
+    
+    
+    
+    makeRegistrationNumber();
+    
+    $('.saveRow').on('click', function () {
+      event.preventDefault();
+      var form = $('.saveRow').closest('form');
+      form.find(':input').css('border-color', ''); //reset inputfield style
+
+      var jsonData = ConvertFormToJSON(form);
+      $.ajax({
+        url: 'participantsEdit.php',
+        type: 'POST',
+        data: {
+          postData: jsonData,
+          crm_id: '{crm_id}',
+          saveRow: 'true'
+        },
+        dataType: "json",
+        success: function (data) {
+          $('#message').html('');
+          
+          $.each(data.fieldErrors, function(field, fieldData) {
+            $('#addParticipation [name=' + field + ']').css('border-color', 'red');
+          });
+          
+          if (data.template) {
+            $('#overviewResult table tbody').prepend(data.template); 
+            form.trigger("reset");
+          }
+          
+          if (data.message) {
+            $('#message').html(data.message);
+          }
+          
+        },
+        error: function (data) {
+        },
+        cache: false
+      });
+    });
+  });
+</script>

@@ -1,0 +1,29 @@
+<?
+//aevertaal: kan dit zo letterlijk vertaald worden?
+//aevertaal: $colorArray is hier niet bekend!
+?>
+<br />
+<br />
+<br />
+<fieldset>
+  <legend><?=vt("Legenda")?></legend>
+  <table  class="legendaTable">
+    <tr style="vertical-align: text-top;">
+      <td>
+        <p class="list_dataregel_rose legenda"><span class="prio">1</span><?=vt("omschrijving bevat")?> <?=implode(", ",$colorArray)?>, KOSTEN</p>
+        <p class="list_dataregel_rood legenda"><span class="prio">2</span>(<?=vt("valuta")?> <> EUR &amp; koers = 1) of (<?=vt("valuta")?> = EUR &amp; <?=vt("koers")?> <> 1) <?=vt("of koers")?> = 0 <?=vt("of valuta onbekend")?></p>
+        <p class="list_dataregel_geel legenda"><span class="prio">3</span><?=vt("koersfactor")?> > 10 (<?=vt("fractiefonds")?>)</p>
+        <p class="list_dataregel_oranje legenda"><span class="prio">4</span><?=vt("aantal")?> = 0 &amp; <?=vt("")?> = FONDS</p>
+      </td>
+      <td>
+        
+        <p class="list_dataregel_groen legenda"><span class="prio">5</span><?=vt("grootboek")?> = FONDS &amp; <?=vt("Fondssoort")?> = STOCKDIV &amp; TT = D <?=vt("of")?> L &amp; <?=vt("Koers")?> <> 0 of<br />
+          <?=vt("grootboek")?> = FONDS &amp; <?=vt("Fondssoort")?> <> STOCKDIV &amp; TT = D <?=vt("of")?> L &amp; <?=vt("Koers")?> = 0</p>
+        <p class="list_dataregel_cyaan legenda"><span class="prio">6</span><?=vt("foutief transactietype bij optietransactie")?></p>
+        <p class="list_dataregel_maroon legenda" style="color: white;"><span class="prio">7</span><?=vt('einddatum fonds');?> <= <?=vt("vandaag")?></p>
+        <p class="list_dataregel_blauw legenda" style="color: white;"><span class="prio">8</span><?=vt("boekdatum vs aanmaakdatum maandoverloop")?></p>
+      </td>
+    </tr>
+  </table>
+
+</fieldset>

@@ -1,0 +1,96 @@
+<form name="editForm" action="{updateScript}">
+<div class="form">
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Rapportage">{Rapportage_description}</label> </div>
+<div class="formrechts">
+{Rapportage_inputfield} {Rapportage_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Trigger">{Trigger_description}</label> </div>
+<div class="formrechts">
+{Trigger_inputfield} {Trigger_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="BestandsNaam">{BestandsNaam_description}</label> </div>
+<div class="formrechts">
+  {BestandsNaam_inputfield} {BestandsNaam_error} ([vt]Een datum is toe te voegen met bv.[/vt] <b>begin[Y-m-d]eind.csv</b> of [dmY], Y=4 [vt]cijfers[/vt], y=2 [vt]cijfers[/vt], [vt]tijd met H:i:s[/vt])
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Export_pad">{Export_pad_description}</label> </div>
+<div class="formrechts">
+{Export_pad_inputfield} {Export_pad_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="gebruikersnaam">{gebruikersnaam_description}</label> </div>
+<div class="formrechts">
+{gebruikersnaam_inputfield} {gebruikersnaam_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="wachtwoord">{wachtwoord_description}</label> </div>
+<div class="formrechts">
+{wachtwoord_inputfield} {wachtwoord_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="instellingen">{instellingen_description}</label> </div>
+<div class="formrechts">
+{instellingen}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="frequentie">{frequentie_description}</label> </div>
+<div class="formrechts">
+{frequentie_inputfield} {frequentie_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="autoEmailadres">{autoEmailadres_description}</label> </div>
+<div class="formrechts">
+{autoEmailadres_inputfield} {autoEmailadres_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="autoVanaf">{autoVanaf_description}</label> </div>
+<div class="formrechts">
+{autoVanaf_inputfield} {autoVanaf_error}
+</div>
+</div>
+
+  <div class="formblock">
+    <div class="formlinks"><label for="memo">{memo_description}</label> </div>
+    <div class="formrechts">
+      {memo_inputfield} {memo_error}
+    </div>
+  </div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form></div>

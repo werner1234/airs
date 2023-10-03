@@ -1,0 +1,62 @@
+AIRShost api voor aanlevering data door externe partijen
+
+Api call worden naar de opgeven url gestuurd via het httpsprotocol
+
+https://apiext.demo.airshost.nl/
+
+De apicalls worden alleen in behandeling genomen als het verzendend IP adres is opgenomen in de lijst van vertrouwde IP adressen die zijn vastgelegd in de Api.
+
+Het Ip adres icm met de Apikey zorgen voor de identificatie van de call
+
+in de header zijn de volgende velden verplicht
+- apiKey                Een identificatie wachtwoord
+- action                Een code voor wat voor data wordt aangeboden/opgevraagd
+- eventCode             Een code waardoor Airs weet voor welk doel de gegevens zijn aangeleverd
+- submitterIp           Het ipadres van de persoon die de gegevens heeft ingevuld (de klant/prospect)
+
+
+de request parameters zijn de daadwerklijk te verwerken key/value pairs
+
+de resuest parameters zijn exacte veldbenamingen aangeleverd door Airs of customFields die niet als exacte veldnaam in een tabel voorkomt.
+Een custom field begint altijd met de prefic "cf_" gevolgd door de veldnaam.
+
+cf_ velden worden bijvoorbeeld gebruikt om samengestelde velden te kunnen genereren of om een classificatie te bepalen aan de hand van de aangeleverde criteria.
+
+
+terugmeldingen:
+---------------
+
+Alle POST calls worden beantwoord met een JSON bericht met een goed- of foutmelding
+
+als de call geslaagd wordt het volgende bericht tergestuurd
+
+    {"result":"ok"}
+
+
+als er een fout situatie onstaat, wordt deze alsvolgt teruggemeldt
+------------------------------------------------------------------
+
+foute combinatie apikey/ip
+    {"errors":["invalid autorisation"]}
+
+onbekende action
+    {"errors":["invalid action: queueCrm1"]}
+
+ongeldige veldnaam
+    {"errors":["invalid datafields detected: voorletter"]}
+
+In de Api zijn limieten vastgelegd om bruteforcing te beperken, er mogen "x" calls met uur worden uitgevoerd, wanneer de limiet is overschreden wordt de volgende melding teruggegeven
+    {"errors":["too many requestsPerHour 19 ( max: 15) "]}
+
+Het aantal request/uur en het aantal verbruikte is op te vragen met een apicall met action=credits (let op, deze actie telt mee in het aantal allowPerHour)
+    {"yourIP":"xxx.xxx.xxx.197","lastHour":25,"allowPerHour":75}
+
+
+Inregelen Api
+-------------
+
+Tijdens het inregelen v/d Api wordt de
+- apiKey vastgelegd
+- vertrouwde ip adres(sen) vastgelegd
+- de allowPerHour bepaalt en ingesteld
+

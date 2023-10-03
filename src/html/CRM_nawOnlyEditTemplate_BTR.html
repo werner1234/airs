@@ -1,0 +1,672 @@
+<script>
+  function portefeuilleChange() {
+    var theForm = document.editForm.elements, z = 0;
+    for (z = 0; z < theForm.length; z++) {
+      if (theForm[z].type == "text") {
+        if (theForm[z].name == "Portefeuille") {
+          theForm[z].value = "";
+          theForm[z].disabled = true;
+        }
+      }
+    }
+  }
+</script>
+<form name="editForm" action="{updateScript}" method="POST">
+  <input type="hidden" name="action" value="{action}">
+  <input type="hidden" name="updateScript" value="{updateScript}">
+  <input type="hidden" name="returnUrl" value="{returnUrl}">
+  <input type="hidden" name="aktief" value="1">
+  {id_inputfield}
+  <!-- Standard-->
+  <fieldset id="RelatieSectie1">
+    <legend> [vt]Algemeen[/vt] </legend>
+    <row>
+      <column>
+        <group>
+          <span>{portefeuille_description}</span>
+          {portefeuille_inputfield}
+          <span class="btr_error">{portefeuille_error}</span>
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>{naam_description}</span>
+          {naam_inputfield}
+          <span class="btr_error">{naam_error}</span>
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>{naam1_description}</span>
+          {naam1_inputfield}
+          <span class="btr_error">{naam1_error}</span>
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]Telefoon[/vt]</span> <input class="" type="text" size="20" value="{tel1_value}" name="tel1">
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>{profielOverigeBeperkingen_description}</span>
+          {profielOverigeBeperkingen_inputfield}
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>{aktief_description}</span> {aktief_inputfield}
+        </group>
+      </column>
+    </row>
+  </fieldset>
+  <fieldset id="RelatieSectie2">
+    <legend> [vt]Adres[/vt] </legend>
+    <row>
+      <column>
+        <group>
+          <span>[vt]aanhef[/vt]</span> <input class="" type="text" size="60" value="{verzendAanhef_value}" name="verzendAanhef">
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]straat[/vt]</span> <input class="" type="text" size="60" value="{adres_value}" name="adres">
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]PC[/vt]</span>
+          <input class="" type="text" size="7" value="{pc_value}" name="pc">
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]plaats[/vt]</span>
+          <input class="" type="text" size="30" value="{plaats_value}" name="plaats">
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]land[/vt]</span>
+          <input class="" type="text" size="15" value="{land_value}" name="land">
+        </group>
+      </column>
+    </row>
+  </fieldset>
+  <fieldset id="RelatieSectie2">
+    <legend> [vt]Portaal/Email[/vt] </legend>
+    <row>
+      <column>
+        <group>
+          <span>[vt]email[/vt]</span> <input class="" type="text" size="60" value="{email_value}" name="email"><span
+            class="btr_error">{email_error}</span>
+        </group>
+      </column>
+    </row>
+    <row>
+      <column>
+        <group>
+          <span>[vt]wachtwoord[/vt]</span> <input class="" type="text" size="60" value="{wachtwoord_value}"
+            name="wachtwoord"><span class="btr_error">{wachtwoord_error}</span>
+        </group>
+      </column>
+    </row>
+  </fieldset>
+  <div class="tabbuttonRow">
+    <table>
+      {naarAirsVerzenden}
+      <tr>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>{PortefeuilleTabs}
+        </td>
+      </tr>
+    </table>
+    {errorHtml}
+  </div>
+  <div id='tab9' class="tabblad">
+    <fieldset>
+      <iframe id="extraFrame" name="extraFrame" src="{frameSrc}" width="1200" height="1000" marginwidth="0"
+        marginheight="0" hspace="0" vspace="0" align="middle" frameborder="0"></iframe>
+    </fieldset>
+  </div>
+  <!-- END Standard-->
+  <!-- Portefueille TAB-->
+  <div id='tab10' class="tabblad">
+    <div class="form">
+      <fieldset id="PortefeuilleGegevens">
+        <legend>[vt]Portefeuille gegevens[/vt]</legend>
+        <input type="hidden" name="portefeuilleId" id="portefeuilleId" value="{portefeuilleId}">
+        <row>
+          <column>
+            <group>
+              <span>{Portefeuille_description}</span> {Portefeuille_inputfield} <span
+                class="btr_error">{Portefeuille_error}</span>
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{PortefeuilleVoorzet_description}</span> {PortefeuilleVoorzet_inputfield}
+              <span class="btr_error">{PortefeuilleVoorzet_error}</span>
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Vermogensbeheerder_description}</span> {Vermogensbeheerder_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{selectieveld1_description}</span> {selectieveld1_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Accountmanager_description}</span>{Accountmanager_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{tweedeAanspreekpunt_description}</span> {tweedeAanspreekpunt_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <group><span>{Client_description}</span> {Client_inputfield}</group>
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{beperktToegankelijk_description}</span> {beperktToegankelijk_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Depotbank_description}</span> {Depotbank_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Vastetegenrekening_description}</span> {Vastetegenrekening_inputfield}
+              <span class="btr_error">{Vastetegenrekening_error}</span>
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Startdatum_description}</span> {Startdatum_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Einddatum_description}</span> {Einddatum_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{ClientVermogensbeheerder_description}</span>
+              {ClientVermogensbeheerder_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{ModelPortefeuille_description}</span> {ModelPortefeuille_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{RapportageValuta_description}</span> {RapportageValuta_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Risicoklasse_description}</span> {Risicoklasse_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{AEXVergelijking_description}</span> {AEXVergelijking_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{SpecifiekeIndex_description}</span> {SpecifiekeIndex_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{SoortOvereenkomst_description}</span> {SoortOvereenkomst_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{HistorischeInfo_description}</span> {HistorischeInfo_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{maandAfdrukken_description}</span>{maandAfdrukken_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{kwartaalAfdrukken_description}</span> {kwartaalAfdrukken_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Taal_description}</span> {Taal_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Remisier_description}</span> {Remisier_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{AFMprofiel_description}</span> {AFMprofiel_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{ZpMethode_description}</span> {ZpMethode_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{OptieToestaan_description}</span> {OptieToestaan_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Memo_description} </span>{Memo_inputfield}
+            </group>
+          </column>
+        </row>
+      </fieldset>
+    </div>
+  </div>
+  <!-- END Portefueille TAB-->
+  <!-- Beheerfee TAB-->
+  <div id='tab11' class="tabblad">
+    <div class="form">
+      <fieldset id="Beheerfee">
+        <legend> [vt]Beheerfee-methode[/vt] </legend>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeBasisberekening_description}</span>
+              {BeheerfeeBasisberekening_inputfield}
+            </group>
+          </column>
+        </row>
+        <row title="[vt]Beheerfee bepaling[/vt]" font="bold">
+          <column>
+            <input type="radio" id="BeheerfeeMethode_0" name="BeheerfeeMethode" value="0" {Methode_0}>[vt]Geen, Toevoegen aan portefeuille[/vt]
+          </column>
+          <column>
+            <group><span for="BeheerfeeToevoegenAanPortefeuille">&nbsp;</span>
+              {BeheerfeeToevoegenAanPortefeuille_inputfield}
+            </group>
+          </column>
+          <column>{feeToevoegMethode_inputfield}</column>
+        </row>
+        <row>
+          <column>
+              <input id="BeheerfeeMethode_1" type="radio" name="BeheerfeeMethode" value="1" {Methode_1}>[vt]Standaard (op basis van staffels)[/vt]
+          </column>
+          <column>&nbsp;</column>
+        </row>
+        <row>
+          <column>
+              <input id="BeheerfeeMethode_2" type="radio" name="BeheerfeeMethode" value="2" {Methode_2}>[vt]Standaard + procentuele korting[/vt]
+          </column>
+          <column>{BeheerfeeKortingspercentage_inputfield}</column>
+        </row>
+        <row>
+          <column>
+              <input id="BeheerfeeMethode_3" type="radio" name="BeheerfeeMethode" value="3" {Methode_3}>[vt]Percentage over vermogen in beheer[/vt]
+          </column>
+          <column>{BeheerfeePercentageVermogen_inputfield}</column>
+        </row>
+        <row>
+          <column>
+              <input id="BeheerfeeMethode_4" type="radio" name="BeheerfeeMethode" value="4" {Methode_4}>[vt]Bedrag[/vt]
+          </column>
+          <column>{BeheerfeeBedrag_inputfield}</column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>
+                {BeheerfeePerformancePercentage_checkbox} {BeheerfeePerformancePercentage_description}
+              </span>
+              {BeheerfeePerformancePercentage_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeePerformanceDrempelPercentage_checkbox}
+                {BeheerfeePerformanceDrempelPercentage_description}</span>
+              {BeheerfeePerformanceDrempelPercentage_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeePerformanceDrempelBedrag_checkbox}
+                {BeheerfeePerformanceDrempelBedrag_description}</span>
+              {BeheerfeePerformanceDrempelBedrag_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeMinJaarBedrag_checkbox}
+                {BeheerfeeMinJaarBedrag_description}</span>
+              {BeheerfeeMinJaarBedrag_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{AdministratieVergoeding_checkbox}
+                [vt]Administratie vergoeding[/vt]</span>
+              {BeheerfeeAdministratieVergoeding_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Remisier_checkbox}
+                [vt]Remisiervergoeding[/vt]</span>
+              {BeheerfeeRemisiervergoedingsPercentage_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{Huisfonds_checkbox}
+                [vt]Teruggave over belegging in huisfondsen[/vt]</span>
+              {BeheerfeeTeruggaveHuisfondsenPercentage_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeBedragBuitenFee_description}</span>
+              {BeheerfeeBedragBuitenFee_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>[vt]BTW Tarief[/vt]</span>
+              {BeheerfeeBTW_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeAantalFacturen_description}</span>
+              {BeheerfeeAantalFacturen_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeePerformancefeeJaarlijks_description}</span>
+              {BeheerfeePerformancefeeJaarlijks_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{WerkelijkeDagen_description}</span>
+              {WerkelijkeDagen_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{valutaUitsluiten_description}</span>
+              {valutaUitsluiten_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeLiquiditeitenViaModel_description}</span>
+              {BeheerfeeLiquiditeitenViaModel_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeFacturatieVanaf_description}</span>
+              {BeheerfeeFacturatieVanaf_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BeheerfeeFacturatieVooraf_description}</span>
+              {BeheerfeeFacturatieVooraf_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{BetalingsinfoMee_description}</span>
+              {BetalingsinfoMee_inputfield}
+            </group>
+          </column>
+        </row>
+        <row>
+          <column>
+            <group>
+              <span>{FactuurMemo_description}</spna>
+                {FactuurMemo_inputfield}
+            </group>
+          </column>
+        </row>
+      </fieldset>
+    </div>
+  </div>
+  <!-- End Beheerfee TAB-->
+  <!-- Staffels TAB -->
+  <div id='tab12' class="tabblad">
+    <div class="form">
+      <fieldset id="Beheerfee-staffels">
+        <legend> [vt]Beheerfee-methode[/vt] </legend>
+        <row>
+          <column title="[vt]Waarde t/m[/vt]">
+            {BeheerfeeStaffel1_inputfield}
+            {BeheerfeeStaffel2_inputfield}
+            {BeheerfeeStaffel3_inputfield}
+            {BeheerfeeStaffel4_inputfield}
+            {BeheerfeeStaffel5_inputfield}
+            <span>
+              <span>{BeheerfeeSchijvenTarief_description}</span>
+            </span>
+            </group>
+          </column>
+          <column title="[vt]Percentage[/vt]">
+            {BeheerfeeStaffelPercentage1_inputfield}
+            {BeheerfeeStaffelPercentage2_inputfield}
+            {BeheerfeeStaffelPercentage3_inputfield}
+            {BeheerfeeStaffelPercentage4_inputfield}
+            {BeheerfeeStaffelPercentage5_inputfield}
+            {BeheerfeeSchijvenTarief_inputfield}
+            </group>
+          </column>
+        </row>
+      </fieldset>
+    </div>
+  </div>
+  <!-- Overige TAB -->
+  <!-- END Staffels TAB -->
+  <div id='tab13' class="tabblad">
+    {vulling_tab13}
+  </div>
+  <!-- END Overige TAB -->
+  <!-- Unused TAB -->
+  <div id='tab14' class="tabblad">
+    <fieldset id="consolidatedPortfolioPlaceHolder">
+      <row title="__internalConsolidatedPortfolio">
+        <column>
+          <span></span> 
+        </column>
+      </row>
+    </fieldset>
+    {vulling_tab14}
+  </div>
+  <!-- END Unused TAB -->
+  <!-- Rapportage TAB -->
+  <div id='tab6' class="tabblad">
+    <fieldset id="RelatieSectie5">
+      <legend>  [vt]rapportage[/vt] </legend>
+      <row>
+        <column>
+          <group>
+            <span>{begeleidendeBrief_description}</span>
+            {begeleidendeBrief_inputfield}<span class="btr_error">{begeleidendeBrief_error}</span>
+          </group>
+        </column>
+      </row>
+      {hide_rapportage_textbox_start}
+      <row title="__internalReportMatrixInput">
+        <column>
+          <span></span> 
+        </column>
+      </row>
+      <row>
+        <column>
+          <group>
+            <span>{maandrapportage_description}</span>
+            {maandrapportage_inputfield}<span class="btr_error">{maandrapportage_error}</span>
+          </group>
+        </column>
+      </row>
+      <row>
+        <column>
+          <group>
+            <span>{kwartaalrapportage_description}</span>
+            {kwartaalrapportage_inputfield}<span class="btr_error">{kwartaalrapportage_error}</span>
+          </group>
+        </column>
+      </row>
+      <row>
+        <column>
+          <group>
+            <span>{halfjaarrapportage_description}</span>
+            {halfjaarrapportage_inputfield}<span class="btr_error">{halfjaarrapportage_error}</span>
+          </group>
+        </column>
+      </row>
+      <row>
+        <column>
+          <group>
+            <span>{jaarrapportage_description}</span>
+            {jaarrapportage_inputfield}<span class="btr_error">{jaarrapportage_error}</span>
+          </group>
+        </column>
+      </row>
+      {hide_rapportage_textbox_eind}
+    </fieldset>
+  </div>
+  <!-- END rapportage TAB -->
+</form>
+<!-- included so matrix is initialised in AIRS and can be loaded through api-->
+{rapportageMatrix}

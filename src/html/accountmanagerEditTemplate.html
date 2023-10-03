@@ -1,0 +1,59 @@
+<form enctype="multipart/form-data" name="editForm" action="{updateScript}" method="POST">
+<div class="form">
+<input type="hidden" name="MAX_FILE_SIZE" value="2500000" />
+<input type="hidden" name="action" value="{action}">
+<input type="hidden" name="updateScript" value="{updateScript}">
+<input type="hidden" name="returnUrl" value="{returnUrl}">
+{id_inputfield}<div class="formblock">
+<div class="formlinks"><label for="Accountmanager">{Accountmanager_description}</label> </div>
+<div class="formrechts">
+{Accountmanager_inputfield} {Accountmanager_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Titel">{Titel_description}</label> </div>
+<div class="formrechts">
+{Titel_inputfield} {Titel_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Titel">{Titel2_description}</label> </div>
+<div class="formrechts">
+{Titel2_inputfield} {Titel2_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Naam">{Naam_description}</label> </div>
+<div class="formrechts">
+{Naam_inputfield} {Naam_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Vermogensbeheerder">{Vermogensbeheerder_description}</label> </div>
+<div class="formrechts">
+{Vermogensbeheerder_inputfield} {Vermogensbeheerder_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks"><label for="Handtekening">{Handtekening_description}</label> </div>
+<div class="formrechts">
+<input type="file" name="Handtekening" size="50"> {Handtekening_error}
+</div>
+</div>
+
+<div class="formblock">
+<div class="formlinks">&nbsp;</div>
+<div class="formrechts">
+{change_user_value} {change_date_value}</div>
+</div>
+
+</form>
+
+{handtekeningPlaatje}
+
+</div>

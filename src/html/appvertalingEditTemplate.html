@@ -1,0 +1,48 @@
+<form name="editForm" action="{updateScript}" method="{method}" >
+  <!-- branche vertaling_updateMaster -->
+  <div class="form">
+    <input type="hidden" name="action" value="{action}">
+    <input type="hidden" name="updateScript" value="{updateScript}">
+    <input type="hidden" name="returnUrl" value="{returnUrl}">
+    {id_inputfield}<div class="formblock">
+      <div class="formlinks"><label for="veld">{veld_description}</label> </div>
+      <div class="formrechts">
+        {veld_value} {veld_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="nl">{nl_description}</label> </div>
+      <div class="formrechts">
+        {nl_inputfield} {nl_error}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks"><label for="en">{en_description}</label> </div>
+      <div class="formrechts">
+        {en_inputfield} {en_error}
+      </div>
+    </div>
+    <div class="formblock">
+      <div class="formlinks"><label for="en">{fr_description}</label> </div>
+      <div class="formrechts">
+        {fr_inputfield} {fr_error}
+      </div>
+    </div>
+
+
+    <div class="formblock">
+      <div class="formlinks"><label for="en">{orgin_description}</label> </div>
+      <div class="formrechts">
+        {orgin_value}
+      </div>
+    </div>
+
+    <div class="formblock">
+      <div class="formlinks">&nbsp;</div>
+      <div class="formrechts">
+        {change_user_value} {change_date_value}</div>
+    </div>
+
+</form></div>

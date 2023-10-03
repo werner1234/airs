@@ -1,0 +1,134 @@
+
+
+<link href="style/jquery-clockpicker.min.css" rel="stylesheet" type="text/css" media="screen">
+<script type="text/javascript" src="javascript/jquery-clockpicker.min.js"></script>
+<style>
+	#dialog{
+
+		width: 600px;
+		height: 60px;
+		background: red;
+		color: whitesmoke;
+		display: none;
+		box-shadow: #000A28 2px 2px 2px;
+	}
+	#mesg{
+		padding: 20px;
+		margin: auto;
+  	font-size: 1.3em;
+		font-weight: bold;
+		text-align: center;
+	}
+	.clockpicker{
+		width: 65px;
+	}
+</style>
+
+<div id="dialog">
+  <div id="mesg"></div>
+</div>
+
+<form name="editForm" action="{updateScript}">
+	<div class="form">
+		<input type="hidden" name="action" value="{action}">
+		<input type="hidden" name="updateScript" value="{updateScript}">
+		<input type="hidden" name="returnUrl" value="{returnUrl}">
+		{id_inputfield}
+		{bedrijf_inputfield}
+
+		<div class="formblock">
+			<div class="formlinks"><label for="ip">{ip_description}</label> </div>
+			<div class="formrechts">
+				{ip_inputfield}  {whitelist_inputfield} [vt]Uitsluiten van IP blokkade[/vt]<br/>
+        <span style="display:inline-block; color:red;font-weight: bold;margin-top:.5rem"> {ip_error} </span>
+
+			</div>
+		</div>
+
+		<div class="formblock">
+			<div class="formlinks"><label for="locatie">{locatie_description}</label> </div>
+			<div class="formrechts">
+				{locatie_inputfield} {locatie_error}
+			</div>
+		</div>
+
+		<div class="formblock">
+			<div class="formlinks"><label for="onlineDatum">{onlineDatum_description}</label> </div>
+			<div class="formrechts">
+				{onlineDatum_inputfield}
+				{onlineDatum_error}
+			</div>
+		</div>
+
+		<div class="formblock">
+			<div class="formlinks"><label for="offlineDatum">{offlineDatum_description}</label> </div>
+			<div class="formrechts">
+				 {offlineDatum_inputfield}
+				 {offlineDatum_error}
+			</div>
+		</div>
+		<div class="formblock">
+			<div class="formlinks"><label for="loginVan">[vt]toegestane tijd[/vt]</label> </div>
+			<div class="formrechts">
+
+				[vt]van[/vt]
+				  <input  class="clockpicker" type="text"  value="{loginVan_value}" name="loginVan" id="loginVan" >
+				[vt]tot[/vt]
+				  <input  class="clockpicker" type="text"  value="{loginTot_value}" name="loginTot" id="loginVan" >
+				[vt]uur[/vt].
+				
+			</div>
+		</div>
+		<div class="formblock">
+			<div class="formlinks"><label for="memo">{memo_description}</label> </div>
+			<div class="formrechts">
+				{memo_inputfield} {memo_error}
+			</div>
+		</div>
+
+		<div class="formblock">
+			<div class="formlinks">&nbsp;</div>
+			<div class="formrechts">
+				{change_user_value} {change_date_value}</div>
+		</div>
+	</div>
+</form>
+
+
+<script>
+  $(document).ready(function()
+	{
+
+		$(".clockpicker").clockpicker({
+			autoclose: true
+		});
+
+
+		$("#locatie").change(function()
+		{
+			var loc = $(this).val();
+			if (loc.trim() == "")
+			{
+				$("#dialog").show(200);
+				$("#mesg").text(
+					"[vt]Op welke locatie is het IP gevestigd[/vt]"
+				);
+				$("#locatie").select().focus();
+			}
+			else
+			{
+				$("#dialog").hide(200);
+				$("#mesg").html("");
+			}
+
+		});
+
+
+	});
+
+
+
+
+
+
+</script>

@@ -1,0 +1,304 @@
+<div id="newFondsHolder" style="display:none;">
+  <style>
+    .ui-dialog .ui-dialog-content {
+      padding: 0px;
+    }
+
+    .ui-tabs {
+       padding: 0px;
+      width: 99.7%;
+    }
+
+  </style>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Fonds</a></li>
+    <li><a href="#tabs-2">Optie</a></li>
+  </ul>
+  <div id="tabs-1">
+    <div class="form" style="display: inline-block;">
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{ISINCode_description}</label>
+        </div>
+        <div class="formrechts">
+          {fondsISINCode_inputfield} {ISINCode_error}
+        </div>
+      </div>
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{fonds_description}</label>
+        </div>
+        <div class="formrechts">
+          {fondsFonds_inputfield} {fondsFonds_error}
+        </div>
+      </div>
+
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{fondseenheid_description}</label>
+        </div>
+        <div class="formrechts">
+          {fondsFondseenheid_inputfield} {fondseenheid_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{fondsValuta_description}</label>
+        </div>
+        <div class="formrechts">
+          {fondsFondsValuta_inputfield} {datum_error}
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div id="tabs-2">
+    <div class="form" style="display: inline-block;">
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{optieSymbool_description}</label>
+        </div>
+        <div class="formrechts">
+          {optieOptieSymbool_inputfield} {optieSymbool_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{optieType_description}</label>
+        </div>
+        <div class="formrechts">
+          {optieOptieType_inputfield} {optieType_error}
+        </div>
+      </div>
+
+        <div class="formblock">
+            <div class="formlinks">
+                <label>{optieUitoefenprijs_description}</label>
+            </div>
+            <div class="formrechts">
+                {optieOptieUitoefenprijs_inputfield} {optieUitoefenprijs_error}
+            </div>
+        </div>
+
+      <div class="formblock">
+        <div class="formlinks">{optieExpDatum_description}</div>
+        <div class="formrechts">
+          <select class="" type="select"  name="optieexpiratieMaand" id="optieexpiratieMaand">
+            <option value=""> --- </option>
+            {OptieExpMaand}
+          </select>
+          <select class="" type="select"  name="optieexpiratieJaar"  id="optieexpiratieJaar">
+            <option value=""> --- </option>
+            {OptieExpJaar}
+          </select>
+
+          {optieexpiratieMaand_error}
+          {optieexpiratieJaar_error}
+        </div>
+      </div>
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{fonds_description}</label>
+        </div>
+        <div class="formrechts">
+          {optieFonds_inputfield} {optieFonds_error}
+        </div>
+      </div>
+
+
+        <div class="formblock">
+            <div class="formlinks">
+                <label>{fondsValuta_description}</label>
+            </div>
+            <div class="formrechts">
+                {optieFondsValuta_inputfield} {fondsValuta_error}
+            </div>
+        </div>
+
+
+      <div class="formblock">
+        <div class="formlinks">
+          <label>{fondseenheid_description}</label>
+        </div>
+        <div class="formrechts">
+          {optieFondseenheid_inputfield} {fondseenheid_error}
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+  <div class="ui-dialog-buttonset" style="padding: 10px;">
+
+    <span style="float: left; margin: 10px;" id="removeNewIsin" class="btn-new btn-delete">Wissen</span>
+
+    <span style="float: right; margin: 10px;" id="cancelNewIsin" class="btn-new btn-default">Sluiten</span>
+    <span style="float: right; margin: 10px;" id="addNewIsin" class="btn-new btn-save">Toevoegen</span>
+
+  </div>
+
+<script>
+  $(function() {
+
+    $(document).on('keyup', '#optieOptieSymbool', function () {
+      var str = $(this).val();
+      $('#optieOptieSymbool').val(str.toUpperCase());
+      makeOptieFonds ();
+    });
+
+
+    $( "#tabs" ).tabs();
+
+    $(document).on('click', '#removeNewIsin', function() {
+      $('#ISINCode').prop('readonly', false);
+      $('#fondsOmschrijving').prop('readonly', false);
+      $('#newFondsHolder').dialog({});
+      $('#newFondsHolder').dialog('close');
+    });
+
+
+    $(document).on('click', '#addNewIsin', function() {
+      pane = $("#tabs .ui-tabs-panel:visible").attr('id');
+      if (pane == 'tabs-1'){fondsType = '1';}
+      if (pane == 'tabs-2'){fondsType = '2';}
+
+      $("#fonds").val('');//leeg
+      $("#transactieSoort").val('');//leeg
+      $("#transactieSoort option").prop('disabled', true);
+      $("#transactieSoort option:first-child").prop('disabled', false);
+
+      $('#ISINCode').prop('readonly', true);
+      $('#fondsOmschrijving').prop('readonly', true);
+
+
+      if ( fondsType === '1' )
+      {
+        $('#fondssoort').val('HAND_INS');
+
+        $('#ISINCode').val($('#fondsISINCode').val());
+        $('#fondsOmschrijving').val($('#fondsFonds').val());
+        $('#fondseenheid').val($('#fondsFondseenheid').val());
+        $('#fondsValuta').val($('#fondsFondsValuta').val());
+
+        $("#transactieSoort option[value='A']").prop('disabled', false);
+        $("#transactieSoort option[value='V']").prop('disabled', false);
+
+
+      } else if ( fondsType === '2' ) {
+        $('#fondssoort').val('HAND_OPT');
+
+        $("#transactieSoort option[value='AO']").prop('disabled', false);
+        $("#transactieSoort option[value='VO']").prop('disabled', false);
+        $("#transactieSoort option[value='AS']").prop('disabled', false);
+        $("#transactieSoort option[value='VS']").prop('disabled', false);
+
+
+        $('#ISINCode').val('');
+        $('#fondsOmschrijving').val($('#optieFonds').val());
+        $('#fondseenheid').val($('#optieFondseenheid').val());
+        $('#fondsValuta').val($('#optieFondsValuta').val());
+
+        $('#optieSymbool').val($('#optieOptieSymbool').val());
+        $('#optieType').val($('#optieOptieType').val());
+        $('#optieUitoefenprijs').val($('#optieOptieUitoefenprijs').val());
+        $('#optieExpDatum').val($('#optieexpiratieJaar').val()+$('#optieexpiratieMaand').val());
+
+//        fillTransactionType($('#fondssoort').val());
+      }
+
+      $('#newFondsHolder').dialog({});
+      $('#newFondsHolder').dialog('close');
+    });
+
+    $(document).on('click', '#cancelNewIsin', function() {
+      $('#newFondsHolder').dialog({});
+      $('#newFondsHolder').dialog('close');
+
+      $('#ISINCode').val('');
+      $('#fondsOmschrijving').val('');
+    });
+
+    $(document).on('change', '#optieOptieSymbool, #optieOptieType, #optieexpiratieMaand, #optieexpiratieJaar, #optieOptieUitoefenprijs', function () {
+        makeOptieFonds ();
+
+    })
+
+
+      function GetMonthShortName(monthNumber) {
+          var months = ['Jan', 'Feb', 'Mrt', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+          return months[monthNumber-1];
+      }
+
+      function makeOptieFonds () {
+          var symbol = '';
+          var putCall = '';
+          var month = '';
+          var year = '';
+          var price = '';
+
+          if ( $('#optieOptieSymbool').val() != '') {
+              var symbol = $('#optieOptieSymbool').val();
+          }
+
+          if ( $('#optieOptieType').val() != '' ) {
+              var putCall = $('#optieOptieType').val();
+          }
+
+          if ( $('#optieexpiratieMaand').val() != '' ) {
+              var month = GetMonthShortName($('#optieexpiratieMaand').val());
+          }
+
+          if ( $('#optieexpiratieJaar').val() != '' ) {
+              var year = $('#optieexpiratieJaar').val();
+              var year = year.substr(year.length - 2);
+          }
+
+          if ( $('#optieOptieUitoefenprijs').val() > 0 ) {
+              var price = $('#optieOptieUitoefenprijs').val();
+
+              if (price.split('.')[1] == 0 || price.split('.')[1] == undefined) {
+                  var price = price.split('.')[0];
+              } else {
+                  var priceFloat = parseFloat(price);
+
+                  var priceString = priceFloat.toString();
+                  priceDecimals = 2;
+                  if ( priceString.split('.')[1]  != undefined && priceString.split('.')[1].length > 2 ) {
+                      priceDecimals = priceString.split('.')[1].length;
+                      Math.round(priceFloat + "e+"+priceDecimals)  + "e-"+priceDecimals;
+                  }
+                  var priceFloat = parseFloat(priceFloat);
+                  var priceString = priceFloat.toFixed(parseInt(priceDecimals));
+
+                  var price = priceString.toString();
+              }
+
+          }
+
+          $('#optieFonds').val(symbol + ' ' + putCall + ' ' + month + '' + year + ' ' + price);
+      }
+
+
+
+
+
+
+
+
+  });
+  </script>
+
+
+</div>

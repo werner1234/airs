@@ -1,0 +1,121 @@
+@charset "UTF-8";
+:root {
+  --menu-bg: #dddddd;
+  --menu-fc: black;
+  --menu-divider-color: #aca899;
+  --sub-menu-icon: "";
+  --sub-menu-left-border-color: #f3f5f4;
+  --sub-menu-box-dropshadow-color: #aca899;
+  --menu-a-hover-bg-color: #316ac5;
+}
+
+#main {
+  height: 26px !important;
+}
+
+.hideMenu {
+  display: none !important;
+}
+
+.top_menu #notifications-btn {
+  display: inline-block;
+  margin-inline: 10px;
+  border-radius: 0px;
+  border-top: 0px;
+  height: 25px;
+}
+
+nav.top_menu_nav {
+  float: left;
+  background-color: var(--menu-bg) !important;
+  height: 24px;
+}
+nav.top_menu_nav img {
+  vertical-align: middle;
+}
+nav.top_menu_nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+}
+nav.top_menu_nav ul li {
+  float: left;
+}
+nav.top_menu_nav ul li hr {
+  margin: 0px 15px 0px 5px;
+  border-top: 1px solid var(--menu-divider-color);
+}
+nav.top_menu_nav ul li a {
+  font-size: 11px;
+  display: block;
+  color: var(--menu-fc);
+  text-decoration: none;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+nav.top_menu_nav ul li:hover > ul {
+  /* Display the dropdown on hover */
+  display: block;
+  position: absolute;
+}
+nav.top_menu_nav ul li:hover {
+  background-color: var(--menu-a-hover-bg-color);
+  color: #000000;
+  transition-delay: 0s;
+}
+nav.top_menu_nav ul li:hover > a {
+  color: #fff;
+}
+nav.top_menu_nav ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+nav.top_menu_nav ul ul {
+  padding: 0px 15px 15px 15px;
+  margin: 0px -15px -15px -15px;
+  display: none;
+}
+nav.top_menu_nav ul ul div {
+  padding: 0;
+  background-color: white;
+  border: 1px solid gray;
+  min-width: 200px;
+  line-height: initial;
+  white-space: nowrap;
+}
+nav.top_menu_nav ul ul li {
+  border-left: 20px solid var(--sub-menu-left-border-color);
+  float: none;
+  position: relative;
+}
+nav.top_menu_nav ul ul li a {
+  display: block;
+  padding: 4px 5px 4px 5px;
+  text-decoration: none;
+}
+nav.top_menu_nav ul ul li a:hover {
+  background-color: var(--menu-a-hover-bg-color);
+  color: #fff;
+}
+nav.top_menu_nav ul ul li a::after {
+  font-family: "Font Awesome 5 Pro";
+  content: var(--sub-menu-icon);
+  font-weight: 900;
+  z-index: 1;
+  float: right;
+  opacity: 0.7;
+  margin-left: 20px;
+}
+nav.top_menu_nav ul ul li a:only-child::after {
+  content: "";
+}
+nav.top_menu_nav ul ul ul {
+  top: -1px;
+  left: 100%;
+  padding: 15px 15px 15px 15px;
+  margin: -15px -15px -15px -15px;
+}
+
+/*# sourceMappingURL=mainmenu.css.map */

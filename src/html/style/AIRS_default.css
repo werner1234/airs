@@ -1,0 +1,73 @@
+/*huisstyle van AIRS 2017*/
+
+h1{ font-size: 1.5em; font-weight: bold}
+h2{ font-size: 1.2em; font-weight: bold}
+
+.wp5 {width: 5%;}
+.wp10 {width: 10%;}
+.wp15 {width: 15%;}
+.wp20 {width: 20%;}
+.wp25 {width: 25%;}
+.wp30 {width: 30%;}
+.wp35 {width: 35%;}
+.wp40 {width: 40%;}
+.wp45 {width: 45%;}
+.wp50 {width: 50%;}
+
+
+fieldset{
+  width: 1000px;
+}
+
+legend{
+  background: rgba(20,60,90,1);
+  color: white;
+  width:25%;
+  padding:5px;
+}
+
+button{
+  padding:10px 15px 10px 15px ;
+  background: rgba(20,60,90,1);
+  color: white;
+  border: 0px;
+  cursor: pointer;
+}
+
+.btnBlue{
+  background: rgba(20,60,90,1);
+  color: white;
+}
+
+.btnGreen{
+  background: rgba(20,90,20,1);
+  color: white;
+}
+.btnRed{
+  background: rgba(128,30,30,1);
+  color: white;
+}
+.feedbackMsg{
+  display: none;
+  
+  background: rgba(128,30,30,1);
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.contentContainer{
+  width: 1020px;
+}
+
+.listTable tr:nth-child(even) {background: #EEE}
+.listTable tr:nth-child(odd) {background: #FFF}
+
+td{ padding: 5px;}
+td.listKop{ background: rgba(20,60,90,1)!important; color: white!important; }
+
+.ar { text-align: right; }
+.ac { text-align: center; }
+.b  { font-weight: bold; }

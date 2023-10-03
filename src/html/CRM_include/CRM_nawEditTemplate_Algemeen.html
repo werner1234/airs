@@ -1,0 +1,54 @@
+<fieldset id="RelatieSectie2" >
+  <legend> Adres</legend>
+  <table>
+  <tr><td class="crm_links">{adres_description} </td> <td>{adres_inputfield} </td> </tr>
+  <tr><td>{pc_description},{plaats_description},{land_description} </td> <td>{pc_inputfield}&nbsp;&nbsp;&nbsp; {plaats_inputfield}&nbsp;&nbsp;&nbsp; {land_inputfield}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:copyAdres(true);" value=" = " style="background-color :#dddddd" title="Adresgegevens kopiëren naar verzendadres."></td> </tr>
+  </table>
+</fieldset>
+
+<fieldset id="RelatieSectie1A">
+  <legend> Verzendadres </legend>
+  <table>
+  <tr><td class="crm_links">{verzendAanhef_description}</td><td>{verzendAanhef_inputfield}{verzendAanhef_error}</td></tr>
+  <tr><td>{verzendPaAanhef_description}</td><td>{verzendPaAanhef_inputfield}{verzendPaAanhef_error}</td></tr>
+  <tr><td>{verzendAdres_description}</td><td>{verzendAdres_inputfield}{verzendAdres_error}</td></tr>
+  <tr><td>{verzendPc_description}</td><td>{verzendPc_inputfield}{verzendPc_error}&nbsp;&nbsp;{verzendPlaats_inputfield} {verzendPlaats_error}</td></tr>
+  <tr><td>{verzendLand_description}</td><td>{verzendLand_inputfield} {verzendLand_error}</td></tr>
+  </table>
+</fieldset>
+
+<fieldset id="RelatieSectie4" >
+  <legend> Telefoon </legend>
+  <table>
+  <tr><td class="crm_links">{tel1_description}</td><td>{tel1_inputfield}{tel1_error} &nbsp;&nbsp; {tel1_oms_inputfield} {tel1_oms_error} {tel_toev1_inputfield} {tel_toev1_error}</td></tr>
+  <tr><td>{tel2_description}</td><td>{tel2_inputfield}{tel2_error} &nbsp;&nbsp; {tel2_oms_inputfield} {tel2_oms_error} {tel_toev2_inputfield} {tel_toev2_error}</td></tr>
+  <tr><td>{tel3_description}</td><td>{tel3_inputfield}{tel3_error} &nbsp;&nbsp; {tel3_oms_inputfield} {tel3_oms_error} {tel_toev3_inputfield} {tel_toev3_error}</td></tr>
+  <tr><td>{tel4_description}</td><td>{tel4_inputfield}{tel4_error} &nbsp;&nbsp; {tel4_oms_inputfield} {tel4_oms_error} {tel_toev4_inputfield} {tel_toev4_error}</td></tr>
+  <tr><td>{tel5_description}</td><td>{tel5_inputfield}{tel5_error} &nbsp;&nbsp; {tel5_oms_inputfield} {tel5_oms_error} {tel_toev5_inputfield} {tel_toev5_error}</td></tr>
+  <tr><td>{tel6_description}</td><td>{tel6_inputfield}{tel6_error} &nbsp;&nbsp; {tel6_oms_inputfield} {tel6_oms_error} {tel_toev6_inputfield} {tel_toev6_error}</td></tr>
+  <tr><td>{fax_description}</td><td>{fax_inputfield}{fax_error}</td></tr>
+  <tr><td>{faxZakelijk_description}</td><td>{faxZakelijk_inputfield}{faxZakelijk_error}</td></tr>
+  </table>
+</fieldset>
+
+<fieldset id="RelatieSectie5" >
+  <legend> Internetgegevens </legend>
+  <table>
+    <tr><td class="crm_links">{email_description}</td><td>{email_inputfield}{email_error} <a href="javascript:mailTo(document.editForm.email.value);"><img src="images/16/internetMail.gif" border="0" align="bottom"></a></td></tr>
+	<tr><td>{emailPartner_description}</td><td>{emailPartner_inputfield}{emailPartner_error} <a href="javascript:mailTo(document.editForm.emailPartner.value);"><img src="images/16/internetMail.gif" border="0" align="bottom"></a></td></tr>
+    <tr><td>{emailZakelijk_description}</td><td>{emailZakelijk_inputfield}{emailZakelijk_error} <a href="javascript:mailTo(document.editForm.emailZakelijk.value);"><img src="images/16/internetMail.gif" border="0" align="bottom"></a></td></tr>
+    <tr><td>{emailPartnerZakelijk_description}</td><td>{emailPartnerZakelijk_inputfield}{emailPartnerZakelijk_error} <a href="javascript:mailTo(document.editForm.emailPartnerZakelijk.value);"><img src="images/16/internetMail.gif" border="0" align="bottom"></a></td></tr>
+    <tr><td>{website_description}</td><td>{website_inputfield}{website_error} <a href="javascript:wwwTo();"><img src="images/16/internetLink.gif" border="0" align="bottom"></a></td></tr>
+  </table>
+</fieldset>
+
+<fieldset id="RelatieSectie3" >
+  <legend> Bedrijfinfo </legend>
+  <table>
+  <tr><td class="crm_links">{ondernemingsvorm_description}</td><td>{ondernemingsvorm_inputfield}{ondernemingsvorm_error}</td></tr>
+  <tr><td>{kvknr_description}</td><td>{kvknr_inputfield}{kvknr_error}</td></tr>
+  <tr><td>{btwnr_description}</td><td>{btwnr_inputfield}{btwnr_error}</td></tr>
+  </table>
+</fieldset>
+
+{recordInfo}

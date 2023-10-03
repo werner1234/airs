@@ -1,0 +1,86 @@
+<form>
+  <fieldset >
+    <legend>[vt]Mutatie[/vt] - {client} - {registration_number}</legend>
+    <input type="hidden" name="participanten_id" value="{participanten_id}">
+    <input type="hidden" name="Fonds" value="{fonds_fonds}">
+    
+    <input type="hidden" name="client" value="{client}">
+    <input type="hidden" name="registration_number" value="{registration_number}">
+    <table id="addMutation"  style="margin-bottom:15px;">  
+      <tr>
+        <td class="list_kopregel_data">[vt]Datum[/vt]</td>
+        <td class="list_kopregel_data">[vt]Aantal[/vt]</td>
+        <td class="list_kopregel_data">[vt]Koers[/vt]</td>
+        <td class="list_kopregel_data">[vt]Transactiesoort[/vt]</td>
+        <td class="list_kopregel_data">[vt]Omschrijving[/vt]</td>
+      </tr>
+      <tr>
+        <td>{datum_inputfield}</td>
+        <td>{aantal_inputfield}</td>
+        <td>{koers_inputfield}</td>
+        <td>{transactietype_inputfield}</td>
+        <td>{omschrijving_inputfield}</td>
+        <td>{btn_submit}</td>
+      </tr>
+    </table>
+  </fieldset>
+</form>
+
+
+
+<script>
+  function ConvertFormToJSON(form) {
+    var array = jQuery(form).serializeArray();
+    var json = {};
+
+    jQuery.each(array, function () {
+      json[this.name] = this.value || '';
+    });
+    return json;
+  }
+
+  $(function () {
+    $('.saveRow').on('click', function () {
+      event.preventDefault();
+      var form = $('.saveRow').closest('form');
+      form.find(':input').css('border-color', ''); //reset inputfield style
+      var json = ConvertFormToJSON(form);
+      $.ajax({
+        url: '{updateScript}',
+        type: 'POST',
+        data: {
+          postData: json,
+          saveRow: 'true'
+        },
+        dataType: "json",
+        success: function (data) {
+          $('#message').html('');
+          
+          $.each(data.fieldErrors, function(field, fieldData) {
+            $('#addMutation [name=' + field + ']').css('border-color', 'red');
+          });
+          
+          if (data.template) {
+            $('#overviewResult').slideUp(500).html('');
+            
+            $('#overviewResultEmpty').hide();
+            $('#overviewResult table tbody').prepend(data.template); 
+            form.trigger("reset");
+            
+            $('#client').val('');
+            $('#clientId').val('');
+            $('#registrationNumber').val('');
+            $('#participantenId').val('');
+          }
+          
+          if (data.message) {
+            $('#message').html(data.message);
+          }
+        },
+        error: function (data) {
+        },
+        cache: false
+      });
+    });
+  });
+</script>
